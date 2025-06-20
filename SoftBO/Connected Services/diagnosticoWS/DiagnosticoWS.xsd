@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://softcitws.soft.pucp.edu.pe/" targetNamespace="http://softcitws.soft.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertarDiagnostico" type="tns:insertarDiagnostico" />
+  <xs:element name="insertarDiagnosticoResponse" type="tns:insertarDiagnosticoResponse" />
+  <xs:element name="listarTodosDiagnostico" type="tns:listarTodosDiagnostico" />
+  <xs:element name="listarTodosDiagnosticoResponse" type="tns:listarTodosDiagnosticoResponse" />
+  <xs:element name="obtenerPorIdDiagnostico" type="tns:obtenerPorIdDiagnostico" />
+  <xs:element name="obtenerPorIdDiagnosticoResponse" type="tns:obtenerPorIdDiagnosticoResponse" />
+  <xs:complexType name="insertarDiagnostico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="diagnostico" type="tns:diagnosticoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="diagnosticoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="capitulo" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="grupo" type="xs:string" />
+      <xs:element minOccurs="0" name="idDiagnostico" type="xs:int" />
+      <xs:element minOccurs="0" name="nivel" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreDiagnostico" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarDiagnosticoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodosDiagnostico">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosDiagnosticoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:diagnosticoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorIdDiagnostico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="diagnosticoId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerPorIdDiagnosticoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:diagnosticoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

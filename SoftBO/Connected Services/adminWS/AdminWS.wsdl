@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://softcitws.soft.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="AdminWS" targetNamespace="http://softcitws.soft.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/AdminWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="asignarNuevoRolParaUsuario">
+    <part name="parameters" element="tns:asignarNuevoRolParaUsuario" />
+  </message>
+  <message name="asignarNuevoRolParaUsuarioResponse">
+    <part name="parameters" element="tns:asignarNuevoRolParaUsuarioResponse" />
+  </message>
+  <portType name="AdminWS">
+    <operation name="asignarNuevoRolParaUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/asignarNuevoRolParaUsuarioRequest" message="tns:asignarNuevoRolParaUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/asignarNuevoRolParaUsuarioResponse" message="tns:asignarNuevoRolParaUsuarioResponse" />
+    </operation>
+  </portType>
+  <binding name="AdminWSPortBinding" type="tns:AdminWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="asignarNuevoRolParaUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AdminWS">
+    <port name="AdminWSPort" binding="tns:AdminWSPortBinding">
+      <soap:address location="http://localhost:8080/SoftCitWS/AdminWS" />
+    </port>
+  </service>
+</definitions>

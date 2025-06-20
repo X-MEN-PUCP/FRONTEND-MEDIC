@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF2A27C2-D5AB-4908-A61D-1936F16A7D0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SoftBO</RootNamespace>
+    <AssemblyName>SoftBO</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminBO.cs" />
+    <Compile Include="CitaBO.cs" />
+    <Compile Include="Connected Services\adminWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\citaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\consultorioWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\diagnosticoporcitaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\diagnosticoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\especialidadWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\examenporcitaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\examenWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\historiaclinicaporcitaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\historiaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\interconsultaWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\loginWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\medicoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\pacienteWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\registroWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\rolesporusuarioWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\tipoexamenWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\turnoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\usuarioporespecialidadWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\usuarioWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultorioBO.cs" />
+    <Compile Include="DiagnosticoBO.cs" />
+    <Compile Include="DiagnosticoPorCitaBO.cs" />
+    <Compile Include="EspecialidadBO.cs" />
+    <Compile Include="ExamenBO.cs" />
+    <Compile Include="ExamenPorCitaBO.cs" />
+    <Compile Include="HistoriaBO.cs" />
+    <Compile Include="HistoriaClinicaPorCitaBO.cs" />
+    <Compile Include="InterconsultaBO.cs" />
+    <Compile Include="LocalDateComplementoPaciente.cs" />
+    <Compile Include="LocalDateComplementoCita.cs" />
+    <Compile Include="LoginBO.cs" />
+    <Compile Include="MedicoBO.cs" />
+    <Compile Include="PacienteBO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroBO.cs" />
+    <Compile Include="RolesPorUsuarioBO.cs" />
+    <Compile Include="TipoExamenBO.cs" />
+    <Compile Include="TurnoBO.cs" />
+    <Compile Include="UsuarioBO.cs" />
+    <Compile Include="UsuarioPorEspecialidadBO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\adminWS\AdminWS.wsdl" />
+    <None Include="Connected Services\adminWS\AdminWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.asignarNuevoRolParaUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\CitaWS.wsdl" />
+    <None Include="Connected Services\citaWS\CitaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.buscarCitasDisponiblesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.citaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.listarCitasProgramadasResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.listarTodosCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.modificarCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.obtenerPorIdCitaCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\consultorioWS\ConsultorioWS.wsdl" />
+    <None Include="Connected Services\consultorioWS\ConsultorioWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\consultorioWS\SoftBO.consultorioWS.consultorioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\consultorioWS\SoftBO.consultorioWS.insertarConsultorioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\consultorioWS\SoftBO.consultorioWS.listarTodosConsultorioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\consultorioWS\SoftBO.consultorioWS.modificarConsultorioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\consultorioWS\SoftBO.consultorioWS.obtenerPorIdConsultorioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoporcitaWS\DiagnosticoPorCitaWS.wsdl" />
+    <None Include="Connected Services\diagnosticoporcitaWS\DiagnosticoPorCitaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\diagnosticoporcitaWS\SoftBO.diagnosticoporcitaWS.diagnosticoPorCita.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoporcitaWS\SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoporcitaWS\SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoporcitaWS\SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoWS\DiagnosticoWS.wsdl" />
+    <None Include="Connected Services\diagnosticoWS\DiagnosticoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\diagnosticoWS\SoftBO.diagnosticoWS.diagnosticoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoWS\SoftBO.diagnosticoWS.insertarDiagnosticoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoWS\SoftBO.diagnosticoWS.listarTodosDiagnosticoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\diagnosticoWS\SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\EspecialidadWS.wsdl" />
+    <None Include="Connected Services\especialidadWS\EspecialidadWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.especialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.insertarEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.listarEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.modificarEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenporcitaWS\ExamenPorCitaWS.wsdl" />
+    <None Include="Connected Services\examenporcitaWS\ExamenPorCitaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.examenPorCita.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.ListarExamenesPorIdCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.ListarTodosLosExamenesPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenWS\ExamenWS.wsdl" />
+    <None Include="Connected Services\examenWS\ExamenWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\examenWS\SoftBO.examenWS.examenDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenWS\SoftBO.examenWS.insertarExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenWS\SoftBO.examenWS.listarTodosTablaExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\examenWS\SoftBO.examenWS.obtenerPorIdTablaExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\HistoriaClinicaPorCitaWS.wsdl" />
+    <None Include="Connected Services\historiaclinicaporcitaWS\HistoriaClinicaPorCitaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.ListarHistoriasClinicasPorIdHistoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.ListarTodasLasHistoriasClinicasPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaclinicaporcitaWS\SoftBO.historiaclinicaporcitaWS.ObtenerHistoriaClinicaPorIdCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaWS\HistoriaWS.wsdl" />
+    <None Include="Connected Services\historiaWS\HistoriaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\historiaWS\SoftBO.historiaWS.historiaClinicaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaWS\SoftBO.historiaWS.insertarHistoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaWS\SoftBO.historiaWS.listarHistoriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaWS\SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\historiaWS\SoftBO.historiaWS.obtenerHistoriaPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\interconsultaWS\InterconsultaWS.wsdl" />
+    <None Include="Connected Services\interconsultaWS\InterconsultaWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\interconsultaWS\SoftBO.interconsultaWS.insertarInterconusltaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\interconsultaWS\SoftBO.interconsultaWS.interconsultaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\interconsultaWS\SoftBO.interconsultaWS.listarTodosInterconusltaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\interconsultaWS\SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\loginWS\LoginWS.wsdl" />
+    <None Include="Connected Services\loginWS\LoginWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\loginWS\SoftBO.loginWS.cerrarSesionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\loginWS\SoftBO.loginWS.iniciarSesionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\loginWS\SoftBO.loginWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\MedicoWS.wsdl" />
+    <None Include="Connected Services\medicoWS\MedicoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.citaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarCitasProgramadasMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.llenarEpicrisisMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\PacienteWS.wsdl" />
+    <None Include="Connected Services\pacienteWS\PacienteWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.cancelarCitaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.citaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.historiaClinicaPorCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPorPersonaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.reprogramarCitaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.reservarCitaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\registroWS\RegistroWS.wsdl" />
+    <None Include="Connected Services\registroWS\RegistroWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\registroWS\SoftBO.registroWS.registrarseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\rolesporusuarioWS\RolesPorUsuarioWS.wsdl" />
+    <None Include="Connected Services\rolesporusuarioWS\RolesPorUsuarioWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\rolesporusuarioWS\SoftBO.rolesporusuarioWS.insertarRolesPorUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\rolesporusuarioWS\SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\rolesporusuarioWS\SoftBO.rolesporusuarioWS.usuarioPorRolDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\SoftBO.tipoexamenWS.insertarTipoExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\SoftBO.tipoexamenWS.listarTodosTipoExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\SoftBO.tipoexamenWS.modificarTipoExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\SoftBO.tipoexamenWS.obtenerPorIdTipoExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\SoftBO.tipoexamenWS.tipoExamenDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\tipoexamenWS\TipoExamenWS.wsdl" />
+    <None Include="Connected Services\tipoexamenWS\TipoExamenWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\turnoWS\SoftBO.turnoWS.listarTodosTurnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\turnoWS\SoftBO.turnoWS.modificarTurnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\turnoWS\SoftBO.turnoWS.obtenerPorIdTurnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\turnoWS\SoftBO.turnoWS.turnoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\turnoWS\TurnoWS.wsdl" />
+    <None Include="Connected Services\turnoWS\TurnoWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\UsuarioPorEspecialidadWS.wsdl" />
+    <None Include="Connected Services\usuarioporespecialidadWS\UsuarioPorEspecialidadWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.buscarCuentaUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.completarRolesUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.insertarUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.modificarUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.obtenerPorIdUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\UsuarioWS.wsdl" />
+    <None Include="Connected Services\usuarioWS\UsuarioWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\adminWS\" />
+    <WCFMetadataStorage Include="Connected Services\citaWS\" />
+    <WCFMetadataStorage Include="Connected Services\consultorioWS\" />
+    <WCFMetadataStorage Include="Connected Services\diagnosticoporcitaWS\" />
+    <WCFMetadataStorage Include="Connected Services\diagnosticoWS\" />
+    <WCFMetadataStorage Include="Connected Services\especialidadWS\" />
+    <WCFMetadataStorage Include="Connected Services\examenporcitaWS\" />
+    <WCFMetadataStorage Include="Connected Services\examenWS\" />
+    <WCFMetadataStorage Include="Connected Services\historiaclinicaporcitaWS\" />
+    <WCFMetadataStorage Include="Connected Services\historiaWS\" />
+    <WCFMetadataStorage Include="Connected Services\interconsultaWS\" />
+    <WCFMetadataStorage Include="Connected Services\loginWS\" />
+    <WCFMetadataStorage Include="Connected Services\medicoWS\" />
+    <WCFMetadataStorage Include="Connected Services\pacienteWS\" />
+    <WCFMetadataStorage Include="Connected Services\registroWS\" />
+    <WCFMetadataStorage Include="Connected Services\rolesporusuarioWS\" />
+    <WCFMetadataStorage Include="Connected Services\tipoexamenWS\" />
+    <WCFMetadataStorage Include="Connected Services\turnoWS\" />
+    <WCFMetadataStorage Include="Connected Services\usuarioporespecialidadWS\" />
+    <WCFMetadataStorage Include="Connected Services\usuarioWS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\adminWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\adminWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\adminWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\consultorioWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\consultorioWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\consultorioWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoporcitaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoporcitaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoporcitaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\diagnosticoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\especialidadWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\especialidadWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\especialidadWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenporcitaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenporcitaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenporcitaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\examenWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\interconsultaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\interconsultaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\interconsultaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\pacienteWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\pacienteWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\pacienteWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\registroWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\registroWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\registroWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\tipoexamenWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\tipoexamenWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\tipoexamenWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\turnoWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\turnoWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\turnoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioporespecialidadWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioporespecialidadWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioporespecialidadWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\usuarioWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\citaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\citaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\citaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

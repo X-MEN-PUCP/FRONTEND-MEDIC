@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SoftMA_Doctor.Master.cs" Inherits="SoftWA.SoftMA_Doctor" %>
+<%@ Register Src="~/cambiadorRol.ascx" TagPrefix="uc1" TagName="CambiadorRol" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/Fonts/css/all.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-3.7.1.js"></script>
+    <script src="Scripts/bootstrap.bundle.js"></script>
+
+    <title>
+        <asp:ContentPlaceHolder ID="chpTitulo" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <style>
+        .navbar-nav .nav-link {
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                text-align: center;
+                font-size: 1.2rem;
+            }
+            .navbar-brand span {
+                display: none;
+            }
+            .desktop-user {
+                display: none !important;
+            }
+            .mobile-user {
+                display: inline-block !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-user {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <nav class="navbar navbar-expand-md" style="background-color: #5bd3c5;">
+            <div class="container-fluid">
+                <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOpciones" aria-controls="navbarOpciones" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand d-flex align-items-center" href="indexMedico.aspx">
+                    <img src='<%= ResolveUrl("~/Images/op3.png") %>' alt="Logo" width="40" class="me-0">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarOpciones">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="doctor_agenda.aspx"><i class="fa-solid fa-calendar-days me-1"></i>Agenda de citas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="doctor_historial.aspx"><i class="fa-solid fa-list-check me-1"></i>Historial de citas</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center ms-auto">
+                    <div class="me-2">
+                        <uc1:CambiadorRol runat="server" ID="ucCambiadorRol" />
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" id="btnUserUnified" data-bs-toggle="dropdown" type="button" aria-expanded="false">
+                            <i class="fas fa-user me-2"></i>
+                            <span><asp:Literal ID="ltlNombreUsuario" runat="server">Usuario</asp:Literal></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="btnUserUnified">
+                            <li><a class="dropdown-item" href="perfil_medico.aspx"><i class="fa-solid fa-id-badge me-1"></i>Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key me-1"></i>Cambiar Contraseña</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <asp:LinkButton ID="lbtnCerrarSesion" runat="server" OnClick="lbtnCerrarSesion_Click" CssClass="dropdown-item">
+                                    <i class="fa-solid fa-right-from-bracket me-1"></i>Cerrar Sesión
+                                </asp:LinkButton>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="p-4">
+            <asp:ContentPlaceHolder ID="cphContenido" runat="server" />
+        </div>
+    </form>
+</body>
+</html>
+
