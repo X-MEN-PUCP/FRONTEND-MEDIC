@@ -311,24 +311,35 @@ namespace SoftWA
             {
                 var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
                 if (usuario == null) throw new Exception("La sesión ha expirado.");
+                string fechaHoy = DateTime.Today.ToString("yyyy-MM-dd");
 
                 // guardar Epicrisis
-                var epicrisis = new historiaClinicaPorCitaDTO
+                if (Request.QueryString["idCita"] != null && int.TryParse(Request.QueryString["idCita"], out int idCita))
                 {
-                    historiaClinica = new SoftBO.historiaclinicaporcitaWS.historiaClinicaDTO { idHistoriaClinica = int.Parse(hfIdHistoria.Value) },
-                    cita = new SoftBO.historiaclinicaporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) }
-                };
+                    hfIdCita.Value = idCita.ToString();
+                    var epicrisis =_historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
 
-                if (double.TryParse(txtPeso.Text, out double peso)) { epicrisis.peso = peso; epicrisis.pesoSpecified = true; }
-                if (double.TryParse(txtTalla.Text, out double talla)) { epicrisis.talla = talla; epicrisis.tallaSpecified = true; }
-                if (double.TryParse(txtTemperatura.Text, out double temp)) { epicrisis.temperatura = temp; epicrisis.temperaturaSpecified = true; }
-                epicrisis.presionArterial = txtPresion.Text;
-                epicrisis.motivoConsulta = txtMotivoConsulta.Text;
-                epicrisis.tratamiento = txtTratamiento.Text;
-                epicrisis.recomendacion = txtRecomendaciones.Text;
-                epicrisis.estadoGeneral = SoftBO.historiaclinicaporcitaWS.estadoGeneral.ACTIVO;
-                epicrisis.usuarioCreacion = usuario.idUsuario;
-                _historiaClinicaPorCitaBO.ModificarHistoriaClinicaPorCita(epicrisis);
+                    if (double.TryParse(txtPeso.Text, out double peso)) { epicrisis.peso = peso; epicrisis.pesoSpecified = true; }
+                    if (double.TryParse(txtTalla.Text, out double talla)) { epicrisis.talla = talla; epicrisis.tallaSpecified = true; }
+                    if (double.TryParse(txtTemperatura.Text, out double temp)) { epicrisis.temperatura = temp; epicrisis.temperaturaSpecified = true; }
+                    epicrisis.presionArterial = txtPresion.Text;
+                    epicrisis.motivoConsulta = txtMotivoConsulta.Text;
+                    epicrisis.tratamiento = txtTratamiento.Text;
+                    epicrisis.recomendacion = txtRecomendaciones.Text;
+                    epicrisis.estadoGeneral = SoftBO.historiaclinicaporcitaWS.estadoGeneral.ACTIVO;
+                    epicrisis.estadoGeneralSpecified = true;
+                    epicrisis.usuarioModificacion= usuario.idUsuario;
+                    epicrisis.usuarioModificacionSpecified = true;
+                    epicrisis.fechaModificacion = fechaHoy;
+                    epicrisis.evolucion = " ";
+                    epicrisis.frecuenciaCardiaca = 0;
+                    epicrisis.receta = " ";
+                    _historiaClinicaPorCitaBO.ModificarHistoriaClinicaPorCita(epicrisis);
+                }
+
+
+
+                
 
                 // guardar Diagnósticos
                 foreach (var diag in DiagnosticosDeCita)
@@ -356,6 +367,8 @@ namespace SoftWA
                 // cambiar estado de cita
                 var citaParaActualizar = _citaBO.ObtenerPorIdCitaCita(int.Parse(hfIdCita.Value));
                 citaParaActualizar.estado = SoftBO.citaWS.estadoCita.PAGADO; //cambiar si estado atendidooooooooo
+                citaParaActualizar.fechaModificacion = fechaHoy;
+                citaParaActualizar.usuarioModificacion = usuario.idUsuario;
                 _citaBO.ModificarCita(citaParaActualizar);
 
                 MostrarMensaje("Atención guardada exitosamente. Puede cerrar esta pestaña.", false);
