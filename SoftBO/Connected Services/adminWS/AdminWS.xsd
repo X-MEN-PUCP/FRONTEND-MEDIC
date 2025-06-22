@@ -2,10 +2,36 @@
 <xs:schema xmlns:tns="http://softcitws.soft.pucp.edu.pe/" targetNamespace="http://softcitws.soft.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="asignarNuevoRolParaUsuario" type="tns:asignarNuevoRolParaUsuario" />
   <xs:element name="asignarNuevoRolParaUsuarioResponse" type="tns:asignarNuevoRolParaUsuarioResponse" />
-  <xs:complexType name="asignarNuevoRolParaUsuario">
+  <xs:element name="eliminarRolDeUsuario" type="tns:eliminarRolDeUsuario" />
+  <xs:element name="eliminarRolDeUsuarioResponse" type="tns:eliminarRolDeUsuarioResponse" />
+  <xs:element name="insertarNuevaEspecialidad" type="tns:insertarNuevaEspecialidad" />
+  <xs:element name="insertarNuevaEspecialidadResponse" type="tns:insertarNuevaEspecialidadResponse" />
+  <xs:element name="insertarNuevoMedico" type="tns:insertarNuevoMedico" />
+  <xs:element name="insertarNuevoMedicoResponse" type="tns:insertarNuevoMedicoResponse" />
+  <xs:complexType name="eliminarRolDeUsuario">
     <xs:sequence>
-      <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="rolPorUsuario" type="tns:usuarioPorRolDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuarioPorRolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="rol" type="tns:rolDTO" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioDTO" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="idRol" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreRol" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="usuarioDTO">
@@ -17,7 +43,9 @@
       <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
       <xs:element minOccurs="0" name="estadoLogico" type="tns:estadoLogico" />
-      <xs:element minOccurs="0" name="fechaNacimiento" type="tns:localDate" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string" />
       <xs:element minOccurs="0" name="genero" type="tns:genero" />
       <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="nombres" type="xs:string" />
@@ -25,12 +53,54 @@
       <xs:element minOccurs="0" name="numDocumento" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="tipoDocumento" type="tns:tipoDocumento" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
+  <xs:complexType name="eliminarRolDeUsuarioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="asignarNuevoRolParaUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="rolPorUsuario" type="tns:usuarioPorRolDTO" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="asignarNuevoRolParaUsuarioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevoMedico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="medico" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="especialidadDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreEspecialidad" type="xs:string" />
+      <xs:element minOccurs="0" name="precioConsulta" type="xs:double" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevoMedicoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidadResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>

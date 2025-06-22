@@ -17,9 +17,21 @@ namespace SoftBO
             this.adminCliente = new AdminWSClient();
         }
 
-        public int AsignarNuevoRolParaUsuario(usuarioDTO usuario, int idRol)
+        public int AsignarNuevoRolParaUsuario(usuarioPorRolDTO usuario)
         {
-            return this.adminCliente.asignarNuevoRolParaUsuario(usuario, idRol);
+            return this.adminCliente.asignarNuevoRolParaUsuario(usuario);
+        }
+        public int EliminarRolDeUsuario(usuarioPorRolDTO usuario)
+        {
+            return this.adminCliente.eliminarRolDeUsuario(usuario);
+        }
+        public int InsertarNuevaEspecialidad(especialidadDTO especialidad)
+        {
+            return this.adminCliente.insertarNuevaEspecialidad(especialidad);
+        }
+        public int InsertarNuevoMedico(usuarioDTO medico, especialidadDTO especialidad)
+        {
+            return this.adminCliente.insertarNuevoMedico(medico, especialidad);
         }
     }
 }

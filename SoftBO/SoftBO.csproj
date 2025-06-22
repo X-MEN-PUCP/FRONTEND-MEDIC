@@ -120,6 +120,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\reporteCitasWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\rolesporusuarioWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +166,7 @@
     <Compile Include="PacienteBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistroBO.cs" />
+    <Compile Include="ReporteCitasBO.cs" />
     <Compile Include="RolesPorUsuarioBO.cs" />
     <Compile Include="TipoExamenBO.cs" />
     <Compile Include="TurnoBO.cs" />
@@ -177,6 +183,15 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.asignarNuevoRolParaUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.eliminarRolDeUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevaEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevoMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\citaWS\CitaWS.wsdl" />
@@ -396,6 +411,9 @@
     <None Include="Connected Services\pacienteWS\PacienteWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.buscarCitasPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.cancelarCitaPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -405,10 +423,7 @@
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.historiaClinicaPorCitaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPacienteResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPorPersonaPacienteResponse.datasource">
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPorPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.reprogramarCitaPacienteResponse.datasource">
@@ -422,6 +437,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\registroWS\SoftBO.registroWS.registrarseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\reporteCitasWS\ReporteWS.wsdl" />
+    <None Include="Connected Services\reporteCitasWS\ReporteWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\reporteCitasWS\SoftBO.reporteCitasWS.reporteCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\reporteCitasWS\SoftBO.reporteCitasWS.ReporteDeCitasGeneralResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\rolesporusuarioWS\RolesPorUsuarioWS.wsdl" />
@@ -536,6 +561,7 @@
     <WCFMetadataStorage Include="Connected Services\medicoWS\" />
     <WCFMetadataStorage Include="Connected Services\pacienteWS\" />
     <WCFMetadataStorage Include="Connected Services\registroWS\" />
+    <WCFMetadataStorage Include="Connected Services\reporteCitasWS\" />
     <WCFMetadataStorage Include="Connected Services\rolesporusuarioWS\" />
     <WCFMetadataStorage Include="Connected Services\tipoexamenWS\" />
     <WCFMetadataStorage Include="Connected Services\turnoWS\" />
@@ -778,6 +804,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\citaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\reporteCitasWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\reporteCitasWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\reporteCitasWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

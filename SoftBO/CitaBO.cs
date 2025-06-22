@@ -26,7 +26,7 @@ namespace SoftBO
             return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
         }
 
-        public BindingList<citaDTO> buscarCitasWSCitas(int idEspecialidad, int codMedico, string fecha,string hora_inicio,estadoCita estado)
+        public BindingList<citaDTO> BuscarCitasWSCitas(int idEspecialidad, int codMedico, string fecha,string hora_inicio,estadoCita estado)
         {
             citaDTO[] citas = this.citaCliente.buscarCitasWSCitas(idEspecialidad, codMedico, fecha,hora_inicio,estado);
             return new BindingList<citaDTO>(citas ?? new citaDTO[0]);

@@ -14,15 +14,27 @@
   <xs:complexType name="turnoDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
-      <xs:element minOccurs="0" name="horaFin" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="horaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="horaFin" type="xs:string" />
+      <xs:element minOccurs="0" name="horaInicio" type="xs:string" />
       <xs:element minOccurs="0" name="idTurno" type="xs:int" />
       <xs:element minOccurs="0" name="nombreTurno" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="modificarTurnoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodosTurno">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosTurnoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:turnoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerPorIdTurno">
@@ -33,14 +45,6 @@
   <xs:complexType name="obtenerPorIdTurnoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:turnoDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="listarTodosTurno">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarTodosTurnoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:turnoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoGeneral">

@@ -15,28 +15,27 @@ namespace SoftBO
         {
             this.pacienteCliente = new PacienteWSClient();
         }
-        public BindingList<citaDTO> ListarCitasPaciente(int idEspecialidad,DateTime fecha, int idMedico)
+        public BindingList<citaDTO> BuscarCitasPaciente(int idEspecialidad,string fecha, int idMedico, string horaInicio, estadoCita estado)
         {
-            string fecha_convertida = fecha.ToString("yyyy-MM-dd");
-            citaDTO[] citas = this.pacienteCliente.listarCitasPaciente(idEspecialidad, fecha_convertida, idMedico);
+            citaDTO[] citas = this.pacienteCliente.buscarCitasPaciente(idEspecialidad,fecha, idMedico, horaInicio, estado);
             return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
         }
         public int ReservarCitaPaciente(citaDTO cita, usuarioDTO paciente)
         {
             return this.pacienteCliente.reservarCitaPaciente(cita, paciente);
         }
-        public int CancelarCitaPaciente(citaDTO cita, historiaClinicaPorCitaDTO historia_por_cita)
+        public int CancelarCitaPaciente(historiaClinicaPorCitaDTO historia_por_cita)
         {
-            return this.pacienteCliente.cancelarCitaPaciente(cita, historia_por_cita);
+            return this.pacienteCliente.cancelarCitaPaciente(historia_por_cita);
         }
-        public int ReprogramarCitaPaciente(citaDTO citaAntigua, citaDTO citaNueva, historiaClinicaPorCitaDTO historia_por_cita)
+        public int ReprogramarCitaPaciente(citaDTO cita, historiaClinicaPorCitaDTO historia_por_cita)
         {
-            return this.pacienteCliente.reprogramarCitaPaciente(citaAntigua, citaNueva, historia_por_cita);
+            return this.pacienteCliente.reprogramarCitaPaciente(cita, historia_por_cita);
         }
-        public BindingList<historiaClinicaPorCitaDTO> ListarCitasPorPersonaPaciente(historiaClinicaDTO historia)
+        public BindingList<historiaClinicaPorCitaDTO> ListarCitasPaciente(usuarioDTO persona)
         {
-            historiaClinicaPorCitaDTO[] citas = this.pacienteCliente.listarCitasPorPersonaPaciente(historia);
-            return new BindingList<historiaClinicaPorCitaDTO>(citas);
+            historiaClinicaPorCitaDTO[] citas = this.pacienteCliente.listarCitasPorPaciente(persona);
+            return new BindingList<historiaClinicaPorCitaDTO>(citas ?? new historiaClinicaPorCitaDTO[0]);
         }
     }
 }

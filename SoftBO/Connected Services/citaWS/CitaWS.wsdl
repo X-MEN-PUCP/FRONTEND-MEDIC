@@ -5,23 +5,17 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/CitaWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarCitasMedicoWS">
-    <part name="parameters" element="tns:listarCitasMedicoWS" />
-  </message>
-  <message name="listarCitasMedicoWSResponse">
-    <part name="parameters" element="tns:listarCitasMedicoWSResponse" />
-  </message>
   <message name="buscarCitasoloCalendario">
     <part name="parameters" element="tns:buscarCitasoloCalendario" />
   </message>
   <message name="buscarCitasoloCalendarioResponse">
     <part name="parameters" element="tns:buscarCitasoloCalendarioResponse" />
   </message>
-  <message name="modificarCita">
-    <part name="parameters" element="tns:modificarCita" />
+  <message name="listarCitasMedicoWS">
+    <part name="parameters" element="tns:listarCitasMedicoWS" />
   </message>
-  <message name="modificarCitaResponse">
-    <part name="parameters" element="tns:modificarCitaResponse" />
+  <message name="listarCitasMedicoWSResponse">
+    <part name="parameters" element="tns:listarCitasMedicoWSResponse" />
   </message>
   <message name="listarTodosCita">
     <part name="parameters" element="tns:listarTodosCita" />
@@ -41,18 +35,20 @@
   <message name="obtenerPorIdCitaCitaResponse">
     <part name="parameters" element="tns:obtenerPorIdCitaCitaResponse" />
   </message>
+  <message name="modificarCita">
+    <part name="parameters" element="tns:modificarCita" />
+  </message>
+  <message name="modificarCitaResponse">
+    <part name="parameters" element="tns:modificarCitaResponse" />
+  </message>
   <portType name="CitaWS">
-    <operation name="listarCitasMedicoWS">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest" message="tns:listarCitasMedicoWS" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse" message="tns:listarCitasMedicoWSResponse" />
-    </operation>
     <operation name="buscarCitasoloCalendario">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest" message="tns:buscarCitasoloCalendario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse" message="tns:buscarCitasoloCalendarioResponse" />
     </operation>
-    <operation name="modificarCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest" message="tns:modificarCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse" message="tns:modificarCitaResponse" />
+    <operation name="listarCitasMedicoWS">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest" message="tns:listarCitasMedicoWS" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse" message="tns:listarCitasMedicoWSResponse" />
     </operation>
     <operation name="listarTodosCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest" message="tns:listarTodosCita" />
@@ -66,18 +62,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest" message="tns:obtenerPorIdCitaCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse" message="tns:obtenerPorIdCitaCitaResponse" />
     </operation>
+    <operation name="modificarCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest" message="tns:modificarCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse" message="tns:modificarCitaResponse" />
+    </operation>
   </portType>
   <binding name="CitaWSPortBinding" type="tns:CitaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarCitasMedicoWS">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="buscarCitasoloCalendario">
       <soap:operation soapAction="" />
       <input>
@@ -87,7 +78,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="modificarCita">
+    <operation name="listarCitasMedicoWS">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -115,6 +106,15 @@
       </output>
     </operation>
     <operation name="obtenerPorIdCitaCita">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

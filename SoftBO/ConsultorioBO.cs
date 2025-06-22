@@ -24,7 +24,7 @@ namespace SoftBO
         {
             return this.consultorioCliente.modificarConsultorio(consultorio);
         }
-        public consultorioDTO obtenerPorIdConsultorio(int consultorioId)
+        public consultorioDTO ObtenerPorIdConsultorio(int consultorioId)
         {
             return this.consultorioCliente.obtenerPorIdConsultorio(consultorioId);
         }
