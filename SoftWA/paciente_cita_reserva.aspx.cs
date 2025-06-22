@@ -1,5 +1,4 @@
-﻿using SoftBO;
-using SoftBO.citaWS;
+﻿using SoftBO.citaWS;
 using SoftBO.especialidadWS;
 using SoftBO.loginWS;
 using SoftBO.pacienteWS;
@@ -8,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,22 +14,16 @@ namespace SoftWA
 {
     public partial class paciente_cita_reserva : System.Web.UI.Page
     {
-        private readonly CitaBO _citaBO;
-        private readonly EspecialidadBO _especialidadBO;
-        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
-        private readonly PacienteBO _pacienteBO;
-        private List<DateTime> FechasDisponibles 
+        private Dictionary<DateTime, List<TimeSpan>> HorariosDisponiblesPorFecha
         {
-            get {  return ViewState["FechasDisponibles"] as List<DateTime> ?? new List<DateTime>(); }
-            set { ViewState["FechasDisponibles"] = value; }
+            get { return ViewState["HorariosDisponibles"] as Dictionary<DateTime, List<TimeSpan>> ?? new Dictionary<DateTime, List<TimeSpan>>(); }
+            set { ViewState["HorariosDisponibles"] = value; }
         }
-        public paciente_cita_reserva()
+        private List<DateTime> FechasDisponibles
         {
-            _citaBO = new CitaBO();
-            _especialidadBO = new EspecialidadBO();
-            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
-            _pacienteBO = new PacienteBO();
+            get { return HorariosDisponiblesPorFecha.Keys.ToList(); }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,17 +31,22 @@ namespace SoftWA
                 CargarEspecialidades();
                 ddlMedico.Enabled = false;
                 phNoResultados.Visible = true;
+                divHorarios.Visible = false;
             }
         }
+
         private void CargarEspecialidades()
         {
             try
             {
-                var especialidades = _especialidadBO.ListarEspecialidad();
-                ddlEspecialidad.DataSource = especialidades;
-                ddlEspecialidad.DataTextField = "nombreEspecialidad";
-                ddlEspecialidad.DataValueField = "idEspecialidad";
-                ddlEspecialidad.DataBind();
+                using (var servicioEspecialidad = new EspecialidadWSClient())
+                {
+                    var especialidades = servicioEspecialidad.listarEspecialidad();
+                    ddlEspecialidad.DataSource = especialidades;
+                    ddlEspecialidad.DataTextField = "nombreEspecialidad";
+                    ddlEspecialidad.DataValueField = "idEspecialidad";
+                    ddlEspecialidad.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -57,6 +54,202 @@ namespace SoftWA
             }
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", ""));
         }
+
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarMedicosPorEspecialidad();
+            LimpiarFiltrosDependientes(limpiarMedico: false);
+            ActualizarDisponibilidadCompleta();
+        }
+
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LimpiarFiltrosDependientes();
+            ActualizarDisponibilidadCompleta();
+        }
+        private void ActualizarDisponibilidadCompleta()
+        {
+            HorariosDisponiblesPorFecha = new Dictionary<DateTime, List<TimeSpan>>();
+
+            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
+            {
+                calFechaCita.DataBind();
+                return;
+            }
+
+            int.TryParse(ddlMedico.SelectedValue, out int idMedico);
+
+            try
+            {
+                using (var servicioCita = new CitaWSClient())
+                {
+                    var citasDisponibles = servicioCita.buscarCitasoloCalendario(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
+
+                    if (citasDisponibles != null && citasDisponibles.Any())
+                    {
+                        var disponibilidad = citasDisponibles
+                            .GroupBy(c => c.fechaCita)
+                            .ToDictionary(
+                                g => g.Key,
+                                g => g.Select(c => c.turno.horaInicio)
+                                      .Distinct()
+                                      .OrderBy(t => t)
+                                      .ToList()
+                            );
+
+                        HorariosDisponiblesPorFecha = disponibilidad;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error actualizando disponibilidad completa: " + ex.Message);
+            }
+
+            calFechaCita.DataBind();
+        }
+
+
+        protected void calFechaCita_SelectionChanged(object sender, EventArgs e)
+        {
+            divHorarios.Visible = false;
+            rblHorarios.Items.Clear();
+            LimpiarResultadosBusqueda();
+
+            if (calFechaCita.SelectedDate.Date >= DateTime.Today)
+            {
+                lblFechaSeleccionadaInfo.Text = "Fecha seleccionada: " + calFechaCita.SelectedDate.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+                lblFechaSeleccionadaInfo.Visible = true;
+                var disponibilidad = HorariosDisponiblesPorFecha;
+                if (disponibilidad.ContainsKey(calFechaCita.SelectedDate.Date))
+                {
+                    var horariosParaFecha = disponibilidad[calFechaCita.SelectedDate.Date];
+
+                    rblHorarios.DataSource = horariosParaFecha.Select(h => h.ToString(@"hh\:mm"));
+                    rblHorarios.DataBind();
+
+                    divHorarios.Visible = true;
+                    lblErrorHorario.Visible = false;
+                }
+                else
+                {
+                    lblErrorHorario.Text = "No se encontraron horarios para este día.";
+                    lblErrorHorario.Visible = true;
+                }
+            }
+        }
+
+        protected void calFechaCita_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.CssClass += " day-disabled";
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlEspecialidad.SelectedValue))
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ToolTip = "Seleccione una especialidad para ver disponibilidad";
+            }
+            else if (FechasDisponibles.Contains(e.Day.Date))
+            {
+                e.Cell.CssClass += " day-available";
+                e.Cell.ToolTip = "Hay horarios disponibles este día";
+            }
+            else
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ToolTip = "No hay citas disponibles este día";
+            }
+        }
+
+        protected void btnBuscarCitas_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
+            {
+                return;
+            }
+            if (calFechaCita.SelectedDate.Year == 1)
+            {
+                return;
+            }
+
+            int.TryParse(ddlMedico.SelectedValue, out int idMedico);
+            DateTime fecha = calFechaCita.SelectedDate;
+            string horaSeleccionada = rblHorarios.SelectedValue;
+
+            try
+            {
+                using (var servicioCita = new CitaWSClient())
+                {
+                    var resultados = servicioCita.buscarCitasDisponibles(idEspecialidad, idMedico, fecha);
+
+                    if (!string.IsNullOrEmpty(horaSeleccionada))
+                    {
+                        resultados = resultados.Where(c => c.turno.horaInicio.ToString(@"hh\:mm") == horaSeleccionada).ToArray();
+                    }
+
+                    if (resultados.Any())
+                    {
+                        var citasParaMostrar = resultados.Select(c => new
+                        {
+                            IdCitaDisponible = c.idCita,
+                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
+                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
+                            FechaCita = c.fechaCita,
+                            DescripcionHorario = c.turno.horaInicio.ToString(@"hh\:mm"),
+                            Precio = c.especialidad.precioConsulta
+                        }).ToList();
+
+                        rptResultadosCitas.DataSource = citasParaMostrar;
+                        rptResultadosCitas.DataBind();
+                        phNoResultados.Visible = false;
+                    }
+                    else
+                    {
+                        LimpiarResultadosBusqueda();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error buscando citas: " + ex.Message);
+                phNoResultados.Visible = true;
+            }
+        }
+
+        #region Metodos de Limpieza y UI
+        private void LimpiarFiltrosDependientes(bool limpiarMedico = true)
+        {
+            if (limpiarMedico)
+            {
+                CargarMedicosPorEspecialidad();
+            }
+            calFechaCita.SelectedDates.Clear();
+            lblFechaSeleccionadaInfo.Visible = false;
+            divHorarios.Visible = false;
+            rblHorarios.Items.Clear();
+            lblErrorHorario.Visible = false;
+            HorariosDisponiblesPorFecha = new Dictionary<DateTime, List<TimeSpan>>();
+            LimpiarResultadosBusqueda();
+        }
+
+        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            ddlEspecialidad.ClearSelection();
+            LimpiarFiltrosDependientes();
+            calFechaCita.DataBind();
+        }
+
+        private void LimpiarResultadosBusqueda()
+        {
+            rptResultadosCitas.DataSource = null;
+            rptResultadosCitas.DataBind();
+            phNoResultados.Visible = true;
+            ltlMensajeReserva.Text = "";
+        }
+
         private void CargarMedicosPorEspecialidad()
         {
             ddlMedico.Items.Clear();
@@ -64,15 +257,18 @@ namespace SoftWA
             {
                 try
                 {
-                    var medicos = _usuarioPorEspecialidadBO.ListarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
-                    var listaMedicos = medicos.Select(m => new ListItem(
-                        $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
-                        m.usuario.idUsuario.ToString()
-                    )).ToList();
-                    ddlMedico.DataSource = listaMedicos;
-                    ddlMedico.DataTextField = "Text";
-                    ddlMedico.DataValueField = "Value";
-                    ddlMedico.DataBind();
+                    using (var servicioMedicos = new UsuarioPorEspecialidadWSClient())
+                    {
+                        var medicos = servicioMedicos.listarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
+                        var listaMedicos = medicos.Select(m => new ListItem(
+                            $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
+                            m.usuario.idUsuario.ToString()
+                        )).ToList();
+                        ddlMedico.DataSource = listaMedicos;
+                        ddlMedico.DataTextField = "Text";
+                        ddlMedico.DataValueField = "Value";
+                        ddlMedico.DataBind();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -86,151 +282,7 @@ namespace SoftWA
             }
             ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarMedicosPorEspecialidad();
-            LimpiarResultados();
-            ActualizarFechasDisponibles();
-        }
-        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LimpiarResultados();
-            ActualizarFechasDisponibles();
-        }
-        private void ActualizarFechasDisponibles()
-        {
-            //FechasDisponibles = new List<DateTime>();
-            //if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
-            //{
-            //    calFechaCita.DataBind();
-            //    return;
-            //}
-            //int.TryParse(ddlMedico.SelectedValue, out int idMedico);
-            //try
-            //{
-            //    var fechasComoString = _citaBO.ListarFechasDisponibles(idEspecialidad, idMedico);
 
-            //    if (fechasComoString != null)
-            //    {
-            //        var fechasParseadas = new List<DateTime>();
-            //        foreach (var fechaStr in fechasComoString)
-            //        {
-            //            if (DateTime.TryParse(fechaStr, out DateTime fecha))
-            //            {
-            //                fechasParseadas.Add(fecha);
-            //            }
-            //        }
-            //        FechasDisponibles = fechasParseadas;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Error actualizando fechas disponibles: " + ex.Message);
-            //}
-            //calFechaCita.DataBind();
-        }
-        protected void calFechaCita_SelectionChanged(object sender, EventArgs e)
-        {
-            if (calFechaCita.SelectedDate >= DateTime.Today)
-            {
-                lblFechaSeleccionadaInfo.Text = "Fecha seleccionada: " + calFechaCita.SelectedDate.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
-                lblFechaSeleccionadaInfo.Visible = true;
-                lblErrorBusqueda.Visible = false;
-            }
-            LimpiarResultados();
-        }
-        protected void calFechaCita_DayRender(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date < DateTime.Today)
-            {
-                e.Day.IsSelectable = false;
-                e.Cell.CssClass += "day-disabled";
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlEspecialidad.SelectedValue))
-            {
-                e.Day.IsSelectable = false;
-                e.Cell.ToolTip = "Seleccione una especialidad para ver citas disponibles";
-            }
-            else if (FechasDisponibles.Contains(e.Day.Date))
-            {
-                e.Cell.CssClass += " day-available";
-                e.Cell.ToolTip = "Hay horarios disponibles este día";
-            }
-            else
-            {
-                e.Day.IsSelectable = false;
-                e.Cell.ToolTip = "No hay citas disponibles este día";
-            }
-        }
-        protected void btnBuscarCitas_Click(object sender, EventArgs e)
-        {
-            lblErrorBusqueda.Visible = false;
-            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
-            {
-                lblErrorBusqueda.Text = "Seleccione una especialidad para buscar citas.";
-                lblErrorBusqueda.Visible = true;
-                return;
-            }
-            if (calFechaCita.SelectedDate.Year == 1)
-            {
-                lblErrorBusqueda.Text = "Seleccione una fecha válida para buscar citas.";
-                lblErrorBusqueda.Visible = true;
-                return;
-            }
-            int.TryParse(ddlMedico.SelectedValue, out int idMedico);
-            DateTime fecha = calFechaCita.SelectedDate;
-            try
-            {
-                var resultados = _citaBO.ListarTodosCita();
-
-                if (resultados != null && resultados.Any())
-                {
-                    var citasParaMostrar = resultados.Select(c => new
-                        {
-                            IdCitaDisponible = c.idCita,
-                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
-                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
-                            FechaCita = c.fechaCita,
-                            //DescripcionHorario = c.turno.horaInicio.ToString(@"hh\:mm"),
-                            Precio = c.especialidad.precioConsulta
-                    }).ToList();
-
-                    rptResultadosCitas.DataSource = citasParaMostrar;
-                    rptResultadosCitas.DataBind();
-                    phNoResultados.Visible = false;
-                }
-                else
-                {
-                    LimpiarResultados();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error buscando citas: " + ex.Message);
-                phNoResultados.Visible = true;
-            }
-        }
-        #region Metodos de Limpieza y UI
-        private void LimpiarResultados()
-        {
-            rptResultadosCitas.DataSource = null;
-            rptResultadosCitas.DataBind();
-            phNoResultados.Visible = true;
-            ltlMensajeReserva.Text = "";
-            lblErrorBusqueda.Visible = false;
-        }
-        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
-        {
-            ddlEspecialidad.ClearSelection();
-            ddlMedico.Items.Clear();
-            ddlMedico.Items.Add(new ListItem("-- Cualquier Médico --", ""));
-            ddlMedico.Enabled = false;
-            calFechaCita.SelectedDates.Clear();
-            lblFechaSeleccionadaInfo.Visible = false;
-            FechasDisponibles = new List<DateTime>();
-            LimpiarResultados();
-        }
         protected void btnModalPagarDespues_Click(object sender, EventArgs e)
         {
             int.TryParse(hfModalCitaId.Value, out int idCita);
@@ -303,6 +355,7 @@ namespace SoftWA
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "CloseModalScript", "cerrarModalConfirmacion();", true);
         }
+
         #endregion
     }
 }
