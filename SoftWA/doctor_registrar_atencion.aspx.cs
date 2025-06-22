@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using SoftBO.examenporcitaWS;
+using SoftBO.interconsultaWS;
+using System.Web.UI.WebControls;
 
 namespace SoftWA
 {
@@ -21,11 +24,28 @@ namespace SoftWA
         private readonly DiagnosticoPorCitaBO _diagnosticoPorCitaBO;
 
 
-        // Propiedad para manejar la lista de diagnósticos en ViewState
+        private readonly ExamenBO _examenBO;
+        private readonly ExamenPorCitaBO _examenPorCitaBO;
+        private readonly InterconsultaBO _interconsultaBO;
+        private readonly EspecialidadBO _especialidadBO;
+
+
         private List<diagnosticoPorCita> DiagnosticosDeCita
         {
             get { return ViewState["DiagnosticosDeCita"] as List<diagnosticoPorCita> ?? new List<diagnosticoPorCita>(); }
             set { ViewState["DiagnosticosDeCita"] = value; }
+        }
+
+        private List<examenPorCita> ExamenesDeCita
+        {
+            get { return ViewState["ExamenesDeCita"] as List<examenPorCita> ?? new List<examenPorCita>(); }
+            set { ViewState["ExamenesDeCita"] = value; }
+        }
+
+        private List<interconsultaDTO> InterconsultasDeCita
+        {
+            get { return ViewState["InterconsultasDeCita"] as List<interconsultaDTO> ?? new List<interconsultaDTO>(); }
+            set { ViewState["InterconsultasDeCita"] = value; }
         }
 
         public doctor_registrar_atencion()
@@ -35,8 +55,13 @@ namespace SoftWA
             _historiaClinicaPorCitaBO = new HistoriaClinicaPorCitaBO();
             _diagnosticoBO = new DiagnosticoBO();
             _diagnosticoPorCitaBO = new DiagnosticoPorCitaBO();
-        }
 
+            _examenBO = new ExamenBO();
+            _examenPorCitaBO = new ExamenPorCitaBO();
+            _interconsultaBO = new InterconsultaBO();
+            _especialidadBO = new EspecialidadBO();
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -102,7 +127,37 @@ namespace SoftWA
             {
                  MostrarMensaje($"Error al cargar la lista de diagnósticos: {ex.Message}", true);
             }
+
+            try
+            {
+                var todosExamenes = _examenBO.ListarTodosTablaExamen();
+                ddlExamenes.DataSource = todosExamenes;
+                ddlExamenes.DataTextField = "nombreExamen";
+                ddlExamenes.DataValueField = "idExamen";
+                ddlExamenes.DataBind();
+                ddlExamenes.Items.Insert(0, new ListItem("-- Seleccione un examen --", "0"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error al cargar la lista de exámenes: {ex.Message}", true);
+            }
+
+            try
+            {
+                var todasEspecialidades = _especialidadBO.ListarEspecialidad();
+                ddlEspecialidadInterconsulta.DataSource = todasEspecialidades;
+                ddlEspecialidadInterconsulta.DataTextField = "nombreEspecialidad";
+                ddlEspecialidadInterconsulta.DataValueField = "idEspecialidad";
+                ddlEspecialidadInterconsulta.DataBind();
+                ddlEspecialidadInterconsulta.Items.Insert(0, new ListItem("-- Seleccione especialidad --", "0"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error al cargar la lista de especialidades para interconsulta: {ex.Message}", true);
+            }
         }
+
+        
         
         protected void btnAgregarDiagnostico_Click(object sender, EventArgs e)
         {
@@ -151,18 +206,119 @@ namespace SoftWA
             rptDiagnosticosAgregados.DataBind();
         }
 
+        protected void btnAgregarExamen_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(ddlExamenes.SelectedValue, out int idExamen) && idExamen > 0)
+            {
+                var listaActual = ExamenesDeCita;
+                if (listaActual.Any(ex => ex.examen.idExamen == idExamen))
+                {
+                    MostrarMensaje("Este examen ya ha sido solicitado.", false, true);
+                    return;
+                }
+
+                var examenSeleccionado = _examenBO.ObtenerPorIdTablaExamen(idExamen);
+
+                listaActual.Add(new examenPorCita
+                {
+                    examen = new SoftBO.examenporcitaWS.examenDTO
+                    {
+                        idExamen = examenSeleccionado.idExamen,
+                        nombreExamen = examenSeleccionado.nombreExamen
+                    },
+                    observaciones = txtObservacionExamen.Text.Trim()
+                });
+
+                ExamenesDeCita = listaActual;
+                RefrescarListaExamenes();
+                txtObservacionExamen.Text = string.Empty;
+                ddlExamenes.SelectedIndex = 0;
+            }
+        }
+
+        protected void rptExamenesAgregados_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Quitar")
+            {
+                int idExamenQuitar = int.Parse(e.CommandArgument.ToString());
+                var listaActual = ExamenesDeCita;
+                listaActual.RemoveAll(ex => ex.examen.idExamen == idExamenQuitar);
+                ExamenesDeCita = listaActual;
+                RefrescarListaExamenes();
+            }
+        }
+
+        private void RefrescarListaExamenes()
+        {
+            rptExamenesAgregados.DataSource = ExamenesDeCita;
+            rptExamenesAgregados.DataBind();
+        }
+
+
+        protected void btnAgregarInterconsulta_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(ddlEspecialidadInterconsulta.SelectedValue, out int idEspecialidad) && idEspecialidad > 0)
+            {
+                var listaActual = InterconsultasDeCita;
+                if (listaActual.Any(i => i.especialidadInterconsulta.idEspecialidad == idEspecialidad))
+                {
+                    MostrarMensaje("Ya se ha solicitado una interconsulta para esta especialidad.", false, true);
+                    return;
+                }
+
+                var especialidadSeleccionada = _especialidadBO.ObtenerPorIdTablaEspecialidad(idEspecialidad);
+
+                listaActual.Add(new interconsultaDTO
+                {
+                    especialidadInterconsulta = new SoftBO.interconsultaWS.especialidadDTO
+                    {
+                        idEspecialidad = especialidadSeleccionada.idEspecialidad,
+                        nombreEspecialidad = especialidadSeleccionada.nombreEspecialidad
+                    },
+                    razonInterconsulta = txtRazonInterconsulta.Text.Trim()
+                });
+
+                InterconsultasDeCita = listaActual;
+                RefrescarListaInterconsultas();
+                txtRazonInterconsulta.Text = string.Empty;
+                ddlEspecialidadInterconsulta.SelectedIndex = 0;
+            }
+        }
+
+        protected void rptInterconsultasAgregadas_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Quitar")
+            {
+                int idEspecialidadQuitar = int.Parse(e.CommandArgument.ToString());
+                var listaActual = InterconsultasDeCita;
+                listaActual.RemoveAll(i => i.especialidadInterconsulta.idEspecialidad == idEspecialidadQuitar);
+                InterconsultasDeCita = listaActual;
+                RefrescarListaInterconsultas();
+            }
+        }
+
+        private void RefrescarListaInterconsultas()
+        {
+            rptInterconsultasAgregadas.DataSource = InterconsultasDeCita;
+            rptInterconsultasAgregadas.DataBind();
+        }
+
+
+
         protected void btnFinalizarAtencion_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1. Guardar Epicrisis (Historia Clinica Por Cita)
+                var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                if (usuario == null) throw new Exception("La sesión ha expirado.");
+
+                // guardar Epicrisis
                 var epicrisis = new historiaClinicaPorCitaDTO
                 {
                     historiaClinica = new SoftBO.historiaclinicaporcitaWS.historiaClinicaDTO { idHistoriaClinica = int.Parse(hfIdHistoria.Value) },
                     cita = new SoftBO.historiaclinicaporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) }
                 };
-                
-                // Asignar valores, controlando nulos
+
                 if (double.TryParse(txtPeso.Text, out double peso)) { epicrisis.peso = peso; epicrisis.pesoSpecified = true; }
                 if (double.TryParse(txtTalla.Text, out double talla)) { epicrisis.talla = talla; epicrisis.tallaSpecified = true; }
                 if (double.TryParse(txtTemperatura.Text, out double temp)) { epicrisis.temperatura = temp; epicrisis.temperaturaSpecified = true; }
@@ -170,21 +326,36 @@ namespace SoftWA
                 epicrisis.motivoConsulta = txtMotivoConsulta.Text;
                 epicrisis.tratamiento = txtTratamiento.Text;
                 epicrisis.recomendacion = txtRecomendaciones.Text;
-
-                // En el backend, el DAO debe hacer un INSERT o un UPDATE.
-                // Por simplicidad, aquí asumimos que siempre modifica.
+                epicrisis.estadoGeneral = SoftBO.historiaclinicaporcitaWS.estadoGeneral.ACTIVO;
+                epicrisis.usuarioCreacion = usuario.idUsuario;
                 _historiaClinicaPorCitaBO.ModificarHistoriaClinicaPorCita(epicrisis);
 
-                // 2. Guardar Diagnósticos
+                // guardar Diagnósticos
                 foreach (var diag in DiagnosticosDeCita)
                 {
                     diag.cita = new SoftBO.diagnosticoporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     _diagnosticoPorCitaBO.InsertarDiagnosticoPorCita(diag);
                 }
 
-                // 3. Marcar la cita como "Atendida"
+                //guardar Exámenes 
+                foreach (var exam in ExamenesDeCita)
+                {
+                    exam.cita = new SoftBO.examenporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    exam.usuarioCreacion = usuario.idUsuario;
+                    exam.usuarioCreacionSpecified = true;
+                    _examenPorCitaBO.InsertarExamenPorCita(exam);
+                }
+
+                //Guardar Interconsultas
+                foreach (var inter in InterconsultasDeCita)
+                {
+                    inter.cita = new SoftBO.interconsultaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    _interconsultaBO.InsertarInterconuslta(inter);
+                }
+
+                // cambiar estado de cita
                 var citaParaActualizar = _citaBO.ObtenerPorIdCitaCita(int.Parse(hfIdCita.Value));
-                //citaParaActualizar.estado = estadoCita.ATENDIDA; // Suponiendo que el enum se genera así
+                citaParaActualizar.estado = SoftBO.citaWS.estadoCita.PAGADO; //cambiar si estado atendidooooooooo
                 _citaBO.ModificarCita(citaParaActualizar);
 
                 MostrarMensaje("Atención guardada exitosamente. Puede cerrar esta pestaña.", false);
