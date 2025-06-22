@@ -72,7 +72,6 @@ namespace SoftWA
             }
 
             // Filtrar citas pendientes (no atendidas, no canceladas, etc.)
-            // Asumimos que el estado "RESERVADO" (código 0) es el que debe atenderse.
             var citasPendientes = agendaCompleta
                 .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
                 .OrderBy(c => DateTime.Parse(c.fechaCita))
@@ -104,7 +103,7 @@ namespace SoftWA
                 .Select(cita =>
                 {
                     var historiaClinicaPorCita1 = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(cita.idCita);
-                    var paciente1 = historiaClinicaPorCita?.historiaClinica?.paciente;
+                    var paciente1 = historiaClinicaPorCita1?.historiaClinica?.paciente;
                     var pacienteMapped = new usuarioDTO
                     {
                         idUsuario = paciente1?.idUsuario ?? 0,
@@ -113,7 +112,6 @@ namespace SoftWA
                         apellidoMaterno = paciente1?.apellidoMaterno,
                         correoElectronico = paciente1?.correoElectronico,
                         numDocumento = paciente1?.numDocumento,
-                        // Map other properties as needed
                     };
                     return new CitaConPaciente
                     {
@@ -154,11 +152,8 @@ namespace SoftWA
         private void RedirigirARegistroAtencion(int idCita)
         {
             string url = $"doctor_registrar_atencion.aspx?idCita={idCita}";
-            // Script para abrir en una nueva pestaña y luego refrescar la página actual
             string script = $"window.open('{url}', '_blank');";
             ScriptManager.RegisterStartupScript(this, GetType(), "OpenAtencionWindow", script, true);
-            // Opcional: podrías agregar un temporizador para refrescar la agenda después de un tiempo,
-            // pero es mejor que el médico la refresque manualmente para no interrumpir su flujo.
         }
 
         protected void btnAtenderProximaCita_Click(object sender, EventArgs e)
