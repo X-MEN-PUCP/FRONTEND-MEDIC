@@ -182,7 +182,7 @@ namespace SoftWA
             DateTime fecha = calFechaCita.SelectedDate;
             try
             {
-                var resultados = _citaBO.BuscarCitasDisponibles(idEspecialidad, idMedico, fecha);
+                var resultados = _citaBO.ListarTodosCita();
 
                 if (resultados != null && resultados.Any())
                 {
@@ -192,7 +192,7 @@ namespace SoftWA
                             NombreEspecialidad = c.especialidad.nombreEspecialidad,
                             NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
                             FechaCita = c.fechaCita,
-                            DescripcionHorario = c.turno.horaInicio.ToString(@"hh\:mm"),
+                            //DescripcionHorario = c.turno.horaInicio.ToString(@"hh\:mm"),
                             Precio = c.especialidad.precioConsulta
                     }).ToList();
 

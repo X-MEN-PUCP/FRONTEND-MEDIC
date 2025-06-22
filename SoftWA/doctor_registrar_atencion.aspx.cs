@@ -68,7 +68,7 @@ namespace SoftWA
                     hfIdPaciente.Value = paciente.idUsuario.ToString();
                     ltlNombrePaciente.Text = $"{paciente.nombres} {paciente.apellidoPaterno}";
                     ltlEspecialidad.Text = cita.especialidad.nombreEspecialidad;
-                    ltlFechaCita.Text = DateTime.Parse(cita.fechaCita).ToString("dd/MM/yyyy") + " " + cita.turno.horaInicio.ToString(@"hh\:mm");
+                    ltlFechaCita.Text = DateTime.Parse(cita.fechaCita).ToString("dd/MM/yyyy") + " " + TimeSpan.Parse(cita.turno.horaInicio).ToString(@"hh\:mm"); ;
                     
                     //var historiaClinica = _historiaBO.ObtenerHistoriaPorIdPaciente(cita.paciente.idUsuario);
                     if (historiaClinica != null)

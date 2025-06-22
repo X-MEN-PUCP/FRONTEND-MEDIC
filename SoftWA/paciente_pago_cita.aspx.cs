@@ -143,7 +143,7 @@ namespace SoftWA
             ltlResumenEspecialidad.Text = citaPagada.especialidad.nombreEspecialidad;
             ltlResumenMedico.Text = $"{citaPagada.medico.nombres} {citaPagada.medico.apellidoPaterno}";
             ltlResumenFecha.Text = fechaCita.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
-            ltlResumenHorario.Text = citaPagada.turno.horaInicio.ToString(@"hh\:mm");
+            //ltlResumenHorario.Text = citaPagada.turno.horaInicio.ToString(@"hh\:mm");
             ltlResumenMonto.Text = MontoDeCita.ToString("N2", new CultureInfo("es-PE"));
             ltlResumenMensaje.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(txtCorreo.Text, false);
         }
