@@ -51,6 +51,14 @@
                                 <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="text-danger small" Visible="false"></asp:Label>
                             </div>
                         </div>
+                        <asp:Panel ID="divHorarios" runat="server" CssClass="row mb-3" Visible="false">
+                            <asp:Label ID="lblHorario" runat="server" Text="Horario (Opcional):" CssClass="col-sm-3 col-form-label fw-bold"></asp:Label>
+                            <div class="col-sm-9 col-md-6">
+                                <asp:RadioButtonList ID="rblHorarios" runat="server" CssClass="form-check" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                                </asp:RadioButtonList>
+                                <asp:Label ID="lblErrorHorario" runat="server" CssClass="text-danger small" Visible="false"></asp:Label>
+                            </div>
+                        </asp:Panel>
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="ddlEspecialidad" EventName="SelectedIndexChanged" />
