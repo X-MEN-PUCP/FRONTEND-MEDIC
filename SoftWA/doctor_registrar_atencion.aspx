@@ -64,6 +64,11 @@
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="button" class="btn btn-outline-secondary" onclick="avanzarAcordeon('collapseEpicrisis', 'collapseDiagnostico')">
+                                Siguiente <i class="fa-solid fa-chevron-right ms-1"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,39 +114,134 @@
                                 </asp:Repeater>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="button" class="btn btn-outline-secondary" onclick="avanzarAcordeon('collapseDiagnostico', 'collapseExamenes')">
+                                Siguiente <i class="fa-solid fa-chevron-right ms-1"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- 3. Exámenes -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingExamenes">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExamenes" aria-expanded="false" aria-controls="collapseExamenes">
-                        <i class="fa-solid fa-vial-virus me-2"></i>Exámenes
-                    </button>
-                </h2>
-                <div id="collapseExamenes" class="accordion-collapse collapse" aria-labelledby="headingExamenes">
-                    <div class="accordion-body">
-                        <p class="text-center text-muted">Funcionalidad de solicitud de exámenes en desarrollo.</p>
-                        <%-- Aquí iría la lógica para agregar exámenes (similar a diagnósticos) --%>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingExamenes">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExamenes" aria-expanded="false" aria-controls="collapseExamenes">
+            <i class="fas fa-vial me-2"></i>Solicitud de Exámenes
+        </button>
+    </h2>
+    <div id="collapseExamenes" class="accordion-collapse collapse" aria-labelledby="headingExamenes">
+        <div class="accordion-body">
+            <asp:UpdatePanel ID="updExamenes" runat="server">
+                <ContentTemplate>
+                    <div class="row g-3">
+                        <div class="col-md-5">
+                            <label for="ddlExamenes" class="form-label">Examen</label>
+                            <asp:DropDownList ID="ddlExamenes" runat="server" CssClass="form-select"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="txtObservacionExamen" class="form-label">Indicaciones/Observaciones</label>
+                            <asp:TextBox ID="txtObservacionExamen" runat="server" CssClass="form-control" placeholder="Ej: Ayuno de 8 horas"></asp:TextBox>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <asp:Button ID="btnAgregarExamen" runat="server" Text="Agregar" CssClass="btn btn-primary w-100" OnClick="btnAgregarExamen_Click" />
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- 4. Interconsultas -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingInterconsultas">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterconsultas" aria-expanded="false" aria-controls="collapseInterconsultas">
-                        <i class="fa-solid fa-user-doctor me-2"></i>Interconsultas
-                    </button>
-                </h2>
-                <div id="collapseInterconsultas" class="accordion-collapse collapse" aria-labelledby="headingInterconsultas">
-                    <div class="accordion-body">
-                         <p class="text-center text-muted">Funcionalidad de solicitud de interconsultas en desarrollo.</p>
-                        <%-- Aquí iría la lógica para agregar interconsultas --%>
-                    </div>
-                </div>
-            </div>
+                    <hr />
+                    <h6>Exámenes Solicitados</h6>
+                    <asp:Repeater ID="rptExamenesAgregados" runat="server" OnItemCommand="rptExamenesAgregados_ItemCommand">
+                        <HeaderTemplate><ul class="list-group"></HeaderTemplate>
+                        <ItemTemplate>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong><%# Eval("examen.nombreExamen") %></strong>
+                                    <small class="d-block text-muted"><%# Eval("observaciones") %></small>
+                                </div>
+                                <asp:LinkButton ID="btnQuitarExamen" runat="server" CommandName="Quitar" CommandArgument='<%# Eval("examen.idExamen") %>' CssClass="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </asp:LinkButton>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate></ul></FooterTemplate>
+                    </asp:Repeater>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="button" class="btn btn-outline-secondary" onclick="avanzarAcordeon('collapseExamenes', 'collapseInterconsultas')">
+                                Siguiente <i class="fa-solid fa-chevron-right ms-1"></i>
+                            </button>
+                        </div>
         </div>
     </div>
+</div>
+
+<!-- 4. Interconsultas -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingInterconsultas">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterconsultas" aria-expanded="false" aria-controls="collapseInterconsultas">
+            <i class="fas fa-user-md me-2"></i>Solicitud de Interconsultas
+        </button>
+    </h2>
+    <div id="collapseInterconsultas" class="accordion-collapse collapse" aria-labelledby="headingInterconsultas">
+        <div class="accordion-body">
+            <asp:UpdatePanel ID="updInterconsultas" runat="server">
+                <ContentTemplate>
+                    <div class="row g-3">
+                        <div class="col-md-5">
+                            <label for="ddlEspecialidadInterconsulta" class="form-label">Especialidad</label>
+                            <asp:DropDownList ID="ddlEspecialidadInterconsulta" runat="server" CssClass="form-select"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="txtRazonInterconsulta" class="form-label">Motivo de la Interconsulta</label>
+                            <asp:TextBox ID="txtRazonInterconsulta" runat="server" CssClass="form-control" placeholder="Ej: Evaluación cardiológica preoperatoria"></asp:TextBox>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <asp:Button ID="btnAgregarInterconsulta" runat="server" Text="Agregar" CssClass="btn btn-primary w-100" OnClick="btnAgregarInterconsulta_Click" />
+                        </div>
+                    </div>
+                    <hr />
+                    <h6>Interconsultas Solicitadas</h6>
+                    <asp:Repeater ID="rptInterconsultasAgregadas" runat="server" OnItemCommand="rptInterconsultasAgregadas_ItemCommand">
+                        <HeaderTemplate><ul class="list-group"></HeaderTemplate>
+                        <ItemTemplate>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong><%# Eval("especialidadInterconsulta.nombreEspecialidad") %></strong>
+                                    <small class="d-block text-muted"><%# Eval("razonInterconsulta") %></small>
+                                </div>
+                                <asp:LinkButton ID="btnQuitarInterconsulta" runat="server" CommandName="Quitar" CommandArgument='<%# Eval("especialidadInterconsulta.idEspecialidad") %>' CssClass="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </asp:LinkButton>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate></ul></FooterTemplate>
+                    </asp:Repeater>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+                    <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-primary" onclick="avanzarAcordeon('collapseInterconsultas', 'collapseEpicrisis')">
+                        <i class="fa-solid fa-rotate-left me-1"></i> Volver al inicio
+                    </button>
+                </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <script>
+    function avanzarAcordeon(actualId, siguienteId) {
+        var actual = document.getElementById(actualId);
+        var siguiente = document.getElementById(siguienteId);
+
+        // Cierra el actual
+        var bsActual = bootstrap.Collapse.getOrCreateInstance(actual);
+        bsActual.hide();
+
+        // Abre el siguiente
+        var bsSiguiente = bootstrap.Collapse.getOrCreateInstance(siguiente);
+        bsSiguiente.show();
+    }
+    </script>
+
 </asp:Content>
