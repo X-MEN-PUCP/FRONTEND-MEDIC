@@ -15,9 +15,9 @@ namespace SoftBO
         {
             this.medicoCliente = new MedicoWSClient();
         }
-        public BindingList<citaDTO> ListarCitasProgramadasMedico(int codMedico)
+        public BindingList<citaDTO> ListarCitasMedicos(int codMedico,estadoCita estadoCita)
         {
-            citaDTO[] citas = this.medicoCliente.listarCitasProgramadasMedico(codMedico);
+            citaDTO[] citas = this.medicoCliente.listarCitasMedico(codMedico, estadoCita);
             return new BindingList<citaDTO>(citas);
         }
         public int LlenarEpicrisisMedico(historiaClinicaPorCitaDTO epicrisis)

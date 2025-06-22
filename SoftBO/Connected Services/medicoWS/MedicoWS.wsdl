@@ -11,20 +11,20 @@
   <message name="llenarEpicrisisMedicoResponse">
     <part name="parameters" element="tns:llenarEpicrisisMedicoResponse" />
   </message>
-  <message name="listarCitasProgramadasMedico">
-    <part name="parameters" element="tns:listarCitasProgramadasMedico" />
+  <message name="listarCitasMedico">
+    <part name="parameters" element="tns:listarCitasMedico" />
   </message>
-  <message name="listarCitasProgramadasMedicoResponse">
-    <part name="parameters" element="tns:listarCitasProgramadasMedicoResponse" />
+  <message name="listarCitasMedicoResponse">
+    <part name="parameters" element="tns:listarCitasMedicoResponse" />
   </message>
   <portType name="MedicoWS">
     <operation name="llenarEpicrisisMedico">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoRequest" message="tns:llenarEpicrisisMedico" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoResponse" message="tns:llenarEpicrisisMedicoResponse" />
     </operation>
-    <operation name="listarCitasProgramadasMedico">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasProgramadasMedicoRequest" message="tns:listarCitasProgramadasMedico" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasProgramadasMedicoResponse" message="tns:listarCitasProgramadasMedicoResponse" />
+    <operation name="listarCitasMedico">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasMedicoRequest" message="tns:listarCitasMedico" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasMedicoResponse" message="tns:listarCitasMedicoResponse" />
     </operation>
   </portType>
   <binding name="MedicoWSPortBinding" type="tns:MedicoWS">
@@ -38,7 +38,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarCitasProgramadasMedico">
+    <operation name="listarCitasMedico">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

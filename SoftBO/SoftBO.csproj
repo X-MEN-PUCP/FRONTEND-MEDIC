@@ -183,13 +183,16 @@
     <None Include="Connected Services\citaWS\CitaWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\citaWS\SoftBO.citaWS.buscarCitasDisponiblesResponse.datasource">
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.buscarCitasoloCalendarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.buscarCitasWSCitasResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\citaWS\SoftBO.citaWS.citaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\citaWS\SoftBO.citaWS.listarCitasProgramadasResponse.datasource">
+    <None Include="Connected Services\citaWS\SoftBO.citaWS.listarCitasMedicoWSResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\citaWS\SoftBO.citaWS.listarTodosCitaResponse.datasource">
@@ -383,7 +386,7 @@
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.citaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarCitasProgramadasMedicoResponse.datasource">
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarCitasMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.llenarEpicrisisMedicoResponse.datasource">
@@ -424,6 +427,9 @@
     <None Include="Connected Services\rolesporusuarioWS\RolesPorUsuarioWS.wsdl" />
     <None Include="Connected Services\rolesporusuarioWS\RolesPorUsuarioWS.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\rolesporusuarioWS\SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\rolesporusuarioWS\SoftBO.rolesporusuarioWS.insertarRolesPorUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -621,30 +627,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\historiaclinicaporcitaWS\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\historiaclinicaporcitaWS\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\historiaclinicaporcitaWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\historiaWS\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\historiaWS\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\historiaWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\interconsultaWS\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -652,30 +634,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\interconsultaWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\loginWS\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\loginWS\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\loginWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\medicoWS\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\medicoWS\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\medicoWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -700,18 +658,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\registroWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\rolesporusuarioWS\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\rolesporusuarioWS\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\rolesporusuarioWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -760,6 +706,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\usuarioWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\loginWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\rolesporusuarioWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\medicoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaclinicaporcitaWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\historiaWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

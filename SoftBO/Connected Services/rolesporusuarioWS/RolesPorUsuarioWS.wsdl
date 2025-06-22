@@ -5,31 +5,41 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="insertarRolesPorUsuario">
-    <part name="parameters" element="tns:insertarRolesPorUsuario" />
-  </message>
-  <message name="insertarRolesPorUsuarioResponse">
-    <part name="parameters" element="tns:insertarRolesPorUsuarioResponse" />
-  </message>
   <message name="listarPorUsuarioRolesPorUsuario">
     <part name="parameters" element="tns:listarPorUsuarioRolesPorUsuario" />
   </message>
   <message name="listarPorUsuarioRolesPorUsuarioResponse">
     <part name="parameters" element="tns:listarPorUsuarioRolesPorUsuarioResponse" />
   </message>
+  <message name="eliminarRolPorUsuario">
+    <part name="parameters" element="tns:eliminarRolPorUsuario" />
+  </message>
+  <message name="eliminarRolPorUsuarioResponse">
+    <part name="parameters" element="tns:eliminarRolPorUsuarioResponse" />
+  </message>
+  <message name="insertarRolesPorUsuario">
+    <part name="parameters" element="tns:insertarRolesPorUsuario" />
+  </message>
+  <message name="insertarRolesPorUsuarioResponse">
+    <part name="parameters" element="tns:insertarRolesPorUsuarioResponse" />
+  </message>
   <portType name="RolesPorUsuarioWS">
-    <operation name="insertarRolesPorUsuario">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioRequest" message="tns:insertarRolesPorUsuario" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioResponse" message="tns:insertarRolesPorUsuarioResponse" />
-    </operation>
     <operation name="listarPorUsuarioRolesPorUsuario">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuarioRequest" message="tns:listarPorUsuarioRolesPorUsuario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuarioResponse" message="tns:listarPorUsuarioRolesPorUsuarioResponse" />
     </operation>
+    <operation name="eliminarRolPorUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest" message="tns:eliminarRolPorUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" message="tns:eliminarRolPorUsuarioResponse" />
+    </operation>
+    <operation name="insertarRolesPorUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioRequest" message="tns:insertarRolesPorUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioResponse" message="tns:insertarRolesPorUsuarioResponse" />
+    </operation>
   </portType>
   <binding name="RolesPorUsuarioWSPortBinding" type="tns:RolesPorUsuarioWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="insertarRolesPorUsuario">
+    <operation name="listarPorUsuarioRolesPorUsuario">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -38,7 +48,16 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarPorUsuarioRolesPorUsuario">
+    <operation name="eliminarRolPorUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarRolesPorUsuario">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

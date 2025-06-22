@@ -1,5 +1,4 @@
-﻿// --- Archivo: doctor_agenda.aspx.cs ---
-using SoftBO;
+﻿using SoftBO;
 using SoftBO.loginWS;
 using SoftBO.medicoWS;
 using System;
@@ -58,7 +57,7 @@ namespace SoftWA
             List<citaDTO> agendaCompleta;
             try
             {
-                agendaCompleta = _medicoBO.ListarCitasProgramadasMedico(idDoctor).ToList();
+                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.PAGADO).ToList();
             }
             catch (Exception ex)
             {
@@ -75,7 +74,7 @@ namespace SoftWA
             // Filtrar citas pendientes (no atendidas, no canceladas, etc.)
             // Asumimos que el estado "RESERVADO" (código 0) es el que debe atenderse.
             var citasPendientes = agendaCompleta
-                .Where(c => c.estado == estadoCita.DISPONIBLE)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
+                .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
                 .OrderBy(c => DateTime.Parse(c.fechaCita))
                 .ThenBy(c => c.turno.horaInicio)
                 .ToList();
@@ -94,7 +93,9 @@ namespace SoftWA
 
                 ltlProximaPacienteNombre.Text = Server.HtmlEncode($"{paciente.nombres} {paciente.apellidoPaterno}");
                 ltlProximaFecha.Text = DateTime.Parse(proximaCita.fechaCita).ToString("dddd, dd 'de' MMMM 'de' yyyy");
-                ltlProximaHorario.Text = Server.HtmlEncode(proximaCita.turno.horaInicio.ToString("HH:mm") + " - " + proximaCita.turno.horaFin.ToString("HH:mm"));
+                string horaInicio = proximaCita.turno.horaInicio.Length >= 5 ? proximaCita.turno.horaInicio.Substring(0, 5) : proximaCita.turno.horaInicio;
+                string horaFin = proximaCita.turno.horaFin.Length >= 5 ? proximaCita.turno.horaFin.Substring(0, 5) : proximaCita.turno.horaFin;
+                ltlProximaHorario.Text = Server.HtmlEncode($"{horaInicio} - {horaFin}");
                 ltlProximaEspecialidad.Text = Server.HtmlEncode(proximaCita.especialidad.nombreEspecialidad);
                 btnAtenderProximaCita.CommandArgument = proximaCita.idCita.ToString();
 
