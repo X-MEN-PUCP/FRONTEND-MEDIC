@@ -16,15 +16,17 @@ namespace SoftBO.rolesporusuarioWS {
     public interface RolesPorUsuarioWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" +
-            "")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request);
+        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" +
-            "")]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioResponse")]
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioReques" +
@@ -40,17 +42,15 @@ namespace SoftBO.rolesporusuarioWS {
         System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.insertarRolesPorUsuarioResponse> insertarRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.insertarRolesPorUsuarioRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" +
+            "")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
+        SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioResponse")]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" +
+            "")]
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request);
     }
     
     /// <remarks/>
@@ -804,35 +804,35 @@ namespace SoftBO.rolesporusuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarRolPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarRolPorUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorUsuarioRolesPorUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol;
+        public int id;
         
-        public eliminarRolPorUsuarioRequest() {
+        public listarPorUsuarioRolesPorUsuarioRequest() {
         }
         
-        public eliminarRolPorUsuarioRequest(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
-            this.usarioPorRol = usarioPorRol;
+        public listarPorUsuarioRolesPorUsuarioRequest(int id) {
+            this.id = id;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarRolPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarRolPorUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorUsuarioRolesPorUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return;
         
-        public eliminarRolPorUsuarioResponse() {
+        public listarPorUsuarioRolesPorUsuarioResponse() {
         }
         
-        public eliminarRolPorUsuarioResponse(int @return) {
+        public listarPorUsuarioRolesPorUsuarioResponse(SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -876,35 +876,35 @@ namespace SoftBO.rolesporusuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorUsuarioRolesPorUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarRolPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarRolPorUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
+        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol;
         
-        public listarPorUsuarioRolesPorUsuarioRequest() {
+        public eliminarRolPorUsuarioRequest() {
         }
         
-        public listarPorUsuarioRolesPorUsuarioRequest(int id) {
-            this.id = id;
+        public eliminarRolPorUsuarioRequest(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
+            this.usarioPorRol = usarioPorRol;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorUsuarioRolesPorUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarRolPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarRolPorUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
         
-        public listarPorUsuarioRolesPorUsuarioResponse() {
+        public eliminarRolPorUsuarioResponse() {
         }
         
-        public listarPorUsuarioRolesPorUsuarioResponse(SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return) {
+        public eliminarRolPorUsuarioResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -937,26 +937,26 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request) {
-            return base.Channel.eliminarRolPorUsuario(request);
+        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
+            return base.Channel.listarPorUsuarioRolesPorUsuario(request);
         }
         
-        public int eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
-            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest();
-            inValue.usarioPorRol = usarioPorRol;
-            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).eliminarRolPorUsuario(inValue);
+        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] listarPorUsuarioRolesPorUsuario(int id) {
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
+            inValue.id = id;
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request) {
-            return base.Channel.eliminarRolPorUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
+            return base.Channel.listarPorUsuarioRolesPorUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
-            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest();
-            inValue.usarioPorRol = usarioPorRol;
-            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).eliminarRolPorUsuarioAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(int id) {
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
+            inValue.id = id;
+            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -983,26 +983,26 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
-            return base.Channel.listarPorUsuarioRolesPorUsuario(request);
+        SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request) {
+            return base.Channel.eliminarRolPorUsuario(request);
         }
         
-        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] listarPorUsuarioRolesPorUsuario(int id) {
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
-            inValue.id = id;
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuario(inValue);
+        public int eliminarRolPorUsuario(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
+            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest();
+            inValue.usarioPorRol = usarioPorRol;
+            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).eliminarRolPorUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
-            return base.Channel.listarPorUsuarioRolesPorUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request) {
+            return base.Channel.eliminarRolPorUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(int id) {
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
-            inValue.id = id;
-            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuarioAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.usuarioPorRolDTO usarioPorRol) {
+            SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest();
+            inValue.usarioPorRol = usarioPorRol;
+            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).eliminarRolPorUsuarioAsync(inValue);
         }
     }
 }

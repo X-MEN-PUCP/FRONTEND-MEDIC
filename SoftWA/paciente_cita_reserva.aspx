@@ -47,6 +47,7 @@
                                     <TitleStyle BackColor="#e9ecef" Font-Bold="true" CssClass="py-2" />
                                     <DayHeaderStyle BackColor="#f8f9fa" Font-Bold="true" CssClass="py-1" />
                                 </asp:Calendar>
+                                <asp:Label ID="lblCalendarioStatus" runat="server" CssClass="form-text text-center d-block" Visible="false"></asp:Label>
                                 <asp:Label ID="lblFechaSeleccionadaInfo" runat="server" CssClass="form-text mt-1" Visible="false"></asp:Label>
                                 <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="text-danger small" Visible="false"></asp:Label>
                             </div>
@@ -75,57 +76,59 @@
 
         <hr class="my-4" />
         <asp:HiddenField ID="hfModalCitaId" runat="server" Value="0" />
-        <asp:UpdatePanel ID="updResultadosCitas" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <h3 class="mb-3"><i class="fa-solid fa-calendar-days me-2"></i>Resultados de la Búsqueda</h3>
-                <asp:PlaceHolder ID="phNoResultados" runat="server" Visible="false">
-                    <div class="alert alert-info" role="alert">
-                        <i class="fa-solid fa-circle-info me-2"></i>No se encontraron citas disponibles con los criterios seleccionados. Por favor, intente modificar su búsqueda.
-                    </div>
-                </asp:PlaceHolder>
-                <asp:Literal ID="ltlMensajeReserva" runat="server"></asp:Literal>
+        <asp:Panel ID="pnlResultados" runat="server" Visible="false"></asp:Panel>
+            <asp:UpdatePanel ID="updResultadosCitas" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <h3 class="mb-3"><i class="fa-solid fa-calendar-days me-2"></i>Resultados de la Búsqueda</h3>
+                    <asp:PlaceHolder ID="phNoResultados" runat="server" Visible="false">
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa-solid fa-circle-info me-2"></i>No se encontraron citas disponibles con los criterios seleccionados. Por favor, intente modificar su búsqueda.
+                        </div>
+                    </asp:PlaceHolder>
+                    <asp:Literal ID="ltlMensajeReserva" runat="server"></asp:Literal>
 
-                <asp:Repeater ID="rptResultadosCitas" runat="server" OnItemDataBound="rptResultadosCitas_ItemDataBound">
-                    <HeaderTemplate>
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <div class="col">
-                            <div class="card h-100 shadow-sm cita-card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="fa-solid fa-stethoscope me-2"></i><%# Eval("NombreEspecialidad") %></h5>
-                                    <p class="card-text mb-1">
-                                        <i class="fa-solid fa-user-doctor me-2 text-primary"></i>
-                                        <strong>Médico:</strong> <%# Eval("NombreMedico") %>
-                                    </p>
-                                    <p class="card-text mb-1">
-                                        <i class="fa-solid fa-calendar-day me-2 text-success"></i>
-                                        <strong>Fecha:</strong> <%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %>
-                                    </p>
-                                    <p class="card-text">
-                                        <i class="fa-solid fa-clock me-2 text-warning"></i>
-                                        <strong>Horario:</strong> <%# Eval("DescripcionHorario") %>
-                                    </p>
-                                </div>
-                                <div class="card-footer bg-light text-end"> 
-                                    <asp:LinkButton ID="btnAccionReserva" runat="server" CssClass="btn btn-sm">
+                    <asp:Repeater ID="rptResultadosCitas" runat="server" OnItemDataBound="rptResultadosCitas_ItemDataBound">
+                        <HeaderTemplate>
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <div class="col">
+                                <div class="card h-100 shadow-sm cita-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fa-solid fa-stethoscope me-2"></i><%# Eval("NombreEspecialidad") %></h5>
+                                        <p class="card-text mb-1">
+                                            <i class="fa-solid fa-user-doctor me-2 text-primary"></i>
+                                            <strong>Médico:</strong> <%# Eval("NombreMedico") %>
+                                        </p>
+                                        <p class="card-text mb-1">
+                                            <i class="fa-solid fa-calendar-day me-2 text-success"></i>
+                                            <strong>Fecha:</strong> <%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %>
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fa-solid fa-clock me-2 text-warning"></i>
+                                            <strong>Horario:</strong> <%# Eval("DescripcionHorario") %>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-light text-end"> 
+                                        <asp:LinkButton ID="btnAccionReserva" runat="server" CssClass="btn btn-sm">
                                         
-                                    </asp:LinkButton>
+                                        </asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </div>
-                    </FooterTemplate>
-                </asp:Repeater>
-            </ContentTemplate>
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="btnBuscarCitas" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="btnModalPagarAhora" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="btnModalPagarDespues" EventName="Click" />
-            </Triggers>
-        </asp:UpdatePanel>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </div>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnBuscarCitas" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnModalPagarAhora" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnModalPagarDespues" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
+        </asp:Panel>
     </div>
     <div class="modal fade" id="confirmarReservaModal" tabindex="-1" aria-labelledby="confirmarReservaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

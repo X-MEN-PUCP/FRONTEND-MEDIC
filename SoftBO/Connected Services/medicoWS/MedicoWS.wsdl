@@ -5,31 +5,31 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/MedicoWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="llenarEpicrisisMedico">
-    <part name="parameters" element="tns:llenarEpicrisisMedico" />
-  </message>
-  <message name="llenarEpicrisisMedicoResponse">
-    <part name="parameters" element="tns:llenarEpicrisisMedicoResponse" />
-  </message>
   <message name="listarCitasMedico">
     <part name="parameters" element="tns:listarCitasMedico" />
   </message>
   <message name="listarCitasMedicoResponse">
     <part name="parameters" element="tns:listarCitasMedicoResponse" />
   </message>
+  <message name="llenarEpicrisisMedico">
+    <part name="parameters" element="tns:llenarEpicrisisMedico" />
+  </message>
+  <message name="llenarEpicrisisMedicoResponse">
+    <part name="parameters" element="tns:llenarEpicrisisMedicoResponse" />
+  </message>
   <portType name="MedicoWS">
-    <operation name="llenarEpicrisisMedico">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoRequest" message="tns:llenarEpicrisisMedico" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoResponse" message="tns:llenarEpicrisisMedicoResponse" />
-    </operation>
     <operation name="listarCitasMedico">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasMedicoRequest" message="tns:listarCitasMedico" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarCitasMedicoResponse" message="tns:listarCitasMedicoResponse" />
     </operation>
+    <operation name="llenarEpicrisisMedico">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoRequest" message="tns:llenarEpicrisisMedico" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoResponse" message="tns:llenarEpicrisisMedicoResponse" />
+    </operation>
   </portType>
   <binding name="MedicoWSPortBinding" type="tns:MedicoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="llenarEpicrisisMedico">
+    <operation name="listarCitasMedico">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -38,7 +38,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarCitasMedico">
+    <operation name="llenarEpicrisisMedico">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

@@ -42,6 +42,19 @@ namespace SoftBO.historiaclinicaporcitaWS {
         System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ListarTodasLasHistoriasClinicasPorCitaResponse> ListarTodasLasHistoriasClinicasPorCitaAsync(SoftBO.historiaclinicaporcitaWS.ListarTodasLasHistoriasClinicasPorCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
+            "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
+            "aPorCitaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
+            "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
+            "aPorCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
             "caPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
             "caPorCitaResponse")]
@@ -66,19 +79,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
             "PorIdCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinica" +
             "PorIdCitaResponse")]
         System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ObtenerHistoriaClinicaPorIdCitaResponse> ObtenerHistoriaClinicaPorIdCitaAsync(SoftBO.historiaclinicaporcitaWS.ObtenerHistoriaClinicaPorIdCitaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
-            "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
-            "aPorCitaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
-            "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
-            "aPorCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request);
     }
     
     /// <remarks/>
@@ -2006,6 +2006,42 @@ namespace SoftBO.historiaclinicaporcitaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarHistoriaClinicaPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarHistoriaClinicaPorCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita;
+        
+        public InsertarHistoriaClinicaPorCitaRequest() {
+        }
+        
+        public InsertarHistoriaClinicaPorCitaRequest(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            this.historiaPorCita = historiaPorCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarHistoriaClinicaPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarHistoriaClinicaPorCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public InsertarHistoriaClinicaPorCitaResponse() {
+        }
+        
+        public InsertarHistoriaClinicaPorCitaResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="ModificarHistoriaClinicaPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class ModificarHistoriaClinicaPorCitaRequest {
         
@@ -2071,42 +2107,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         public ObtenerHistoriaClinicaPorIdCitaResponse(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarHistoriaClinicaPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarHistoriaClinicaPorCitaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita;
-        
-        public InsertarHistoriaClinicaPorCitaRequest() {
-        }
-        
-        public InsertarHistoriaClinicaPorCitaRequest(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            this.historiaPorCita = historiaPorCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarHistoriaClinicaPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarHistoriaClinicaPorCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public InsertarHistoriaClinicaPorCitaResponse() {
-        }
-        
-        public InsertarHistoriaClinicaPorCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -2183,6 +2183,29 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request) {
+            return base.Channel.InsertarHistoriaClinicaPorCita(request);
+        }
+        
+        public int InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest();
+            inValue.historiaPorCita = historiaPorCita;
+            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse retVal = ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).InsertarHistoriaClinicaPorCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request) {
+            return base.Channel.InsertarHistoriaClinicaPorCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest();
+            inValue.historiaPorCita = historiaPorCita;
+            return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).InsertarHistoriaClinicaPorCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request) {
             return base.Channel.ModificarHistoriaClinicaPorCita(request);
         }
@@ -2226,29 +2249,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
             SoftBO.historiaclinicaporcitaWS.ObtenerHistoriaClinicaPorIdCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.ObtenerHistoriaClinicaPorIdCitaRequest();
             inValue.idCita = idCita;
             return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).ObtenerHistoriaClinicaPorIdCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request) {
-            return base.Channel.InsertarHistoriaClinicaPorCita(request);
-        }
-        
-        public int InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest();
-            inValue.historiaPorCita = historiaPorCita;
-            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse retVal = ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).InsertarHistoriaClinicaPorCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request) {
-            return base.Channel.InsertarHistoriaClinicaPorCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest();
-            inValue.historiaPorCita = historiaPorCita;
-            return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).InsertarHistoriaClinicaPorCitaAsync(inValue);
         }
     }
 }

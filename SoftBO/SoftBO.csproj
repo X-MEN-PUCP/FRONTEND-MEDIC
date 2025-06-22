@@ -159,8 +159,6 @@
     <Compile Include="HistoriaBO.cs" />
     <Compile Include="HistoriaClinicaPorCitaBO.cs" />
     <Compile Include="InterconsultaBO.cs" />
-    <Compile Include="LocalDateComplementoPaciente.cs" />
-    <Compile Include="LocalDateComplementoCita.cs" />
     <Compile Include="LoginBO.cs" />
     <Compile Include="MedicoBO.cs" />
     <Compile Include="PacienteBO.cs" />

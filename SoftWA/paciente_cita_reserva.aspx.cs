@@ -23,7 +23,6 @@ namespace SoftWA
         {
             get { return HorariosDisponiblesPorFecha.Keys.ToList(); }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,9 +31,9 @@ namespace SoftWA
                 ddlMedico.Enabled = false;
                 phNoResultados.Visible = true;
                 divHorarios.Visible = false;
+                pnlResultados.Visible = false;
             }
         }
-
         private void CargarEspecialidades()
         {
             try
@@ -54,25 +53,52 @@ namespace SoftWA
             }
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", ""));
         }
-
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarMedicosPorEspecialidad();
             LimpiarFiltrosDependientes(limpiarMedico: false);
             ActualizarDisponibilidadCompleta();
         }
-
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LimpiarFiltrosDependientes();
+            LimpiarFiltrosDependientes(limpiarMedico: false);
             ActualizarDisponibilidadCompleta();
+        }
+        private SoftBO.citaWS.turnoDTO DeducirTurno(string horaInicioCitaStr)
+        {
+            if (TimeSpan.TryParse(horaInicioCitaStr, out TimeSpan horaInicioCita))
+            {
+                TimeSpan mananaInicio = new TimeSpan(8, 0, 0);
+                TimeSpan mananaFin = new TimeSpan(12, 0, 0);
+                TimeSpan tardeInicio = new TimeSpan(14, 0, 0);
+                TimeSpan tardeFin = new TimeSpan(18, 0, 0);
+                TimeSpan nocheInicio = new TimeSpan(18, 0, 0);
+                TimeSpan nocheFin = new TimeSpan(22, 0, 0);
+
+                if (horaInicioCita >= mananaInicio && horaInicioCita < mananaFin)
+                {
+                    return new SoftBO.citaWS.turnoDTO { idTurno = 1, horaInicio = "08:00:00", horaFin = "12:00:00" };
+                }
+                if (horaInicioCita >= tardeInicio && horaInicioCita < tardeFin)
+                {
+                    return new SoftBO.citaWS.turnoDTO { idTurno = 2, horaInicio = "14:00:00", horaFin = "18:00:00" };
+                }
+                if (horaInicioCita >= nocheInicio && horaInicioCita < nocheFin)
+                {
+                    return new SoftBO.citaWS.turnoDTO { idTurno = 3, horaInicio = "18:00:00", horaFin = "22:00:00" };
+                }
+            }
+            return null;
         }
         private void ActualizarDisponibilidadCompleta()
         {
             HorariosDisponiblesPorFecha = new Dictionary<DateTime, List<TimeSpan>>();
+            lblCalendarioStatus.Visible = true;
+            updFiltrosCitas.Update();
 
             if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
             {
+                lblCalendarioStatus.Visible = false;
                 calFechaCita.DataBind();
                 return;
             }
@@ -88,16 +114,26 @@ namespace SoftWA
                     if (citasDisponibles != null && citasDisponibles.Any())
                     {
                         var disponibilidad = citasDisponibles
-                            .GroupBy(c => c.fechaCita)
+                            .Where(c => c!= null && !string.IsNullOrEmpty(c.fechaCita) && !string.IsNullOrEmpty(c.horaInicio))
+                            .Select(c => new
+                            {
+                                Fecha = DateTime.TryParse(c.fechaCita, out var dt) ? dt.Date : DateTime.MinValue,
+                                Hora = TimeSpan.TryParse(c.horaInicio, out var ts) ? ts : TimeSpan.MinValue
+                            })
+                            .Where(c => c.Fecha != DateTime.MinValue && c.Hora != TimeSpan.MinValue)
+                            .GroupBy(c => c.Fecha)
                             .ToDictionary(
                                 g => g.Key,
-                                g => g.Select(c => c.turno.horaInicio)
+                                g => g.Select(c => c.Hora)
                                       .Distinct()
                                       .OrderBy(t => t)
                                       .ToList()
                             );
-
-                        HorariosDisponiblesPorFecha = disponibilidad;
+                        if(disponibilidad.Any())
+                        {
+                            HorariosDisponiblesPorFecha = disponibilidad;
+                            lblCalendarioStatus.Visible = true;
+                        }
                     }
                 }
             }
@@ -105,11 +141,8 @@ namespace SoftWA
             {
                 System.Diagnostics.Debug.WriteLine("Error actualizando disponibilidad completa: " + ex.Message);
             }
-
             calFechaCita.DataBind();
         }
-
-
         protected void calFechaCita_SelectionChanged(object sender, EventArgs e)
         {
             divHorarios.Visible = false;
@@ -125,9 +158,8 @@ namespace SoftWA
                 {
                     var horariosParaFecha = disponibilidad[calFechaCita.SelectedDate.Date];
 
-                    rblHorarios.DataSource = horariosParaFecha.Select(h => h.ToString(@"hh\:mm"));
+                    rblHorarios.DataSource = horariosParaFecha;
                     rblHorarios.DataBind();
-
                     divHorarios.Visible = true;
                     lblErrorHorario.Visible = false;
                 }
@@ -138,7 +170,6 @@ namespace SoftWA
                 }
             }
         }
-
         protected void calFechaCita_DayRender(object sender, DayRenderEventArgs e)
         {
             if (e.Day.Date < DateTime.Today)
@@ -163,18 +194,12 @@ namespace SoftWA
                 e.Cell.ToolTip = "No hay citas disponibles este día";
             }
         }
-
         protected void btnBuscarCitas_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0)
-            {
-                return;
-            }
-            if (calFechaCita.SelectedDate.Year == 1)
-            {
-                return;
-            }
-
+            pnlResultados.Visible = true;
+            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0) return;
+            if (calFechaCita.SelectedDate.Year == 1) return;
+            lblErrorBusqueda.Visible = false;
             int.TryParse(ddlMedico.SelectedValue, out int idMedico);
             DateTime fecha = calFechaCita.SelectedDate;
             string horaSeleccionada = rblHorarios.SelectedValue;
@@ -183,38 +208,46 @@ namespace SoftWA
             {
                 using (var servicioCita = new CitaWSClient())
                 {
-                    var resultados = servicioCita.buscarCitasDisponibles(idEspecialidad, idMedico, fecha);
+                    var resultados = servicioCita.buscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
+                                                                     string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
+                                                                     SoftBO.citaWS.estadoCita.DISPONIBLE);
 
-                    if (!string.IsNullOrEmpty(horaSeleccionada))
+                    if (resultados != null && resultados.Any())
                     {
-                        resultados = resultados.Where(c => c.turno.horaInicio.ToString(@"hh\:mm") == horaSeleccionada).ToArray();
-                    }
-
-                    if (resultados.Any())
-                    {
-                        var citasParaMostrar = resultados.Select(c => new
+                        foreach (var cita in resultados)
                         {
-                            IdCitaDisponible = c.idCita,
-                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
-                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
-                            FechaCita = c.fechaCita,
-                            DescripcionHorario = c.turno.horaInicio.ToString(@"hh\:mm"),
-                            Precio = c.especialidad.precioConsulta
-                        }).ToList();
+                            if (cita.turno == null && !string.IsNullOrEmpty(cita.horaInicio))
+                            {
+                                cita.turno = DeducirTurno(cita.horaInicio);
+                            }
+                        }
+                        var citasParaMostrar = resultados
+                            .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
+                            .Select(c => new
+                            {
+                                IdCitaDisponible = c.idCita,
+                                NombreEspecialidad = c.especialidad.nombreEspecialidad,
+                                NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
+                                FechaCita = DateTime.Parse(c.fechaCita),
+                                DescripcionHorario = c.horaInicio.Substring(0, 5),
+                                Precio = c.especialidad.precioConsulta
+                            }).ToList();
 
                         rptResultadosCitas.DataSource = citasParaMostrar;
                         rptResultadosCitas.DataBind();
-                        phNoResultados.Visible = false;
+                        phNoResultados.Visible = !citasParaMostrar.Any();
                     }
                     else
                     {
                         LimpiarResultadosBusqueda();
+                        phNoResultados.Visible = true;
                     }
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error buscando citas: " + ex.Message);
+                LimpiarResultadosBusqueda();
                 phNoResultados.Visible = true;
             }
         }
@@ -224,7 +257,9 @@ namespace SoftWA
         {
             if (limpiarMedico)
             {
-                CargarMedicosPorEspecialidad();
+                ddlMedico.Items.Clear();
+                ddlMedico.Items.Add(new ListItem("-- Cualquier Médico --", ""));
+                ddlMedico.Enabled = false;
             }
             calFechaCita.SelectedDates.Clear();
             lblFechaSeleccionadaInfo.Visible = false;
@@ -234,22 +269,20 @@ namespace SoftWA
             HorariosDisponiblesPorFecha = new Dictionary<DateTime, List<TimeSpan>>();
             LimpiarResultadosBusqueda();
         }
-
         protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
             ddlEspecialidad.ClearSelection();
-            LimpiarFiltrosDependientes();
+            LimpiarFiltrosDependientes(limpiarMedico: true);
             calFechaCita.DataBind();
         }
-
         private void LimpiarResultadosBusqueda()
         {
             rptResultadosCitas.DataSource = null;
             rptResultadosCitas.DataBind();
             phNoResultados.Visible = true;
             ltlMensajeReserva.Text = "";
+            pnlResultados.Visible = false;
         }
-
         private void CargarMedicosPorEspecialidad()
         {
             ddlMedico.Items.Clear();
@@ -282,7 +315,6 @@ namespace SoftWA
             }
             ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
-
         protected void btnModalPagarDespues_Click(object sender, EventArgs e)
         {
             int.TryParse(hfModalCitaId.Value, out int idCita);
@@ -355,7 +387,6 @@ namespace SoftWA
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "CloseModalScript", "cerrarModalConfirmacion();", true);
         }
-
         #endregion
     }
 }

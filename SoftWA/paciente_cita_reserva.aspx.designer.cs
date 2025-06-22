@@ -87,6 +87,15 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.Calendar calFechaCita;
 
         /// <summary>
+        /// Control lblCalendarioStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCalendarioStatus;
+
+        /// <summary>
         /// Control lblFechaSeleccionadaInfo.
         /// </summary>
         /// <remarks>
@@ -166,6 +175,15 @@ namespace SoftWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfModalCitaId;
+
+        /// <summary>
+        /// Control pnlResultados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlResultados;
 
         /// <summary>
         /// Control updResultadosCitas.
