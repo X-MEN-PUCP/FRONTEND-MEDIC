@@ -69,7 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin_gestionar_doctores.aspx" />
+    <Content Include="admin_gestionar_usuarios.aspx" />
     <Content Include="cambiadorRol.ascx" />
     <Content Include="doctor_registrar_atencion.aspx" />
     <Content Include="paciente_cambiar_contraseña.aspx" />
@@ -125,11 +125,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin_gestionar_doctores.aspx.cs">
-      <DependentUpon>admin_gestionar_doctores.aspx</DependentUpon>
+    <Compile Include="admin_gestionar_usuarios.aspx.cs">
+      <DependentUpon>admin_gestionar_usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin_gestionar_doctores.aspx.designer.cs">
-      <DependentUpon>admin_gestionar_doctores.aspx</DependentUpon>
+    <Compile Include="admin_gestionar_usuarios.aspx.designer.cs">
+      <DependentUpon>admin_gestionar_usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="cambiadorRol.ascx.cs">
       <DependentUpon>cambiadorRol.ascx</DependentUpon>

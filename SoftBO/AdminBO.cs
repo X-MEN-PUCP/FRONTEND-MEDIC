@@ -1,6 +1,7 @@
 ﻿using SoftBO.adminWS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -32,6 +33,16 @@ namespace SoftBO
         public int InsertarNuevoMedico(usuarioDTO medico, especialidadDTO especialidad)
         {
             return this.adminCliente.insertarNuevoMedico(medico, especialidad);
+        }
+        public BindingList<usuarioDTO> ListarMedicos()
+        {
+            usuarioDTO[] medicos = this.adminCliente.listarMedicos();
+            return new BindingList<usuarioDTO>(medicos);
+        }
+        public BindingList<usuarioDTO> ListarTodosUsuarios()
+        {
+            usuarioDTO[] usuarios = this.adminCliente.listarTodosUsuarios();
+            return new BindingList<usuarioDTO>(usuarios);
         }
     }
 }

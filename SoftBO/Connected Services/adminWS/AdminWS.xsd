@@ -8,6 +8,49 @@
   <xs:element name="insertarNuevaEspecialidadResponse" type="tns:insertarNuevaEspecialidadResponse" />
   <xs:element name="insertarNuevoMedico" type="tns:insertarNuevoMedico" />
   <xs:element name="insertarNuevoMedicoResponse" type="tns:insertarNuevoMedicoResponse" />
+  <xs:element name="listarMedicos" type="tns:listarMedicos" />
+  <xs:element name="listarMedicosResponse" type="tns:listarMedicosResponse" />
+  <xs:element name="listarTodosUsuarios" type="tns:listarTodosUsuarios" />
+  <xs:element name="listarTodosUsuariosResponse" type="tns:listarTodosUsuariosResponse" />
+  <xs:complexType name="listarTodosUsuarios">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosUsuariosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuarioDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
+      <xs:element minOccurs="0" name="codMedico" type="xs:string" />
+      <xs:element minOccurs="0" name="contrasenha" type="xs:string" />
+      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="estadoLogico" type="tns:estadoLogico" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="genero" type="tns:genero" />
+      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="nombres" type="xs:string" />
+      <xs:element minOccurs="0" name="numCelular" type="xs:string" />
+      <xs:element minOccurs="0" name="numDocumento" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoDocumento" type="tns:tipoDocumento" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarMedicos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarMedicosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioDTO" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="eliminarRolDeUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="rolPorUsuario" type="tns:usuarioPorRolDTO" />
@@ -30,29 +73,6 @@
       <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="idRol" type="xs:int" />
       <xs:element minOccurs="0" name="nombreRol" type="xs:string" />
-      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
-      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="usuarioDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
-      <xs:element minOccurs="0" name="codMedico" type="xs:string" />
-      <xs:element minOccurs="0" name="contrasenha" type="xs:string" />
-      <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
-      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
-      <xs:element minOccurs="0" name="estadoLogico" type="tns:estadoLogico" />
-      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
-      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
-      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string" />
-      <xs:element minOccurs="0" name="genero" type="tns:genero" />
-      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
-      <xs:element minOccurs="0" name="nombres" type="xs:string" />
-      <xs:element minOccurs="0" name="numCelular" type="xs:string" />
-      <xs:element minOccurs="0" name="numDocumento" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="tipoDocumento" type="tns:tipoDocumento" />
       <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
       <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
