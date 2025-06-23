@@ -9,7 +9,6 @@ using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace SoftWA
 {
     public partial class paciente_cita_reserva : System.Web.UI.Page
@@ -32,6 +31,23 @@ namespace SoftWA
                 phNoResultados.Visible = true;
                 divHorarios.Visible = false;
                 pnlResultados.Visible = false;
+            }
+            if (Session["PreloadEspecialidadId"] != null && Session["PreloadMedicoId"] != null)
+            {
+                string especialidadId = Session["PreloadEspecialidadId"].ToString();
+                string medicoId = Session["PreloadMedicoId"].ToString();
+
+                if (ddlEspecialidad.Items.FindByValue(especialidadId) != null)
+                {
+                    ddlEspecialidad.SelectedValue = especialidadId;
+                    if (ddlMedico.Items.FindByValue(medicoId) != null)
+                    {
+                        CargarMedicosPorEspecialidad();
+                        ddlMedico.SelectedValue = medicoId;
+                    }
+                }
+                Session.Remove("PreloadEspecialidadId");
+                Session.Remove("PreloadMedicoId");
             }
         }
         private void CargarEspecialidades()
@@ -64,32 +80,6 @@ namespace SoftWA
             LimpiarFiltrosDependientes(limpiarMedico: false);
             ActualizarDisponibilidadCompleta();
         }
-        private SoftBO.citaWS.turnoDTO DeducirTurno(string horaInicioCitaStr)
-        {
-            if (TimeSpan.TryParse(horaInicioCitaStr, out TimeSpan horaInicioCita))
-            {
-                TimeSpan mananaInicio = new TimeSpan(8, 0, 0);
-                TimeSpan mananaFin = new TimeSpan(12, 0, 0);
-                TimeSpan tardeInicio = new TimeSpan(14, 0, 0);
-                TimeSpan tardeFin = new TimeSpan(18, 0, 0);
-                TimeSpan nocheInicio = new TimeSpan(18, 0, 0);
-                TimeSpan nocheFin = new TimeSpan(22, 0, 0);
-
-                if (horaInicioCita >= mananaInicio && horaInicioCita < mananaFin)
-                {
-                    return new SoftBO.citaWS.turnoDTO { idTurno = 1, horaInicio = "08:00:00", horaFin = "12:00:00" };
-                }
-                if (horaInicioCita >= tardeInicio && horaInicioCita < tardeFin)
-                {
-                    return new SoftBO.citaWS.turnoDTO { idTurno = 2, horaInicio = "14:00:00", horaFin = "18:00:00" };
-                }
-                if (horaInicioCita >= nocheInicio && horaInicioCita < nocheFin)
-                {
-                    return new SoftBO.citaWS.turnoDTO { idTurno = 3, horaInicio = "18:00:00", horaFin = "22:00:00" };
-                }
-            }
-            return null;
-        }
         private void ActualizarDisponibilidadCompleta()
         {
             HorariosDisponiblesPorFecha = new Dictionary<DateTime, List<TimeSpan>>();
@@ -114,7 +104,7 @@ namespace SoftWA
                     if (citasDisponibles != null && citasDisponibles.Any())
                     {
                         var disponibilidad = citasDisponibles
-                            .Where(c => c!= null && !string.IsNullOrEmpty(c.fechaCita) && !string.IsNullOrEmpty(c.horaInicio))
+                            .Where(c => c != null && !string.IsNullOrEmpty(c.fechaCita) && !string.IsNullOrEmpty(c.horaInicio))
                             .Select(c => new
                             {
                                 Fecha = DateTime.TryParse(c.fechaCita, out var dt) ? dt.Date : DateTime.MinValue,
@@ -129,7 +119,7 @@ namespace SoftWA
                                       .OrderBy(t => t)
                                       .ToList()
                             );
-                        if(disponibilidad.Any())
+                        if (disponibilidad.Any())
                         {
                             HorariosDisponiblesPorFecha = disponibilidad;
                             lblCalendarioStatus.Visible = true;
@@ -214,13 +204,6 @@ namespace SoftWA
 
                     if (resultados != null && resultados.Any())
                     {
-                        foreach (var cita in resultados)
-                        {
-                            if (cita.turno == null && !string.IsNullOrEmpty(cita.horaInicio))
-                            {
-                                cita.turno = DeducirTurno(cita.horaInicio);
-                            }
-                        }
                         var citasParaMostrar = resultados
                             .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
                             .Select(c => new
@@ -251,7 +234,6 @@ namespace SoftWA
                 phNoResultados.Visible = true;
             }
         }
-
         #region Metodos de Limpieza y UI
         private void LimpiarFiltrosDependientes(bool limpiarMedico = true)
         {
@@ -315,55 +297,149 @@ namespace SoftWA
             }
             ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
-        protected void btnModalPagarDespues_Click(object sender, EventArgs e)
+        private void ProcesarReserva()
         {
-            int.TryParse(hfModalCitaId.Value, out int idCita);
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
-
-            if (idCita == 0 || usuario == null)
+            if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
             {
-                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: No se pudo identificar la cita o el usuario.</div>";
+                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: No se pudo identificar la cita a reservar.</div>";
+                CerrarModalDesdeServidor();
                 return;
             }
-
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuarioLogueado == null)
+            {
+                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.</div>";
+                CerrarModalDesdeServidor();
+                return;
+            }
             try
             {
-                SoftBO.citaWS.citaDTO citaAReservar;
+                SoftBO.citaWS.citaDTO citaCompleta;
                 using (var servicioCita = new CitaWSClient())
                 {
-                    citaAReservar = servicioCita.obtenerPorIdCitaCita(idCita);
+                    citaCompleta = servicioCita.obtenerPorIdCitaCita(idCita);
                 }
-
-                if (citaAReservar == null)
+                if (citaCompleta == null)
                 {
-                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: La cita seleccionada ya no está disponible.</div>";
+                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: La cita ya no existe.</div>";
+                    CerrarModalDesdeServidor();
+                    return;
+                }
+                if (citaCompleta.medico == null || citaCompleta.medico.idUsuario == 0 ||
+                    citaCompleta.especialidad == null || citaCompleta.especialidad.idEspecialidad == 0 ||
+                    citaCompleta.consultorio == null || citaCompleta.consultorio.idConsultorio == 0)
+                {
+                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: Los detalles de la cita son incompletos.</div>";
+                    CerrarModalDesdeServidor();
                     return;
                 }
 
-                var paciente = new SoftBO.pacienteWS.usuarioDTO { idUsuario = usuario.idUsuario };
-
+                var citaParaApi = MapearCitaParaPacienteWS(citaCompleta);
+                var pacienteParaApi = new SoftBO.pacienteWS.usuarioDTO
+                {
+                    idUsuario = usuarioLogueado.idUsuario,
+                    idUsuarioSpecified = true
+                };
+                int resultadoReserva;
                 using (var servicioPaciente = new PacienteWSClient())
                 {
-                    var citaParaReservarApi = new SoftBO.pacienteWS.citaDTO { idCita = citaAReservar.idCita };
-                    int resultado = servicioPaciente.reservarCitaPaciente(citaParaReservarApi, paciente);
+                    resultadoReserva = servicioPaciente.reservarCitaPaciente(citaParaApi, pacienteParaApi);
+                }
 
-                    if (resultado > 0)
-                    {
-                        ltlMensajeReserva.Text = "<div class='alert alert-info mt-3'>Su cita ha sido reservada con éxito. Tiene 24 horas para completar el pago.</div>";
-                        btnBuscarCitas_Click(sender, e);
-                    }
-                    else
-                    {
-                        ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>No se pudo completar la reserva. La cita puede haber sido tomada por otro usuario.</div>";
-                    }
+                if (resultadoReserva > 0)
+                {
+                    LimpiarResultadosBusqueda();
+                    pnlResultados.Visible = true;
+                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>¡Su cita ha sido reservada con éxito!</div>";
+                    Session["CitaIdParaPago"] = idCita;
+                    string scriptRedireccion = "setTimeout(function() { window.location.href = 'paciente_pago_cita.aspx'; }, 3000);";
+                    ScriptManager.RegisterStartupScript(updResultadosCitas, updResultadosCitas.GetType(), "RedirectAfterReserve", scriptRedireccion, true);
+                    Response.Redirect("paciente_pago_cita.aspx", false);
+                }
+                else
+                {
+                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>No se pudo completar la reserva, la cita ya no esté disponible.</div>";
+                    btnBuscarCitas_Click(this, EventArgs.Empty);
+                    CerrarModalDesdeServidor();
                 }
             }
             catch (Exception ex)
             {
-                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Ocurrió un error al procesar la reserva.</div>";
-                System.Diagnostics.Debug.WriteLine("Error al reservar: " + ex.ToString());
+                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Ocurrió un error inesperado al procesar su reserva.</div>";
+                System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
+                CerrarModalDesdeServidor();
             }
-            CerrarModalDesdeServidor();
+        }
+        private SoftBO.pacienteWS.citaDTO MapearCitaParaPacienteWS(SoftBO.citaWS.citaDTO citaOriginal)
+        {
+            if (citaOriginal == null) return null;
+
+            var citaMapeada = new SoftBO.pacienteWS.citaDTO();
+
+            citaMapeada.idCita = citaOriginal.idCita;
+            citaMapeada.idCitaSpecified = true;
+            citaMapeada.fechaCita = citaOriginal.fechaCita;
+            citaMapeada.horaInicio = citaOriginal.horaInicio;
+            citaMapeada.horaFin = citaOriginal.horaFin;
+            if (citaOriginal.estadoSpecified)
+            {
+                string nombreEstado = citaOriginal.estado.ToString().ToUpperInvariant();
+                SoftBO.pacienteWS.estadoCita estadoDestino;
+                if (Enum.TryParse<SoftBO.pacienteWS.estadoCita>(nombreEstado, true, out estadoDestino))
+                {
+                    citaMapeada.estado = estadoDestino;
+                    citaMapeada.estadoSpecified = true;
+                }
+            }
+            citaMapeada.usuarioCreacion = citaOriginal.usuarioCreacion;
+            citaMapeada.usuarioCreacionSpecified = true;
+            citaMapeada.fechaCreacion = citaOriginal.fechaCreacion;
+            if (citaOriginal.medico != null)
+            {
+                citaMapeada.medico = new SoftBO.pacienteWS.usuarioDTO
+                {
+                    idUsuario = citaOriginal.medico.idUsuario,
+                    idUsuarioSpecified = true
+                };
+            }
+            if (citaOriginal.especialidad != null)
+            {
+                citaMapeada.especialidad = new SoftBO.pacienteWS.especialidadDTO
+                {
+                    idEspecialidad = citaOriginal.especialidad.idEspecialidad,
+                    idEspecialidadSpecified = true
+                };
+            }
+            if (citaOriginal.consultorio != null)
+            {
+                citaMapeada.consultorio = new SoftBO.pacienteWS.consultorioDTO
+                {
+                    idConsultorio = citaOriginal.consultorio.idConsultorio,
+                    idConsultorioSpecified = true
+                };
+            }
+            if (citaOriginal.turno != null)
+            {
+                citaMapeada.turno = new SoftBO.pacienteWS.turnoDTO
+                {
+                    idTurno = citaOriginal.turno.idTurno,
+                    idTurnoSpecified = true
+                };
+            }
+            return citaMapeada;
+        }
+        protected void btnModalPagarDespues_Click(object sender, EventArgs e)
+        {
+            ProcesarReserva();
+        }
+        protected void btnModalPagarAhora_Click(object sender, EventArgs e)
+        {
+            ProcesarReserva();
+        }
+        private void RedirigirAPago(int idCita)
+        {
+            Session["CitaIdParaPago"] = idCita;
+            Response.Redirect("paciente_pago_cita.aspx", false);
         }
         protected void rptResultadosCitas_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -377,11 +453,6 @@ namespace SoftWA
                 btnAccion.Enabled = true;
                 btnAccion.OnClientClick = string.Format("return mostrarModalConfirmacionReserva({0});", cita.IdCitaDisponible);
             }
-        }
-        protected void btnModalPagarAhora_Click(object sender, EventArgs e)
-        {
-            int.TryParse(hfModalCitaId.Value, out int idCitaModal);
-            CerrarModalDesdeServidor();
         }
         private void CerrarModalDesdeServidor()
         {

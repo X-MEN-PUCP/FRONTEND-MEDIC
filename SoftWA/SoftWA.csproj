@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="paciente_historial_citas.aspx.cs">
       <DependentUpon>paciente_historial_citas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="paciente_historial_citas.aspx.designer.cs">
       <DependentUpon>paciente_historial_citas.aspx</DependentUpon>
@@ -241,6 +242,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="paciente_proximas_citas.aspx.cs">
       <DependentUpon>paciente_proximas_citas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="paciente_proximas_citas.aspx.designer.cs">
       <DependentUpon>paciente_proximas_citas.aspx</DependentUpon>

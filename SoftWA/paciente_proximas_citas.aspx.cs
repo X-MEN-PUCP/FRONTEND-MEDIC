@@ -1,194 +1,202 @@
-﻿using System;
+﻿using SoftBO;
+using SoftBO.citaWS;
+using SoftBO.loginWS;
+using SoftBO.pacienteWS;
+using SoftBO.especialidadWS;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using citaDTO = SoftBO.pacienteWS.citaDTO;
 
 namespace SoftWA
 {
-    public class CitaProximaInfo
-    {
-        public int IdCita { get; set; }
-        public string NombreEspecialidad { get; set; }
-        public int IdEspecialidad { get; set; }
-        public string NombreMedico { get; set; }
-        public DateTime FechaCita { get; set; }
-        public string DescripcionHorario { get; set; }
-        public string EstadoCita { get; set; }
-        public decimal Precio { get; set; }
-        public bool EsCancelable { get; set; }
-    }
-
     public partial class paciente_proximas_citas : System.Web.UI.Page
     {
-        private static List<CitaProximaInfo> _listaGlobalCitasPaciente;
-
-        static paciente_proximas_citas()
+        private List<historiaClinicaPorCitaDTO> CitasCompletasPaciente
         {
-            InicializarCitasDeEjemplo();
+            get { return ViewState["CitasCompletasPaciente"] as List<historiaClinicaPorCitaDTO> ?? new List<historiaClinicaPorCitaDTO>(); }
+            set { ViewState["CitasCompletasPaciente"] = value; }
         }
-
-        private static void InicializarCitasDeEjemplo()
-        {
-            _listaGlobalCitasPaciente = new List<CitaProximaInfo>
-            {
-                new CitaProximaInfo {
-                    IdCita = 1, IdEspecialidad = 1, NombreEspecialidad = "Cardiología", NombreMedico = "Dr. Juan Pérez",
-                    FechaCita = DateTime.Today.AddDays(3), DescripcionHorario = "10:00", Precio = 150.00m,
-                    EstadoCita = "Confirmada", EsCancelable = true
-                },
-                new CitaProximaInfo {
-                    IdCita = 2, IdEspecialidad = 2, NombreEspecialidad = "Dermatología", NombreMedico = "Dr. Carlos García",
-                    FechaCita = DateTime.Today.AddDays(1), DescripcionHorario = "19:00", Precio = 120.00m,
-                    EstadoCita = "Confirmada", EsCancelable = true
-                },
-                 new CitaProximaInfo {
-                    IdCita = 3, IdEspecialidad = 3, NombreEspecialidad = "Pediatría", NombreMedico = "Dra. Sofía Gómez",
-                    FechaCita = DateTime.Today.AddDays(7), DescripcionHorario = "08:30", Precio = 100.00m,
-                    EstadoCita = "Pendiente de Pago", EsCancelable = true
-                },
-                 new CitaProximaInfo {
-                     IdCita = 4, IdEspecialidad = 1, NombreEspecialidad = "Cardiología", NombreMedico = "Dra. Ana López",
-                     FechaCita = DateTime.Today.AddDays(-2), DescripcionHorario = "14:00", Precio = 150.00m,
-                     EstadoCita = "Atendida", EsCancelable = false
-                 },
-                 new CitaProximaInfo {
-                    IdCita = 5, IdEspecialidad = 1, NombreEspecialidad = "Cardiología", NombreMedico = "Dr. Juan Pérez",
-                    FechaCita = DateTime.Today.AddDays(5), DescripcionHorario = "11:00", Precio = 150.00m,
-                    EstadoCita = "Pendiente de Pago", EsCancelable = true
-                },
-            };
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                CargarFiltroEspecialidades();
-                CargarProximasCitas();
+                CargarDatosIniciales();
             }
         }
 
+        private void CargarDatosIniciales()
+        {
+            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuario == null || usuario.idUsuario == 0)
+            {
+                Response.Redirect("~/indexLogin.aspx");
+                return;
+            }
+
+            try
+            {
+                using (var servicioPaciente = new PacienteWSClient())
+                {
+                    var paciente = new SoftBO.pacienteWS.usuarioDTO 
+                    { 
+                        idUsuario = usuario.idUsuario,
+                        idUsuarioSpecified = true
+                    };
+                    var historialCompleto = servicioPaciente.listarCitasPorPaciente(paciente);
+                    if(historialCompleto != null)
+                    {
+                        CitasCompletasPaciente = historialCompleto.ToList();
+                    }
+                }
+                CargarFiltroEspecialidades();
+                FiltrarYMostrarCitas();
+            }
+            catch (Exception ex)
+            {
+                ltlMensajeAccion.Text = "<div class='alert alert-danger'>Error al cargar sus citas.</div>";
+                System.Diagnostics.Debug.WriteLine($"Error cargando citas del paciente: {ex}");
+            }
+        }
         private void CargarFiltroEspecialidades()
         {
-            var especialidades = _listaGlobalCitasPaciente
-                                .Where(c => c.FechaCita >= DateTime.Today)
-                                .Select(c => new { c.IdEspecialidad, c.NombreEspecialidad })
-                                .Distinct()
-                                .OrderBy(e => e.NombreEspecialidad)
-                                .ToList();
+            var especialidades = CitasCompletasPaciente
+                .Where(h => h.cita?.especialidad != null)
+                .Select(h => h.cita.especialidad)
+                .GroupBy(e => e.idEspecialidad)
+                .Select(g => g.First())
+                .OrderBy(e => e.nombreEspecialidad)
+                .ToList();
 
             ddlFiltroEspecialidad.DataSource = especialidades;
-            ddlFiltroEspecialidad.DataTextField = "NombreEspecialidad";
-            ddlFiltroEspecialidad.DataValueField = "IdEspecialidad";
+            ddlFiltroEspecialidad.DataTextField = "nombreEspecialidad";
+            ddlFiltroEspecialidad.DataValueField = "idEspecialidad";
             ddlFiltroEspecialidad.DataBind();
             ddlFiltroEspecialidad.Items.Insert(0, new ListItem("-- Todas --", "0"));
         }
-
-        private void CargarProximasCitas()
+        private void FiltrarYMostrarCitas()
         {
             ltlMensajeAccion.Text = "";
-            int filtroEspecialidadId = 0;
-            int.TryParse(ddlFiltroEspecialidad.SelectedValue, out filtroEspecialidadId);
-
-            var citasFiltradas = _listaGlobalCitasPaciente
-                .Where(c => c.FechaCita >= DateTime.Today && c.EstadoCita != "Atendida" && c.EstadoCita != "Cancelada");
-
+            int.TryParse(ddlFiltroEspecialidad.SelectedValue, out int filtroEspecialidadId);
+            IEnumerable<historiaClinicaPorCitaDTO> citasFiltradas = CitasCompletasPaciente
+                    .Where(h => h.cita != null && (h.cita.estado == SoftBO.pacienteWS.estadoCita.RESERVADO || h.cita.estado == SoftBO.pacienteWS.estadoCita.PAGADO) &&
+                    DateTime.TryParse(h.cita.fechaCita, out var fecha) && fecha.Date >= DateTime.Today);
             if (filtroEspecialidadId > 0)
             {
-                citasFiltradas = citasFiltradas.Where(c => c.IdEspecialidad == filtroEspecialidadId);
+                citasFiltradas = citasFiltradas.Where(h => h.cita.especialidad != null && h.cita.especialidad.idEspecialidad == filtroEspecialidadId);
             }
 
-            var listaFinal = citasFiltradas.OrderBy(c => c.FechaCita).ThenBy(c => c.DescripcionHorario).ToList();
+            var listaParaMostrar = citasFiltradas
+                .OrderBy(h => DateTime.Parse(h.cita.fechaCita))
+                .ThenBy(h => TimeSpan.Parse(h.cita.horaInicio))
+                .Select(h => new {
+                    IdCita=h.cita.idCita,
+                    NombreEspecialidad = h.cita.especialidad?.nombreEspecialidad ?? "N/A",
+                    NombreMedico = h.cita.medico != null ? $"{h.cita.medico.nombres} {h.cita.medico.apellidoPaterno}" : "N/A",
+                    FechaCita = DateTime.Parse(h.cita.fechaCita),
+                    DescripcionHorario = h.cita.horaInicio.Substring(0, 5),
+                    EstadoCita = FormatearNombreEstado(h.cita.estado),
+                    Precio = h.cita.especialidad?.precioConsulta ?? 0,
+                    EsCancelable = DateTime.Parse(h.cita.fechaCita).Date > DateTime.Today.AddDays(1)
+                }).ToList();
 
-            rptProximasCitas.DataSource = listaFinal;
+            rptProximasCitas.DataSource = listaParaMostrar;
             rptProximasCitas.DataBind();
-
-            phNoCitas.Visible = !listaFinal.Any();
+            phNoCitas.Visible = !listaParaMostrar.Any();
         }
-
         protected void ddlFiltroEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarProximasCitas();
+            FiltrarYMostrarCitas();
         }
-
         protected void rptProximasCitas_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                CitaProximaInfo cita = (CitaProximaInfo)e.Item.DataItem;
-                LinkButton btnPagar = (LinkButton)e.Item.FindControl("btnPagarAhora");
-                LinkButton btnCancelar = (LinkButton)e.Item.FindControl("btnCancelarCita");
+                dynamic cita = e.Item.DataItem;
+                if (cita == null) return;
 
-                if (cita.EstadoCita == "Pendiente de Pago")
-                {
-                    btnPagar.Visible = true;
-                    btnCancelar.Visible = true;
-                }
-                else if (cita.EstadoCita == "Confirmada")
-                {
-                    btnPagar.Visible = false;
-                    btnCancelar.Visible = cita.EsCancelable;
-                }
-                else
-                {
-                    btnPagar.Visible = false;
-                    btnCancelar.Visible = false;
-                }
+                var btnPagar = (LinkButton)e.Item.FindControl("btnPagarAhora");
+                var btnCancelar = (LinkButton)e.Item.FindControl("btnCancelarCita");
+                string estadoActual = cita.EstadoCita;
+                btnPagar.Visible = (estadoActual == "Reservado");
+                btnCancelar.Visible = (estadoActual == "Reservado" || estadoActual == "Pagado") && cita.EsCancelable;
             }
         }
-
         protected void rptProximasCitas_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int idCita = Convert.ToInt32(e.CommandArgument);
-            var citaSeleccionada = _listaGlobalCitasPaciente.FirstOrDefault(c => c.IdCita == idCita);
-
-            if (citaSeleccionada == null)
-            {
-                ltlMensajeAccion.Text = "<div class='alert alert-danger'>Error: No se encontró la cita seleccionada.</div>";
-                return;
-            }
+            if (!int.TryParse(e.CommandArgument.ToString(), out int idCita)) return;
 
             if (e.CommandName == "Cancelar")
             {
-                _listaGlobalCitasPaciente.Remove(citaSeleccionada);
-                ltlMensajeAccion.Text = "<div class='alert alert-success'>Cita cancelada exitosamente.</div>";
-                CargarProximasCitas();
+                try
+                {
+                    using (var servicioPaciente = new PacienteWSClient())
+                    {
+                        var historiaPorCita = new historiaClinicaPorCitaDTO
+                        {
+                            cita = new citaDTO { idCita = idCita, idCitaSpecified = true }
+                        };
+                        int resultado = servicioPaciente.cancelarCitaPaciente(historiaPorCita);
+
+                        if (resultado > 0)
+                        {
+                            ltlMensajeAccion.Text = "<div class='alert alert-success'>Cita cancelada exitosamente.</div>";
+                            CargarDatosIniciales();
+                        }
+                        else
+                        {
+                            ltlMensajeAccion.Text = "<div class='alert alert-warning'>No se pudo cancelar la cita.</div>";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ltlMensajeAccion.Text = "<div class='alert alert-danger'>Ocurrió un error al cancelar la cita.</div>";
+                    System.Diagnostics.Debug.WriteLine($"Error cancelando cita: {ex}");
+                }
             }
             else if (e.CommandName == "Pagar")
             {
-                if (citaSeleccionada.EstadoCita == "Pendiente de Pago")
-                {
-                    string descripcion = $"{citaSeleccionada.NombreEspecialidad} con {citaSeleccionada.NombreMedico}";
-                    Response.Redirect($"paciente_pago_cita.aspx?citaId={idCita}&monto={citaSeleccionada.Precio.ToString("F2", CultureInfo.InvariantCulture)}&desc={HttpUtility.UrlEncode(descripcion)}", false);
-                }
+                Session["CitaIdParaPago"] = idCita;
+                Response.Redirect("paciente_pago_cita.aspx", false);
             }
         }
+
+        #region Métodos de Ayuda para la UI
+
         public string GetEstadoBadgeClass(string estado)
         {
             switch (estado)
             {
-                case "Confirmada":
-                    return "bg-success";
-                case "Pendiente de Pago":
-                    return "bg-warning text-dark";
-                default:
-                    return "bg-secondary";
+                case "Pagado": return "bg-success";
+                case "Reservado": return "bg-warning text-dark";
+                default: return "bg-secondary";
             }
         }
         public string GetCardBorderClass(string estado)
         {
             switch (estado)
             {
-                case "Confirmada":
-                    return "cita-card-confirmada";
-                case "Pendiente de Pago":
-                    return "cita-card-pendiente";
-                default:
-                    return "";
+                case "Pagado": return "cita-card-confirmada";
+                case "Reservado": return "cita-card-pendiente";
+                default: return "";
             }
         }
+        private string FormatearNombreEstado(SoftBO.pacienteWS.estadoCita estadoEnum)
+        {
+            switch (estadoEnum)
+            {
+                case SoftBO.pacienteWS.estadoCita.RESERVADO: return "Reservado";
+                case SoftBO.pacienteWS.estadoCita.PAGADO: return "Pagado";
+                case SoftBO.pacienteWS.estadoCita.DISPONIBLE: return "Disponible";
+                default: return "Desconocido";
+            }
+        }
+
+        #endregion
     }
 }
