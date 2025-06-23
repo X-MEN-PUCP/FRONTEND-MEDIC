@@ -22,7 +22,7 @@ namespace SoftBO
         public BindingList<examenPorCita> ListarExamenesPorIdCita(int idCita)
         {
             examenPorCita[] examenes = this.examenPorCitaCliente.ListarExamenesPorIdCita(idCita);
-            return new BindingList<examenPorCita>(examenes);
+            return new BindingList<examenPorCita>(examenes ?? Array.Empty<examenPorCita>());
         }
         public BindingList<examenPorCita> ListarTodosLosExamenesPorCita()
         {

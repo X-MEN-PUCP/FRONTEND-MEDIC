@@ -149,7 +149,7 @@ namespace SoftWA
                 LinkButton btn = e.CommandSource as LinkButton;
                 if (btn != null)
                 {
-                    btn.Text = "<i class='fa-solid fa-check'></i> Resultados Vistos";
+                    Response.Redirect($"doctor_registrar_atencion.aspx?idCita={idCita}&modo=vista");
                 }
             }
         }

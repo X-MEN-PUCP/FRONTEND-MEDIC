@@ -85,18 +85,16 @@
                         <asp:UpdatePanel ID="updDiagnosticos" runat="server">
                             <ContentTemplate>
                                 <!-- Formulario para agregar nuevo diagnóstico -->
-                                <div class="row g-3 mb-3 p-3 border rounded">
-                                    <div class="col-md-5">
-                                        <label class="form-label">Diagnóstico (CIE-10)</label>
+                                <div id="panelAgregarDiagnostico" runat="server">
+                                    <div class="input-group mb-3">
                                         <asp:DropDownList ID="ddlDiagnosticos" runat="server" CssClass="form-select"></asp:DropDownList>
+                                        <asp:Button ID="btnAgregarDiagnostico" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarDiagnostico_Click" />
                                     </div>
-                                    <div class="col-md-5">
-                                        <label class="form-label">Observación</label>
-                                        <asp:TextBox ID="txtObservacionDiagnostico" runat="server" CssClass="form-control" placeholder="Detalles adicionales..."></asp:TextBox>
+                                    <div class="mb-3">
+                                        <label for="<%=txtObservacionDiagnostico.ClientID%>" class="form-label">Observación del Diagnóstico:</label>
+                                        <asp:TextBox ID="txtObservacionDiagnostico" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2"></asp:TextBox>
                                     </div>
-                                    <div class="col-md-2 d-flex align-items-end">
-                                        <asp:Button ID="btnAgregarDiagnostico" runat="server" Text="Agregar" CssClass="btn btn-outline-primary w-100" OnClick="btnAgregarDiagnostico_Click" />
-                                    </div>
+                                    <hr />
                                 </div>
                                 <!-- Lista de diagnósticos agregados -->
                                 <asp:Repeater ID="rptDiagnosticosAgregados" runat="server" OnItemCommand="rptDiagnosticosAgregados_ItemCommand">
@@ -107,7 +105,11 @@
                                                 <strong><%# Eval("diagnostico.nombreDiagnostico") %></strong><br/>
                                                 <small class="text-muted"><%# Eval("observacion") %></small>
                                             </div>
-                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" CssClass="btn btn-sm btn-outline-danger" CommandName="Quitar" CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'><i class="fa-solid fa-trash"></i></asp:LinkButton>
+                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" CssClass="btn btn-outline-danger btn-sm" 
+                                                            CommandName="Quitar" CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'
+                                                            Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                                <i class="fa-solid fa-trash-alt"></i> Quitar
+                                            </asp:LinkButton>
                                         </li>
                                     </ItemTemplate>
                                     <FooterTemplate></ul></FooterTemplate>
@@ -134,18 +136,16 @@
         <div class="accordion-body">
             <asp:UpdatePanel ID="updExamenes" runat="server">
                 <ContentTemplate>
-                    <div class="row g-3">
-                        <div class="col-md-5">
-                            <label for="ddlExamenes" class="form-label">Examen</label>
+                    <div id="panelAgregarExamen" runat="server">
+                        <div class="input-group mb-3">
                             <asp:DropDownList ID="ddlExamenes" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:Button ID="btnAgregarExamen" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarExamen_Click" />
                         </div>
-                        <div class="col-md-5">
-                            <label for="txtObservacionExamen" class="form-label">Indicaciones/Observaciones</label>
-                            <asp:TextBox ID="txtObservacionExamen" runat="server" CssClass="form-control" placeholder="Ej: Ayuno de 8 horas"></asp:TextBox>
+                        <div class="mb-3">
+                            <label for="<%=txtObservacionExamen.ClientID%>" class="form-label">Indicaciones / Observaciones del Examen:</label>
+                            <asp:TextBox ID="txtObservacionExamen" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2"></asp:TextBox>
                         </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <asp:Button ID="btnAgregarExamen" runat="server" Text="Agregar" CssClass="btn btn-primary w-100" OnClick="btnAgregarExamen_Click" />
-                        </div>
+                        <hr />
                     </div>
                     <hr />
                     <h6>Exámenes Solicitados</h6>
@@ -157,8 +157,10 @@
                                     <strong><%# Eval("examen.nombreExamen") %></strong>
                                     <small class="d-block text-muted"><%# Eval("observaciones") %></small>
                                 </div>
-                                <asp:LinkButton ID="btnQuitarExamen" runat="server" CommandName="Quitar" CommandArgument='<%# Eval("examen.idExamen") %>' CssClass="btn btn-sm btn-outline-danger">
-                                    <i class="fas fa-trash-alt"></i>
+                                <asp:LinkButton ID="btnQuitarExamen" runat="server" CssClass="btn btn-outline-danger btn-sm"
+                                                CommandName="Quitar" CommandArgument='<%# Eval("examen.idExamen") %>'
+                                                Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                    <i class="fa-solid fa-trash-alt"></i> Quitar
                                 </asp:LinkButton>
                             </li>
                         </ItemTemplate>
@@ -186,18 +188,16 @@
         <div class="accordion-body">
             <asp:UpdatePanel ID="updInterconsultas" runat="server">
                 <ContentTemplate>
-                    <div class="row g-3">
-                        <div class="col-md-5">
-                            <label for="ddlEspecialidadInterconsulta" class="form-label">Especialidad</label>
+                    <div id="panelAgregarInterconsulta" runat="server">
+                        <div class="input-group mb-3">
                             <asp:DropDownList ID="ddlEspecialidadInterconsulta" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:Button ID="btnAgregarInterconsulta" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarInterconsulta_Click" />
                         </div>
-                        <div class="col-md-5">
-                            <label for="txtRazonInterconsulta" class="form-label">Motivo de la Interconsulta</label>
-                            <asp:TextBox ID="txtRazonInterconsulta" runat="server" CssClass="form-control" placeholder="Ej: Evaluación cardiológica preoperatoria"></asp:TextBox>
+                        <div class="mb-3">
+                            <label for="<%=txtRazonInterconsulta.ClientID%>" class="form-label">Razón de la Interconsulta:</label>
+                            <asp:TextBox ID="txtRazonInterconsulta" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2"></asp:TextBox>
                         </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <asp:Button ID="btnAgregarInterconsulta" runat="server" Text="Agregar" CssClass="btn btn-primary w-100" OnClick="btnAgregarInterconsulta_Click" />
-                        </div>
+                        <hr />
                     </div>
                     <hr />
                     <h6>Interconsultas Solicitadas</h6>

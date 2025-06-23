@@ -195,6 +195,15 @@ namespace SoftWA
         protected global::System.Web.UI.UpdatePanel updDiagnosticos;
 
         /// <summary>
+        /// panelAgregarDiagnostico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAgregarDiagnostico;
+
+        /// <summary>
         /// ddlDiagnosticos control.
         /// </summary>
         /// <remarks>
@@ -204,15 +213,6 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.DropDownList ddlDiagnosticos;
 
         /// <summary>
-        /// txtObservacionDiagnostico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtObservacionDiagnostico;
-
-        /// <summary>
         /// btnAgregarDiagnostico control.
         /// </summary>
         /// <remarks>
@@ -220,6 +220,15 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregarDiagnostico;
+
+        /// <summary>
+        /// txtObservacionDiagnostico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObservacionDiagnostico;
 
         /// <summary>
         /// rptDiagnosticosAgregados control.
@@ -240,6 +249,15 @@ namespace SoftWA
         protected global::System.Web.UI.UpdatePanel updExamenes;
 
         /// <summary>
+        /// panelAgregarExamen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAgregarExamen;
+
+        /// <summary>
         /// ddlExamenes control.
         /// </summary>
         /// <remarks>
@@ -249,15 +267,6 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.DropDownList ddlExamenes;
 
         /// <summary>
-        /// txtObservacionExamen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtObservacionExamen;
-
-        /// <summary>
         /// btnAgregarExamen control.
         /// </summary>
         /// <remarks>
@@ -265,6 +274,15 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregarExamen;
+
+        /// <summary>
+        /// txtObservacionExamen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObservacionExamen;
 
         /// <summary>
         /// rptExamenesAgregados control.
@@ -285,6 +303,15 @@ namespace SoftWA
         protected global::System.Web.UI.UpdatePanel updInterconsultas;
 
         /// <summary>
+        /// panelAgregarInterconsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAgregarInterconsulta;
+
+        /// <summary>
         /// ddlEspecialidadInterconsulta control.
         /// </summary>
         /// <remarks>
@@ -294,15 +321,6 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidadInterconsulta;
 
         /// <summary>
-        /// txtRazonInterconsulta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRazonInterconsulta;
-
-        /// <summary>
         /// btnAgregarInterconsulta control.
         /// </summary>
         /// <remarks>
@@ -310,6 +328,15 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregarInterconsulta;
+
+        /// <summary>
+        /// txtRazonInterconsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRazonInterconsulta;
 
         /// <summary>
         /// rptInterconsultasAgregadas control.
