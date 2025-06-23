@@ -15,6 +15,7 @@
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h4 class="mb-0"><i class="fa-solid fa-user me-2"></i>Mi Perfil</h4>
+                            <asp:Button ID="btnEdit" runat="server" Text="Editar Perfil" CssClass="btn btn-outline-primary btn-sm" OnClick="btnEdit_Click" />
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -67,37 +68,32 @@
                             <div class="row g-3">
                                     <div class="col-12">
                                     <label for="<%= txtNombresEdit.ClientID %>" class="form-label">Nombres</label>
-                                    <asp:TextBox ID="txtNombresEdit" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                                    <asp:TextBox ID="txtNombresEdit" runat="server" CssClass="form-control" MaxLength="100" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="<%= txtApellidoPaternoEdit.ClientID %>" class="form-label">Apellido Paterno</label>
-                                    <asp:TextBox ID="txtApellidoPaternoEdit" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                    <asp:TextBox ID="txtApellidoPaternoEdit" runat="server" CssClass="form-control" MaxLength="50" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="<%= txtApellidoMaternoEdit.ClientID %>" class="form-label">Apellido Materno</label>
-                                    <asp:TextBox ID="txtApellidoMaternoEdit" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                    <asp:TextBox ID="txtApellidoMaternoEdit" runat="server" CssClass="form-control" MaxLength="50" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
                                 <label for="<%= txtEspecialidadEdit.ClientID %>" class="form-label">Especialidad</label>
-                                <asp:TextBox ID="txtEspecialidadEdit" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtEspecialidadEdit" runat="server" CssClass="form-control" MaxLength="50" ReadOnly="true"></asp:TextBox>
                             </div>
                                 <div class="col-md-6">
                                 <label for="<%= txtCodigocmpEdit.ClientID %>" class="form-label">Código CMP</label>
-                                <asp:TextBox ID="txtCodigocmpEdit" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtCodigocmpEdit" runat="server" CssClass="form-control" MaxLength="50" ReadOnly="true"></asp:TextBox>
                             </div>
                                 <div class="col-md-6">
                                     <label for="<%= txtFechaNacimientoEdit.ClientID %>" class="form-label">Fecha de Nacimiento</label>
-                                    <asp:TextBox ID="txtFechaNacimientoEdit" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtFechaNacimientoEdit" runat="server" CssClass="form-control" TextMode="Date" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="<%= ddlGeneroEdit.ClientID %>" class="form-label">Género</label>
-                                    <asp:DropDownList ID="ddlGeneroEdit" runat="server" CssClass="form-select">
-                                        <asp:ListItem Text="-- Seleccione --" Value=""></asp:ListItem>
-                                        <asp:ListItem Text="Masculino" Value="M"></asp:ListItem>
-                                        <asp:ListItem Text="Femenino" Value="F"></asp:ListItem>
-                                        <asp:ListItem Text="Otro" Value="O"></asp:ListItem>
-                                        <asp:ListItem Text="Prefiero no decir" Value="N"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <label for="<%= txtGeneroEdit.ClientID %>" class="form-label">Género</label>
+                                    <asp:TextBox ID="txtGeneroEdit" runat="server" CssClass="form-control"  ReadOnly="true"></asp:TextBox>
+                                    
                                 </div>
                                 <div class="col-md-6">
                                     <label for="<%= txtCorreoEdit.ClientID %>" class="form-label">Correo Electrónico</label>

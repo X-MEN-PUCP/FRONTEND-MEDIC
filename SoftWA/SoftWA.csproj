@@ -229,6 +229,7 @@
     </Compile>
     <Compile Include="perfil_medico.aspx.cs">
       <DependentUpon>perfil_medico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="perfil_medico.aspx.designer.cs">
       <DependentUpon>perfil_medico.aspx</DependentUpon>
