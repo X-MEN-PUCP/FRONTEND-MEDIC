@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SoftBO;
+using SoftBO.adminWS;
+using SoftBO.reporteCitasWS;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,23 +13,15 @@ namespace SoftWA
 {
     public partial class admin_reporte_citas : System.Web.UI.Page
     {
-        protected class CitaAtendida
-        {
-            public int IdCita { get; set; }
-            public string NombrePaciente { get; set; }
-            public string Especialidad { get; set; }
-            public int IdDoctor { get; set; }
-            public string CmpDoctor { get; set; }
-            public string NombreDoctor { get; set; }
-            public DateTime FechaCita { get; set; }
-            public string Horario { get; set; }
-        }
+        private readonly ReporteCitasBO _reporteCitasBO;
+        private readonly EspecialidadBO _especialidadBO;
+        private readonly UsuarioBO _usuarioBO;
 
-        private static List<CitaAtendida> _listaGlobalCitasAtendidas;
-
-        static admin_reporte_citas()
+        public admin_reporte_citas()
         {
-            _listaGlobalCitasAtendidas = GenerarDatosMuestraCompletos(100);
+            _reporteCitasBO = new ReporteCitasBO();
+            _especialidadBO = new EspecialidadBO();
+            _usuarioBO = new UsuarioBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,45 +35,57 @@ namespace SoftWA
 
         private void PoblarFiltrosDropDown()
         {
-            var especialidades = _listaGlobalCitasAtendidas
-                                .Select(c => c.Especialidad)
-                                .Distinct()
-                                .OrderBy(e => e)
-                                .ToList();
-            ddlEspecialidadReporte.DataSource = especialidades;
-            ddlEspecialidadReporte.DataBind();
-            ddlEspecialidadReporte.Items.Insert(0, new ListItem("-- Todas --", "0"));
-            PoblarFiltroDoctores();
-        }
-
-        private void PoblarFiltroDoctores(string especialidadFiltro = "0")
-        {
-            ddlDoctorReporte.Items.Clear();
-            IEnumerable<CitaAtendida> citasParaDoctores = _listaGlobalCitasAtendidas;
-
-            if (especialidadFiltro != "0" && !string.IsNullOrEmpty(especialidadFiltro))
+            try
             {
-                citasParaDoctores = citasParaDoctores.Where(c => c.Especialidad == especialidadFiltro);
+                // Poblar especialidades
+                var especialidades = _especialidadBO.ListarEspecialidad();
+                ddlEspecialidadReporte.DataSource = especialidades.OrderBy(e => e.nombreEspecialidad);
+                ddlEspecialidadReporte.DataTextField = "nombreEspecialidad";
+                ddlEspecialidadReporte.DataValueField = "idEspecialidad";
+                ddlEspecialidadReporte.DataBind();
+                ddlEspecialidadReporte.Items.Insert(0, new ListItem("-- Todas --", "0"));
+
+                // Poblar doctores
+                PoblarFiltroDoctores();
             }
-
-            var doctores = citasParaDoctores
-                            .Select(c => new { Id = c.IdDoctor, Nombre = c.NombreDoctor })
-                            .Distinct()
-                            .OrderBy(d => d.Nombre)
-                            .ToList();
-
-            ddlDoctorReporte.DataSource = doctores;
-            ddlDoctorReporte.DataTextField = "Nombre";
-            ddlDoctorReporte.DataValueField = "Id";
-            ddlDoctorReporte.DataBind();
-            ddlDoctorReporte.Items.Insert(0, new ListItem("-- Todos --", "0"));
-            ddlDoctorReporte.Enabled = doctores.Any();
+            catch (Exception ex)
+            {
+                // Manejar error de conexión
+                System.Diagnostics.Debug.WriteLine("Error poblando filtros: " + ex.Message);
+            }
         }
 
+        private void PoblarFiltroDoctores()
+        {
+            try
+            {
+                ddlDoctorReporte.Items.Clear();
+                //var todosLosUsuarios = _usuarioBO.ListarTodos();
+                var todosLosUsuarios = new List<usuarioDTO>();
+
+                // Filtrar solo los que tienen el rol de Médico (asumiendo ID de Rol 2)
+                //var doctores = todosLosUsuarios
+                //    .Where(u => u.roles != null && u.roles.Contains(2))
+                //    .OrderBy(d => d.apellidoPaterno)
+                //    .ThenBy(d => d.nombres)
+                //    .Select(d => new ListItem($"{d.apellidoPaterno} {d.apellidoMaterno}, {d.nombres}", d.idUsuario.ToString()))
+                //    .ToList();
+
+                //ddlDoctorReporte.Items.AddRange(doctores.ToArray());
+                ddlDoctorReporte.Items.Insert(0, new ListItem("-- Todos --", "0"));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error poblando doctores: " + ex.Message);
+                ddlDoctorReporte.Items.Insert(0, new ListItem("-- Error al cargar --", "0"));
+            }
+        }
 
         protected void ddlEspecialidadReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PoblarFiltroDoctores(ddlEspecialidadReporte.SelectedValue);
+            // En el futuro, se podría refinar la lista de doctores según la especialidad seleccionada.
+            // Por ahora, la lista de doctores es general.
+            updReporteCitas.Update();
         }
 
         protected void btnAplicarFiltrosReporte_Click(object sender, EventArgs e)
@@ -91,7 +98,6 @@ namespace SoftWA
             txtFechaDesdeReporte.Text = string.Empty;
             txtFechaHastaReporte.Text = string.Empty;
             ddlEspecialidadReporte.SelectedValue = "0";
-            PoblarFiltroDoctores();
             ddlDoctorReporte.SelectedValue = "0";
             ddlOrdenarReporte.SelectedValue = "FechaDesc";
             AplicarFiltrosYActualizarReporte();
@@ -99,101 +105,135 @@ namespace SoftWA
 
         private void AplicarFiltrosYActualizarReporte()
         {
-            IEnumerable<CitaAtendida> citasFiltradas = _listaGlobalCitasAtendidas;
-
-            if (!string.IsNullOrEmpty(txtFechaDesdeReporte.Text))
+            try
             {
-                DateTime fechaDesde;
-                if (DateTime.TryParse(txtFechaDesdeReporte.Text, out fechaDesde))
+                var listaCitas = ObtenerDatosReporte();
+
+                // Ordenamiento se realiza en el lado del cliente (C#)
+                string orden = ddlOrdenarReporte.SelectedValue;
+                switch (orden)
                 {
-                    citasFiltradas = citasFiltradas.Where(c => c.FechaCita.Date >= fechaDesde.Date);
+                    case "FechaAsc": listaCitas = listaCitas.OrderBy(c => Convert.ToDateTime(c.fechaCita)).ThenBy(c => c.hora).ToList(); break;
+                    case "PacienteAsc": listaCitas = listaCitas.OrderBy(c => c.paciente).ToList(); break;
+                    case "PacienteDesc": listaCitas = listaCitas.OrderByDescending(c => c.paciente).ToList(); break;
+                    case "DoctorAsc": listaCitas = listaCitas.OrderBy(c => c.doctor).ToList(); break;
+                    case "DoctorDesc": listaCitas = listaCitas.OrderByDescending(c => c.doctor).ToList(); break;
+                    case "EspecialidadAsc": listaCitas = listaCitas.OrderBy(c => c.especialidad).ToList(); break;
+                    case "EspecialidadDesc": listaCitas = listaCitas.OrderByDescending(c => c.especialidad).ToList(); break;
+                    case "FechaDesc": default: listaCitas = listaCitas.OrderByDescending(c => Convert.ToDateTime(c.fechaCita)).ThenByDescending(c => c.hora).ToList(); break;
                 }
-            }
 
-            if (!string.IsNullOrEmpty(txtFechaHastaReporte.Text))
-            {
-                DateTime fechaHasta;
-                if (DateTime.TryParse(txtFechaHastaReporte.Text, out fechaHasta))
+                lvCitas.DataSource = listaCitas;
+                lvCitas.DataBind();
+
+                var phNoReporte = lvCitas.FindControl("phNoReporte") as PlaceHolder;
+                if (phNoReporte != null)
                 {
-                    citasFiltradas = citasFiltradas.Where(c => c.FechaCita.Date <= fechaHasta.Date);
+                    phNoReporte.Visible = !listaCitas.Any();
                 }
-            }
 
-            if (ddlEspecialidadReporte.SelectedValue != "0" && !string.IsNullOrEmpty(ddlEspecialidadReporte.SelectedValue))
-            {
-                citasFiltradas = citasFiltradas.Where(c => c.Especialidad == ddlEspecialidadReporte.SelectedValue);
+                CalcularYMostrarEstadisticas(listaCitas);
             }
-
-            if (ddlDoctorReporte.SelectedValue != "0" && !string.IsNullOrEmpty(ddlDoctorReporte.SelectedValue))
+            catch (Exception ex)
             {
-                int idDoctorFiltro = 0;
-                if (int.TryParse(ddlDoctorReporte.SelectedValue, out idDoctorFiltro))
+                System.Diagnostics.Debug.WriteLine("Error al generar reporte: " + ex.Message);
+                var phNoReporte = lvCitas.FindControl("phNoReporte") as PlaceHolder;
+                if (phNoReporte != null)
                 {
-                    citasFiltradas = citasFiltradas.Where(c => c.IdDoctor == idDoctorFiltro);
+                    var lit = new Literal();
+                    lit.Text = "<div class='alert alert-danger'>Ocurrió un error al conectar con el servicio de reportes.</div>";
+                    phNoReporte.Controls.Add(lit);
+                    phNoReporte.Visible = true;
                 }
+                lvCitas.DataSource = null;
+                lvCitas.DataBind();
             }
-
-            string orden = ddlOrdenarReporte.SelectedValue;
-            switch (orden)
-            {
-                case "FechaAsc": citasFiltradas = citasFiltradas.OrderBy(c => c.FechaCita).ThenBy(c => c.Horario); break;
-                case "PacienteAsc": citasFiltradas = citasFiltradas.OrderBy(c => c.NombrePaciente); break;
-                case "PacienteDesc": citasFiltradas = citasFiltradas.OrderByDescending(c => c.NombrePaciente); break;
-                case "DoctorAsc": citasFiltradas = citasFiltradas.OrderBy(c => c.NombreDoctor); break;
-                case "DoctorDesc": citasFiltradas = citasFiltradas.OrderByDescending(c => c.NombreDoctor); break;
-                case "EspecialidadAsc": citasFiltradas = citasFiltradas.OrderBy(c => c.Especialidad); break;
-                case "EspecialidadDesc": citasFiltradas = citasFiltradas.OrderByDescending(c => c.Especialidad); break;
-                case "FechaDesc": default: citasFiltradas = citasFiltradas.OrderByDescending(c => c.FechaCita).ThenByDescending(c => c.Horario); break;
-            }
-
-            List<CitaAtendida> listaFinal = citasFiltradas.ToList();
-            lvCitas.DataSource = listaFinal;
-            lvCitas.DataBind();
-
-            CalcularYMostrarEstadisticas(listaFinal);
         }
-
-        private static List<CitaAtendida> GenerarDatosMuestraCompletos(int cantidad)
+        private List<reporteCitaDTO> ObtenerDatosReporte()
         {
-            var lista = new List<CitaAtendida>();
-            var rnd = new Random();
-            var nombresPacientes = new[] { "Ana García", "Luis Martínez", "María Rodríguez", "José Hernández", "Carmen López", "Javier Pérez", "Isabel Gómez", "Manuel Sánchez", "Laura Díaz", "Pedro Moreno", "Elena Fernández", "David Ruiz", "Sara Jiménez", "Daniel González" };
-            var especialidadesSource = new[] { "Cardiología", "Dermatología", "Pediatría", "Ginecología", "Medicina General", "Oftalmología", "Traumatología" };
-            var doctoresSource = new Dictionary<string, List<(int, string, string)>> {
-                { "Cardiología", new List<(int, string, string)> { (101, "Dr. Carlos Ruiz", "ASDB126"), (102, "Dra. Elena Castillo", "NIV128") } },
-                { "Dermatología", new List<(int, string, string)> { (201, "Dra. Sofia Vargas", "TLK896"), (202, "Dr. Mario Bross", "BYG374") } },
-                { "Pediatría", new List<(int, string, string)> {(301, "Dr. Andrés Molina", "MKO789"), (302, "Dra. Paula Navarro", "JOF897") } },
-                { "Ginecología", new List<(int, string, string)> {(401, "Dra. Irene Gil", "FVT453") } },
-                { "Medicina General", new List<(int, string, string)> { (501, "Dr. Ricardo Soler", "CUN286"), (502, "Dra. Beatriz Alonso", "IOU876") } },
-                { "Oftalmología", new List<(int, string, string)> { (601, "Dr. Fernando Sáez", "VBI123") } },
-                { "Traumatología", new List<(int, string, string)> {(701, "Dra. Lucia Méndez", "OIU675") } }
-            };
-            var horariosBase = new[] { "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "14:00", "14:30", "15:00", "15:30", "16:00" };
+            // Recoger valores de los filtros
+            string fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text) ? null : txtFechaDesdeReporte.Text;
+            string fechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text) ? null : txtFechaHastaReporte.Text;
 
-            for (int i = 1; i <= cantidad; i++)
-            {
-                string esp = especialidadesSource[rnd.Next(especialidadesSource.Length)];
-                var doctoresEnEspecialidad = doctoresSource[esp];
-                var doctorSeleccionado = doctoresEnEspecialidad[rnd.Next(doctoresEnEspecialidad.Count)];
-                DateTime fecha = DateTime.Today.AddDays(-rnd.Next(1, 90));
-                string hora = horariosBase[rnd.Next(horariosBase.Length)];
+            int.TryParse(ddlEspecialidadReporte.SelectedValue, out int idEspecialidad);
 
-                lista.Add(new CitaAtendida
-                {
-                    IdCita = 1000 + i,
-                    NombrePaciente = nombresPacientes[rnd.Next(nombresPacientes.Length)],
-                    Especialidad = esp,
-                    IdDoctor = doctorSeleccionado.Item1,
-                    CmpDoctor = doctorSeleccionado.Item3,
-                    NombreDoctor = doctorSeleccionado.Item2,
-                    FechaCita = fecha,
-                    Horario = hora
-                });
-            }
-            return lista;
+            int.TryParse(ddlDoctorReporte.SelectedValue, out int idDoctor);
+
+            // Llamar al servicio web
+            var reporte = _reporteCitasBO.ReporteCitasGeneral(
+                idEspecialidad,
+                idDoctor,
+                fechaDesde,
+                fechaHasta
+            );
+
+            return reporte.ToList();
         }
 
-        private void CalcularYMostrarEstadisticas(List<CitaAtendida> listaCitas)
+        protected void btnExportarCSV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var listaParaExportar = ObtenerDatosReporte();
+
+                if (!listaParaExportar.Any())
+                {
+                    // Opcional: mostrar un mensaje si no hay datos para exportar
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('No hay datos para exportar con los filtros actuales.');", true);
+                    return;
+                }
+
+                // Usamos StringBuilder para construir el contenido del CSV
+                StringBuilder sb = new StringBuilder();
+
+                // Encabezados
+                sb.AppendLine("ID Cita,Paciente,Especialidad,CMP Doctor,Doctor,Fecha Cita,Hora");
+
+                // Filas de datos
+                foreach (var cita in listaParaExportar)
+                {
+                    sb.AppendFormat("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\"",
+                        cita.idCita,
+                        SanitizeCsvField(cita.paciente),
+                        SanitizeCsvField(cita.especialidad),
+                        SanitizeCsvField(cita.codMedico),
+                        SanitizeCsvField(cita.doctor),
+                        Convert.ToDateTime(cita.fechaCita).ToString("yyyy-MM-dd"),
+                        cita.hora
+                    );
+                    sb.AppendLine();
+                }
+
+                // Configurar la respuesta HTTP para la descarga del archivo
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", $"attachment;filename=ReporteCitas_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+                Response.Charset = "utf-8";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                Response.ContentType = "text/csv";
+                Response.Output.Write(sb.ToString());
+                Response.Flush();
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error al exportar CSV: " + ex.Message);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Ocurrió un error al generar el archivo de exportación.');", true);
+            }
+        }
+
+        // Función auxiliar para limpiar los campos del CSV
+        private string SanitizeCsvField(string field)
+        {
+            if (string.IsNullOrEmpty(field))
+            {
+                return string.Empty;
+            }
+            // Reemplaza las comillas dobles con dos comillas dobles para escaparlas en CSV
+            return field.Replace("\"", "\"\"");
+        }
+
+        private void CalcularYMostrarEstadisticas(List<reporteCitaDTO> listaCitas)
         {
             if (listaCitas == null || !listaCitas.Any())
             {
@@ -203,13 +243,13 @@ namespace SoftWA
             }
 
             var topEspecialidad = listaCitas
-                .GroupBy(c => c.Especialidad)
+                .GroupBy(c => c.especialidad)
                 .Select(g => new { Name = g.Key, Count = g.Count() })
                 .OrderByDescending(x => x.Count)
                 .FirstOrDefault();
 
             var topDoctor = listaCitas
-                .GroupBy(c => c.NombreDoctor)
+                .GroupBy(c => c.doctor)
                 .Select(g => new { Name = g.Key, Count = g.Count() })
                 .OrderByDescending(x => x.Count)
                 .FirstOrDefault();
