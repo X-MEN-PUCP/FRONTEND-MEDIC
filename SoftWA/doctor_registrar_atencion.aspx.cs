@@ -1,5 +1,4 @@
-﻿// --- Archivo: doctor_registrar_atencion.aspx.cs ---
-using SoftBO;
+﻿using SoftBO;
 using SoftBO.citaWS;
 using SoftBO.diagnosticoWS;
 using SoftBO.diagnosticoporcitaWS;
@@ -12,6 +11,11 @@ using System.Web.UI;
 using SoftBO.examenporcitaWS;
 using SoftBO.interconsultaWS;
 using System.Web.UI.WebControls;
+using SoftBO.diagnosticoporcitaWS;
+using SoftBO.examenporcitaWS;
+using SoftBO.interconsultaWS;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace SoftWA
 {
@@ -28,6 +32,8 @@ namespace SoftWA
         private readonly ExamenPorCitaBO _examenPorCitaBO;
         private readonly InterconsultaBO _interconsultaBO;
         private readonly EspecialidadBO _especialidadBO;
+
+
 
 
         private List<diagnosticoPorCita> DiagnosticosDeCita
@@ -69,8 +75,18 @@ namespace SoftWA
                 if (Request.QueryString["idCita"] != null && int.TryParse(Request.QueryString["idCita"], out int idCita))
                 {
                     hfIdCita.Value = idCita.ToString();
-                    CargarDatosDeLaCita(idCita);
-                    CargarMaestros(); // Cargar DDLs
+                    if (Request.QueryString["modo"] == "vista")
+                    {
+                        CargarDatosDeLaCita(idCita); // Carga datos del paciente/cita
+                        CargarDatosAtencionGuardada(idCita); // Carga epicrisis, diagnósticos, etc.
+                        ConfigurarModoLectura();
+                    }
+                    else
+                    {
+                        // Modo normal de registro
+                        CargarDatosDeLaCita(idCita);
+                        CargarMaestros(); // Cargar DDLs para agregar
+                    }
                 }
                 else
                 {
@@ -78,6 +94,85 @@ namespace SoftWA
                     btnFinalizarAtencion.Enabled = false;
                 }
             }
+        }
+
+        private void CargarDatosAtencionGuardada(int idCita)
+        {
+            try
+            {
+                // 1. Cargar Epicrisis
+                var epicrisis = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
+                if (epicrisis != null)
+                {
+                    txtPeso.Text = epicrisis.peso.ToString() ;
+                    txtTalla.Text = epicrisis.talla.ToString("0.##",CultureInfo.InvariantCulture);
+                    txtPresion.Text = epicrisis.presionArterial;
+                    txtTemperatura.Text = epicrisis.temperatura.ToString("0.##", CultureInfo.InvariantCulture);
+                    txtMotivoConsulta.Text = epicrisis.motivoConsulta;
+                    txtTratamiento.Text = epicrisis.tratamiento;
+                    txtRecomendaciones.Text = epicrisis.recomendacion;
+                }
+
+                // 2. Cargar Diagnósticos
+                var diagnosticosGuardados = _diagnosticoPorCitaBO.ListarDiagnosticoPorIdCita(idCita);
+                rptDiagnosticosAgregados.DataSource =
+                    (diagnosticosGuardados?.Select(d => new {
+                        diagnostico = d.diagnostico,
+                        observacion = d.observacion
+                    })?.ToList<object>()) ?? new List<object>();
+
+                rptDiagnosticosAgregados.DataBind();
+
+                // 3. Cargar Exámenes Solicitados
+                var examenesGuardados = _examenPorCitaBO.ListarExamenesPorIdCita(idCita);
+                rptExamenesAgregados.DataSource =
+                    (examenesGuardados?.Select(ex => new {
+                        examen = new { nombreExamen = ex.examen.nombreExamen },
+                        ex.observaciones
+                    })?.ToList<object>()) ?? new List<object>();
+                rptExamenesAgregados.DataBind();
+
+                // 4. Cargar Interconsultas
+                // Nota: El backend no tenía un "listarPorIdCita" para interconsultas. Lo simularemos aquí.
+                // LO IDEAL sería agregarlo al backend para eficiencia.
+                var interconsultasGuardadas = (_interconsultaBO.ListarTodosInterconuslta() ?? new BindingList<interconsultaDTO>())
+                .Where(i => i?.cita?.idCita == idCita)
+                .ToList();
+                rptInterconsultasAgregadas.DataSource =
+                    (interconsultasGuardadas?.Select(i => new {
+                        especialidadInterconsulta = new { nombreEspecialidad = i.especialidadInterconsulta.nombreEspecialidad },
+                        i.razonInterconsulta
+                    })?.ToList<object>()) ?? new List<object>();
+                rptInterconsultasAgregadas.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error al cargar los detalles de la atención: {ex.Message}", true);
+            }
+        }
+
+        private void ConfigurarModoLectura()
+        {
+            // Deshabilitar campos de Epicrisis
+            txtPeso.ReadOnly = true;
+            txtTalla.ReadOnly = true;
+            txtPresion.ReadOnly = true;
+            txtTemperatura.ReadOnly = true;
+            txtMotivoConsulta.ReadOnly = true;
+            txtTratamiento.ReadOnly = true;
+            txtRecomendaciones.ReadOnly = true;
+
+            // Ocultar paneles para agregar nuevos elementos
+            panelAgregarDiagnostico.Visible = false;
+            panelAgregarExamen.Visible = false;
+            panelAgregarInterconsulta.Visible = false;
+
+            // Ocultar botones de acción
+            btnFinalizarAtencion.Visible = false;
+
+            // Cambiar el Repeater para que no muestre el botón "Quitar"
+            // Esto se hace en el HTML del ASPX con una condición.
         }
 
         private void CargarDatosDeLaCita(int idCita)
