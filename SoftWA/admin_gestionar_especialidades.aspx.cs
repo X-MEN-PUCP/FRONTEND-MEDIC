@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SoftBO;
+using SoftBO.especialidadWS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
@@ -8,141 +10,261 @@ namespace SoftWA
 {
     public partial class admin_gestionar_especialidades : System.Web.UI.Page
     {
-        private static List<Especialidades> listaGlobalEspecialidades;
-
-        public class Especialidades
+        // Clase ViewModel para combinar datos de diferentes fuentes
+        public class EspecialidadConteo
         {
             public int ID { get; set; }
             public string NombreEspecialidad { get; set; }
             public double PrecioConsulta { get; set; }
             public int CantMedicos { get; set; }
+            public estadoGeneral Estado { get; set; }
+        }
+
+        private readonly EspecialidadBO _especialidadBO;
+        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
+
+        public admin_gestionar_especialidades()
+        {
+            _especialidadBO = new EspecialidadBO();
+            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                CargarDatosEspecialidadesSiEsNecesario();
-                AplicarFiltrosYOrdenar();
+                BindEspecialidadesGrid();
             }
         }
 
-        private void CargarDatosEspecialidadesSiEsNecesario()
+        private void BindEspecialidadesGrid()
         {
-            if (listaGlobalEspecialidades == null || !listaGlobalEspecialidades.Any())
+            try
             {
-                listaGlobalEspecialidades = new List<Especialidades>
+                var especialidadesWs = _especialidadBO.ListarEspecialidad();
+                var listaViewModel = new List<EspecialidadConteo>();
+
+                foreach (var esp in especialidadesWs)
                 {
-                    new Especialidades { ID = 1, NombreEspecialidad = "Traumatología", PrecioConsulta = 59.90, CantMedicos = 8},
-                    new Especialidades { ID = 2, NombreEspecialidad = "Cardiología", PrecioConsulta = 69.90, CantMedicos = 11 }, // Changed price for sorting demo
-                    new Especialidades { ID = 3, NombreEspecialidad = "Pediatría", PrecioConsulta = 49.90, CantMedicos = 5 },
-                    new Especialidades { ID = 4, NombreEspecialidad = "Medicina General", PrecioConsulta = 39.90, CantMedicos = 13 }, // Changed price
-                    new Especialidades { ID = 5, NombreEspecialidad = "Dermatología", PrecioConsulta = 79.90, CantMedicos = 3 },
-                    new Especialidades { ID = 6, NombreEspecialidad = "Ginecología", PrecioConsulta = 59.90, CantMedicos = 7 }
-                };
+                    // Por cada especialidad, consultamos cuántos médicos tiene
+                    var medicos = _usuarioPorEspecialidadBO.ListarPorEspecialidadUsuarioPorEspecialidad(esp.idEspecialidad);
+                    listaViewModel.Add(new EspecialidadConteo
+                    {
+                        ID = esp.idEspecialidad,
+                        NombreEspecialidad = esp.nombreEspecialidad,
+                        PrecioConsulta = esp.precioConsulta,
+                        CantMedicos = medicos?.Count ?? 0,
+                        Estado = esp.estadoGeneral
+                    });
+                }
+
+                // Aplicar filtros de la UI
+                string nombreFiltro = txtFiltrarNombre.Text.Trim();
+                if (!string.IsNullOrEmpty(nombreFiltro))
+                {
+                    listaViewModel = listaViewModel.Where(esp =>
+                        esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower())).ToList();
+                }
+
+                // Aplicar ordenamiento
+                string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
+                switch (ordenSeleccionado)
+                {
+                    case "NombreDesc":
+                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.NombreEspecialidad).ToList();
+                        break;
+                    case "PrecioAsc":
+                        listaViewModel = listaViewModel.OrderBy(esp => esp.PrecioConsulta).ToList();
+                        break;
+                    case "PrecioDesc":
+                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.PrecioConsulta).ToList();
+                        break;
+                    case "MedicosAsc":
+                        listaViewModel = listaViewModel.OrderBy(esp => esp.CantMedicos).ToList();
+                        break;
+                    case "MedicosDesc":
+                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.CantMedicos).ToList();
+                        break;
+                    default: // NombreAsc
+                        listaViewModel = listaViewModel.OrderBy(esp => esp.NombreEspecialidad).ToList();
+                        break;
+                }
+
+                rptEspecialidades.DataSource = listaViewModel;
+                rptEspecialidades.DataBind();
+
+                phNoEspecialidad.Visible = !listaViewModel.Any();
+                updGestionEspecialidades.Update();
+            }
+            catch (Exception ex)
+            {
+                // Manejar error de conexión
+                phNoEspecialidad.Visible = true;
+                // Podríamos mostrar un mensaje más explícito al usuario
+                System.Diagnostics.Debug.WriteLine($"Error al bindear especialidades: {ex.Message}");
             }
         }
 
-        private void AplicarFiltrosYOrdenar()
+        protected void rptEspecialidades_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            IEnumerable<Especialidades> especialidadesFiltradas = listaGlobalEspecialidades;
-
-            string nombreFiltro = txtFiltrarNombre.Text.Trim();
-            if (!string.IsNullOrEmpty(nombreFiltro))
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                especialidadesFiltradas = especialidadesFiltradas.Where(esp =>
-                    esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower()));
+                var especialidad = (EspecialidadConteo)e.Item.DataItem;
+                var ltlEstado = (Literal)e.Item.FindControl("ltlEstado");
+                var btnToggleStatus = (LinkButton)e.Item.FindControl("btnToggleStatus");
+
+                if (especialidad.Estado == estadoGeneral.ACTIVO)
+                {
+                    ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
+                    btnToggleStatus.ToolTip = "Desactivar";
+                    // Cambiar el color del icono para desactivar (rojo)
+                    var iconPowerOff = btnToggleStatus.Controls.OfType<System.Web.UI.LiteralControl>().FirstOrDefault();
+                    if (iconPowerOff != null)
+                    {
+                        iconPowerOff.Text = "<i class=\"fa-solid fa-power-off\" style=\"color: #dc3545; font-size: 1.2em;\"></i>";
+                    }
+                }
+                else
+                {
+                    ltlEstado.Text = "<span class='badge bg-danger'>Inactivo</span>";
+                    btnToggleStatus.ToolTip = "Activar";
+                    // Cambiar el color del icono para activar (verde)
+                    var iconPowerOff = btnToggleStatus.Controls.OfType<System.Web.UI.LiteralControl>().FirstOrDefault();
+                    if (iconPowerOff != null)
+                    {
+                        iconPowerOff.Text = "<i class=\"fa-solid fa-power-off\" style=\"color: #28a745; font-size: 1.2em;\"></i>";
+                    }
+                }
             }
-
-            string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
-            switch (ordenSeleccionado)
-            {
-                case "NombreAsc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderBy(esp => esp.NombreEspecialidad);
-                    break;
-                case "NombreDesc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderByDescending(esp => esp.NombreEspecialidad);
-                    break;
-                case "PrecioAsc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderBy(esp => esp.PrecioConsulta);
-                    break;
-                case "PrecioDesc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderByDescending(esp => esp.PrecioConsulta);
-                    break;
-                case "MedicosAsc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderBy(esp => esp.CantMedicos);
-                    break;
-                case "MedicosDesc":
-                    especialidadesFiltradas = especialidadesFiltradas.OrderByDescending(esp => esp.CantMedicos);
-                    break;
-                default:
-                    especialidadesFiltradas = especialidadesFiltradas.OrderBy(esp => esp.NombreEspecialidad);
-                    break;
-            }
-
-            List<Especialidades> listaFinal = especialidadesFiltradas.ToList();
-            rptEspecialidades.DataSource = listaFinal;
-            rptEspecialidades.DataBind();
-
-            phNoEspecialidad.Visible = !listaFinal.Any();
-            updEspecialidadesRepeater.Update();
         }
 
         protected void rptEspecialidades_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int especialidadId = 0;
-            if (e.CommandArgument != null && !string.IsNullOrEmpty(e.CommandArgument.ToString()))
-            {
-                especialidadId = Convert.ToInt32(e.CommandArgument);
-            }
+            int especialidadId = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "EditEspecialidad")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('Acción: Editar Especialidad ID: {especialidadId}. Implementar lógica.');", true);
-            }
-            else if (e.CommandName == "EliminarEspecialidad")
-            {
-                bool eliminado = EliminarEspecialidadDeLista(especialidadId);
-                if (eliminado)
+                var especialidad = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                if (especialidad != null)
                 {
-                    AplicarFiltrosYOrdenar();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Especialidad eliminada exitosamente.');", true);
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Error: No se pudo encontrar la especialidad para eliminar.');", true);
+                    ResetForm();
+                    hfEspecialidadId.Value = especialidad.idEspecialidad.ToString();
+                    txtNombreAddEdit.Text = especialidad.nombreEspecialidad;
+                    txtPrecioAddEdit.Text = especialidad.precioConsulta.ToString("F2");
+                    lblFormTitle.Text = "Editar Especialidad";
+                    pnlAddEditEspecialidad.Visible = true;
+                    btnShowAddPanel.Visible = false;
                 }
             }
-        }
-
-        private bool EliminarEspecialidadDeLista(int especialidadId)
-        {
-            CargarDatosEspecialidadesSiEsNecesario();
-
-            var especialidadAEliminar = listaGlobalEspecialidades.FirstOrDefault(m => m.ID == especialidadId);
-            if (especialidadAEliminar != null)
+            else if (e.CommandName == "ToggleStatus")
             {
-                listaGlobalEspecialidades.Remove(especialidadAEliminar);
-                return true;
+                var especialidad = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                if (especialidad != null)
+                {
+                    // Cambiar al estado opuesto
+                    especialidad.estadoGeneral = (especialidad.estadoGeneral == estadoGeneral.ACTIVO) ? estadoGeneral.INACTIVO : estadoGeneral.ACTIVO;
+                    especialidad.estadoGeneralSpecified = true;
+
+                    // Para la auditoría
+                    var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                    especialidad.usuarioModificacion = usuarioLogueado?.idUsuario ?? 0;
+                    especialidad.usuarioModificacionSpecified = true;
+                    especialidad.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    _especialidadBO.ModificarEspecialidad(especialidad);
+                    BindEspecialidadesGrid();
+                }
             }
-            return false;
+            updGestionEspecialidades.Update();
         }
 
-        protected void lnkAgregarNuevaEspecialidad_Click(object sender, EventArgs e)
+        protected void btnShowAddPanel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Acción: Agregar nueva especialidad. Implementar lógica de formulario/modal.');", true);
+            ResetForm();
+            pnlAddEditEspecialidad.Visible = true;
+            btnShowAddPanel.Visible = false;
+            updGestionEspecialidades.Update();
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            pnlAddEditEspecialidad.Visible = false;
+            btnShowAddPanel.Visible = true;
+            ResetForm();
+            updGestionEspecialidades.Update();
+        }
+
+        private void ResetForm()
+        {
+            hfEspecialidadId.Value = "0";
+            txtNombreAddEdit.Text = string.Empty;
+            txtPrecioAddEdit.Text = string.Empty;
+            lblFormTitle.Text = "Agregar Nueva Especialidad";
+        }
+
+        protected void btnGuardarEspecialidad_Click(object sender, EventArgs e)
+        {
+            Page.Validate("AddEditEspecialidad");
+            if (!Page.IsValid)
+            {
+                updGestionEspecialidades.Update();
+                return;
+            }
+
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            int idUsuarioAuditoria = usuarioLogueado?.idUsuario ?? 0;
+
+            int especialidadId = Convert.ToInt32(hfEspecialidadId.Value);
+
+            especialidadDTO especialidad = new especialidadDTO
+            {
+                nombreEspecialidad = txtNombreAddEdit.Text.Trim(),
+                precioConsulta = Convert.ToDouble(txtPrecioAddEdit.Text),
+                precioConsultaSpecified = true,
+                fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd"),
+                usuarioModificacion = idUsuarioAuditoria,
+                usuarioModificacionSpecified = true
+            };
+
+            if (especialidadId == 0) // Es una nueva especialidad
+            {
+                especialidad.usuarioCreacion = idUsuarioAuditoria;
+                especialidad.usuarioCreacionSpecified = true;
+                especialidad.fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
+                especialidad.estadoGeneral = estadoGeneral.ACTIVO; // Nueva especialidad siempre activa
+                especialidad.estadoGeneralSpecified = true;
+                _especialidadBO.InsertarEspecialidad(especialidad);
+            }
+            else // Es una edición
+            {
+                especialidad.idEspecialidad = especialidadId;
+                // La fecha y usuario de creación se deben preservar
+                var espOriginal = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                especialidad.fechaCreacion = espOriginal.fechaCreacion;
+                especialidad.usuarioCreacion = espOriginal.usuarioCreacion;
+                especialidad.usuarioCreacionSpecified = espOriginal.usuarioCreacionSpecified;
+                especialidad.estadoGeneral = espOriginal.estadoGeneral; // Mantener el estado actual al editar
+                especialidad.estadoGeneralSpecified = true;
+                especialidad.idEspecialidadSpecified = true;
+                _especialidadBO.ModificarEspecialidad(especialidad);
+            }
+
+            pnlAddEditEspecialidad.Visible = false;
+            btnShowAddPanel.Visible = true;
+            ResetForm();
+            BindEspecialidadesGrid();
         }
 
         protected void btnAplicarFiltrosEsp_Click(object sender, EventArgs e)
         {
-            AplicarFiltrosYOrdenar();
+            BindEspecialidadesGrid();
         }
 
         protected void btnLimpiarFiltrosEsp_Click(object sender, EventArgs e)
         {
             txtFiltrarNombre.Text = string.Empty;
-            ddlOrdenarPor.SelectedValue = "MedicosAsc";
-            AplicarFiltrosYOrdenar();
+            ddlOrdenarPor.SelectedIndex = 0;
+            BindEspecialidadesGrid();
         }
     }
 }
