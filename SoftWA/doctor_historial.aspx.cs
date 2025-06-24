@@ -31,9 +31,6 @@ namespace SoftWA
             _medicoBO = new MedicoBO();
             _historiaClinicaPorCitaBO = new HistoriaClinicaPorCitaBO();
         }
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,15 +48,11 @@ namespace SoftWA
                 AplicarFiltrosYOrdenamiento();
             }
         }
-
         private int ObtenerIdDoctorLogueado()
         {
             var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
             return usuario?.idUsuario ?? 0;
         }
-
-
-
         private void AplicarFiltrosYOrdenamiento()
         {
             int idDoctorActual = ObtenerIdDoctorLogueado();
@@ -126,12 +119,10 @@ namespace SoftWA
 
             phNoHistorial.Visible = !historialDoctor.Any();
         }
-
         protected void btnAplicarFiltrosHistDoc_Click(object sender, EventArgs e)
         {
             AplicarFiltrosYOrdenamiento();
         }
-
         protected void btnLimpiarFiltrosHistDoc_Click(object sender, EventArgs e)
         {
             txtFechaDesdeHist.Text = string.Empty;
@@ -139,7 +130,6 @@ namespace SoftWA
             ddlOrdenarPorHist.SelectedValue = "FechaDesc";
             AplicarFiltrosYOrdenamiento();
         }
-
         protected void rptHistDoctor_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int idCita = Convert.ToInt32(e.CommandArgument);

@@ -129,7 +129,15 @@ namespace SoftWA
                     FechaCita = DateTime.Parse(h.cita.fechaCita),
                     DescripcionHorario = h.cita.horaInicio.Substring(0, 5),
                     Estado = h.cita.estado.ToString(),
-                    ObsMedicas = h.evolucion ?? "Sin observaciones."
+                    MotivoConsulta = h.motivoConsulta ?? "",
+                    PresionArterial = h.presionArterial ?? "N/A",
+                    Temperatura = h.temperatura,
+                    Peso = h.peso,
+                    Talla = h.talla,
+                    Evolucion = h.evolucion ?? "",
+                    Tratamiento = h.tratamiento ?? "",
+                    Receta = h.receta ?? "",
+                    Recomendacion = h.recomendacion ?? ""
                 }).ToList();
 
             rptHistorial.DataSource = listaFinal;

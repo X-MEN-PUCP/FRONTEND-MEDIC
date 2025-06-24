@@ -27,27 +27,40 @@ namespace SoftWA
             if (!IsPostBack)
             {
                 CargarEspecialidades();
-                ddlMedico.Enabled = false;
-                phNoResultados.Visible = true;
-                divHorarios.Visible = false;
-                pnlResultados.Visible = false;
+                if (Session["PreloadEspecialidadId"] != null || Session["PreloadMedicoId"] != null)
+                {
+                    string especialidadId = Session["PreloadEspecialidadId"].ToString();
+                    string medicoId = Session["PreloadMedicoId"].ToString();
+                    Session.Remove("PreloadEspecialidadId");
+                    Session.Remove("PreloadMedicoId");
+                    PrecargarFiltros(especialidadId, medicoId);
+                }
+                else
+                {
+                    ddlMedico.Enabled = false;
+                    divHorarios.Visible = false;
+                    pnlResultados.Visible = false;
+                }
             }
-            if (Session["PreloadEspecialidadId"] != null && Session["PreloadMedicoId"] != null)
+        }
+        private void PrecargarFiltros(string especialidadId, string medicoId)
+        {
+            try
             {
-                string especialidadId = Session["PreloadEspecialidadId"].ToString();
-                string medicoId = Session["PreloadMedicoId"].ToString();
-
                 if (ddlEspecialidad.Items.FindByValue(especialidadId) != null)
                 {
                     ddlEspecialidad.SelectedValue = especialidadId;
+                    CargarMedicosPorEspecialidad();
                     if (ddlMedico.Items.FindByValue(medicoId) != null)
                     {
-                        CargarMedicosPorEspecialidad();
                         ddlMedico.SelectedValue = medicoId;
                     }
+                    ActualizarDisponibilidadCompleta();
                 }
-                Session.Remove("PreloadEspecialidadId");
-                Session.Remove("PreloadMedicoId");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error precargando filtros: {ex}");
             }
         }
         private void CargarEspecialidades()

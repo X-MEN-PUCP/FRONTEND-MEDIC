@@ -60,7 +60,7 @@
                         <i class="fa-solid fa-circle-info me-2"></i>No cuenta con historial clínico que coincida con los filtros aplicados.
                     </div>
                 </asp:PlaceHolder>
-
+                
                 <asp:Repeater ID="rptHistorial" runat="server">
                     <HeaderTemplate>
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="historialCardContainer">
@@ -68,26 +68,27 @@
                     <ItemTemplate>
                         <div class="col">
                             <div class="card h-100 shadow-sm cita-card-historial" style="cursor: pointer;"
-                                 data-especialidad="<%# Eval("NombreEspecialidad") %>"
-                                 data-medico="<%# Eval("NombreMedico") %>"
+                                 onclick="mostrarDetallesCita(this)" 
+                                 data-especialidad='<%# Eval("NombreEspecialidad") %>'
+                                 data-medico='<%# Eval("NombreMedico") %>'
                                  data-fecha='<%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %>'
                                  data-horario='<%# Eval("DescripcionHorario") %>'
-                                 data-estado="<%# Eval("Estado") %>"
-                                 data-observaciones="<%# HttpUtility.HtmlEncode((string)Eval("ObsMedicas") ?? "") %>">
+                                 data-estado='<%# Eval("Estado") %>'
+                                 data-motivo='<%# HttpUtility.HtmlEncode(Eval("MotivoConsulta") as string ?? "") %>'
+                                 data-presion='<%# Eval("PresionArterial") %>'
+                                 data-temperatura='<%# Eval("Temperatura", "{0:N1} °C") %>'
+                                 data-peso='<%# Eval("Peso", "{0:N2} kg") %>'
+                                 data-talla='<%# Eval("Talla", "{0:N2} m") %>'
+                                 data-evolucion='<%# HttpUtility.HtmlEncode(Eval("Evolucion") as string ?? "") %>'
+                                 data-tratamiento='<%# HttpUtility.HtmlEncode(Eval("Tratamiento") as string ?? "") %>'
+                                 data-receta='<%# HttpUtility.HtmlEncode(Eval("Receta") as string ?? "") %>'
+                                 data-recomendacion='<%# HttpUtility.HtmlEncode(Eval("Recomendacion") as string ?? "") %>'>
+                                
                                 <div class="card-body">
                                     <h5 class="card-title"><i class="fa-solid fa-stethoscope me-2"></i><%# Eval("NombreEspecialidad") %></h5>
-                                    <p class="card-text mb-1">
-                                        <i class="fa-solid fa-user-doctor me-2 text-primary"></i>
-                                        <strong>Médico:</strong> <%# Eval("NombreMedico") %>
-                                    </p>
-                                    <p class="card-text mb-1">
-                                        <i class="fa-solid fa-calendar-day me-2 text-success"></i>
-                                        <strong>Fecha:</strong> <%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %>
-                                    </p>
-                                    <p class="card-text mb-1">
-                                        <i class="fa-solid fa-clock me-2 text-warning"></i>
-                                        <strong>Horario:</strong> <%# Eval("DescripcionHorario") %>
-                                    </p>
+                                    <p class="card-text mb-1"><i class="fa-solid fa-user-doctor me-2 text-primary"></i><strong>Médico:</strong> <%# Eval("NombreMedico") %></p>
+                                    <p class="card-text mb-1"><i class="fa-solid fa-calendar-day me-2 text-success"></i><strong>Fecha:</strong> <%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %></p>
+                                    <p class="card-text mb-1"><i class="fa-solid fa-clock me-2 text-warning"></i><strong>Horario:</strong> <%# Eval("DescripcionHorario") %></p>
                                 </div>
                                 <div class="card-footer bg-transparent border-top-0 text-end">
                                     <small class="text-muted"><em>Click para ver detalles</em></small>
@@ -109,38 +110,71 @@
     </div>
 
     <div class="modal fade" id="modalDetalleCitaHistorial" tabindex="-1" aria-labelledby="modalDetalleCitaHistorialLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #5bd3c5; color: white;">
                     <h5 class="modal-title" id="modalDetalleCitaHistorialLabel"><i class="fa-solid fa-circle-info me-2"></i>Detalle de Cita Atendida</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-2">
-                        <strong><i class="fa-solid fa-stethoscope me-2"></i>Especialidad:</strong>
-                        <span id="modalEspecialidad"></span>
+                <h6 class="text-primary fw-bold">Información de la Cita</h6>
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-2"><strong><i class="fa-solid fa-stethoscope me-2"></i>Especialidad:</strong> <span id="modalEspecialidad"></span></div>
+                    <div class="col-md-6 mb-2"><strong><i class="fa-solid fa-user-doctor me-2 text-primary"></i>Médico:</strong> <span id="modalMedico"></span></div>
+                    <div class="col-md-6 mb-2"><strong><i class="fa-solid fa-calendar-day me-2 text-success"></i>Fecha:</strong> <span id="modalFecha"></span></div>
+                    <div class="col-md-6 mb-2"><strong><i class="fa-solid fa-clock me-2 text-warning"></i>Horario:</strong> <span id="modalHorario"></span></div>
+                    <div class="col-md-6 mb-2"><strong><i class="fa-solid fa-clipboard-check me-2 text-info"></i>Estado:</strong> <span id="modalEstado"></span></div>
+                </div>
+                <hr/>
+                <h6 class="text-primary fw-bold">Detalles de la Atención</h6>
+                 <div class="mb-2">
+                    <strong>Motivo de Consulta:</strong>
+                    <p id="modalMotivo" class="mt-1 ms-3 text-muted"></p>
+                </div>
+                 <div class="mb-3">
+                    <strong>Evolución / Observaciones:</strong>
+                    <p id="modalEvolucion" class="mt-1 ms-3 text-muted" style="white-space: pre-wrap;"></p>
+                </div>
+                <div class="row mb-3 text-center">
+                    <div class="col">
+                        <div class="stat-card">
+                            <strong>Presión Arterial</strong><br />
+                            <i class="fa-solid fa-heart-pulse text-danger"></i> <span id="modalPresion"></span>
+                        </div>
                     </div>
-                    <div class="mb-2">
-                        <strong><i class="fa-solid fa-user-doctor me-2 text-primary"></i>Médico:</strong>
-                        <span id="modalMedico"></span>
+                    <div class="col">
+                         <div class="stat-card">
+                            <strong>Temperatura</strong><br />
+                            <i class="fa-solid fa-temperature-half text-warning"></i> <span id="modalTemperatura"></span>
+                         </div>
                     </div>
-                    <div class="mb-2">
-                        <strong><i class="fa-solid fa-calendar-day me-2 text-success"></i>Fecha:</strong>
-                        <span id="modalFecha"></span>
+                    <div class="col">
+                         <div class="stat-card">
+                            <strong>Peso</strong><br />
+                            <i class="fa-solid fa-weight-scale text-secondary"></i> <span id="modalPeso"></span>
+                         </div>
                     </div>
-                    <div class="mb-2">
-                        <strong><i class="fa-solid fa-clock me-2 text-warning"></i>Horario:</strong>
-                        <span id="modalHorario"></span>
+                    <div class="col">
+                         <div class="stat-card">
+                            <strong>Talla</strong><br />
+                            <i class="fa-solid fa-ruler-vertical text-info"></i> <span id="modalTalla"></span>
+                         </div>
                     </div>
-                     <div class="mb-2">
-                        <strong><i class="fa-solid fa-notes-medical me-2 text-info"></i>Estado:</strong>
-                        <span id="modalEstado"></span>
-                    </div>
-                    <hr/>
-                    <div class="mt-2">
-                        <strong><i class="fa-solid fa-comment-medical me-2 text-secondary"></i>Observaciones Médicas:</strong>
-                        <p id="modalObservaciones" class="mt-1" style="white-space: pre-wrap;"></p>
-                    </div>
+                </div>
+                <hr/>
+                <h6 class="text-primary fw-bold">Plan de Tratamiento</h6>
+                 <div class="mb-2">
+                    <strong>Tratamiento Indicado:</strong>
+                    <p id="modalTratamiento" class="mt-1 ms-3 text-muted" style="white-space: pre-wrap;"></p>
+                 </div>
+                 <div class="mb-2">
+                    <strong>Receta Médica:</strong>
+                    <p id="modalReceta" class="mt-1 ms-3 text-muted" style="white-space: pre-wrap;"></p>
+                 </div>
+                 <div class="mb-2">
+                    <strong>Recomendaciones Adicionales:</strong>
+                    <p id="modalRecomendacion" class="mt-1 ms-3 text-muted" style="white-space: pre-wrap;"></p>
+                 </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -165,52 +199,16 @@
             display: inline-block;
             min-width: 150px;
         }
+        .stat-card {
+            padding: 0.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 0.375rem;
+            background-color: #f8f9fa;
+        }
+        .stat-card i {
+            font-size: 1.2rem;
+            margin-right: 0.25rem;
+        }
     </style>
-
-    <script type="text/javascript">
-        function setupHistorialCardClicks() {
-            const historialContainer = document.getElementById('historialCardContainer');
-            const detalleModalElement = document.getElementById('modalDetalleCitaHistorial');
-            if (!historialContainer || !detalleModalElement)
-                return;
-            const detalleModal = new bootstrap.Modal(detalleModalElement);
-
-            historialContainer.addEventListener('click', function (event) {
-                let clickedCard = event.target;
-                while (clickedCard && !clickedCard.classList.contains('cita-card-historial')) {
-                    clickedCard = clickedCard.parentElement;
-                }
-
-                if (clickedCard) {
-                    document.getElementById('modalEspecialidad').textContent = clickedCard.dataset.especialidad || 'N/A';
-                    document.getElementById('modalMedico').textContent = clickedCard.dataset.medico || 'N/A';
-                    document.getElementById('modalFecha').textContent = clickedCard.dataset.fecha || 'N/A';
-                    document.getElementById('modalHorario').textContent = clickedCard.dataset.horario || 'N/A';
-                    document.getElementById('modalEstado').textContent = clickedCard.dataset.estado || 'N/A';
-                    
-                    const observacionesEncoded = clickedCard.dataset.observaciones || '';
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = observacionesEncoded;
-                    document.getElementById('modalObservaciones').textContent = tempDiv.textContent || 'Sin observaciones.';
-
-
-                    detalleModal.show();
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', setupHistorialCardClicks);
-
-        if (typeof (Sys) !== 'undefined' && Sys.WebForms && Sys.WebForms.PageRequestManager) {
-            const prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_endRequest(function (sender, args) {
-                if (args.get_panelsUpdated().some(panel => panel.id === '<%= updHistorialCitas.ClientID %>')) {
-                    setupHistorialCardClicks();
-                }
-            });
-        } else {
-            setTimeout(setupHistorialCardClicks, 0);
-        }
-
-    </script>
+    <script src='<%= ResolveUrl("~/Scripts/historialPaciente.js") %>' type="text/javascript"></script>
 </asp:Content>
