@@ -192,6 +192,15 @@
     <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevoMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.listarMedicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.listarTodosUsuariosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\citaWS\CitaWS.wsdl" />
     <None Include="Connected Services\citaWS\CitaWS.xsd">
       <SubType>Designer</SubType>

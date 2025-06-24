@@ -69,7 +69,7 @@
                 <div class="collapse navbar-collapse" id="navbarOpciones">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white nav-link-spinner" href="admin_gestionar_doctores.aspx"><i class="fa-solid fa-stethoscope me-1"></i>Médicos</a>
+                            <a class="nav-link text-white nav-link-spinner" href="admin_gestionar_usuarios.aspx"><i class="fa-solid fa-stethoscope me-1"></i>Usuarios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white nav-link-spinner" href="admin_gestionar_especialidades.aspx"><i class="fa-solid fa-layer-group me-1"></i>Especialidades</a>

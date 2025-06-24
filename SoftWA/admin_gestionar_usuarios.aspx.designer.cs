@@ -7,236 +7,290 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoftWA.MA_Medico
+namespace SoftWA
 {
 
 
-    public partial class perfil_medico
+    public partial class admin_gestionar_usuarios
     {
 
         /// <summary>
-        /// pnlMensaje control.
+        /// updGestionUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMensaje;
+        protected global::System.Web.UI.UpdatePanel updGestionUsuarios;
 
         /// <summary>
-        /// lblMensaje control.
+        /// phMensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.PlaceHolder phMensaje;
 
         /// <summary>
-        /// pnlViewProfileMed control.
+        /// divAlert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlViewProfileMed;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlert;
 
         /// <summary>
-        /// btnEdit control.
+        /// ltlMensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Literal ltlMensaje;
 
         /// <summary>
-        /// lblNombresMedView control.
+        /// txtFiltroNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombresMedView;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroNombre;
 
         /// <summary>
-        /// lblApellidoPaternoMedView control.
+        /// ddlFiltroRol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblApellidoPaternoMedView;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroRol;
 
         /// <summary>
-        /// lblApellidoMaternoMedView control.
+        /// ddlOrdenarUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblApellidoMaternoMedView;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrdenarUsuarios;
 
         /// <summary>
-        /// lblEspecialidadMed control.
+        /// btnAplicarFiltros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEspecialidadMed;
+        protected global::System.Web.UI.WebControls.Button btnAplicarFiltros;
 
         /// <summary>
-        /// lblCodigocmpMed control.
+        /// lnkLimpiarFiltros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCodigocmpMed;
+        protected global::System.Web.UI.WebControls.LinkButton lnkLimpiarFiltros;
 
         /// <summary>
-        /// lblFechaNacimientoMedView control.
+        /// lvUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaNacimientoMedView;
+        protected global::System.Web.UI.WebControls.ListView lvUsuarios;
 
         /// <summary>
-        /// lblCorreoMedView control.
+        /// hfUsuarioIdModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCorreoMedView;
+        protected global::System.Web.UI.WebControls.HiddenField hfUsuarioIdModal;
 
         /// <summary>
-        /// lblCelularMedView control.
+        /// ltlNombreUsuarioModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCelularMedView;
+        protected global::System.Web.UI.WebControls.Literal ltlNombreUsuarioModal;
 
         /// <summary>
-        /// lblGeneroMedView control.
+        /// rptRolesActuales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGeneroMedView;
+        protected global::System.Web.UI.WebControls.Repeater rptRolesActuales;
 
         /// <summary>
-        /// pnlEditProfileMed control.
+        /// ddlRolesDisponibles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEditProfileMed;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRolesDisponibles;
 
         /// <summary>
-        /// txtNombresEdit control.
+        /// btnAsignarRol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombresEdit;
+        protected global::System.Web.UI.WebControls.Button btnAsignarRol;
 
         /// <summary>
-        /// txtApellidoPaternoEdit control.
+        /// txtNombresNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellidoPaternoEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtNombresNuevo;
 
         /// <summary>
-        /// txtApellidoMaternoEdit control.
+        /// rfvNombres control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellidoMaternoEdit;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNombres;
 
         /// <summary>
-        /// txtEspecialidadEdit control.
+        /// txtApellidoPaternoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEspecialidadEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoPaternoNuevo;
 
         /// <summary>
-        /// txtCodigocmpEdit control.
+        /// rfvApellidoPaterno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigocmpEdit;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApellidoPaterno;
 
         /// <summary>
-        /// txtFechaNacimientoEdit control.
+        /// ddlTipoDocumentoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoEdit;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDocumentoNuevo;
 
         /// <summary>
-        /// txtGeneroEdit control.
+        /// txtNumDocumentoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGeneroEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtNumDocumentoNuevo;
 
         /// <summary>
-        /// txtCorreoEdit control.
+        /// rfvNumDocumento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreoEdit;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNumDocumento;
 
         /// <summary>
-        /// txtCelularEdit control.
+        /// txtCorreoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCelularEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoNuevo;
 
         /// <summary>
-        /// btnSaveChanges control.
+        /// rfvCorreo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveChanges;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCorreo;
 
         /// <summary>
-        /// btnCancelEdit control.
+        /// txtContrasenhaNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtContrasenhaNuevo;
+
+        /// <summary>
+        /// rfvContrasenha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContrasenha;
+
+        /// <summary>
+        /// ddlRolNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRolNuevo;
+
+        /// <summary>
+        /// pnlEspecialidadNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEspecialidadNuevo;
+
+        /// <summary>
+        /// ddlEspecialidadNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidadNuevo;
+
+        /// <summary>
+        /// rfvEspecialidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEspecialidad;
+
+        /// <summary>
+        /// btnGuardarNuevoUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarNuevoUsuario;
     }
 }
