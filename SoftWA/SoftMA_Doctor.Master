@@ -86,7 +86,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="btnUserUnified">
                             <li><a class="dropdown-item nav-link-spinner" href="perfil_medico.aspx"><i class="fa-solid fa-id-badge me-1"></i>Mi Perfil</a></li>
-                            <li><a class="dropdown-item nav-link-spinner" href="#"><i class="fa-solid fa-key me-1"></i>Cambiar Contraseña</a></li>
+                            <li><a class="dropdown-item nav-link-spinner" href="doctor_cambiar_contraseña.aspx"><i class="fa-solid fa-key me-1"></i>Cambiar Contraseña</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <asp:LinkButton ID="lbtnCerrarSesion" runat="server" OnClick="lbtnCerrarSesion_Click" CssClass="dropdown-item nav-link-spinner">

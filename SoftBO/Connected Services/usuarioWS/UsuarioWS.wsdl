@@ -23,6 +23,24 @@
   <message name="cambiarEstadoGeneralUsuarioResponse">
     <part name="parameters" element="tns:cambiarEstadoGeneralUsuarioResponse" />
   </message>
+  <message name="CambiarContrasenhaUsuario">
+    <part name="parameters" element="tns:CambiarContrasenhaUsuario" />
+  </message>
+  <message name="CambiarContrasenhaUsuarioResponse">
+    <part name="parameters" element="tns:CambiarContrasenhaUsuarioResponse" />
+  </message>
+  <message name="obtenerPorIdUsuario">
+    <part name="parameters" element="tns:obtenerPorIdUsuario" />
+  </message>
+  <message name="obtenerPorIdUsuarioResponse">
+    <part name="parameters" element="tns:obtenerPorIdUsuarioResponse" />
+  </message>
+  <message name="cambiarEstadoLogicoUsuario">
+    <part name="parameters" element="tns:cambiarEstadoLogicoUsuario" />
+  </message>
+  <message name="cambiarEstadoLogicoUsuarioResponse">
+    <part name="parameters" element="tns:cambiarEstadoLogicoUsuarioResponse" />
+  </message>
   <message name="buscarCuentaUsuario">
     <part name="parameters" element="tns:buscarCuentaUsuario" />
   </message>
@@ -34,18 +52,6 @@
   </message>
   <message name="completarRolesUsuarioResponse">
     <part name="parameters" element="tns:completarRolesUsuarioResponse" />
-  </message>
-  <message name="cambiarEstadoLogicoUsuario">
-    <part name="parameters" element="tns:cambiarEstadoLogicoUsuario" />
-  </message>
-  <message name="cambiarEstadoLogicoUsuarioResponse">
-    <part name="parameters" element="tns:cambiarEstadoLogicoUsuarioResponse" />
-  </message>
-  <message name="obtenerPorIdUsuario">
-    <part name="parameters" element="tns:obtenerPorIdUsuario" />
-  </message>
-  <message name="obtenerPorIdUsuarioResponse">
-    <part name="parameters" element="tns:obtenerPorIdUsuarioResponse" />
   </message>
   <portType name="UsuarioWS">
     <operation name="modificarUsuario">
@@ -60,6 +66,18 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioRequest" message="tns:cambiarEstadoGeneralUsuario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioResponse" message="tns:cambiarEstadoGeneralUsuarioResponse" />
     </operation>
+    <operation name="CambiarContrasenhaUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioRequest" message="tns:CambiarContrasenhaUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioResponse" message="tns:CambiarContrasenhaUsuarioResponse" />
+    </operation>
+    <operation name="obtenerPorIdUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest" message="tns:obtenerPorIdUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse" message="tns:obtenerPorIdUsuarioResponse" />
+    </operation>
+    <operation name="cambiarEstadoLogicoUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest" message="tns:cambiarEstadoLogicoUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse" message="tns:cambiarEstadoLogicoUsuarioResponse" />
+    </operation>
     <operation name="buscarCuentaUsuario">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioRequest" message="tns:buscarCuentaUsuario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioResponse" message="tns:buscarCuentaUsuarioResponse" />
@@ -67,14 +85,6 @@
     <operation name="completarRolesUsuario">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioRequest" message="tns:completarRolesUsuario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioResponse" message="tns:completarRolesUsuarioResponse" />
-    </operation>
-    <operation name="cambiarEstadoLogicoUsuario">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest" message="tns:cambiarEstadoLogicoUsuario" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse" message="tns:cambiarEstadoLogicoUsuarioResponse" />
-    </operation>
-    <operation name="obtenerPorIdUsuario">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest" message="tns:obtenerPorIdUsuario" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse" message="tns:obtenerPorIdUsuarioResponse" />
     </operation>
   </portType>
   <binding name="UsuarioWSPortBinding" type="tns:UsuarioWS">
@@ -106,7 +116,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="buscarCuentaUsuario">
+    <operation name="CambiarContrasenhaUsuario">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -115,7 +125,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="completarRolesUsuario">
+    <operation name="obtenerPorIdUsuario">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -133,7 +143,16 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerPorIdUsuario">
+    <operation name="buscarCuentaUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="completarRolesUsuario">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

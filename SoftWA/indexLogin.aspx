@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="indexLogin.aspx.cs" Inherits="SoftWA.indexLogin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="indexLogin.aspx.cs" Inherits="SoftWA.indexLogin"%>
 
 <!DOCTYPE html>
 

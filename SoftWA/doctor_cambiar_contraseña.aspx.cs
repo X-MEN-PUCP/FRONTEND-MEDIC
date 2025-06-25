@@ -1,15 +1,15 @@
-﻿using System;
-using System.Web.UI;
-using SoftBO.loginWS;
+﻿using SoftBO.loginWS;
 using SoftBO.usuarioWS;
+using System;
+using System.Web.UI;
 
 namespace SoftWA
 {
-    public partial class paciente_cambiar_contraseña : System.Web.UI.Page
+    public partial class doctor_cambiar_contraseña : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 ltlMensajeError.Text = "";
             }
@@ -25,7 +25,7 @@ namespace SoftWA
             }
             string contraseñaActual = txtCurrentPassword.Text;
             string nuevaContraseña = txtNewPassword.Text;
-            
+
             try
             {
                 var usuarioVerificar = new SoftBO.usuarioWS.usuarioDTO
@@ -34,13 +34,13 @@ namespace SoftWA
                     idUsuarioSpecified = true,
                     contrasenha = contraseñaActual
                 };
-                
+
                 int resultado;
                 using (var usuarioService = new SoftBO.usuarioWS.UsuarioWSClient())
                 {
-                    resultado = usuarioService.CambiarContrasenhaUsuario(usuarioVerificar,nuevaContraseña);
+                    resultado = usuarioService.CambiarContrasenhaUsuario(usuarioVerificar, nuevaContraseña);
                 }
-                if(resultado > 0)
+                if (resultado > 0)
                 {
                     MostrarMensaje("Contraseña modificada correctamente.", true);
                     txtCurrentPassword.Text = string.Empty;

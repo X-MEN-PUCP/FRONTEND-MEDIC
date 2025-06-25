@@ -526,6 +526,9 @@
     <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.buscarCuentaUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

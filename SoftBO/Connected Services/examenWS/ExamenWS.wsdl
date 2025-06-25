@@ -11,30 +11,30 @@
   <message name="insertarExamenResponse">
     <part name="parameters" element="tns:insertarExamenResponse" />
   </message>
-  <message name="obtenerPorIdTablaExamen">
-    <part name="parameters" element="tns:obtenerPorIdTablaExamen" />
-  </message>
-  <message name="obtenerPorIdTablaExamenResponse">
-    <part name="parameters" element="tns:obtenerPorIdTablaExamenResponse" />
-  </message>
   <message name="listarTodosTablaExamen">
     <part name="parameters" element="tns:listarTodosTablaExamen" />
   </message>
   <message name="listarTodosTablaExamenResponse">
     <part name="parameters" element="tns:listarTodosTablaExamenResponse" />
   </message>
+  <message name="obtenerPorIdTablaExamen">
+    <part name="parameters" element="tns:obtenerPorIdTablaExamen" />
+  </message>
+  <message name="obtenerPorIdTablaExamenResponse">
+    <part name="parameters" element="tns:obtenerPorIdTablaExamenResponse" />
+  </message>
   <portType name="ExamenWS">
     <operation name="insertarExamen">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest" message="tns:insertarExamen" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse" message="tns:insertarExamenResponse" />
     </operation>
-    <operation name="obtenerPorIdTablaExamen">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest" message="tns:obtenerPorIdTablaExamen" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse" message="tns:obtenerPorIdTablaExamenResponse" />
-    </operation>
     <operation name="listarTodosTablaExamen">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest" message="tns:listarTodosTablaExamen" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse" message="tns:listarTodosTablaExamenResponse" />
+    </operation>
+    <operation name="obtenerPorIdTablaExamen">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest" message="tns:obtenerPorIdTablaExamen" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse" message="tns:obtenerPorIdTablaExamenResponse" />
     </operation>
   </portType>
   <binding name="ExamenWSPortBinding" type="tns:ExamenWS">
@@ -48,7 +48,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerPorIdTablaExamen">
+    <operation name="listarTodosTablaExamen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -57,7 +57,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarTodosTablaExamen">
+    <operation name="obtenerPorIdTablaExamen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

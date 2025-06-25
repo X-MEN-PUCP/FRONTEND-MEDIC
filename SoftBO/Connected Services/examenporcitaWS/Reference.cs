@@ -29,15 +29,6 @@ namespace SoftBO.examenporcitaWS {
         System.Threading.Tasks.Task<SoftBO.examenporcitaWS.ListarTodosLosExamenesPorCitaResponse> ListarTodosLosExamenesPorCitaAsync(SoftBO.examenporcitaWS.ListarTodosLosExamenesPorCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse InsertarExamenPorCita(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/ListarExamenesPorIdCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/ListarExamenesPorIdCitaResponse" +
             "")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -47,6 +38,15 @@ namespace SoftBO.examenporcitaWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/ListarExamenesPorIdCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/ListarExamenesPorIdCitaResponse" +
             "")]
         System.Threading.Tasks.Task<SoftBO.examenporcitaWS.ListarExamenesPorIdCitaResponse> ListarExamenesPorIdCitaAsync(SoftBO.examenporcitaWS.ListarExamenesPorIdCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse InsertarExamenPorCita(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenPorCitaWS/InsertarExamenPorCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request);
     }
     
     /// <remarks/>
@@ -1811,6 +1811,9 @@ namespace SoftBO.examenporcitaWS {
         
         /// <remarks/>
         PAGADO,
+        
+        /// <remarks/>
+        ATENDIDO,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1837,42 +1840,6 @@ namespace SoftBO.examenporcitaWS {
         }
         
         public ListarTodosLosExamenesPorCitaResponse(SoftBO.examenporcitaWS.examenPorCita[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarExamenPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarExamenPorCitaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.examenporcitaWS.examenPorCita examenPorCita;
-        
-        public InsertarExamenPorCitaRequest() {
-        }
-        
-        public InsertarExamenPorCitaRequest(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
-            this.examenPorCita = examenPorCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarExamenPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarExamenPorCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public InsertarExamenPorCitaResponse() {
-        }
-        
-        public InsertarExamenPorCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1909,6 +1876,42 @@ namespace SoftBO.examenporcitaWS {
         }
         
         public ListarExamenesPorIdCitaResponse(SoftBO.examenporcitaWS.examenPorCita[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarExamenPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarExamenPorCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.examenporcitaWS.examenPorCita examenPorCita;
+        
+        public InsertarExamenPorCitaRequest() {
+        }
+        
+        public InsertarExamenPorCitaRequest(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
+            this.examenPorCita = examenPorCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarExamenPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarExamenPorCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public InsertarExamenPorCitaResponse() {
+        }
+        
+        public InsertarExamenPorCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1962,29 +1965,6 @@ namespace SoftBO.examenporcitaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse SoftBO.examenporcitaWS.ExamenPorCitaWS.InsertarExamenPorCita(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request) {
-            return base.Channel.InsertarExamenPorCita(request);
-        }
-        
-        public int InsertarExamenPorCita(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
-            SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest inValue = new SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest();
-            inValue.examenPorCita = examenPorCita;
-            SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse retVal = ((SoftBO.examenporcitaWS.ExamenPorCitaWS)(this)).InsertarExamenPorCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> SoftBO.examenporcitaWS.ExamenPorCitaWS.InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request) {
-            return base.Channel.InsertarExamenPorCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
-            SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest inValue = new SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest();
-            inValue.examenPorCita = examenPorCita;
-            return ((SoftBO.examenporcitaWS.ExamenPorCitaWS)(this)).InsertarExamenPorCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.examenporcitaWS.ListarExamenesPorIdCitaResponse SoftBO.examenporcitaWS.ExamenPorCitaWS.ListarExamenesPorIdCita(SoftBO.examenporcitaWS.ListarExamenesPorIdCitaRequest request) {
             return base.Channel.ListarExamenesPorIdCita(request);
         }
@@ -2005,6 +1985,29 @@ namespace SoftBO.examenporcitaWS {
             SoftBO.examenporcitaWS.ListarExamenesPorIdCitaRequest inValue = new SoftBO.examenporcitaWS.ListarExamenesPorIdCitaRequest();
             inValue.idCita = idCita;
             return ((SoftBO.examenporcitaWS.ExamenPorCitaWS)(this)).ListarExamenesPorIdCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse SoftBO.examenporcitaWS.ExamenPorCitaWS.InsertarExamenPorCita(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request) {
+            return base.Channel.InsertarExamenPorCita(request);
+        }
+        
+        public int InsertarExamenPorCita(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
+            SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest inValue = new SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest();
+            inValue.examenPorCita = examenPorCita;
+            SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse retVal = ((SoftBO.examenporcitaWS.ExamenPorCitaWS)(this)).InsertarExamenPorCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> SoftBO.examenporcitaWS.ExamenPorCitaWS.InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest request) {
+            return base.Channel.InsertarExamenPorCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse> InsertarExamenPorCitaAsync(SoftBO.examenporcitaWS.examenPorCita examenPorCita) {
+            SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest inValue = new SoftBO.examenporcitaWS.InsertarExamenPorCitaRequest();
+            inValue.examenPorCita = examenPorCita;
+            return ((SoftBO.examenporcitaWS.ExamenPorCitaWS)(this)).InsertarExamenPorCitaAsync(inValue);
         }
     }
 }

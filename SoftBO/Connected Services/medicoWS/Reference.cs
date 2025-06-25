@@ -48,6 +48,9 @@ namespace SoftBO.medicoWS {
         
         /// <remarks/>
         PAGADO,
+        
+        /// <remarks/>
+        ATENDIDO,
     }
     
     /// <remarks/>

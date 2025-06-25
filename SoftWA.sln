@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftWA", "SoftWA\SoftWA.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftBO", "SoftBO\SoftBO.csproj", "{BF2A27C2-D5AB-4908-A61D-1936F16A7D0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTest", "ApiTest\ApiTest.csproj", "{2DA20874-FBEB-46F5-B7EA-162DBA88E4D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BF2A27C2-D5AB-4908-A61D-1936F16A7D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF2A27C2-D5AB-4908-A61D-1936F16A7D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF2A27C2-D5AB-4908-A61D-1936F16A7D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DA20874-FBEB-46F5-B7EA-162DBA88E4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DA20874-FBEB-46F5-B7EA-162DBA88E4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DA20874-FBEB-46F5-B7EA-162DBA88E4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DA20874-FBEB-46F5-B7EA-162DBA88E4D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

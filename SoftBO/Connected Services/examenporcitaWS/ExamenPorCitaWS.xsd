@@ -153,6 +153,7 @@
       <xs:enumeration value="RESERVADO" />
       <xs:enumeration value="DISPONIBLE" />
       <xs:enumeration value="PAGADO" />
+      <xs:enumeration value="ATENDIDO" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="estadoLogico">

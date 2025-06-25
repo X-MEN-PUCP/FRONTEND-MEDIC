@@ -25,24 +25,6 @@ namespace SoftBO.pacienteWS {
         System.Threading.Tasks.Task<SoftBO.pacienteWS.listarCitasPorPacienteResponse> listarCitasPorPacienteAsync(SoftBO.pacienteWS.listarCitasPorPacienteRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.pacienteWS.cancelarCitaPacienteResponse cancelarCitaPaciente(SoftBO.pacienteWS.cancelarCitaPacienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse")]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> cancelarCitaPacienteAsync(SoftBO.pacienteWS.cancelarCitaPacienteRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.pacienteWS.reprogramarCitaPacienteResponse reprogramarCitaPaciente(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse")]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> reprogramarCitaPacienteAsync(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -59,6 +41,24 @@ namespace SoftBO.pacienteWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse")]
         System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> buscarCitasPacienteAsync(SoftBO.pacienteWS.buscarCitasPacienteRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.pacienteWS.cancelarCitaPacienteResponse cancelarCitaPaciente(SoftBO.pacienteWS.cancelarCitaPacienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse")]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> cancelarCitaPacienteAsync(SoftBO.pacienteWS.cancelarCitaPacienteRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.pacienteWS.reprogramarCitaPacienteResponse reprogramarCitaPaciente(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse")]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> reprogramarCitaPacienteAsync(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request);
     }
     
     /// <remarks/>
@@ -1563,6 +1563,9 @@ namespace SoftBO.pacienteWS {
         
         /// <remarks/>
         PAGADO,
+        
+        /// <remarks/>
+        ATENDIDO,
     }
     
     /// <remarks/>
@@ -1958,83 +1961,6 @@ namespace SoftBO.pacienteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cancelarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cancelarCitaPacienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita;
-        
-        public cancelarCitaPacienteRequest() {
-        }
-        
-        public cancelarCitaPacienteRequest(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            this.historia_por_cita = historia_por_cita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cancelarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cancelarCitaPacienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public cancelarCitaPacienteResponse() {
-        }
-        
-        public cancelarCitaPacienteResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reprogramarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reprogramarCitaPacienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.citaDTO citaNueva;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita;
-        
-        public reprogramarCitaPacienteRequest() {
-        }
-        
-        public reprogramarCitaPacienteRequest(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            this.citaNueva = citaNueva;
-            this.historia_por_cita = historia_por_cita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reprogramarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reprogramarCitaPacienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public reprogramarCitaPacienteResponse() {
-        }
-        
-        public reprogramarCitaPacienteResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="reservarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class reservarCitaPacienteRequest {
         
@@ -2129,6 +2055,83 @@ namespace SoftBO.pacienteWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cancelarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cancelarCitaPacienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita;
+        
+        public cancelarCitaPacienteRequest() {
+        }
+        
+        public cancelarCitaPacienteRequest(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            this.historia_por_cita = historia_por_cita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cancelarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cancelarCitaPacienteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public cancelarCitaPacienteResponse() {
+        }
+        
+        public cancelarCitaPacienteResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reprogramarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reprogramarCitaPacienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.pacienteWS.citaDTO citaNueva;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita;
+        
+        public reprogramarCitaPacienteRequest() {
+        }
+        
+        public reprogramarCitaPacienteRequest(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            this.citaNueva = citaNueva;
+            this.historia_por_cita = historia_por_cita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reprogramarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reprogramarCitaPacienteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public reprogramarCitaPacienteResponse() {
+        }
+        
+        public reprogramarCitaPacienteResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface PacienteWSChannel : SoftBO.pacienteWS.PacienteWS, System.ServiceModel.IClientChannel {
     }
@@ -2177,54 +2180,6 @@ namespace SoftBO.pacienteWS {
             SoftBO.pacienteWS.listarCitasPorPacienteRequest inValue = new SoftBO.pacienteWS.listarCitasPorPacienteRequest();
             inValue.paciente = paciente;
             return ((SoftBO.pacienteWS.PacienteWS)(this)).listarCitasPorPacienteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.pacienteWS.cancelarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.cancelarCitaPaciente(SoftBO.pacienteWS.cancelarCitaPacienteRequest request) {
-            return base.Channel.cancelarCitaPaciente(request);
-        }
-        
-        public int cancelarCitaPaciente(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            SoftBO.pacienteWS.cancelarCitaPacienteRequest inValue = new SoftBO.pacienteWS.cancelarCitaPacienteRequest();
-            inValue.historia_por_cita = historia_por_cita;
-            SoftBO.pacienteWS.cancelarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).cancelarCitaPaciente(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.cancelarCitaPacienteAsync(SoftBO.pacienteWS.cancelarCitaPacienteRequest request) {
-            return base.Channel.cancelarCitaPacienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> cancelarCitaPacienteAsync(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            SoftBO.pacienteWS.cancelarCitaPacienteRequest inValue = new SoftBO.pacienteWS.cancelarCitaPacienteRequest();
-            inValue.historia_por_cita = historia_por_cita;
-            return ((SoftBO.pacienteWS.PacienteWS)(this)).cancelarCitaPacienteAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.pacienteWS.reprogramarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.reprogramarCitaPaciente(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request) {
-            return base.Channel.reprogramarCitaPaciente(request);
-        }
-        
-        public int reprogramarCitaPaciente(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            SoftBO.pacienteWS.reprogramarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reprogramarCitaPacienteRequest();
-            inValue.citaNueva = citaNueva;
-            inValue.historia_por_cita = historia_por_cita;
-            SoftBO.pacienteWS.reprogramarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).reprogramarCitaPaciente(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.reprogramarCitaPacienteAsync(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request) {
-            return base.Channel.reprogramarCitaPacienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> reprogramarCitaPacienteAsync(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
-            SoftBO.pacienteWS.reprogramarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reprogramarCitaPacienteRequest();
-            inValue.citaNueva = citaNueva;
-            inValue.historia_por_cita = historia_por_cita;
-            return ((SoftBO.pacienteWS.PacienteWS)(this)).reprogramarCitaPacienteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2281,6 +2236,54 @@ namespace SoftBO.pacienteWS {
             inValue.hora_inicio = hora_inicio;
             inValue.estadoCita = estadoCita;
             return ((SoftBO.pacienteWS.PacienteWS)(this)).buscarCitasPacienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.pacienteWS.cancelarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.cancelarCitaPaciente(SoftBO.pacienteWS.cancelarCitaPacienteRequest request) {
+            return base.Channel.cancelarCitaPaciente(request);
+        }
+        
+        public int cancelarCitaPaciente(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            SoftBO.pacienteWS.cancelarCitaPacienteRequest inValue = new SoftBO.pacienteWS.cancelarCitaPacienteRequest();
+            inValue.historia_por_cita = historia_por_cita;
+            SoftBO.pacienteWS.cancelarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).cancelarCitaPaciente(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.cancelarCitaPacienteAsync(SoftBO.pacienteWS.cancelarCitaPacienteRequest request) {
+            return base.Channel.cancelarCitaPacienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.pacienteWS.cancelarCitaPacienteResponse> cancelarCitaPacienteAsync(SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            SoftBO.pacienteWS.cancelarCitaPacienteRequest inValue = new SoftBO.pacienteWS.cancelarCitaPacienteRequest();
+            inValue.historia_por_cita = historia_por_cita;
+            return ((SoftBO.pacienteWS.PacienteWS)(this)).cancelarCitaPacienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.pacienteWS.reprogramarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.reprogramarCitaPaciente(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request) {
+            return base.Channel.reprogramarCitaPaciente(request);
+        }
+        
+        public int reprogramarCitaPaciente(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            SoftBO.pacienteWS.reprogramarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reprogramarCitaPacienteRequest();
+            inValue.citaNueva = citaNueva;
+            inValue.historia_por_cita = historia_por_cita;
+            SoftBO.pacienteWS.reprogramarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).reprogramarCitaPaciente(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.reprogramarCitaPacienteAsync(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request) {
+            return base.Channel.reprogramarCitaPacienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> reprogramarCitaPacienteAsync(SoftBO.pacienteWS.citaDTO citaNueva, SoftBO.pacienteWS.historiaClinicaPorCitaDTO historia_por_cita) {
+            SoftBO.pacienteWS.reprogramarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reprogramarCitaPacienteRequest();
+            inValue.citaNueva = citaNueva;
+            inValue.historia_por_cita = historia_por_cita;
+            return ((SoftBO.pacienteWS.PacienteWS)(this)).reprogramarCitaPacienteAsync(inValue);
         }
     }
 }

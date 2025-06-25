@@ -44,6 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -71,7 +75,9 @@
   <ItemGroup>
     <Content Include="admin_gestionar_usuarios.aspx" />
     <Content Include="cambiadorRol.ascx" />
+    <Content Include="doctor_cambiar_contraseña.aspx" />
     <Content Include="doctor_registrar_atencion.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="paciente_cambiar_contraseña.aspx" />
     <Content Include="paciente_cita_reserva.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -139,12 +145,22 @@
     <Compile Include="cambiadorRol.ascx.designer.cs">
       <DependentUpon>cambiadorRol.ascx</DependentUpon>
     </Compile>
+    <Compile Include="doctor_cambiar_contraseña.aspx.cs">
+      <DependentUpon>doctor_cambiar_contraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="doctor_cambiar_contraseña.aspx.designer.cs">
+      <DependentUpon>doctor_cambiar_contraseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="doctor_registrar_atencion.aspx.cs">
       <DependentUpon>doctor_registrar_atencion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="doctor_registrar_atencion.aspx.designer.cs">
       <DependentUpon>doctor_registrar_atencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="paciente_cambiar_contraseña.aspx.cs">
       <DependentUpon>paciente_cambiar_contraseña.aspx</DependentUpon>
@@ -237,6 +253,7 @@
     </Compile>
     <Compile Include="perfil_paciente.aspx.cs">
       <DependentUpon>perfil_paciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="perfil_paciente.aspx.designer.cs">
       <DependentUpon>perfil_paciente.aspx</DependentUpon>
@@ -258,7 +275,6 @@
     </Compile>
     <Compile Include="registro_cuenta_nueva.aspx.cs">
       <DependentUpon>registro_cuenta_nueva.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="registro_cuenta_nueva.aspx.designer.cs">
       <DependentUpon>registro_cuenta_nueva.aspx</DependentUpon>
