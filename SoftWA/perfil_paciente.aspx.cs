@@ -67,9 +67,9 @@ namespace SoftWA.MA_Paciente
         }
         private void PopulateViewControls(SoftBO.usuarioWS.usuarioDTO perfil)
         {
-            lblNombresView.Text = Server.HtmlEncode(perfil.nombres);
-            lblApellidoPaternoView.Text = Server.HtmlEncode(perfil.apellidoPaterno);
-            lblApellidoMaternoView.Text = Server.HtmlEncode(perfil.apellidoMaterno);
+            lblNombresView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.nombres));
+            lblApellidoPaternoView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.apellidoPaterno));
+            lblApellidoMaternoView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.apellidoMaterno));
             if(DateTime.TryParse(perfil.fechaNacimiento, out DateTime fechaNac))
             {
                 lblFechaNacimientoView.Text = fechaNac.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
@@ -84,9 +84,9 @@ namespace SoftWA.MA_Paciente
         }
         private void PopulateEditControls(SoftBO.usuarioWS.usuarioDTO perfil)
         {
-            txtNombresEdit.Text = perfil.nombres;
-            txtApellidoPaternoEdit.Text = perfil.apellidoPaterno;
-            txtApellidoMaternoEdit.Text = perfil.apellidoMaterno;
+            txtNombresEdit.Text = CapitalizarNombre(perfil.nombres);
+            txtApellidoPaternoEdit.Text = CapitalizarNombre(perfil.apellidoPaterno);
+            txtApellidoMaternoEdit.Text = CapitalizarNombre(perfil.apellidoMaterno);
             if (DateTime.TryParse(perfil.fechaNacimiento, out DateTime fechaNac))
             {
                 txtFechaNacimientoEdit.Text = fechaNac.ToString("yyyy-MM-dd");
@@ -97,7 +97,11 @@ namespace SoftWA.MA_Paciente
             }
             txtCorreoEdit.Text = perfil.correoElectronico;
             txtCelularEdit.Text = perfil.numCelular ?? string.Empty;
-            ddlGeneroEdit.SelectedValue = perfil.genero.ToString();
+            string generoValue = perfil.genero.ToString().ToUpperInvariant();
+            if(ddlGeneroEdit.Items.FindByValue(generoValue) != null)
+            {
+                ddlGeneroEdit.SelectedValue = generoValue;
+            }
             ddlGeneroEdit.DataBind();
         }
         #endregion
@@ -172,6 +176,15 @@ namespace SoftWA.MA_Paciente
         #endregion
 
         #region --- Métodos Auxiliares ---
+        private string CapitalizarNombre(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                return "";
+            }
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(texto.ToLower());
+        }
         private int ObtenerUsuarioActualId()
         {
             var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
