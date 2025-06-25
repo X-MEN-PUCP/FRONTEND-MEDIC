@@ -414,15 +414,15 @@ namespace SoftWA
                     hfIdCita.Value = idCita.ToString();
                     var epicrisis =_historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
 
-                    //if (double.TryParse(txtPeso.Text, out double peso)) { epicrisis.peso = peso; epicrisis.pesoSpecified = true; }
-                    //if (double.TryParse(txtTalla.Text, out double talla)) { epicrisis.talla = talla; epicrisis.tallaSpecified = true; }
-                    //if (double.TryParse(txtTemperatura.Text, out double temp)) { epicrisis.temperatura = temp; epicrisis.temperaturaSpecified = true; }
-                    //epicrisis.presionArterial = txtPresion.Text;
-                    //epicrisis.motivoConsulta = txtMotivoConsulta.Text;
-                    //epicrisis.tratamiento = txtTratamiento.Text;
-                    //epicrisis.recomendacion = txtRecomendaciones.Text;
-                    //epicrisis.estadoGeneral = SoftBO.historiaclinicaporcitaWS.estadoGeneral.ACTIVO;
-                    //epicrisis.estadoGeneralSpecified = true;
+                    if (double.TryParse(txtPeso.Text, out double peso)) { epicrisis.peso = peso; epicrisis.pesoSpecified = true; }
+                    if (double.TryParse(txtTalla.Text, out double talla)) { epicrisis.talla = talla; epicrisis.tallaSpecified = true; }
+                    if (double.TryParse(txtTemperatura.Text, out double temp)) { epicrisis.temperatura = temp; epicrisis.temperaturaSpecified = true; }
+                    epicrisis.presionArterial = txtPresion.Text;
+                    epicrisis.motivoConsulta = txtMotivoConsulta.Text;
+                    epicrisis.tratamiento = txtTratamiento.Text;
+                    epicrisis.recomendacion = txtRecomendaciones.Text;
+                    epicrisis.estadoGeneral = SoftBO.historiaclinicaporcitaWS.estadoGeneral.ACTIVO;
+                    epicrisis.estadoGeneralSpecified = true;
                     epicrisis.usuarioModificacion= usuario.idUsuario;
                     epicrisis.usuarioModificacionSpecified = true;
                     epicrisis.fechaModificacion = fechaHoy;
@@ -464,7 +464,7 @@ namespace SoftWA
                 citaParaActualizar.estado = SoftBO.citaWS.estadoCita.ATENDIDO; //cambiar si estado atendidooooooooo
                 citaParaActualizar.fechaModificacion = fechaHoy;
                 citaParaActualizar.usuarioModificacion = usuario.idUsuario;
-                _citaBO.ModificarCita(citaParaActualizar);
+                int result=_citaBO.ModificarCita(citaParaActualizar);
 
                 MostrarMensaje("Atención guardada exitosamente. Puede cerrar esta pestaña.", false);
                 btnFinalizarAtencion.Enabled = false;

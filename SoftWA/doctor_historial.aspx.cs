@@ -90,7 +90,7 @@ namespace SoftWA
             {
                 System.Diagnostics.Debug.WriteLine($"ERROR al obtener historial: {ex.Message}");
                 phNoHistorial.Visible = true;
-                (phNoHistorial.FindControl("ltlNoHistorialMsg") as Literal).Text = "Error al conectar con el servidor para obtener el historial.";
+                //(phNoHistorial.FindControl("ltlNoHistorialMsg") as Literal).Text = "Error al conectar con el servidor para obtener el historial.";
                 rptHistDoctor.DataSource = null;
                 rptHistDoctor.DataBind();
                 return;

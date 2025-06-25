@@ -57,13 +57,13 @@ namespace SoftWA
             List<citaDTO> agendaCompleta;
             try
             {
-                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.PAGADO).ToList();
+                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.DISPONIBLE).ToList();
             }
             catch (Exception ex)
             {
                 // Manejar error de conexión
                 phNoAgenda.Visible = true;
-                (phNoAgenda.Controls[0] as Literal).Text = "<div class='alert alert-danger'>Error al conectar con el servidor para obtener la agenda.</div>";
+                //(phNoAgenda.Controls[0] as Literal).Text = "<div class='alert alert-danger'>Error al conectar con el servidor para obtener la agenda.</div>";
                 pnlProximaCita.Visible = false;
                 pnlSiguientesCitas.Visible = false;
                 hrSeparadorCitas.Visible = false;
@@ -72,11 +72,11 @@ namespace SoftWA
             }
 
             // Filtrar citas pendientes (no atendidas, no canceladas, etc.)
-            var citasPendientes = agendaCompleta
-                .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
-                .OrderBy(c => DateTime.Parse(c.fechaCita))
-                .ThenBy(c => c.turno.horaInicio)
-                .ToList();
+            var citasPendientes = agendaCompleta;
+            //    .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
+            //    .OrderBy(c => DateTime.Parse(c.fechaCita))
+            //    .ThenBy(c => c.turno.horaInicio)
+            //    .ToList();
 
             if (citasPendientes.Any())
             {
