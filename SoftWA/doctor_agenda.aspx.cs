@@ -57,7 +57,7 @@ namespace SoftWA
             List<citaDTO> agendaCompleta;
             try
             {
-                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.DISPONIBLE).ToList();
+                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.PAGADO).ToList();
             }
             catch (Exception ex)
             {
