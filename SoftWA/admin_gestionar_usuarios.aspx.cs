@@ -35,7 +35,6 @@ namespace SoftWA
         public string NombreEspecialidad { get; set; }
     }
 
-
     public partial class admin_gestionar_usuarios : System.Web.UI.Page
     {
         private readonly AdminBO _adminBO;
@@ -56,11 +55,9 @@ namespace SoftWA
             if (!IsPostBack)
             {
                 // Cargar datos maestros solo una vez
-                if (_listaCompletaRoles == null)
-                {
-                    CargarRolesMaestros();
-                }
+                CargarRolesMaestros();
                 PoblarFiltroRoles();
+                PoblarDropDownsModal();
                 BindUsuariosGrid();
             }
         }
@@ -69,13 +66,13 @@ namespace SoftWA
         {
             try
             {
-                // Simulación de roles estáticos (idealmente vendrían de un WS, por ejemplo, RolWS.ListarTodos())
+                // Simulación de roles estáticos (idealmente vendrían de un WS)
                 _listaCompletaRoles = new List<RolSimple>
-            {
-                new RolSimple { IdRol = 1, NombreRol = "Administrador" },
-                new RolSimple { IdRol = 2, NombreRol = "Médico" },
-                new RolSimple { IdRol = 3, NombreRol = "Paciente" }
-            };
+                {
+                    new RolSimple { IdRol = 1, NombreRol = "Administrador" },
+                    new RolSimple { IdRol = 2, NombreRol = "Médico" },
+                    new RolSimple { IdRol = 3, NombreRol = "Paciente" }
+                };
             }
             catch (Exception ex)
             {
@@ -91,13 +88,26 @@ namespace SoftWA
                     IdEspecialidad = e.idEspecialidad,
                     NombreEspecialidad = e.nombreEspecialidad
                 }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al cargar especialidades. " + ex.Message, true);
+                _listaCompletaEspecialidades = new List<EspecialidadSimple>();
+            }
+        }
 
+        private void PoblarDropDownsModal()
+        {
+            try
+            {
+                // Poblar ddlRolNuevo
                 ddlRolNuevo.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
                 ddlRolNuevo.DataTextField = "NombreRol";
                 ddlRolNuevo.DataValueField = "IdRol";
                 ddlRolNuevo.DataBind();
                 ddlRolNuevo.Items.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
 
+                // Poblar ddlEspecialidadNuevo
                 ddlEspecialidadNuevo.DataSource = _listaCompletaEspecialidades.OrderBy(e => e.NombreEspecialidad);
                 ddlEspecialidadNuevo.DataTextField = "NombreEspecialidad";
                 ddlEspecialidadNuevo.DataValueField = "IdEspecialidad";
@@ -106,20 +116,24 @@ namespace SoftWA
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Error al cargar datos maestros para la creación de usuarios. " + ex.Message, true);
-                _listaCompletaEspecialidades = new List<EspecialidadSimple>();
+                MostrarMensaje("Error al poblar dropdowns del modal: " + ex.Message, true);
             }
-
-
         }
 
         private void PoblarFiltroRoles()
         {
-            ddlFiltroRol.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
-            ddlFiltroRol.DataTextField = "NombreRol";
-            ddlFiltroRol.DataValueField = "IdRol";
-            ddlFiltroRol.DataBind();
-            ddlFiltroRol.Items.Insert(0, new ListItem("-- Todos los Roles --", "0"));
+            try
+            {
+                ddlFiltroRol.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
+                ddlFiltroRol.DataTextField = "NombreRol";
+                ddlFiltroRol.DataValueField = "IdRol";
+                ddlFiltroRol.DataBind();
+                ddlFiltroRol.Items.Insert(0, new ListItem("-- Todos los Roles --", "0"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al poblar filtro de roles: " + ex.Message, true);
+            }
         }
 
         private void BindUsuariosGrid()
@@ -167,6 +181,7 @@ namespace SoftWA
                 return;
             }
 
+            // Aplicar filtros
             int filtroRolId = 0;
             int.TryParse(ddlFiltroRol.SelectedValue, out filtroRolId);
             if (filtroRolId > 0)
@@ -183,6 +198,7 @@ namespace SoftWA
                 ).ToList();
             }
 
+            // Aplicar ordenamiento
             switch (ddlOrdenarUsuarios.SelectedValue)
             {
                 case "IdDesc": listaUsuariosParaMostrar = listaUsuariosParaMostrar.OrderByDescending(u => u.IdUsuario).ToList(); break;
@@ -221,15 +237,16 @@ namespace SoftWA
                     ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
                     btnToggleStatus.ToolTip = "Desactivar Usuario";
                     var ltlIcono = (Literal)btnToggleStatus.FindControl("ltlIcono");
-                    ltlIcono.Text = "<i class='fas fa-power-off text-danger'></i>"; 
-
+                    if (ltlIcono != null)
+                        ltlIcono.Text = "<i class='fas fa-power-off text-danger'></i>";
                 }
                 else
                 {
                     ltlEstado.Text = "<span class='badge bg-danger'>Inactivo</span>";
                     btnToggleStatus.ToolTip = "Activar Usuario";
                     var ltlIcono = (Literal)btnToggleStatus.FindControl("ltlIcono");
-                    ltlIcono.Text = "<i class='fas fa-power-off text-success'></i>";
+                    if (ltlIcono != null)
+                        ltlIcono.Text = "<i class='fas fa-power-off text-success'></i>";
                 }
             }
         }
@@ -271,7 +288,7 @@ namespace SoftWA
             }
             else if (e.CommandName == "ToggleStatus")
             {
-                 MostrarMensaje("Cambio de estado exitoso", false);
+                MostrarMensaje("Cambio de estado exitoso", false);
             }
         }
 
@@ -289,7 +306,7 @@ namespace SoftWA
                 {
                     usuarioDTO = usuario,
                     rol = rol,
-                    usuarioCreacion = adminLogueado.idUsuario, 
+                    usuarioCreacion = adminLogueado.idUsuario,
                     usuarioCreacionSpecified = true,
                     fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd")
                 };
@@ -300,7 +317,7 @@ namespace SoftWA
                     if (resultado > 0)
                     {
                         MostrarMensaje("Rol asignado correctamente.", false);
-                        BindUsuariosGrid(); 
+                        BindUsuariosGrid();
                     }
                     else
                     {
@@ -358,12 +375,10 @@ namespace SoftWA
 
         protected void ddlRolNuevo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // ID Rol "Médico" = 2 (según la simulación de datos)
             bool esMedico = ddlRolNuevo.SelectedValue == "2";
             pnlEspecialidadNuevo.Visible = esMedico;
 
-            // Actualizar el panel del modal para que el cambio sea visible
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "UpdateModal", "$('#modalAgregarUsuario').modal('handleUpdate');", true);
+            //upModalAgregarUsuario.Update();
         }
 
         protected void btnGuardarNuevoUsuario_Click(object sender, EventArgs e)
@@ -371,7 +386,7 @@ namespace SoftWA
             Page.Validate("NuevoUsuario");
             if (!Page.IsValid)
             {
-                // Forzar al modal a mantenerse abierto si la validación falla
+                // Mantener el modal abierto si hay errores de validación
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpen", "$('#modalAgregarUsuario').modal('show');", true);
                 return;
             }
@@ -388,7 +403,7 @@ namespace SoftWA
             {
                 nombres = txtNombresNuevo.Text.Trim(),
                 apellidoPaterno = txtApellidoPaternoNuevo.Text.Trim(),
-                apellidoMaterno = "", // Asumimos que no es obligatorio por ahora
+                apellidoMaterno = "", // Campo opcional
                 tipoDocumento = (SoftBO.adminWS.tipoDocumento)Enum.Parse(typeof(SoftBO.adminWS.tipoDocumento), ddlTipoDocumentoNuevo.SelectedValue),
                 tipoDocumentoSpecified = true,
                 numDocumento = txtNumDocumentoNuevo.Text.Trim(),
@@ -421,6 +436,7 @@ namespace SoftWA
                     if (resultado > 0)
                     {
                         MostrarMensaje("Médico creado y asignado correctamente.", false);
+                        LimpiarFormularioNuevoUsuario();
                     }
                     else
                     {
@@ -430,14 +446,10 @@ namespace SoftWA
                 else
                 {
                     // Lógica para insertar un usuario general (no médico)
-                    // Esto requeriría un nuevo método en el backend: AdminWS.insertarUsuarioGeneral
-                    // Por ahora, simularemos que solo se pueden crear médicos desde aquí.
-                    // int resultado = _adminBO.InsertarUsuarioGeneral(nuevoUsuario, rolId);
                     MostrarMensaje("Funcionalidad para crear usuarios no médicos pendiente de implementación en backend.", false);
                 }
 
                 // Si el guardado fue exitoso, recargar la grilla
-                CargarRolesMaestros(); // Recargar todo por si hay nuevos datos
                 BindUsuariosGrid();
 
                 // Cerrar el modal desde el servidor
@@ -450,5 +462,16 @@ namespace SoftWA
             }
         }
 
+        private void LimpiarFormularioNuevoUsuario()
+        {
+            txtNombresNuevo.Text = string.Empty;
+            txtApellidoPaternoNuevo.Text = string.Empty;
+            txtNumDocumentoNuevo.Text = string.Empty;
+            txtCorreoNuevo.Text = string.Empty;
+            txtContrasenhaNuevo.Text = string.Empty;
+            ddlRolNuevo.SelectedValue = "0";
+            ddlEspecialidadNuevo.SelectedValue = "0";
+            pnlEspecialidadNuevo.Visible = false;
+        }
     }
 }

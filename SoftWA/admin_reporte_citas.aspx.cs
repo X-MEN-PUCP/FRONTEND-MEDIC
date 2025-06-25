@@ -83,8 +83,6 @@ namespace SoftWA
 
         protected void ddlEspecialidadReporte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // En el futuro, se podría refinar la lista de doctores según la especialidad seleccionada.
-            // Por ahora, la lista de doctores es general.
             updReporteCitas.Update();
         }
 
@@ -109,7 +107,6 @@ namespace SoftWA
             {
                 var listaCitas = ObtenerDatosReporte();
 
-                // Ordenamiento se realiza en el lado del cliente (C#)
                 string orden = ddlOrdenarReporte.SelectedValue;
                 switch (orden)
                 {

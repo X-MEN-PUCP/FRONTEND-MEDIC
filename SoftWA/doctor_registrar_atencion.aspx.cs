@@ -461,7 +461,7 @@ namespace SoftWA
 
                 // cambiar estado de cita
                 var citaParaActualizar = _citaBO.ObtenerPorIdCitaCita(int.Parse(hfIdCita.Value));
-                citaParaActualizar.estado = SoftBO.citaWS.estadoCita.PAGADO; //cambiar si estado atendidooooooooo
+                citaParaActualizar.estado = SoftBO.citaWS.estadoCita.ATENDIDO; //cambiar si estado atendidooooooooo
                 citaParaActualizar.fechaModificacion = fechaHoy;
                 citaParaActualizar.usuarioModificacion = usuario.idUsuario;
                 _citaBO.ModificarCita(citaParaActualizar);

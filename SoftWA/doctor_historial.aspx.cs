@@ -63,7 +63,7 @@ namespace SoftWA
             List<CitaHist> historialDoctor = new List<CitaHist>();
             try
             {
-                var historial = _medicoBO.ListarCitasMedicos(idDoctorActual, estadoCita.PAGADO); //cambiar si atendidooooo
+                var historial = _medicoBO.ListarCitasMedicos(idDoctorActual, estadoCita.RESERVADO); //cambiar si atendidooooo
 
                 foreach (var cita in historial)
                 {
