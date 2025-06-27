@@ -158,6 +158,7 @@
                                 <asp:ListItem Text="Seleccionar..." Value=""></asp:ListItem>
                                 <asp:ListItem Text="Masculino" Value="MASCULINO"></asp:ListItem>
                                 <asp:ListItem Text="Femenino" Value="FEMENINO"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="OTRO"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvGenero" runat="server" ControlToValidate="ddlGenero" ErrorMessage="Campo obligatorio." CssClass="text-danger small" Display="Dynamic" InitialValue="" ValidationGroup="RegisterValidation" />
                         </div>

@@ -141,7 +141,7 @@ namespace SoftWA
 
                 if (resultadoRegistro)
                 {
-                    Response.Redirect("indexLogin.aspx?reg=success", false);
+                    Response.Redirect("indexPaciente.aspx?reg=success", false);
                 }
                 else
                 {

@@ -136,10 +136,11 @@ namespace SoftWA
                 {
                     using (var servicioPaciente = new PacienteWSClient())
                     {
-                        var historiaPorCita = new historiaClinicaPorCitaDTO
-                        {
-                            cita = new citaDTO { idCita = idCita, idCitaSpecified = true }
-                        };
+                        //var historiaPorCita = new historiaClinicaPorCitaDTO
+                        //{
+                        //    cita = new citaDTO { idCita = idCita, idCitaSpecified = true }
+                        //};
+                        var historiaPorCita = CitasCompletasPaciente.FirstOrDefault(h => h.cita.idCita == idCita);
                         int resultado = servicioPaciente.cancelarCitaPaciente(historiaPorCita);
 
                         if (resultado > 0)

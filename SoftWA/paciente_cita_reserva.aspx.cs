@@ -112,7 +112,7 @@ namespace SoftWA
             {
                 using (var servicioCita = new CitaWSClient())
                 {
-                    var citasDisponibles = servicioCita.buscarCitasoloCalendario(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
+                    var citasDisponibles = servicioCita.buscarCitasWSCitas(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
 
                     if (citasDisponibles != null && citasDisponibles.Any())
                     {

@@ -34,22 +34,13 @@ namespace SoftBO.citaWS {
         System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.modificarCitaResponse modificarCita(SoftBO.citaWS.modificarCitaRequest request);
+        SoftBO.citaWS.buscarCitasWSCitasResponse buscarCitasWSCitas(SoftBO.citaWS.buscarCitasWSCitasRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.obtenerPorIdCitaCitaResponse obtenerPorIdCitaCita(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> obtenerPorIdCitaCitaAsync(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> buscarCitasWSCitasAsync(SoftBO.citaWS.buscarCitasWSCitasRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaResponse")]
@@ -61,13 +52,22 @@ namespace SoftBO.citaWS {
         System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.buscarCitasWSCitasResponse buscarCitasWSCitas(SoftBO.citaWS.buscarCitasWSCitasRequest request);
+        SoftBO.citaWS.obtenerPorIdCitaCitaResponse obtenerPorIdCitaCita(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> buscarCitasWSCitasAsync(SoftBO.citaWS.buscarCitasWSCitasRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> obtenerPorIdCitaCitaAsync(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.citaWS.modificarCitaResponse modificarCita(SoftBO.citaWS.modificarCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request);
     }
     
     /// <remarks/>
@@ -1505,106 +1505,6 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarCitaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.citaDTO idCita;
-        
-        public modificarCitaRequest() {
-        }
-        
-        public modificarCitaRequest(SoftBO.citaWS.citaDTO idCita) {
-            this.idCita = idCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public modificarCitaResponse() {
-        }
-        
-        public modificarCitaResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdCitaCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdCitaCitaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public obtenerPorIdCitaCitaRequest() {
-        }
-        
-        public obtenerPorIdCitaCitaRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdCitaCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdCitaCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.citaDTO @return;
-        
-        public obtenerPorIdCitaCitaResponse() {
-        }
-        
-        public obtenerPorIdCitaCitaResponse(SoftBO.citaWS.citaDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosCitaRequest {
-        
-        public listarTodosCitaRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.citaDTO[] @return;
-        
-        public listarTodosCitaResponse() {
-        }
-        
-        public listarTodosCitaResponse(SoftBO.citaWS.citaDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasWSCitas", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class buscarCitasWSCitasRequest {
         
@@ -1654,6 +1554,106 @@ namespace SoftBO.citaWS {
         }
         
         public buscarCitasWSCitasResponse(SoftBO.citaWS.citaDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosCitaRequest {
+        
+        public listarTodosCitaRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO[] @return;
+        
+        public listarTodosCitaResponse() {
+        }
+        
+        public listarTodosCitaResponse(SoftBO.citaWS.citaDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdCitaCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdCitaCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public obtenerPorIdCitaCitaRequest() {
+        }
+        
+        public obtenerPorIdCitaCitaRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdCitaCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdCitaCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO @return;
+        
+        public obtenerPorIdCitaCitaResponse() {
+        }
+        
+        public obtenerPorIdCitaCitaResponse(SoftBO.citaWS.citaDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO idCita;
+        
+        public modificarCitaRequest() {
+        }
+        
+        public modificarCitaRequest(SoftBO.citaWS.citaDTO idCita) {
+            this.idCita = idCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public modificarCitaResponse() {
+        }
+        
+        public modificarCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1742,73 +1742,6 @@ namespace SoftBO.citaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.modificarCitaResponse SoftBO.citaWS.CitaWS.modificarCita(SoftBO.citaWS.modificarCitaRequest request) {
-            return base.Channel.modificarCita(request);
-        }
-        
-        public int modificarCita(SoftBO.citaWS.citaDTO idCita) {
-            SoftBO.citaWS.modificarCitaRequest inValue = new SoftBO.citaWS.modificarCitaRequest();
-            inValue.idCita = idCita;
-            SoftBO.citaWS.modificarCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).modificarCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> SoftBO.citaWS.CitaWS.modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request) {
-            return base.Channel.modificarCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.citaDTO idCita) {
-            SoftBO.citaWS.modificarCitaRequest inValue = new SoftBO.citaWS.modificarCitaRequest();
-            inValue.idCita = idCita;
-            return ((SoftBO.citaWS.CitaWS)(this)).modificarCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.obtenerPorIdCitaCitaResponse SoftBO.citaWS.CitaWS.obtenerPorIdCitaCita(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request) {
-            return base.Channel.obtenerPorIdCitaCita(request);
-        }
-        
-        public SoftBO.citaWS.citaDTO obtenerPorIdCitaCita(int id) {
-            SoftBO.citaWS.obtenerPorIdCitaCitaRequest inValue = new SoftBO.citaWS.obtenerPorIdCitaCitaRequest();
-            inValue.id = id;
-            SoftBO.citaWS.obtenerPorIdCitaCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).obtenerPorIdCitaCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> SoftBO.citaWS.CitaWS.obtenerPorIdCitaCitaAsync(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request) {
-            return base.Channel.obtenerPorIdCitaCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> obtenerPorIdCitaCitaAsync(int id) {
-            SoftBO.citaWS.obtenerPorIdCitaCitaRequest inValue = new SoftBO.citaWS.obtenerPorIdCitaCitaRequest();
-            inValue.id = id;
-            return ((SoftBO.citaWS.CitaWS)(this)).obtenerPorIdCitaCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.listarTodosCitaResponse SoftBO.citaWS.CitaWS.listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request) {
-            return base.Channel.listarTodosCita(request);
-        }
-        
-        public SoftBO.citaWS.citaDTO[] listarTodosCita() {
-            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
-            SoftBO.citaWS.listarTodosCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarTodosCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> SoftBO.citaWS.CitaWS.listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request) {
-            return base.Channel.listarTodosCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync() {
-            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
-            return ((SoftBO.citaWS.CitaWS)(this)).listarTodosCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.citaWS.buscarCitasWSCitasResponse SoftBO.citaWS.CitaWS.buscarCitasWSCitas(SoftBO.citaWS.buscarCitasWSCitasRequest request) {
             return base.Channel.buscarCitasWSCitas(request);
         }
@@ -1837,6 +1770,73 @@ namespace SoftBO.citaWS {
             inValue.hora_inicio = hora_inicio;
             inValue.estadoCita = estadoCita;
             return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasWSCitasAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.listarTodosCitaResponse SoftBO.citaWS.CitaWS.listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request) {
+            return base.Channel.listarTodosCita(request);
+        }
+        
+        public SoftBO.citaWS.citaDTO[] listarTodosCita() {
+            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
+            SoftBO.citaWS.listarTodosCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarTodosCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> SoftBO.citaWS.CitaWS.listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request) {
+            return base.Channel.listarTodosCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync() {
+            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
+            return ((SoftBO.citaWS.CitaWS)(this)).listarTodosCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.obtenerPorIdCitaCitaResponse SoftBO.citaWS.CitaWS.obtenerPorIdCitaCita(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request) {
+            return base.Channel.obtenerPorIdCitaCita(request);
+        }
+        
+        public SoftBO.citaWS.citaDTO obtenerPorIdCitaCita(int id) {
+            SoftBO.citaWS.obtenerPorIdCitaCitaRequest inValue = new SoftBO.citaWS.obtenerPorIdCitaCitaRequest();
+            inValue.id = id;
+            SoftBO.citaWS.obtenerPorIdCitaCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).obtenerPorIdCitaCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> SoftBO.citaWS.CitaWS.obtenerPorIdCitaCitaAsync(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request) {
+            return base.Channel.obtenerPorIdCitaCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> obtenerPorIdCitaCitaAsync(int id) {
+            SoftBO.citaWS.obtenerPorIdCitaCitaRequest inValue = new SoftBO.citaWS.obtenerPorIdCitaCitaRequest();
+            inValue.id = id;
+            return ((SoftBO.citaWS.CitaWS)(this)).obtenerPorIdCitaCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.modificarCitaResponse SoftBO.citaWS.CitaWS.modificarCita(SoftBO.citaWS.modificarCitaRequest request) {
+            return base.Channel.modificarCita(request);
+        }
+        
+        public int modificarCita(SoftBO.citaWS.citaDTO idCita) {
+            SoftBO.citaWS.modificarCitaRequest inValue = new SoftBO.citaWS.modificarCitaRequest();
+            inValue.idCita = idCita;
+            SoftBO.citaWS.modificarCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).modificarCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> SoftBO.citaWS.CitaWS.modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request) {
+            return base.Channel.modificarCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.citaDTO idCita) {
+            SoftBO.citaWS.modificarCitaRequest inValue = new SoftBO.citaWS.modificarCitaRequest();
+            inValue.idCita = idCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).modificarCitaAsync(inValue);
         }
     }
 }
