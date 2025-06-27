@@ -16,6 +16,15 @@ namespace SoftBO.tipoexamenWS {
     public interface TipoExamenWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.tipoexamenWS.modificarTipoExamenResponse modificarTipoExamen(SoftBO.tipoexamenWS.modificarTipoExamenRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenResponse")]
+        System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> modificarTipoExamenAsync(SoftBO.tipoexamenWS.modificarTipoExamenRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -32,15 +41,6 @@ namespace SoftBO.tipoexamenWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/listarTodosTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/listarTodosTipoExamenResponse")]
         System.Threading.Tasks.Task<SoftBO.tipoexamenWS.listarTodosTipoExamenResponse> listarTodosTipoExamenAsync(SoftBO.tipoexamenWS.listarTodosTipoExamenRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.tipoexamenWS.modificarTipoExamenResponse modificarTipoExamen(SoftBO.tipoexamenWS.modificarTipoExamenRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenResponse")]
-        System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> modificarTipoExamenAsync(SoftBO.tipoexamenWS.modificarTipoExamenRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenResponse")]
@@ -129,6 +129,42 @@ namespace SoftBO.tipoexamenWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTipoExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarTipoExamenRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen;
+        
+        public modificarTipoExamenRequest() {
+        }
+        
+        public modificarTipoExamenRequest(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
+            this.tipoExamen = tipoExamen;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTipoExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarTipoExamenResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public modificarTipoExamenResponse() {
+        }
+        
+        public modificarTipoExamenResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTipoExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerPorIdTipoExamenRequest {
         
@@ -186,42 +222,6 @@ namespace SoftBO.tipoexamenWS {
         }
         
         public listarTodosTipoExamenResponse(SoftBO.tipoexamenWS.tipoExamenDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTipoExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarTipoExamenRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen;
-        
-        public modificarTipoExamenRequest() {
-        }
-        
-        public modificarTipoExamenRequest(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
-            this.tipoExamen = tipoExamen;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTipoExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarTipoExamenResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public modificarTipoExamenResponse() {
-        }
-        
-        public modificarTipoExamenResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -290,6 +290,29 @@ namespace SoftBO.tipoexamenWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.tipoexamenWS.modificarTipoExamenResponse SoftBO.tipoexamenWS.TipoExamenWS.modificarTipoExamen(SoftBO.tipoexamenWS.modificarTipoExamenRequest request) {
+            return base.Channel.modificarTipoExamen(request);
+        }
+        
+        public int modificarTipoExamen(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
+            SoftBO.tipoexamenWS.modificarTipoExamenRequest inValue = new SoftBO.tipoexamenWS.modificarTipoExamenRequest();
+            inValue.tipoExamen = tipoExamen;
+            SoftBO.tipoexamenWS.modificarTipoExamenResponse retVal = ((SoftBO.tipoexamenWS.TipoExamenWS)(this)).modificarTipoExamen(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> SoftBO.tipoexamenWS.TipoExamenWS.modificarTipoExamenAsync(SoftBO.tipoexamenWS.modificarTipoExamenRequest request) {
+            return base.Channel.modificarTipoExamenAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> modificarTipoExamenAsync(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
+            SoftBO.tipoexamenWS.modificarTipoExamenRequest inValue = new SoftBO.tipoexamenWS.modificarTipoExamenRequest();
+            inValue.tipoExamen = tipoExamen;
+            return ((SoftBO.tipoexamenWS.TipoExamenWS)(this)).modificarTipoExamenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.tipoexamenWS.obtenerPorIdTipoExamenResponse SoftBO.tipoexamenWS.TipoExamenWS.obtenerPorIdTipoExamen(SoftBO.tipoexamenWS.obtenerPorIdTipoExamenRequest request) {
             return base.Channel.obtenerPorIdTipoExamen(request);
         }
@@ -331,29 +354,6 @@ namespace SoftBO.tipoexamenWS {
         public System.Threading.Tasks.Task<SoftBO.tipoexamenWS.listarTodosTipoExamenResponse> listarTodosTipoExamenAsync() {
             SoftBO.tipoexamenWS.listarTodosTipoExamenRequest inValue = new SoftBO.tipoexamenWS.listarTodosTipoExamenRequest();
             return ((SoftBO.tipoexamenWS.TipoExamenWS)(this)).listarTodosTipoExamenAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.tipoexamenWS.modificarTipoExamenResponse SoftBO.tipoexamenWS.TipoExamenWS.modificarTipoExamen(SoftBO.tipoexamenWS.modificarTipoExamenRequest request) {
-            return base.Channel.modificarTipoExamen(request);
-        }
-        
-        public int modificarTipoExamen(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
-            SoftBO.tipoexamenWS.modificarTipoExamenRequest inValue = new SoftBO.tipoexamenWS.modificarTipoExamenRequest();
-            inValue.tipoExamen = tipoExamen;
-            SoftBO.tipoexamenWS.modificarTipoExamenResponse retVal = ((SoftBO.tipoexamenWS.TipoExamenWS)(this)).modificarTipoExamen(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> SoftBO.tipoexamenWS.TipoExamenWS.modificarTipoExamenAsync(SoftBO.tipoexamenWS.modificarTipoExamenRequest request) {
-            return base.Channel.modificarTipoExamenAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.tipoexamenWS.modificarTipoExamenResponse> modificarTipoExamenAsync(SoftBO.tipoexamenWS.tipoExamenDTO tipoExamen) {
-            SoftBO.tipoexamenWS.modificarTipoExamenRequest inValue = new SoftBO.tipoexamenWS.modificarTipoExamenRequest();
-            inValue.tipoExamen = tipoExamen;
-            return ((SoftBO.tipoexamenWS.TipoExamenWS)(this)).modificarTipoExamenAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

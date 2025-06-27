@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/UsuarioPorEspecialidadWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarPorUsuarioUsuarioPorEspecialidad">
-    <part name="parameters" element="tns:listarPorUsuarioUsuarioPorEspecialidad" />
+  <message name="listarPorEspecialidadUsuarioPorEspecialidad">
+    <part name="parameters" element="tns:listarPorEspecialidadUsuarioPorEspecialidad" />
   </message>
-  <message name="listarPorUsuarioUsuarioPorEspecialidadResponse">
-    <part name="parameters" element="tns:listarPorUsuarioUsuarioPorEspecialidadResponse" />
+  <message name="listarPorEspecialidadUsuarioPorEspecialidadResponse">
+    <part name="parameters" element="tns:listarPorEspecialidadUsuarioPorEspecialidadResponse" />
   </message>
   <message name="insertarUsuarioPorEspecialidad">
     <part name="parameters" element="tns:insertarUsuarioPorEspecialidad" />
@@ -17,29 +17,29 @@
   <message name="insertarUsuarioPorEspecialidadResponse">
     <part name="parameters" element="tns:insertarUsuarioPorEspecialidadResponse" />
   </message>
-  <message name="listarPorEspecialidadUsuarioPorEspecialidad">
-    <part name="parameters" element="tns:listarPorEspecialidadUsuarioPorEspecialidad" />
+  <message name="listarPorUsuarioUsuarioPorEspecialidad">
+    <part name="parameters" element="tns:listarPorUsuarioUsuarioPorEspecialidad" />
   </message>
-  <message name="listarPorEspecialidadUsuarioPorEspecialidadResponse">
-    <part name="parameters" element="tns:listarPorEspecialidadUsuarioPorEspecialidadResponse" />
+  <message name="listarPorUsuarioUsuarioPorEspecialidadResponse">
+    <part name="parameters" element="tns:listarPorUsuarioUsuarioPorEspecialidadResponse" />
   </message>
   <portType name="UsuarioPorEspecialidadWS">
-    <operation name="listarPorUsuarioUsuarioPorEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuarioPorEspecialidadRequest" message="tns:listarPorUsuarioUsuarioPorEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuarioPorEspecialidadResponse" message="tns:listarPorUsuarioUsuarioPorEspecialidadResponse" />
+    <operation name="listarPorEspecialidadUsuarioPorEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadUsuarioPorEspecialidadRequest" message="tns:listarPorEspecialidadUsuarioPorEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadUsuarioPorEspecialidadResponse" message="tns:listarPorEspecialidadUsuarioPorEspecialidadResponse" />
     </operation>
     <operation name="insertarUsuarioPorEspecialidad">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspecialidadRequest" message="tns:insertarUsuarioPorEspecialidad" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspecialidadResponse" message="tns:insertarUsuarioPorEspecialidadResponse" />
     </operation>
-    <operation name="listarPorEspecialidadUsuarioPorEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadUsuarioPorEspecialidadRequest" message="tns:listarPorEspecialidadUsuarioPorEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadUsuarioPorEspecialidadResponse" message="tns:listarPorEspecialidadUsuarioPorEspecialidadResponse" />
+    <operation name="listarPorUsuarioUsuarioPorEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuarioPorEspecialidadRequest" message="tns:listarPorUsuarioUsuarioPorEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuarioPorEspecialidadResponse" message="tns:listarPorUsuarioUsuarioPorEspecialidadResponse" />
     </operation>
   </portType>
   <binding name="UsuarioPorEspecialidadWSPortBinding" type="tns:UsuarioPorEspecialidadWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarPorUsuarioUsuarioPorEspecialidad">
+    <operation name="listarPorEspecialidadUsuarioPorEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -57,7 +57,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarPorEspecialidadUsuarioPorEspecialidad">
+    <operation name="listarPorUsuarioUsuarioPorEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

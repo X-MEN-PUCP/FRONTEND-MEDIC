@@ -16,15 +16,6 @@ namespace SoftBO.examenWS {
     public interface ExamenWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.examenWS.listarTodosTablaExamenResponse listarTodosTablaExamen(SoftBO.examenWS.listarTodosTablaExamenRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse")]
-        System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> listarTodosTablaExamenAsync(SoftBO.examenWS.listarTodosTablaExamenRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -32,6 +23,15 @@ namespace SoftBO.examenWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
         System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> obtenerPorIdTablaExamenAsync(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.examenWS.listarTodosTablaExamenResponse listarTodosTablaExamen(SoftBO.examenWS.listarTodosTablaExamenRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse")]
+        System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> listarTodosTablaExamenAsync(SoftBO.examenWS.listarTodosTablaExamenRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse")]
@@ -319,34 +319,6 @@ namespace SoftBO.examenWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTablaExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTablaExamenRequest {
-        
-        public listarTodosTablaExamenRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTablaExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTablaExamenResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.examenWS.examenDTO[] @return;
-        
-        public listarTodosTablaExamenResponse() {
-        }
-        
-        public listarTodosTablaExamenResponse(SoftBO.examenWS.examenDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerPorIdTablaExamenRequest {
         
@@ -376,6 +348,34 @@ namespace SoftBO.examenWS {
         }
         
         public obtenerPorIdTablaExamenResponse(SoftBO.examenWS.examenDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTablaExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTablaExamenRequest {
+        
+        public listarTodosTablaExamenRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTablaExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTablaExamenResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.examenWS.examenDTO[] @return;
+        
+        public listarTodosTablaExamenResponse() {
+        }
+        
+        public listarTodosTablaExamenResponse(SoftBO.examenWS.examenDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -444,27 +444,6 @@ namespace SoftBO.examenWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.examenWS.listarTodosTablaExamenResponse SoftBO.examenWS.ExamenWS.listarTodosTablaExamen(SoftBO.examenWS.listarTodosTablaExamenRequest request) {
-            return base.Channel.listarTodosTablaExamen(request);
-        }
-        
-        public SoftBO.examenWS.examenDTO[] listarTodosTablaExamen() {
-            SoftBO.examenWS.listarTodosTablaExamenRequest inValue = new SoftBO.examenWS.listarTodosTablaExamenRequest();
-            SoftBO.examenWS.listarTodosTablaExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).listarTodosTablaExamen(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> SoftBO.examenWS.ExamenWS.listarTodosTablaExamenAsync(SoftBO.examenWS.listarTodosTablaExamenRequest request) {
-            return base.Channel.listarTodosTablaExamenAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> listarTodosTablaExamenAsync() {
-            SoftBO.examenWS.listarTodosTablaExamenRequest inValue = new SoftBO.examenWS.listarTodosTablaExamenRequest();
-            return ((SoftBO.examenWS.ExamenWS)(this)).listarTodosTablaExamenAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.examenWS.obtenerPorIdTablaExamenResponse SoftBO.examenWS.ExamenWS.obtenerPorIdTablaExamen(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request) {
             return base.Channel.obtenerPorIdTablaExamen(request);
         }
@@ -485,6 +464,27 @@ namespace SoftBO.examenWS {
             SoftBO.examenWS.obtenerPorIdTablaExamenRequest inValue = new SoftBO.examenWS.obtenerPorIdTablaExamenRequest();
             inValue.examenId = examenId;
             return ((SoftBO.examenWS.ExamenWS)(this)).obtenerPorIdTablaExamenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.examenWS.listarTodosTablaExamenResponse SoftBO.examenWS.ExamenWS.listarTodosTablaExamen(SoftBO.examenWS.listarTodosTablaExamenRequest request) {
+            return base.Channel.listarTodosTablaExamen(request);
+        }
+        
+        public SoftBO.examenWS.examenDTO[] listarTodosTablaExamen() {
+            SoftBO.examenWS.listarTodosTablaExamenRequest inValue = new SoftBO.examenWS.listarTodosTablaExamenRequest();
+            SoftBO.examenWS.listarTodosTablaExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).listarTodosTablaExamen(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> SoftBO.examenWS.ExamenWS.listarTodosTablaExamenAsync(SoftBO.examenWS.listarTodosTablaExamenRequest request) {
+            return base.Channel.listarTodosTablaExamenAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> listarTodosTablaExamenAsync() {
+            SoftBO.examenWS.listarTodosTablaExamenRequest inValue = new SoftBO.examenWS.listarTodosTablaExamenRequest();
+            return ((SoftBO.examenWS.ExamenWS)(this)).listarTodosTablaExamenAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

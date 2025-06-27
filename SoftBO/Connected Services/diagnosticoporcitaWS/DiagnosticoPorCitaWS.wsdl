@@ -5,12 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/DiagnosticoPorCitaWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="ListarDiagnosticoPorIdCita">
-    <part name="parameters" element="tns:ListarDiagnosticoPorIdCita" />
-  </message>
-  <message name="ListarDiagnosticoPorIdCitaResponse">
-    <part name="parameters" element="tns:ListarDiagnosticoPorIdCitaResponse" />
-  </message>
   <message name="ListarTodosLosDiagnosticos">
     <part name="parameters" element="tns:ListarTodosLosDiagnosticos" />
   </message>
@@ -23,11 +17,13 @@
   <message name="InsertarDiagnosticoPorCitaResponse">
     <part name="parameters" element="tns:InsertarDiagnosticoPorCitaResponse" />
   </message>
+  <message name="ListarDiagnosticoPorIdCita">
+    <part name="parameters" element="tns:ListarDiagnosticoPorIdCita" />
+  </message>
+  <message name="ListarDiagnosticoPorIdCitaResponse">
+    <part name="parameters" element="tns:ListarDiagnosticoPorIdCitaResponse" />
+  </message>
   <portType name="DiagnosticoPorCitaWS">
-    <operation name="ListarDiagnosticoPorIdCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCitaRequest" message="tns:ListarDiagnosticoPorIdCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCitaResponse" message="tns:ListarDiagnosticoPorIdCitaResponse" />
-    </operation>
     <operation name="ListarTodosLosDiagnosticos">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticosRequest" message="tns:ListarTodosLosDiagnosticos" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticosResponse" message="tns:ListarTodosLosDiagnosticosResponse" />
@@ -36,18 +32,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCitaRequest" message="tns:InsertarDiagnosticoPorCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCitaResponse" message="tns:InsertarDiagnosticoPorCitaResponse" />
     </operation>
+    <operation name="ListarDiagnosticoPorIdCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCitaRequest" message="tns:ListarDiagnosticoPorIdCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCitaResponse" message="tns:ListarDiagnosticoPorIdCitaResponse" />
+    </operation>
   </portType>
   <binding name="DiagnosticoPorCitaWSPortBinding" type="tns:DiagnosticoPorCitaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="ListarDiagnosticoPorIdCita">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="ListarTodosLosDiagnosticos">
       <soap:operation soapAction="" />
       <input>
@@ -58,6 +49,15 @@
       </output>
     </operation>
     <operation name="InsertarDiagnosticoPorCita">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ListarDiagnosticoPorIdCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
