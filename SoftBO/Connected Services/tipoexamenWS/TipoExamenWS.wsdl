@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/TipoExamenWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="insertarTipoExamen">
-    <part name="parameters" element="tns:insertarTipoExamen" />
+  <message name="obtenerPorIdTipoExamen">
+    <part name="parameters" element="tns:obtenerPorIdTipoExamen" />
   </message>
-  <message name="insertarTipoExamenResponse">
-    <part name="parameters" element="tns:insertarTipoExamenResponse" />
+  <message name="obtenerPorIdTipoExamenResponse">
+    <part name="parameters" element="tns:obtenerPorIdTipoExamenResponse" />
   </message>
   <message name="listarTodosTipoExamen">
     <part name="parameters" element="tns:listarTodosTipoExamen" />
@@ -23,16 +23,16 @@
   <message name="modificarTipoExamenResponse">
     <part name="parameters" element="tns:modificarTipoExamenResponse" />
   </message>
-  <message name="obtenerPorIdTipoExamen">
-    <part name="parameters" element="tns:obtenerPorIdTipoExamen" />
+  <message name="insertarTipoExamen">
+    <part name="parameters" element="tns:insertarTipoExamen" />
   </message>
-  <message name="obtenerPorIdTipoExamenResponse">
-    <part name="parameters" element="tns:obtenerPorIdTipoExamenResponse" />
+  <message name="insertarTipoExamenResponse">
+    <part name="parameters" element="tns:insertarTipoExamenResponse" />
   </message>
   <portType name="TipoExamenWS">
-    <operation name="insertarTipoExamen">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenRequest" message="tns:insertarTipoExamen" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenResponse" message="tns:insertarTipoExamenResponse" />
+    <operation name="obtenerPorIdTipoExamen">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenRequest" message="tns:obtenerPorIdTipoExamen" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenResponse" message="tns:obtenerPorIdTipoExamenResponse" />
     </operation>
     <operation name="listarTodosTipoExamen">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/listarTodosTipoExamenRequest" message="tns:listarTodosTipoExamen" />
@@ -42,14 +42,14 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenRequest" message="tns:modificarTipoExamen" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/modificarTipoExamenResponse" message="tns:modificarTipoExamenResponse" />
     </operation>
-    <operation name="obtenerPorIdTipoExamen">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenRequest" message="tns:obtenerPorIdTipoExamen" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/obtenerPorIdTipoExamenResponse" message="tns:obtenerPorIdTipoExamenResponse" />
+    <operation name="insertarTipoExamen">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenRequest" message="tns:insertarTipoExamen" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TipoExamenWS/insertarTipoExamenResponse" message="tns:insertarTipoExamenResponse" />
     </operation>
   </portType>
   <binding name="TipoExamenWSPortBinding" type="tns:TipoExamenWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="insertarTipoExamen">
+    <operation name="obtenerPorIdTipoExamen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -76,7 +76,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerPorIdTipoExamen">
+    <operation name="insertarTipoExamen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
