@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace SoftWA
@@ -310,78 +311,93 @@ namespace SoftWA
             }
             ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
-        private void ProcesarReserva()
+        private void ProcesarReserva(bool pagarAhora)
         {
             if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
             {
-                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: No se pudo identificar la cita a reservar.</div>";
+                MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
                 CerrarModalDesdeServidor();
                 return;
             }
             var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
             if (usuarioLogueado == null)
             {
-                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.</div>";
+                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
                 CerrarModalDesdeServidor();
                 return;
             }
             try
             {
-                SoftBO.citaWS.citaDTO citaCompleta;
-                using (var servicioCita = new CitaWSClient())
-                {
-                    citaCompleta = servicioCita.obtenerPorIdCitaCita(idCita);
-                }
-                if (citaCompleta == null)
-                {
-                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: La cita ya no existe.</div>";
-                    CerrarModalDesdeServidor();
-                    return;
-                }
-                if (citaCompleta.medico == null || citaCompleta.medico.idUsuario == 0 ||
-                    citaCompleta.especialidad == null || citaCompleta.especialidad.idEspecialidad == 0 ||
-                    citaCompleta.consultorio == null || citaCompleta.consultorio.idConsultorio == 0)
-                {
-                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Error: Los detalles de la cita son incompletos.</div>";
-                    CerrarModalDesdeServidor();
-                    return;
-                }
-
-                var citaParaApi = MapearCitaParaPacienteWS(citaCompleta);
-                var pacienteParaApi = new SoftBO.pacienteWS.usuarioDTO
-                {
-                    idUsuario = usuarioLogueado.idUsuario,
-                    idUsuarioSpecified = true
-                };
+                var citaParaReserva = PrepararCitaReserva(idCita);
+                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
                 int resultadoReserva;
                 using (var servicioPaciente = new PacienteWSClient())
                 {
-                    resultadoReserva = servicioPaciente.reservarCitaPaciente(citaParaApi, pacienteParaApi);
+                    resultadoReserva = servicioPaciente.reservarCitaPaciente(citaParaReserva, pacienteParaReserva);
                 }
-
                 if (resultadoReserva > 0)
                 {
-                    LimpiarResultadosBusqueda();
-                    pnlResultados.Visible = true;
-                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>¡Su cita ha sido reservada con éxito!</div>";
                     Session["CitaIdParaPago"] = idCita;
-                    string scriptRedireccion = "setTimeout(function() { window.location.href = 'paciente_pago_cita.aspx'; }, 3000);";
-                    ScriptManager.RegisterStartupScript(updResultadosCitas, updResultadosCitas.GetType(), "RedirectAfterReserve", scriptRedireccion, true);
-                    Response.Redirect("paciente_pago_cita.aspx", false);
+                    if(pagarAhora)
+                    {
+                        string scriptRedir = "window.location.href = 'paciente_pago_cita.aspx';";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "RedirigirPago", scriptRedir, true);
+                    }
+                    else
+                    {
+                        LimpiarResultadosBusqueda();
+                        pnlResultados.Visible = true;
+                        MostrarMensaje(ltlMensajeReserva, "¡Su cita ha sido reservada con éxito!", esError: false);
+                        ActualizarDisponibilidadCompleta();
+                        CerrarModalDesdeServidor();
+                    }
                 }
                 else
                 {
-                    ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>No se pudo completar la reserva, la cita ya no esté disponible.</div>";
+                    MostrarMensaje(ltlMensajeReserva, "No se pudo completar la reserva, la cita ya no esté disponible.", esError: true);
                     btnBuscarCitas_Click(this, EventArgs.Empty);
                     CerrarModalDesdeServidor();
                 }
             }
             catch (Exception ex)
             {
-                ltlMensajeReserva.Text = "<div class='alert alert-danger mt-3'>Ocurrió un error inesperado al procesar su reserva.</div>";
+                MostrarMensaje(ltlMensajeReserva, "Ocurrió un error inesperado al procesar su reserva.", esError: true);
                 System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
                 CerrarModalDesdeServidor();
             }
+        }
+        private SoftBO.pacienteWS.citaDTO PrepararCitaReserva(int idCita)
+        {
+            SoftBO.citaWS.citaDTO citaCompleta;
+            using (var servicioCita = new CitaWSClient())
+            {
+                citaCompleta = servicioCita.obtenerPorIdCitaCita(idCita);
+            }
+            if (citaCompleta == null)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: La cita ya no existe.", esError: true);
+                CerrarModalDesdeServidor();
+                return null;
+            }
+            if (citaCompleta.medico == null || citaCompleta.medico.idUsuario == 0 ||
+                citaCompleta.especialidad == null || citaCompleta.especialidad.idEspecialidad == 0 ||
+                citaCompleta.consultorio == null || citaCompleta.consultorio.idConsultorio == 0)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: Los detalles de la cita son incompletos.", esError: true);
+                CerrarModalDesdeServidor();
+                return null;
+            }
+            var cita = MapearCitaParaPacienteWS(citaCompleta);
+            return cita;
+        }
+        private SoftBO.pacienteWS.usuarioDTO PrepararPacienteReserva(int idusuario)
+        {
+            var paciente = new SoftBO.pacienteWS.usuarioDTO
+            {
+                idUsuario = idusuario,
+                idUsuarioSpecified = true
+            };
+            return paciente;
         }
         private SoftBO.pacienteWS.citaDTO MapearCitaParaPacienteWS(SoftBO.citaWS.citaDTO citaOriginal)
         {
@@ -443,16 +459,16 @@ namespace SoftWA
         }
         protected void btnModalPagarDespues_Click(object sender, EventArgs e)
         {
-            ProcesarReserva();
+            ProcesarReserva(pagarAhora: false);
         }
         protected void btnModalPagarAhora_Click(object sender, EventArgs e)
         {
-            ProcesarReserva();
+            ProcesarReserva(pagarAhora: true);
         }
-        private void RedirigirAPago(int idCita)
+        private void MostrarMensaje(Literal lit, string mensaje, bool esError)
         {
-            Session["CitaIdParaPago"] = idCita;
-            Response.Redirect("paciente_pago_cita.aspx", false);
+            string cssClass = esError ? "alert alert-danger" : "alert alert-success";
+            lit.Text = $"<div class='{cssClass} mt-3'>{Server.HtmlEncode(mensaje)}</div>";
         }
         protected void rptResultadosCitas_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {

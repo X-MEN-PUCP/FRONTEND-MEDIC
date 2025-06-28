@@ -136,21 +136,18 @@ namespace SoftWA
                 {
                     using (var servicioPaciente = new PacienteWSClient())
                     {
-                        //var historiaPorCita = new historiaClinicaPorCitaDTO
-                        //{
-                        //    cita = new citaDTO { idCita = idCita, idCitaSpecified = true }
-                        //};
                         var historiaPorCita = CitasCompletasPaciente.FirstOrDefault(h => h.cita.idCita == idCita);
                         int resultado = servicioPaciente.cancelarCitaPaciente(historiaPorCita);
 
                         if (resultado > 0)
                         {
-                            ltlMensajeAccion.Text = "<div class='alert alert-success'>Cita cancelada exitosamente.</div>";
+                            MostrarMensaje("Cita cancelada exitosamente.", esExito: true);
                             CargarDatosIniciales();
+                            rptProximasCitas_ItemCommand(source, e);
                         }
                         else
                         {
-                            ltlMensajeAccion.Text = "<div class='alert alert-warning'>No se pudo cancelar la cita.</div>";
+                            MostrarMensaje("No se pudo cancelar la cita.", esExito: false);
                         }
                     }
                 }
@@ -196,6 +193,11 @@ namespace SoftWA
                 case SoftBO.pacienteWS.estadoCita.DISPONIBLE: return "Disponible";
                 default: return "Desconocido";
             }
+        }
+        private void MostrarMensaje(string mensaje, bool esExito)
+        {
+            string cssClass = esExito ? "alert alert-success" : "alert alert-danger";
+            ltlMensajeAccion.Text = $"<div class='{cssClass} mt-3'>{Server.HtmlEncode(mensaje)}</div>";
         }
 
         #endregion
