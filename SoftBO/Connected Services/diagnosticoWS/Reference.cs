@@ -16,13 +16,13 @@ namespace SoftBO.diagnosticoWS {
     public interface DiagnosticoWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.diagnosticoWS.insertarDiagnosticoResponse insertarDiagnostico(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request);
+        SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse obtenerPorIdDiagnostico(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoResponse")]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> insertarDiagnosticoAsync(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoResponse")]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> obtenerPorIdDiagnosticoAsync(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/listarTodosDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/listarTodosDiagnosticoResponse")]
@@ -34,13 +34,13 @@ namespace SoftBO.diagnosticoWS {
         System.Threading.Tasks.Task<SoftBO.diagnosticoWS.listarTodosDiagnosticoResponse> listarTodosDiagnosticoAsync(SoftBO.diagnosticoWS.listarTodosDiagnosticoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse obtenerPorIdDiagnostico(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request);
+        SoftBO.diagnosticoWS.insertarDiagnosticoResponse insertarDiagnostico(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/obtenerPorIdDiagnosticoResponse")]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> obtenerPorIdDiagnosticoAsync(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoWS/insertarDiagnosticoResponse")]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> insertarDiagnosticoAsync(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request);
     }
     
     /// <remarks/>
@@ -176,35 +176,35 @@ namespace SoftBO.diagnosticoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarDiagnostico", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarDiagnosticoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdDiagnostico", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdDiagnosticoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.diagnosticoWS.diagnosticoDTO diagnostico;
+        public int diagnosticoId;
         
-        public insertarDiagnosticoRequest() {
+        public obtenerPorIdDiagnosticoRequest() {
         }
         
-        public insertarDiagnosticoRequest(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
-            this.diagnostico = diagnostico;
+        public obtenerPorIdDiagnosticoRequest(int diagnosticoId) {
+            this.diagnosticoId = diagnosticoId;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarDiagnosticoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarDiagnosticoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdDiagnosticoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdDiagnosticoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        public SoftBO.diagnosticoWS.diagnosticoDTO @return;
         
-        public insertarDiagnosticoResponse() {
+        public obtenerPorIdDiagnosticoResponse() {
         }
         
-        public insertarDiagnosticoResponse(int @return) {
+        public obtenerPorIdDiagnosticoResponse(SoftBO.diagnosticoWS.diagnosticoDTO @return) {
             this.@return = @return;
         }
     }
@@ -240,35 +240,35 @@ namespace SoftBO.diagnosticoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdDiagnostico", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdDiagnosticoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarDiagnostico", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarDiagnosticoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int diagnosticoId;
+        public SoftBO.diagnosticoWS.diagnosticoDTO diagnostico;
         
-        public obtenerPorIdDiagnosticoRequest() {
+        public insertarDiagnosticoRequest() {
         }
         
-        public obtenerPorIdDiagnosticoRequest(int diagnosticoId) {
-            this.diagnosticoId = diagnosticoId;
+        public insertarDiagnosticoRequest(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
+            this.diagnostico = diagnostico;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdDiagnosticoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdDiagnosticoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarDiagnosticoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarDiagnosticoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.diagnosticoWS.diagnosticoDTO @return;
+        public int @return;
         
-        public obtenerPorIdDiagnosticoResponse() {
+        public insertarDiagnosticoResponse() {
         }
         
-        public obtenerPorIdDiagnosticoResponse(SoftBO.diagnosticoWS.diagnosticoDTO @return) {
+        public insertarDiagnosticoResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -301,26 +301,26 @@ namespace SoftBO.diagnosticoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.diagnosticoWS.insertarDiagnosticoResponse SoftBO.diagnosticoWS.DiagnosticoWS.insertarDiagnostico(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request) {
-            return base.Channel.insertarDiagnostico(request);
+        SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse SoftBO.diagnosticoWS.DiagnosticoWS.obtenerPorIdDiagnostico(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request) {
+            return base.Channel.obtenerPorIdDiagnostico(request);
         }
         
-        public int insertarDiagnostico(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
-            SoftBO.diagnosticoWS.insertarDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.insertarDiagnosticoRequest();
-            inValue.diagnostico = diagnostico;
-            SoftBO.diagnosticoWS.insertarDiagnosticoResponse retVal = ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).insertarDiagnostico(inValue);
+        public SoftBO.diagnosticoWS.diagnosticoDTO obtenerPorIdDiagnostico(int diagnosticoId) {
+            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest();
+            inValue.diagnosticoId = diagnosticoId;
+            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse retVal = ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).obtenerPorIdDiagnostico(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> SoftBO.diagnosticoWS.DiagnosticoWS.insertarDiagnosticoAsync(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request) {
-            return base.Channel.insertarDiagnosticoAsync(request);
+        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> SoftBO.diagnosticoWS.DiagnosticoWS.obtenerPorIdDiagnosticoAsync(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request) {
+            return base.Channel.obtenerPorIdDiagnosticoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> insertarDiagnosticoAsync(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
-            SoftBO.diagnosticoWS.insertarDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.insertarDiagnosticoRequest();
-            inValue.diagnostico = diagnostico;
-            return ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).insertarDiagnosticoAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> obtenerPorIdDiagnosticoAsync(int diagnosticoId) {
+            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest();
+            inValue.diagnosticoId = diagnosticoId;
+            return ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).obtenerPorIdDiagnosticoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -345,26 +345,26 @@ namespace SoftBO.diagnosticoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse SoftBO.diagnosticoWS.DiagnosticoWS.obtenerPorIdDiagnostico(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request) {
-            return base.Channel.obtenerPorIdDiagnostico(request);
+        SoftBO.diagnosticoWS.insertarDiagnosticoResponse SoftBO.diagnosticoWS.DiagnosticoWS.insertarDiagnostico(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request) {
+            return base.Channel.insertarDiagnostico(request);
         }
         
-        public SoftBO.diagnosticoWS.diagnosticoDTO obtenerPorIdDiagnostico(int diagnosticoId) {
-            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest();
-            inValue.diagnosticoId = diagnosticoId;
-            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse retVal = ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).obtenerPorIdDiagnostico(inValue);
+        public int insertarDiagnostico(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
+            SoftBO.diagnosticoWS.insertarDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.insertarDiagnosticoRequest();
+            inValue.diagnostico = diagnostico;
+            SoftBO.diagnosticoWS.insertarDiagnosticoResponse retVal = ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).insertarDiagnostico(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> SoftBO.diagnosticoWS.DiagnosticoWS.obtenerPorIdDiagnosticoAsync(SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest request) {
-            return base.Channel.obtenerPorIdDiagnosticoAsync(request);
+        System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> SoftBO.diagnosticoWS.DiagnosticoWS.insertarDiagnosticoAsync(SoftBO.diagnosticoWS.insertarDiagnosticoRequest request) {
+            return base.Channel.insertarDiagnosticoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoResponse> obtenerPorIdDiagnosticoAsync(int diagnosticoId) {
-            SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.obtenerPorIdDiagnosticoRequest();
-            inValue.diagnosticoId = diagnosticoId;
-            return ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).obtenerPorIdDiagnosticoAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.diagnosticoWS.insertarDiagnosticoResponse> insertarDiagnosticoAsync(SoftBO.diagnosticoWS.diagnosticoDTO diagnostico) {
+            SoftBO.diagnosticoWS.insertarDiagnosticoRequest inValue = new SoftBO.diagnosticoWS.insertarDiagnosticoRequest();
+            inValue.diagnostico = diagnostico;
+            return ((SoftBO.diagnosticoWS.DiagnosticoWS)(this)).insertarDiagnosticoAsync(inValue);
         }
     }
 }

@@ -3,6 +3,7 @@ using SoftBO.adminWS; // Cambiar si el WS se renombra o es diferente
 using SoftBO.rolesporusuarioWS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -377,8 +378,6 @@ namespace SoftWA
         {
             bool esMedico = ddlRolNuevo.SelectedValue == "2";
             pnlEspecialidadNuevo.Visible = esMedico;
-
-            //upModalAgregarUsuario.Update();
         }
 
         protected void btnGuardarNuevoUsuario_Click(object sender, EventArgs e)
@@ -386,7 +385,6 @@ namespace SoftWA
             Page.Validate("NuevoUsuario");
             if (!Page.IsValid)
             {
-                // Mantener el modal abierto si hay errores de validación
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpen", "$('#modalAgregarUsuario').modal('show');", true);
                 return;
             }
@@ -398,18 +396,16 @@ namespace SoftWA
                 return;
             }
 
-            // Crear el objeto usuario a partir del formulario
             var nuevoUsuario = new SoftBO.adminWS.usuarioDTO
             {
                 nombres = txtNombresNuevo.Text.Trim(),
                 apellidoPaterno = txtApellidoPaternoNuevo.Text.Trim(),
-                apellidoMaterno = "", // Campo opcional
+                apellidoMaterno = "",
                 tipoDocumento = (SoftBO.adminWS.tipoDocumento)Enum.Parse(typeof(SoftBO.adminWS.tipoDocumento), ddlTipoDocumentoNuevo.SelectedValue),
                 tipoDocumentoSpecified = true,
                 numDocumento = txtNumDocumentoNuevo.Text.Trim(),
-                contrasenha = txtContrasenhaNuevo.Text, // La contraseña se debe cifrar en el backend
+                contrasenha = txtContrasenhaNuevo.Text,
                 correoElectronico = txtCorreoNuevo.Text.Trim(),
-                // Campos de auditoría
                 usuarioCreacion = adminLogueado.idUsuario,
                 usuarioCreacionSpecified = true,
                 fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd")
@@ -417,9 +413,8 @@ namespace SoftWA
 
             try
             {
-                // Determinar si es un médico
                 int rolId = Convert.ToInt32(ddlRolNuevo.SelectedValue);
-                if (rolId == 2) // ID del rol Médico
+                if (rolId == 2)
                 {
                     int especialidadId = Convert.ToInt32(ddlEspecialidadNuevo.SelectedValue);
                     if (especialidadId == 0)
@@ -428,12 +423,12 @@ namespace SoftWA
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpenOnError", "$('#modalAgregarUsuario').modal('show');", true);
                         return;
                     }
+                    BindingList<SoftBO.adminWS.especialidadDTO> especialidades = new BindingList<SoftBO.adminWS.especialidadDTO>();
                     var especialidad = new especialidadDTO { idEspecialidad = especialidadId, idEspecialidadSpecified = true };
+                    especialidades.Add(especialidad);
+                    bool resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidades);
 
-                    // Llamar al método específico para insertar médico
-                    int resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidad);
-
-                    if (resultado > 0)
+                    if (resultado)
                     {
                         MostrarMensaje("Médico creado y asignado correctamente.", false);
                         LimpiarFormularioNuevoUsuario();
@@ -445,14 +440,11 @@ namespace SoftWA
                 }
                 else
                 {
-                    // Lógica para insertar un usuario general (no médico)
                     MostrarMensaje("Funcionalidad para crear usuarios no médicos pendiente de implementación en backend.", false);
                 }
 
-                // Si el guardado fue exitoso, recargar la grilla
                 BindUsuariosGrid();
 
-                // Cerrar el modal desde el servidor
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideAddModal", "$('#modalAgregarUsuario').modal('hide');", true);
             }
             catch (Exception ex)

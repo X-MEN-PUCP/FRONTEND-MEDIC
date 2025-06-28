@@ -5,12 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/ExamenWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="insertarExamen">
-    <part name="parameters" element="tns:insertarExamen" />
-  </message>
-  <message name="insertarExamenResponse">
-    <part name="parameters" element="tns:insertarExamenResponse" />
-  </message>
   <message name="obtenerPorIdTablaExamen">
     <part name="parameters" element="tns:obtenerPorIdTablaExamen" />
   </message>
@@ -23,11 +17,13 @@
   <message name="listarTodosTablaExamenResponse">
     <part name="parameters" element="tns:listarTodosTablaExamenResponse" />
   </message>
+  <message name="insertarExamen">
+    <part name="parameters" element="tns:insertarExamen" />
+  </message>
+  <message name="insertarExamenResponse">
+    <part name="parameters" element="tns:insertarExamenResponse" />
+  </message>
   <portType name="ExamenWS">
-    <operation name="insertarExamen">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest" message="tns:insertarExamen" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse" message="tns:insertarExamenResponse" />
-    </operation>
     <operation name="obtenerPorIdTablaExamen">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest" message="tns:obtenerPorIdTablaExamen" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse" message="tns:obtenerPorIdTablaExamenResponse" />
@@ -36,18 +32,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest" message="tns:listarTodosTablaExamen" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse" message="tns:listarTodosTablaExamenResponse" />
     </operation>
+    <operation name="insertarExamen">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest" message="tns:insertarExamen" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse" message="tns:insertarExamenResponse" />
+    </operation>
   </portType>
   <binding name="ExamenWSPortBinding" type="tns:ExamenWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="insertarExamen">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="obtenerPorIdTablaExamen">
       <soap:operation soapAction="" />
       <input>
@@ -58,6 +49,15 @@
       </output>
     </operation>
     <operation name="listarTodosTablaExamen">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarExamen">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

@@ -30,9 +30,9 @@ namespace SoftBO
         {
             return this.adminCliente.insertarNuevaEspecialidad(especialidad);
         }
-        public int InsertarNuevoMedico(usuarioDTO medico, especialidadDTO especialidad)
+        public bool InsertarNuevoMedico(usuarioDTO medico, BindingList<especialidadDTO> especialidad)
         {
-            return this.adminCliente.insertarNuevoMedico(medico, especialidad);
+            return this.adminCliente.insertarNuevoMedico(medico, especialidad.ToArray());
         }
         public BindingList<usuarioDTO> ListarMedicos()
         {

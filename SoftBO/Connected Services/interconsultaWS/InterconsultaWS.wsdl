@@ -5,17 +5,17 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/InterconsultaWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerPorIdInterconuslta">
-    <part name="parameters" element="tns:obtenerPorIdInterconuslta" />
-  </message>
-  <message name="obtenerPorIdInterconusltaResponse">
-    <part name="parameters" element="tns:obtenerPorIdInterconusltaResponse" />
-  </message>
   <message name="insertarInterconuslta">
     <part name="parameters" element="tns:insertarInterconuslta" />
   </message>
   <message name="insertarInterconusltaResponse">
     <part name="parameters" element="tns:insertarInterconusltaResponse" />
+  </message>
+  <message name="obtenerPorIdInterconuslta">
+    <part name="parameters" element="tns:obtenerPorIdInterconuslta" />
+  </message>
+  <message name="obtenerPorIdInterconusltaResponse">
+    <part name="parameters" element="tns:obtenerPorIdInterconusltaResponse" />
   </message>
   <message name="listarTodosInterconuslta">
     <part name="parameters" element="tns:listarTodosInterconuslta" />
@@ -24,13 +24,13 @@
     <part name="parameters" element="tns:listarTodosInterconusltaResponse" />
   </message>
   <portType name="InterconsultaWS">
-    <operation name="obtenerPorIdInterconuslta">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRequest" message="tns:obtenerPorIdInterconuslta" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaResponse" message="tns:obtenerPorIdInterconusltaResponse" />
-    </operation>
     <operation name="insertarInterconuslta">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest" message="tns:insertarInterconuslta" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse" message="tns:insertarInterconusltaResponse" />
+    </operation>
+    <operation name="obtenerPorIdInterconuslta">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRequest" message="tns:obtenerPorIdInterconuslta" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaResponse" message="tns:obtenerPorIdInterconusltaResponse" />
     </operation>
     <operation name="listarTodosInterconuslta">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRequest" message="tns:listarTodosInterconuslta" />
@@ -39,7 +39,7 @@
   </portType>
   <binding name="InterconsultaWSPortBinding" type="tns:InterconsultaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerPorIdInterconuslta">
+    <operation name="insertarInterconuslta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -48,7 +48,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarInterconuslta">
+    <operation name="obtenerPorIdInterconuslta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

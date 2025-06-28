@@ -303,7 +303,7 @@
     <None Include="Connected Services\examenporcitaWS\ExamenPorCitaWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.examenPorCita.datasource">
+    <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.examenPorCitaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\examenporcitaWS\SoftBO.examenporcitaWS.InsertarExamenPorCitaResponse.datasource">
@@ -405,13 +405,49 @@
     <None Include="Connected Services\medicoWS\MedicoWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.agregarExamenPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.citaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.eliminarInterconsultaDeCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.especialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.examenDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.historiaClinicaPorCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.insertarInterconsultasDeCitaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarCitasMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarEspecialidadesParaInterconsultaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarExamenesPorTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarTiposDeExamenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.llenarEpicrisisMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.modificarInteronsultaDeCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.obtenerHistoriaClinicaPorCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.tipoExamenDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\pacienteWS\PacienteWS.wsdl" />

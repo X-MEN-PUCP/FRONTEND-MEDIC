@@ -29,19 +29,6 @@ namespace SoftBO.diagnosticoporcitaWS {
         System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> ListarTodosLosDiagnosticosAsync(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
-            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
-            "Response")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
-            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
-            "Response")]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Response")]
@@ -53,6 +40,19 @@ namespace SoftBO.diagnosticoporcitaWS {
             "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Response")]
         System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaResponse> ListarDiagnosticoPorIdCitaAsync(SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
+            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
+            "Response")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
+            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
+            "Response")]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request);
     }
     
     /// <remarks/>
@@ -1611,42 +1611,6 @@ namespace SoftBO.diagnosticoporcitaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarDiagnosticoPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarDiagnosticoPorCitaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico;
-        
-        public InsertarDiagnosticoPorCitaRequest() {
-        }
-        
-        public InsertarDiagnosticoPorCitaRequest(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
-            this.diagnostico = diagnostico;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarDiagnosticoPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class InsertarDiagnosticoPorCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public InsertarDiagnosticoPorCitaResponse() {
-        }
-        
-        public InsertarDiagnosticoPorCitaResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="ListarDiagnosticoPorIdCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class ListarDiagnosticoPorIdCitaRequest {
         
@@ -1676,6 +1640,42 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         public ListarDiagnosticoPorIdCitaResponse(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarDiagnosticoPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarDiagnosticoPorCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico;
+        
+        public InsertarDiagnosticoPorCitaRequest() {
+        }
+        
+        public InsertarDiagnosticoPorCitaRequest(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
+            this.diagnostico = diagnostico;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertarDiagnosticoPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class InsertarDiagnosticoPorCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public InsertarDiagnosticoPorCitaResponse() {
+        }
+        
+        public InsertarDiagnosticoPorCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1729,29 +1729,6 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request) {
-            return base.Channel.InsertarDiagnosticoPorCita(request);
-        }
-        
-        public int InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
-            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest();
-            inValue.diagnostico = diagnostico;
-            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse retVal = ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).InsertarDiagnosticoPorCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request) {
-            return base.Channel.InsertarDiagnosticoPorCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
-            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest();
-            inValue.diagnostico = diagnostico;
-            return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).InsertarDiagnosticoPorCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarDiagnosticoPorIdCita(SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest request) {
             return base.Channel.ListarDiagnosticoPorIdCita(request);
         }
@@ -1772,6 +1749,29 @@ namespace SoftBO.diagnosticoporcitaWS {
             SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest();
             inValue.idCita = idCita;
             return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarDiagnosticoPorIdCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request) {
+            return base.Channel.InsertarDiagnosticoPorCita(request);
+        }
+        
+        public int InsertarDiagnosticoPorCita(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
+            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest();
+            inValue.diagnostico = diagnostico;
+            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse retVal = ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).InsertarDiagnosticoPorCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest request) {
+            return base.Channel.InsertarDiagnosticoPorCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaResponse> InsertarDiagnosticoPorCitaAsync(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita diagnostico) {
+            SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.InsertarDiagnosticoPorCitaRequest();
+            inValue.diagnostico = diagnostico;
+            return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).InsertarDiagnosticoPorCitaAsync(inValue);
         }
     }
 }

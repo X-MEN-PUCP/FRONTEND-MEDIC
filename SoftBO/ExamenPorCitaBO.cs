@@ -15,19 +15,19 @@ namespace SoftBO
         {
             this.examenPorCitaCliente = new ExamenPorCitaWSClient();
         }
-        public int InsertarExamenPorCita(examenPorCita examenxCita)
+        public int InsertarExamenPorCita(examenPorCitaDTO examenxCita)
         {
             return this.examenPorCitaCliente.InsertarExamenPorCita(examenxCita);
         }
-        public BindingList<examenPorCita> ListarExamenesPorIdCita(int idCita)
+        public BindingList<examenPorCitaDTO> ListarExamenesPorIdCita(int idCita)
         {
-            examenPorCita[] examenes = this.examenPorCitaCliente.ListarExamenesPorIdCita(idCita);
-            return new BindingList<examenPorCita>(examenes ?? Array.Empty<examenPorCita>());
+            examenPorCitaDTO[] examenes = this.examenPorCitaCliente.ListarExamenesPorIdCita(idCita);
+            return new BindingList<examenPorCitaDTO>(examenes ?? Array.Empty<examenPorCitaDTO>());
         }
-        public BindingList<examenPorCita> ListarTodosLosExamenesPorCita()
+        public BindingList<examenPorCitaDTO> ListarTodosLosExamenesPorCita()
         {
-            examenPorCita[] examenes = this.examenPorCitaCliente.ListarTodosLosExamenesPorCita();
-            return new BindingList<examenPorCita>(examenes);
+            examenPorCitaDTO[] examenes = this.examenPorCitaCliente.ListarTodosLosExamenesPorCita();
+            return new BindingList<examenPorCitaDTO>(examenes);
         }
     }
 }

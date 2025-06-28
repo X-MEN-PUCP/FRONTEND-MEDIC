@@ -11,10 +11,10 @@
   </xs:complexType>
   <xs:complexType name="ListarTodosLosExamenesPorCitaResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:examenPorCita" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:examenPorCitaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="examenPorCita">
+  <xs:complexType name="examenPorCitaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="cita" type="tns:citaDTO" />
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
@@ -129,12 +129,12 @@
   </xs:complexType>
   <xs:complexType name="ListarExamenesPorIdCitaResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:examenPorCita" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:examenPorCitaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InsertarExamenPorCita">
     <xs:sequence>
-      <xs:element minOccurs="0" name="examenPorCita" type="tns:examenPorCita" />
+      <xs:element minOccurs="0" name="examenPorCita" type="tns:examenPorCitaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InsertarExamenPorCitaResponse">
