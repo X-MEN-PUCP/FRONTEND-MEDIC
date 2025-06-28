@@ -1,8 +1,4 @@
-﻿using SoftBO.citaWS;
-using SoftBO.especialidadWS;
-using SoftBO.loginWS;
-using SoftBO.pacienteWS;
-using SoftBO.usuarioporespecialidadWS;
+﻿using SoftBO;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -68,14 +64,13 @@ namespace SoftWA
         {
             try
             {
-                using (var servicioEspecialidad = new EspecialidadWSClient())
-                {
-                    var especialidades = servicioEspecialidad.listarEspecialidad();
-                    ddlEspecialidad.DataSource = especialidades;
-                    ddlEspecialidad.DataTextField = "nombreEspecialidad";
-                    ddlEspecialidad.DataValueField = "idEspecialidad";
-                    ddlEspecialidad.DataBind();
-                }
+                var servicioEspecialidad = new EspecialidadBO();
+                var especialidades = servicioEspecialidad.ListarEspecialidad();
+                ddlEspecialidad.DataSource = especialidades;
+                ddlEspecialidad.DataTextField = "nombreEspecialidad";
+                ddlEspecialidad.DataValueField = "idEspecialidad";
+                ddlEspecialidad.DataBind();
+                
             }
             catch (Exception ex)
             {
@@ -111,35 +106,33 @@ namespace SoftWA
 
             try
             {
-                using (var servicioCita = new CitaWSClient())
+                var servicioCita = new CitaBO();
+                var citasDisponibles = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
+                if (citasDisponibles != null && citasDisponibles.Any())
                 {
-                    var citasDisponibles = servicioCita.buscarCitasWSCitas(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
-
-                    if (citasDisponibles != null && citasDisponibles.Any())
-                    {
-                        var disponibilidad = citasDisponibles
-                            .Where(c => c != null && !string.IsNullOrEmpty(c.fechaCita) && !string.IsNullOrEmpty(c.horaInicio))
-                            .Select(c => new
-                            {
-                                Fecha = DateTime.TryParse(c.fechaCita, out var dt) ? dt.Date : DateTime.MinValue,
-                                Hora = TimeSpan.TryParse(c.horaInicio, out var ts) ? ts : TimeSpan.MinValue
-                            })
-                            .Where(c => c.Fecha != DateTime.MinValue && c.Hora != TimeSpan.MinValue)
-                            .GroupBy(c => c.Fecha)
-                            .ToDictionary(
-                                g => g.Key,
-                                g => g.Select(c => c.Hora)
-                                      .Distinct()
-                                      .OrderBy(t => t)
-                                      .ToList()
-                            );
-                        if (disponibilidad.Any())
+                    var disponibilidad = citasDisponibles
+                        .Where(c => c != null && !string.IsNullOrEmpty(c.fechaCita) && !string.IsNullOrEmpty(c.horaInicio))
+                        .Select(c => new
                         {
-                            HorariosDisponiblesPorFecha = disponibilidad;
-                            lblCalendarioStatus.Visible = true;
-                        }
+                            Fecha = DateTime.TryParse(c.fechaCita, out var dt) ? dt.Date : DateTime.MinValue,
+                            Hora = TimeSpan.TryParse(c.horaInicio, out var ts) ? ts : TimeSpan.MinValue
+                        })
+                        .Where(c => c.Fecha != DateTime.MinValue && c.Hora != TimeSpan.MinValue)
+                        .GroupBy(c => c.Fecha)
+                        .ToDictionary(
+                            g => g.Key,
+                            g => g.Select(c => c.Hora)
+                                    .Distinct()
+                                    .OrderBy(t => t)
+                                    .ToList()
+                        );
+                    if (disponibilidad.Any())
+                    {
+                        HorariosDisponiblesPorFecha = disponibilidad;
+                        lblCalendarioStatus.Visible = true;
                     }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -210,36 +203,34 @@ namespace SoftWA
 
             try
             {
-                using (var servicioCita = new CitaWSClient())
+                var servicioCita = new CitaBO();
+                var resultados = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
+                                                                    string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
+                                                                    SoftBO.citaWS.estadoCita.DISPONIBLE);
+                if (resultados != null && resultados.Any())
                 {
-                    var resultados = servicioCita.buscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
-                                                                     string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
-                                                                     SoftBO.citaWS.estadoCita.DISPONIBLE);
+                    var citasParaMostrar = resultados
+                        .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
+                        .Select(c => new
+                        {
+                            IdCitaDisponible = c.idCita,
+                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
+                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
+                            FechaCita = DateTime.Parse(c.fechaCita),
+                            DescripcionHorario = c.horaInicio.Substring(0, 5),
+                            Precio = c.especialidad.precioConsulta
+                        }).ToList();
 
-                    if (resultados != null && resultados.Any())
-                    {
-                        var citasParaMostrar = resultados
-                            .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
-                            .Select(c => new
-                            {
-                                IdCitaDisponible = c.idCita,
-                                NombreEspecialidad = c.especialidad.nombreEspecialidad,
-                                NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
-                                FechaCita = DateTime.Parse(c.fechaCita),
-                                DescripcionHorario = c.horaInicio.Substring(0, 5),
-                                Precio = c.especialidad.precioConsulta
-                            }).ToList();
-
-                        rptResultadosCitas.DataSource = citasParaMostrar;
-                        rptResultadosCitas.DataBind();
-                        phNoResultados.Visible = !citasParaMostrar.Any();
-                    }
-                    else
-                    {
-                        LimpiarResultadosBusqueda();
-                        phNoResultados.Visible = true;
-                    }
+                    rptResultadosCitas.DataSource = citasParaMostrar;
+                    rptResultadosCitas.DataBind();
+                    phNoResultados.Visible = !citasParaMostrar.Any();
                 }
+                else
+                {
+                    LimpiarResultadosBusqueda();
+                    phNoResultados.Visible = true;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -286,9 +277,10 @@ namespace SoftWA
             {
                 try
                 {
-                    using (var servicioMedicos = new UsuarioPorEspecialidadWSClient())
+                    var servicioMedicos = new UsuarioPorEspecialidadBO();
+                    var medicos = servicioMedicos.ListarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
+                    if(medicos != null && medicos.Any())
                     {
-                        var medicos = servicioMedicos.listarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
                         var listaMedicos = medicos.Select(m => new ListItem(
                             $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
                             m.usuario.idUsuario.ToString()
@@ -297,11 +289,17 @@ namespace SoftWA
                         ddlMedico.DataTextField = "Text";
                         ddlMedico.DataValueField = "Value";
                         ddlMedico.DataBind();
+                        ddlMedico.Enabled = true;
+                    }
+                    else
+                    {
+                        ddlMedico.Enabled = false;
                     }
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Error cargando médicos: " + ex.Message);
+                    ddlMedico.Enabled = false;
                 }
                 ddlMedico.Enabled = true;
             }
@@ -331,10 +329,9 @@ namespace SoftWA
                 var citaParaReserva = PrepararCitaReserva(idCita);
                 var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
                 int resultadoReserva;
-                using (var servicioPaciente = new PacienteWSClient())
-                {
-                    resultadoReserva = servicioPaciente.reservarCitaPaciente(citaParaReserva, pacienteParaReserva);
-                }
+                var servicioPaciente = new PacienteBO();
+                resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
+                
                 if (resultadoReserva > 0)
                 {
                     Session["CitaIdParaPago"] = idCita;
@@ -369,10 +366,9 @@ namespace SoftWA
         private SoftBO.pacienteWS.citaDTO PrepararCitaReserva(int idCita)
         {
             SoftBO.citaWS.citaDTO citaCompleta;
-            using (var servicioCita = new CitaWSClient())
-            {
-                citaCompleta = servicioCita.obtenerPorIdCitaCita(idCita);
-            }
+            var servicioCita = new CitaBO();
+            citaCompleta = servicioCita.ObtenerPorIdCitaCita(idCita);
+            
             if (citaCompleta == null)
             {
                 MostrarMensaje(ltlMensajeReserva, "Error: La cita ya no existe.", esError: true);

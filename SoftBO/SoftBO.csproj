@@ -516,6 +516,9 @@
     <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\usuarioporespecialidadWS\SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

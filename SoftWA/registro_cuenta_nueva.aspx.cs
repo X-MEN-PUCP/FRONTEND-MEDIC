@@ -105,7 +105,33 @@ namespace SoftWA
                 MostrarMensaje("Por favor, corrija los errores indicados.", esExito: false);
                 return;
             }
+            string correo = txtCorreo.Text.Trim();
+            if (!EsDominioDeCorreoValido(correo))
+            {
+                MostrarMensaje("El dominio del correo electrónico no es válido. Por favor, use un proveedor conocido (ej: Gmail, Outlook, etc.).", esExito: false);
+                return;
+            }
 
+            if (DateTime.TryParse(txtFechaNacimiento.Text, out DateTime fechaNac))
+            {
+                if (!EsMayorDeEdad(fechaNac))
+                {
+                    MostrarMensaje("Debe ser mayor de 18 años para registrarse.", esExito: false);
+                    return;
+                }
+            }
+            else
+            {
+                MostrarMensaje("El formato de la fecha de nacimiento no es válido.", esExito: false);
+                return;
+            }
+
+            string password = txtPassword.Text;
+            if (!EsContrasenaSegura(password))
+            {
+                MostrarMensaje("La contraseña no es segura. Debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.", esExito: false);
+                return;
+            }
             try
             {
                 Enum.TryParse<tipoDocumento>(hdnSelectedDocumentType.Value, true, out tipoDocumento tipoEnum);
@@ -159,5 +185,43 @@ namespace SoftWA
             string cssClass = esExito ? "alert alert-success" : "alert alert-danger";
             ltlMensaje.Text = $"<div class='{cssClass} mt-3'>{Server.HtmlEncode(mensaje)}</div>";
         }
+        #region Funciones de Validación
+        private bool EsDominioDeCorreoValido(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
+            {
+                return false;
+            }
+
+            string dominio = email.Split('@')[1].ToLower();
+            var dominiosValidos = new HashSet<string>
+        {
+            "gmail.com", "outlook.com", "hotmail.com", "yahoo.com", "icloud.com",
+            "pucp.edu.pe"
+        };
+
+            return dominiosValidos.Contains(dominio);
+        }
+        private bool EsMayorDeEdad(DateTime fechaNacimiento)
+        {
+            int edad = DateTime.Today.Year - fechaNacimiento.Year;
+            if (fechaNacimiento.Date > DateTime.Today.AddYears(-edad))
+            {
+                edad--;
+            }
+            return edad >= 18;
+        }
+        private bool EsContrasenaSegura(string password)
+        {
+            if (string.IsNullOrEmpty(password) || password.Length < 8) return false;
+
+            bool tieneMayuscula = password.Any(char.IsUpper);
+            bool tieneMinuscula = password.Any(char.IsLower);
+            bool tieneNumero = password.Any(char.IsDigit);
+            bool tieneSimbolo = password.Any(c => !char.IsLetterOrDigit(c));
+
+            return tieneMayuscula && tieneMinuscula && tieneNumero && tieneSimbolo;
+        }
+        #endregion
     }
 }

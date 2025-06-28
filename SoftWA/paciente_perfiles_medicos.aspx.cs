@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using SoftBO.usuarioporespecialidadWS;
-using SoftBO.especialidadWS;
+using SoftBO.adminWS;
+using SoftBO;
 
 namespace SoftWA
 {
@@ -22,28 +23,21 @@ namespace SoftWA
                 AplicarFiltrosYOrdenar();
             }
         }
-
         private void CargarListaCompletaDeMedicos()
         {
-            var listaPerfiles = new List<usuarioPorEspecialidadDTO>();
             try
-            {
-                using (var servicioEspecialidad = new EspecialidadWSClient())
+            { 
+                var servicioUsuarioEsp = new UsuarioPorEspecialidadBO();
+                var perfiles = servicioUsuarioEsp.ListarTodosPerfilesMedicos();
+                if (perfiles != null)
                 {
-                    var todasEspecialidades = servicioEspecialidad.listarEspecialidad();
-                    using (var servicioUsuarioEsp = new UsuarioPorEspecialidadWSClient())
-                    {
-                        foreach (var esp in todasEspecialidades)
-                        {
-                            var medicosDeEspecialidad = servicioUsuarioEsp.listarPorEspecialidadUsuarioPorEspecialidad(esp.idEspecialidad);
-                            if(medicosDeEspecialidad != null)
-                            {
-                                listaPerfiles.AddRange(medicosDeEspecialidad);
-                            }
-                        }
-                    }
+                    ListaCompletaMedicos = perfiles.ToList();
                 }
-                ListaCompletaMedicos = listaPerfiles;
+                else
+                {
+                    ListaCompletaMedicos = new List<usuarioPorEspecialidadDTO>();
+                }
+                System.Diagnostics.Debug.WriteLine($"Número de médicos cargados: {ListaCompletaMedicos?.Count ?? 0}");
             }
 
             catch (Exception ex)
@@ -61,9 +55,17 @@ namespace SoftWA
         private void AplicarFiltrosYOrdenar()
         {
             var medicosFiltrados = ListaCompletaMedicos;
-            if (medicosFiltrados == null || !medicosFiltrados.Any())
+            if (medicosFiltrados != null)
+            {
+                medicosFiltrados = medicosFiltrados
+                    .Where(m => m.usuario != null && m.especialidad != null)
+                    .ToList();
+            }
+            if(medicosFiltrados == null || !medicosFiltrados.Any())
             {
                 phNoMedicos.Visible = true;
+                rptPerfilesMedicos.DataSource = null;
+                rptPerfilesMedicos.DataBind();
                 rptPerfilesMedicos.Visible = false;
                 return;
             }
@@ -71,18 +73,26 @@ namespace SoftWA
             if (!string.IsNullOrEmpty(filtro))
             {
                 medicosFiltrados = medicosFiltrados.Where(m =>
-                    (m.usuario.nombres.ToUpper() + " " + m.usuario.apellidoPaterno.ToUpper()).Contains(filtro) ||
-                    m.especialidad.nombreEspecialidad.ToUpper().Contains(filtro)
+                    (!string.IsNullOrEmpty(m.usuario.nombres) && !string.IsNullOrEmpty(m.usuario.apellidoPaterno) &&
+                     (m.usuario.nombres.ToUpper() + " " + m.usuario.apellidoPaterno.ToUpper()).Contains(filtro)) ||
+                    (!string.IsNullOrEmpty(m.especialidad.nombreEspecialidad) &&
+                     m.especialidad.nombreEspecialidad.ToUpper().Contains(filtro))
                 ).ToList();
             }
             string orden = ddlOrdenarPor.SelectedValue;
             if (orden == "Nombre")
             {
-                medicosFiltrados = medicosFiltrados.OrderBy(m => m.usuario.nombres).ThenBy(m => m.usuario.apellidoPaterno).ToList();
+                medicosFiltrados = medicosFiltrados
+                    .OrderBy(m => m.usuario.nombres)
+                    .ThenBy(m => m.usuario.apellidoPaterno)
+                    .ToList();
             }
             else
             {
-                medicosFiltrados = medicosFiltrados.OrderBy(m => m.especialidad.nombreEspecialidad).ThenBy(m => m.usuario.nombres).ToList();
+                medicosFiltrados = medicosFiltrados
+                    .OrderBy(m => m.especialidad.nombreEspecialidad)
+                    .ThenBy(m => m.usuario.nombres)
+                    .ToList();
             }
 
             rptPerfilesMedicos.DataSource = medicosFiltrados;

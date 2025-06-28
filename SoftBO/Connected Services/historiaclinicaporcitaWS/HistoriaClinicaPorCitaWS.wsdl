@@ -5,6 +5,12 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="ModificarHistoriaClinicaPorCita">
+    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCita" />
+  </message>
+  <message name="ModificarHistoriaClinicaPorCitaResponse">
+    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCitaResponse" />
+  </message>
   <message name="InsertarHistoriaClinicaPorCita">
     <part name="parameters" element="tns:InsertarHistoriaClinicaPorCita" />
   </message>
@@ -16,12 +22,6 @@
   </message>
   <message name="ObtenerHistoriaClinicaPorIdCitaResponse">
     <part name="parameters" element="tns:ObtenerHistoriaClinicaPorIdCitaResponse" />
-  </message>
-  <message name="ModificarHistoriaClinicaPorCita">
-    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCita" />
-  </message>
-  <message name="ModificarHistoriaClinicaPorCitaResponse">
-    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCitaResponse" />
   </message>
   <message name="ListarTodasLasHistoriasClinicasPorCita">
     <part name="parameters" element="tns:ListarTodasLasHistoriasClinicasPorCita" />
@@ -36,6 +36,10 @@
     <part name="parameters" element="tns:ListarHistoriasClinicasPorIdHistoriaResponse" />
   </message>
   <portType name="HistoriaClinicaPorCitaWS">
+    <operation name="ModificarHistoriaClinicaPorCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaRequest" message="tns:ModificarHistoriaClinicaPorCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaResponse" message="tns:ModificarHistoriaClinicaPorCitaResponse" />
+    </operation>
     <operation name="InsertarHistoriaClinicaPorCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinicaPorCitaRequest" message="tns:InsertarHistoriaClinicaPorCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinicaPorCitaResponse" message="tns:InsertarHistoriaClinicaPorCitaResponse" />
@@ -43,10 +47,6 @@
     <operation name="ObtenerHistoriaClinicaPorIdCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinicaPorIdCitaRequest" message="tns:ObtenerHistoriaClinicaPorIdCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinicaPorIdCitaResponse" message="tns:ObtenerHistoriaClinicaPorIdCitaResponse" />
-    </operation>
-    <operation name="ModificarHistoriaClinicaPorCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaRequest" message="tns:ModificarHistoriaClinicaPorCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaResponse" message="tns:ModificarHistoriaClinicaPorCitaResponse" />
     </operation>
     <operation name="ListarTodasLasHistoriasClinicasPorCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ListarTodasLasHistoriasClinicasPorCitaRequest" message="tns:ListarTodasLasHistoriasClinicasPorCita" />
@@ -59,6 +59,15 @@
   </portType>
   <binding name="HistoriaClinicaPorCitaWSPortBinding" type="tns:HistoriaClinicaPorCitaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ModificarHistoriaClinicaPorCita">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="InsertarHistoriaClinicaPorCita">
       <soap:operation soapAction="" />
       <input>
@@ -69,15 +78,6 @@
       </output>
     </operation>
     <operation name="ObtenerHistoriaClinicaPorIdCita">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="ModificarHistoriaClinicaPorCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

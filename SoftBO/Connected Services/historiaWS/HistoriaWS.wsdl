@@ -5,18 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/HistoriaWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="obtenerHistoriaPorIdPaciente">
-    <part name="parameters" element="tns:obtenerHistoriaPorIdPaciente" />
-  </message>
-  <message name="obtenerHistoriaPorIdPacienteResponse">
-    <part name="parameters" element="tns:obtenerHistoriaPorIdPacienteResponse" />
-  </message>
-  <message name="obtenerHistoriaPorId">
-    <part name="parameters" element="tns:obtenerHistoriaPorId" />
-  </message>
-  <message name="obtenerHistoriaPorIdResponse">
-    <part name="parameters" element="tns:obtenerHistoriaPorIdResponse" />
-  </message>
   <message name="listarHistoria">
     <part name="parameters" element="tns:listarHistoria" />
   </message>
@@ -29,15 +17,19 @@
   <message name="insertarHistoriaResponse">
     <part name="parameters" element="tns:insertarHistoriaResponse" />
   </message>
+  <message name="obtenerHistoriaPorId">
+    <part name="parameters" element="tns:obtenerHistoriaPorId" />
+  </message>
+  <message name="obtenerHistoriaPorIdResponse">
+    <part name="parameters" element="tns:obtenerHistoriaPorIdResponse" />
+  </message>
+  <message name="obtenerHistoriaPorIdPaciente">
+    <part name="parameters" element="tns:obtenerHistoriaPorIdPaciente" />
+  </message>
+  <message name="obtenerHistoriaPorIdPacienteResponse">
+    <part name="parameters" element="tns:obtenerHistoriaPorIdPacienteResponse" />
+  </message>
   <portType name="HistoriaWS">
-    <operation name="obtenerHistoriaPorIdPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest" message="tns:obtenerHistoriaPorIdPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" message="tns:obtenerHistoriaPorIdPacienteResponse" />
-    </operation>
-    <operation name="obtenerHistoriaPorId">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest" message="tns:obtenerHistoriaPorId" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse" message="tns:obtenerHistoriaPorIdResponse" />
-    </operation>
     <operation name="listarHistoria">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/listarHistoriaRequest" message="tns:listarHistoria" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/listarHistoriaResponse" message="tns:listarHistoriaResponse" />
@@ -46,10 +38,27 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/insertarHistoriaRequest" message="tns:insertarHistoria" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/insertarHistoriaResponse" message="tns:insertarHistoriaResponse" />
     </operation>
+    <operation name="obtenerHistoriaPorId">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest" message="tns:obtenerHistoriaPorId" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse" message="tns:obtenerHistoriaPorIdResponse" />
+    </operation>
+    <operation name="obtenerHistoriaPorIdPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest" message="tns:obtenerHistoriaPorIdPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" message="tns:obtenerHistoriaPorIdPacienteResponse" />
+    </operation>
   </portType>
   <binding name="HistoriaWSPortBinding" type="tns:HistoriaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="obtenerHistoriaPorIdPaciente">
+    <operation name="listarHistoria">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarHistoria">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -67,16 +76,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarHistoria">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="insertarHistoria">
+    <operation name="obtenerHistoriaPorIdPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
