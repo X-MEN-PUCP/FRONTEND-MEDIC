@@ -129,6 +129,7 @@
     <Content Include="Scripts\pacienteCitas.js" />
     <Content Include="Scripts\pagoCita.js" />
     <Content Include="Scripts\registro.js" />
+    <Content Include="verificar_correo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +300,13 @@
     </Compile>
     <Compile Include="SoftMA_Paciente.Master.designer.cs">
       <DependentUpon>SoftMA_Paciente.Master</DependentUpon>
+    </Compile>
+    <Compile Include="verificar_correo.aspx.cs">
+      <DependentUpon>verificar_correo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verificar_correo.aspx.designer.cs">
+      <DependentUpon>verificar_correo.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
