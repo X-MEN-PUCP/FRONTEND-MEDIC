@@ -21,6 +21,9 @@
                             Cita de <asp:Literal ID="ltlEspecialidad" runat="server"></asp:Literal> |
                             Fecha: <asp:Literal ID="ltlFechaCita" runat="server"></asp:Literal>
                         </p>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.cs">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.cs</a>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.cs">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.cs</a>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx</a>
                     </div>
                     <div>
                         <asp:Button ID="btnFinalizarAtencion" runat="server" Text="Finalizar y Guardar Atención" CssClass="btn btn-success" OnClick="btnFinalizarAtencion_Click" OnClientClick="return confirm('¿Está seguro de que desea finalizar y guardar toda la información de la atención?');" />

@@ -408,18 +408,26 @@ namespace SoftWA
                 foreach (var diag in DiagnosticosDeCita)
                 {
                     diag.cita = new SoftBO.diagnosticoporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    diag.cita.idCita = int.Parse(hfIdCita.Value);
+                    diag.cita.idCitaSpecified = true;
+                    diag.diagnostico.idDiagnosticoSpecified = true;
                     _diagnosticoPorCitaBO.InsertarDiagnosticoPorCita(diag);
                 }
                 foreach (var exam in ExamenesDeCita)
                 {
                     exam.cita = new SoftBO.examenporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     exam.usuarioCreacion = usuario.idUsuario;
+                    exam.fechaCreacion = fechaHoy;
                     exam.usuarioCreacionSpecified = true;
+                    exam.cita.idCitaSpecified = true;
+                    exam.examen.idExamenSpecified= true;
                     _examenPorCitaBO.InsertarExamenPorCita(exam);
                 }
                 foreach (var inter in InterconsultasDeCita)
                 {
                     inter.cita = new SoftBO.interconsultaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    inter.cita.idCitaSpecified = true;
+                    inter.especialidadInterconsulta.idEspecialidadSpecified= true;
                     _interconsultaBO.InsertarInterconuslta(inter);
                 }
 
