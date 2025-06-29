@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://softcitws.soft.pucp.edu.pe/" targetNamespace="http://softcitws.soft.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="buscarCitasDisponibles" type="tns:buscarCitasDisponibles" />
-  <xs:element name="buscarCitasDisponiblesResponse" type="tns:buscarCitasDisponiblesResponse" />
-  <xs:element name="listarCitasProgramadas" type="tns:listarCitasProgramadas" />
-  <xs:element name="listarCitasProgramadasResponse" type="tns:listarCitasProgramadasResponse" />
+  <xs:element name="buscarCitasWSCitas" type="tns:buscarCitasWSCitas" />
+  <xs:element name="buscarCitasWSCitasResponse" type="tns:buscarCitasWSCitasResponse" />
+  <xs:element name="buscarCitasoloCalendario" type="tns:buscarCitasoloCalendario" />
+  <xs:element name="buscarCitasoloCalendarioResponse" type="tns:buscarCitasoloCalendarioResponse" />
+  <xs:element name="listarCitasMedicoWS" type="tns:listarCitasMedicoWS" />
+  <xs:element name="listarCitasMedicoWSResponse" type="tns:listarCitasMedicoWSResponse" />
   <xs:element name="listarTodosCita" type="tns:listarTodosCita" />
   <xs:element name="listarTodosCitaResponse" type="tns:listarTodosCitaResponse" />
   <xs:element name="modificarCita" type="tns:modificarCita" />
   <xs:element name="modificarCitaResponse" type="tns:modificarCitaResponse" />
   <xs:element name="obtenerPorIdCitaCita" type="tns:obtenerPorIdCitaCita" />
   <xs:element name="obtenerPorIdCitaCitaResponse" type="tns:obtenerPorIdCitaCitaResponse" />
-  <xs:complexType name="listarTodosCita">
-    <xs:sequence />
+  <xs:complexType name="buscarCitasWSCitas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+      <xs:element minOccurs="0" name="codMedico" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha" type="xs:string" />
+      <xs:element minOccurs="0" name="hora_inicio" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoCita" type="tns:estadoCita" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosCitaResponse">
+  <xs:complexType name="buscarCitasWSCitasResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
@@ -24,31 +32,40 @@
       <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
       <xs:element minOccurs="0" name="estado" type="tns:estadoCita" />
       <xs:element minOccurs="0" name="fechaCita" type="xs:string" />
-      <xs:element minOccurs="0" name="horaFin" type="tns:localTime" />
-      <xs:element minOccurs="0" name="horaInicio" type="tns:localTime" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="horaFin" type="xs:string" />
+      <xs:element minOccurs="0" name="horaInicio" type="xs:string" />
       <xs:element minOccurs="0" name="idCita" type="xs:int" />
       <xs:element minOccurs="0" name="medico" type="tns:usuarioDTO" />
       <xs:element minOccurs="0" name="turno" type="tns:turnoDTO" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="consultorioDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="idConsultorio" type="xs:int" />
       <xs:element minOccurs="0" name="numConsultorio" type="xs:int" />
       <xs:element minOccurs="0" name="numPiso" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="especialidadDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
       <xs:element minOccurs="0" name="nombreEspecialidad" type="xs:string" />
       <xs:element minOccurs="0" name="precioConsulta" type="xs:double" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localTime" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="usuarioDTO">
     <xs:sequence>
@@ -59,7 +76,9 @@
       <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
       <xs:element minOccurs="0" name="estadoLogico" type="tns:estadoLogico" />
-      <xs:element minOccurs="0" name="fechaNacimiento" type="tns:localDate" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string" />
       <xs:element minOccurs="0" name="genero" type="tns:genero" />
       <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="nombres" type="xs:string" />
@@ -67,18 +86,29 @@
       <xs:element minOccurs="0" name="numDocumento" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="tipoDocumento" type="tns:tipoDocumento" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="localDate" final="extension restriction">
-    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="turnoDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
-      <xs:element minOccurs="0" name="horaFin" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="horaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="horaFin" type="xs:string" />
+      <xs:element minOccurs="0" name="horaInicio" type="xs:string" />
       <xs:element minOccurs="0" name="idTurno" type="xs:int" />
       <xs:element minOccurs="0" name="nombreTurno" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodosCita">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosCitaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="modificarCita">
@@ -91,12 +121,16 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarCitasProgramadas">
+  <xs:complexType name="buscarCitasoloCalendario">
     <xs:sequence>
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
       <xs:element minOccurs="0" name="codMedico" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha" type="xs:string" />
+      <xs:element minOccurs="0" name="hora_inicio" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoCita" type="tns:estadoCita" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarCitasProgramadasResponse">
+  <xs:complexType name="buscarCitasoloCalendarioResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
@@ -111,29 +145,29 @@
       <xs:element minOccurs="0" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="buscarCitasDisponibles">
+  <xs:complexType name="listarCitasMedicoWS">
     <xs:sequence>
-      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
-      <xs:element minOccurs="0" name="codMedico" type="xs:int" />
-      <xs:element minOccurs="0" name="fecha" type="xs:string" />
+      <xs:element minOccurs="0" name="idMedico" type="xs:int" />
+      <xs:element minOccurs="0" name="estadoCita" type="tns:estadoCita" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="buscarCitasDisponiblesResponse">
+  <xs:complexType name="listarCitasMedicoWSResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="estadoGeneral">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="INACTIVO" />
-      <xs:enumeration value="ACTIVO" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="estadoCita">
     <xs:restriction base="xs:string">
       <xs:enumeration value="RESERVADO" />
       <xs:enumeration value="DISPONIBLE" />
       <xs:enumeration value="PAGADO" />
+      <xs:enumeration value="ATENDIDO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="estadoGeneral">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INACTIVO" />
+      <xs:enumeration value="ACTIVO" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="estadoLogico">

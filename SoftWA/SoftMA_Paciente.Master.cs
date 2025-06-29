@@ -27,8 +27,9 @@ namespace SoftWA
             if (usuario != null && !string.IsNullOrEmpty(usuario.nombres) && !string.IsNullOrEmpty(usuario.apellidoPaterno))
             {
                 string primerNombre = usuario.nombres.Split(' ')[0];
+                string nombre = primerNombre.Substring(0, 1) + primerNombre.Substring(1,primerNombre.Length-1).ToLower();
                 string inicialApellido = usuario.apellidoPaterno.Substring(0, 1).ToUpper();
-                nombreParaMostrar = $"{primerNombre} {inicialApellido}.";
+                nombreParaMostrar = $"{nombre} {inicialApellido}.";
             }
             ltlNombreUsuario.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(nombreParaMostrar, false);
         }

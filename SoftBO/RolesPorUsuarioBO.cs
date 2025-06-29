@@ -23,5 +23,9 @@ namespace SoftBO
         {
             return this.rolesPorUsuarioCliente.insertarRolesPorUsuario(usuarioPorRol);
         }
+        public int EliminarRolPorUsuario(usuarioPorRolDTO usuario)
+        {
+            return this.rolesPorUsuarioCliente.eliminarRolPorUsuario(usuario);
+        }
     }
 }

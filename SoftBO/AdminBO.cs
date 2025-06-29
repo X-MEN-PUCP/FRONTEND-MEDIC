@@ -1,6 +1,7 @@
 ﻿using SoftBO.adminWS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -17,9 +18,31 @@ namespace SoftBO
             this.adminCliente = new AdminWSClient();
         }
 
-        public int AsignarNuevoRolParaUsuario(usuarioDTO usuario, int idRol)
+        public int AsignarNuevoRolParaUsuario(usuarioPorRolDTO usuario)
         {
-            return this.adminCliente.asignarNuevoRolParaUsuario(usuario, idRol);
+            return this.adminCliente.asignarNuevoRolParaUsuario(usuario);
+        }
+        public int EliminarRolDeUsuario(usuarioPorRolDTO usuario)
+        {
+            return this.adminCliente.eliminarRolDeUsuario(usuario);
+        }
+        public int InsertarNuevaEspecialidad(especialidadDTO especialidad)
+        {
+            return this.adminCliente.insertarNuevaEspecialidad(especialidad);
+        }
+        public bool InsertarNuevoMedico(usuarioDTO medico, BindingList<especialidadDTO> especialidad)
+        {
+            return this.adminCliente.insertarNuevoMedico(medico, especialidad.ToArray());
+        }
+        public BindingList<usuarioDTO> ListarMedicos()
+        {
+            usuarioDTO[] medicos = this.adminCliente.listarMedicos();
+            return new BindingList<usuarioDTO>(medicos);
+        }
+        public BindingList<usuarioDTO> ListarTodosUsuarios()
+        {
+            usuarioDTO[] usuarios = this.adminCliente.listarTodosUsuarios();
+            return new BindingList<usuarioDTO>(usuarios);
         }
     }
 }

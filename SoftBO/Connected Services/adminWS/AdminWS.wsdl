@@ -5,21 +5,116 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/AdminWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="insertarNuevoMedico">
+    <part name="parameters" element="tns:insertarNuevoMedico" />
+  </message>
+  <message name="insertarNuevoMedicoResponse">
+    <part name="parameters" element="tns:insertarNuevoMedicoResponse" />
+  </message>
+  <message name="insertarNuevaEspecialidad">
+    <part name="parameters" element="tns:insertarNuevaEspecialidad" />
+  </message>
+  <message name="insertarNuevaEspecialidadResponse">
+    <part name="parameters" element="tns:insertarNuevaEspecialidadResponse" />
+  </message>
   <message name="asignarNuevoRolParaUsuario">
     <part name="parameters" element="tns:asignarNuevoRolParaUsuario" />
   </message>
   <message name="asignarNuevoRolParaUsuarioResponse">
     <part name="parameters" element="tns:asignarNuevoRolParaUsuarioResponse" />
   </message>
+  <message name="eliminarRolDeUsuario">
+    <part name="parameters" element="tns:eliminarRolDeUsuario" />
+  </message>
+  <message name="eliminarRolDeUsuarioResponse">
+    <part name="parameters" element="tns:eliminarRolDeUsuarioResponse" />
+  </message>
+  <message name="listarTodosUsuarios">
+    <part name="parameters" element="tns:listarTodosUsuarios" />
+  </message>
+  <message name="listarTodosUsuariosResponse">
+    <part name="parameters" element="tns:listarTodosUsuariosResponse" />
+  </message>
+  <message name="listarMedicos">
+    <part name="parameters" element="tns:listarMedicos" />
+  </message>
+  <message name="listarMedicosResponse">
+    <part name="parameters" element="tns:listarMedicosResponse" />
+  </message>
   <portType name="AdminWS">
+    <operation name="insertarNuevoMedico">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/insertarNuevoMedicoRequest" message="tns:insertarNuevoMedico" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/insertarNuevoMedicoResponse" message="tns:insertarNuevoMedicoResponse" />
+    </operation>
+    <operation name="insertarNuevaEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/insertarNuevaEspecialidadRequest" message="tns:insertarNuevaEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/insertarNuevaEspecialidadResponse" message="tns:insertarNuevaEspecialidadResponse" />
+    </operation>
     <operation name="asignarNuevoRolParaUsuario">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/asignarNuevoRolParaUsuarioRequest" message="tns:asignarNuevoRolParaUsuario" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/asignarNuevoRolParaUsuarioResponse" message="tns:asignarNuevoRolParaUsuarioResponse" />
     </operation>
+    <operation name="eliminarRolDeUsuario">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/eliminarRolDeUsuarioRequest" message="tns:eliminarRolDeUsuario" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/eliminarRolDeUsuarioResponse" message="tns:eliminarRolDeUsuarioResponse" />
+    </operation>
+    <operation name="listarTodosUsuarios">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/listarTodosUsuariosRequest" message="tns:listarTodosUsuarios" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/listarTodosUsuariosResponse" message="tns:listarTodosUsuariosResponse" />
+    </operation>
+    <operation name="listarMedicos">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/listarMedicosRequest" message="tns:listarMedicos" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/AdminWS/listarMedicosResponse" message="tns:listarMedicosResponse" />
+    </operation>
   </portType>
   <binding name="AdminWSPortBinding" type="tns:AdminWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertarNuevoMedico">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertarNuevaEspecialidad">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="asignarNuevoRolParaUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarRolDeUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodosUsuarios">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarMedicos">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

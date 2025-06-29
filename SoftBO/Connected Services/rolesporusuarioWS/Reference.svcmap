@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9daa5b28-61d6-493f-bd03-af762a82fa19" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ca047c55-8b93-4c3d-bc16-384b9500b4a9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RolesPorUsuarioWS.xsd" MetadataType="Schema" ID="cef1b151-4e19-4615-9634-9dc9829fe18a" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?xsd=1" />
-    <MetadataFile FileName="RolesPorUsuarioWS.wsdl" MetadataType="Wsdl" ID="025e8d1d-e692-4fe5-8d64-d83318237cd1" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?wsdl" />
+    <MetadataFile FileName="RolesPorUsuarioWS.xsd" MetadataType="Schema" ID="4216d146-5a22-4439-a187-838b8d7533c7" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?xsd=1" />
+    <MetadataFile FileName="RolesPorUsuarioWS.wsdl" MetadataType="Wsdl" ID="511b2f73-0649-4c80-94be-87dba08ed1b8" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/RolesPorUsuarioWS?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

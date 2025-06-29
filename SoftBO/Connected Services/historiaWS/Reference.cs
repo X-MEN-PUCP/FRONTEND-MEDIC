@@ -16,6 +16,26 @@ namespace SoftBO.historiaWS {
     public interface HistoriaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" +
+            "")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse obtenerHistoriaPorIdPaciente(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" +
+            "")]
+        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> obtenerHistoriaPorIdPacienteAsync(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.historiaWS.obtenerHistoriaPorIdResponse obtenerHistoriaPorId(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse")]
+        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> obtenerHistoriaPorIdAsync(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/listarHistoriaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/listarHistoriaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -32,26 +52,6 @@ namespace SoftBO.historiaWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/insertarHistoriaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/insertarHistoriaResponse")]
         System.Threading.Tasks.Task<SoftBO.historiaWS.insertarHistoriaResponse> insertarHistoriaAsync(SoftBO.historiaWS.insertarHistoriaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.historiaWS.obtenerHistoriaPorIdResponse obtenerHistoriaPorId(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdResponse")]
-        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> obtenerHistoriaPorIdAsync(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" +
-            "")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse obtenerHistoriaPorIdPaciente(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaWS/obtenerHistoriaPorIdPacienteResponse" +
-            "")]
-        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> obtenerHistoriaPorIdPacienteAsync(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request);
     }
     
     /// <remarks/>
@@ -66,11 +66,23 @@ namespace SoftBO.historiaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idHistoriaClinicaField;
         
         private bool idHistoriaClinicaFieldSpecified;
         
         private usuarioDTO pacienteField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -98,6 +110,30 @@ namespace SoftBO.historiaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idHistoriaClinica {
             get {
                 return this.idHistoriaClinicaField;
@@ -121,7 +157,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public usuarioDTO paciente {
             get {
                 return this.pacienteField;
@@ -129,6 +165,54 @@ namespace SoftBO.historiaWS {
             set {
                 this.pacienteField = value;
                 this.RaisePropertyChanged("paciente");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -181,7 +265,11 @@ namespace SoftBO.historiaWS {
         
         private bool estadoLogicoFieldSpecified;
         
-        private localDate fechaNacimientoField;
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
+        private string fechaNacimientoField;
         
         private genero generoField;
         
@@ -202,6 +290,14 @@ namespace SoftBO.historiaWS {
         private tipoDocumento tipoDocumentoField;
         
         private bool tipoDocumentoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -313,7 +409,31 @@ namespace SoftBO.historiaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
-        public localDate fechaNacimiento {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
             }
@@ -324,7 +444,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public genero genero {
             get {
                 return this.generoField;
@@ -348,7 +468,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -372,7 +492,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -384,7 +504,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -396,7 +516,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -408,7 +528,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -420,7 +540,7 @@ namespace SoftBO.historiaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -440,6 +560,54 @@ namespace SoftBO.historiaWS {
             set {
                 this.tipoDocumentoFieldSpecified = value;
                 this.RaisePropertyChanged("tipoDocumentoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -478,24 +646,6 @@ namespace SoftBO.historiaWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
     public enum genero {
         
@@ -520,6 +670,78 @@ namespace SoftBO.historiaWS {
         
         /// <remarks/>
         CE,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerHistoriaPorIdPacienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public obtenerHistoriaPorIdPacienteRequest() {
+        }
+        
+        public obtenerHistoriaPorIdPacienteRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerHistoriaPorIdPacienteResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.historiaWS.historiaClinicaDTO @return;
+        
+        public obtenerHistoriaPorIdPacienteResponse() {
+        }
+        
+        public obtenerHistoriaPorIdPacienteResponse(SoftBO.historiaWS.historiaClinicaDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorId", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerHistoriaPorIdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public obtenerHistoriaPorIdRequest() {
+        }
+        
+        public obtenerHistoriaPorIdRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerHistoriaPorIdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.historiaWS.historiaClinicaDTO @return;
+        
+        public obtenerHistoriaPorIdResponse() {
+        }
+        
+        public obtenerHistoriaPorIdResponse(SoftBO.historiaWS.historiaClinicaDTO @return) {
+            this.@return = @return;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -586,78 +808,6 @@ namespace SoftBO.historiaWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorId", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerHistoriaPorIdRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public obtenerHistoriaPorIdRequest() {
-        }
-        
-        public obtenerHistoriaPorIdRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerHistoriaPorIdResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.historiaWS.historiaClinicaDTO @return;
-        
-        public obtenerHistoriaPorIdResponse() {
-        }
-        
-        public obtenerHistoriaPorIdResponse(SoftBO.historiaWS.historiaClinicaDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerHistoriaPorIdPacienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public obtenerHistoriaPorIdPacienteRequest() {
-        }
-        
-        public obtenerHistoriaPorIdPacienteRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerHistoriaPorIdPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerHistoriaPorIdPacienteResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.historiaWS.historiaClinicaDTO @return;
-        
-        public obtenerHistoriaPorIdPacienteResponse() {
-        }
-        
-        public obtenerHistoriaPorIdPacienteResponse(SoftBO.historiaWS.historiaClinicaDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface HistoriaWSChannel : SoftBO.historiaWS.HistoriaWS, System.ServiceModel.IClientChannel {
     }
@@ -683,6 +833,52 @@ namespace SoftBO.historiaWS {
         
         public HistoriaWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdPaciente(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request) {
+            return base.Channel.obtenerHistoriaPorIdPaciente(request);
+        }
+        
+        public SoftBO.historiaWS.historiaClinicaDTO obtenerHistoriaPorIdPaciente(int id) {
+            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest();
+            inValue.id = id;
+            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse retVal = ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdPaciente(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdPacienteAsync(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request) {
+            return base.Channel.obtenerHistoriaPorIdPacienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> obtenerHistoriaPorIdPacienteAsync(int id) {
+            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest();
+            inValue.id = id;
+            return ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdPacienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.historiaWS.obtenerHistoriaPorIdResponse SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorId(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request) {
+            return base.Channel.obtenerHistoriaPorId(request);
+        }
+        
+        public SoftBO.historiaWS.historiaClinicaDTO obtenerHistoriaPorId(int id) {
+            SoftBO.historiaWS.obtenerHistoriaPorIdRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdRequest();
+            inValue.id = id;
+            SoftBO.historiaWS.obtenerHistoriaPorIdResponse retVal = ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorId(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdAsync(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request) {
+            return base.Channel.obtenerHistoriaPorIdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> obtenerHistoriaPorIdAsync(int id) {
+            SoftBO.historiaWS.obtenerHistoriaPorIdRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdRequest();
+            inValue.id = id;
+            return ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -727,52 +923,6 @@ namespace SoftBO.historiaWS {
             SoftBO.historiaWS.insertarHistoriaRequest inValue = new SoftBO.historiaWS.insertarHistoriaRequest();
             inValue.historia = historia;
             return ((SoftBO.historiaWS.HistoriaWS)(this)).insertarHistoriaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.historiaWS.obtenerHistoriaPorIdResponse SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorId(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request) {
-            return base.Channel.obtenerHistoriaPorId(request);
-        }
-        
-        public SoftBO.historiaWS.historiaClinicaDTO obtenerHistoriaPorId(int id) {
-            SoftBO.historiaWS.obtenerHistoriaPorIdRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdRequest();
-            inValue.id = id;
-            SoftBO.historiaWS.obtenerHistoriaPorIdResponse retVal = ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorId(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdAsync(SoftBO.historiaWS.obtenerHistoriaPorIdRequest request) {
-            return base.Channel.obtenerHistoriaPorIdAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdResponse> obtenerHistoriaPorIdAsync(int id) {
-            SoftBO.historiaWS.obtenerHistoriaPorIdRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdRequest();
-            inValue.id = id;
-            return ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdPaciente(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request) {
-            return base.Channel.obtenerHistoriaPorIdPaciente(request);
-        }
-        
-        public SoftBO.historiaWS.historiaClinicaDTO obtenerHistoriaPorIdPaciente(int id) {
-            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest();
-            inValue.id = id;
-            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse retVal = ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdPaciente(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> SoftBO.historiaWS.HistoriaWS.obtenerHistoriaPorIdPacienteAsync(SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest request) {
-            return base.Channel.obtenerHistoriaPorIdPacienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.historiaWS.obtenerHistoriaPorIdPacienteResponse> obtenerHistoriaPorIdPacienteAsync(int id) {
-            SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest inValue = new SoftBO.historiaWS.obtenerHistoriaPorIdPacienteRequest();
-            inValue.id = id;
-            return ((SoftBO.historiaWS.HistoriaWS)(this)).obtenerHistoriaPorIdPacienteAsync(inValue);
         }
     }
 }

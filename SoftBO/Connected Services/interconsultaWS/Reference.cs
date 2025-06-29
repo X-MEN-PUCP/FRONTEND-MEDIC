@@ -16,17 +16,13 @@ namespace SoftBO.interconsultaWS {
     public interface InterconsultaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRequest" +
-            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRespons" +
-            "e")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.interconsultaWS.listarTodosInterconusltaResponse listarTodosInterconuslta(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request);
+        SoftBO.interconsultaWS.insertarInterconusltaResponse insertarInterconuslta(SoftBO.interconsultaWS.insertarInterconusltaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRequest" +
-            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRespons" +
-            "e")]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse")]
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> insertarInterconusltaAsync(SoftBO.interconsultaWS.insertarInterconusltaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaReques" +
@@ -42,13 +38,17 @@ namespace SoftBO.interconsultaWS {
         System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> obtenerPorIdInterconusltaAsync(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRequest" +
+            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRespons" +
+            "e")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.interconsultaWS.insertarInterconusltaResponse insertarInterconuslta(SoftBO.interconsultaWS.insertarInterconusltaRequest request);
+        SoftBO.interconsultaWS.listarTodosInterconusltaResponse listarTodosInterconuslta(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse")]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> insertarInterconusltaAsync(SoftBO.interconsultaWS.insertarInterconusltaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRequest" +
+            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRespons" +
+            "e")]
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request);
     }
     
     /// <remarks/>
@@ -129,9 +129,13 @@ namespace SoftBO.interconsultaWS {
         
         private string fechaCitaField;
         
-        private localTime horaFinField;
+        private string fechaCreacionField;
         
-        private localTime horaInicioField;
+        private string fechaModificacionField;
+        
+        private string horaFinField;
+        
+        private string horaInicioField;
         
         private int idCitaField;
         
@@ -140,6 +144,14 @@ namespace SoftBO.interconsultaWS {
         private usuarioDTO medicoField;
         
         private turnoDTO turnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -203,7 +215,31 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
-        public localTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -214,8 +250,8 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
-        public localTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -226,7 +262,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public int idCita {
             get {
                 return this.idCitaField;
@@ -250,7 +286,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public usuarioDTO medico {
             get {
                 return this.medicoField;
@@ -262,7 +298,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public turnoDTO turno {
             get {
                 return this.turnoField;
@@ -270,6 +306,54 @@ namespace SoftBO.interconsultaWS {
             set {
                 this.turnoField = value;
                 this.RaisePropertyChanged("turno");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -295,6 +379,10 @@ namespace SoftBO.interconsultaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idConsultorioField;
         
         private bool idConsultorioFieldSpecified;
@@ -306,6 +394,14 @@ namespace SoftBO.interconsultaWS {
         private int numPisoField;
         
         private bool numPisoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -333,6 +429,30 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idConsultorio {
             get {
                 return this.idConsultorioField;
@@ -356,7 +476,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public int numConsultorio {
             get {
                 return this.numConsultorioField;
@@ -380,7 +500,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int numPiso {
             get {
                 return this.numPisoField;
@@ -400,6 +520,54 @@ namespace SoftBO.interconsultaWS {
             set {
                 this.numPisoFieldSpecified = value;
                 this.RaisePropertyChanged("numPisoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -438,19 +606,27 @@ namespace SoftBO.interconsultaWS {
         
         private bool estadoGeneralFieldSpecified;
         
-        private System.DateTime horaFinField;
+        private string fechaCreacionField;
         
-        private bool horaFinFieldSpecified;
+        private string fechaModificacionField;
         
-        private System.DateTime horaInicioField;
+        private string horaFinField;
         
-        private bool horaInicioFieldSpecified;
+        private string horaInicioField;
         
         private int idTurnoField;
         
         private bool idTurnoFieldSpecified;
         
         private string nombreTurnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -478,7 +654,31 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public System.DateTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -489,20 +689,8 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaFinSpecified {
-            get {
-                return this.horaFinFieldSpecified;
-            }
-            set {
-                this.horaFinFieldSpecified = value;
-                this.RaisePropertyChanged("horaFinSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
-        public System.DateTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -513,19 +701,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaInicioSpecified {
-            get {
-                return this.horaInicioFieldSpecified;
-            }
-            set {
-                this.horaInicioFieldSpecified = value;
-                this.RaisePropertyChanged("horaInicioSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int idTurno {
             get {
                 return this.idTurnoField;
@@ -549,7 +725,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public string nombreTurno {
             get {
                 return this.nombreTurnoField;
@@ -560,23 +736,53 @@ namespace SoftBO.interconsultaWS {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
+            }
+        }
         
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
@@ -614,7 +820,11 @@ namespace SoftBO.interconsultaWS {
         
         private bool estadoLogicoFieldSpecified;
         
-        private localDate fechaNacimientoField;
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
+        private string fechaNacimientoField;
         
         private genero generoField;
         
@@ -635,6 +845,14 @@ namespace SoftBO.interconsultaWS {
         private tipoDocumento tipoDocumentoField;
         
         private bool tipoDocumentoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -746,7 +964,31 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
-        public localDate fechaNacimiento {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
             }
@@ -757,7 +999,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public genero genero {
             get {
                 return this.generoField;
@@ -781,7 +1023,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -805,7 +1047,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -817,7 +1059,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -829,7 +1071,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -841,7 +1083,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -853,7 +1095,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -873,6 +1115,54 @@ namespace SoftBO.interconsultaWS {
             set {
                 this.tipoDocumentoFieldSpecified = value;
                 this.RaisePropertyChanged("tipoDocumentoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -943,29 +1233,15 @@ namespace SoftBO.interconsultaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localTime : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
     public partial class especialidadDTO : object, System.ComponentModel.INotifyPropertyChanged {
         
         private estadoGeneral estadoGeneralField;
         
         private bool estadoGeneralFieldSpecified;
+        
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
         
         private int idEspecialidadField;
         
@@ -976,6 +1252,14 @@ namespace SoftBO.interconsultaWS {
         private double precioConsultaField;
         
         private bool precioConsultaFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -1003,6 +1287,30 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idEspecialidad {
             get {
                 return this.idEspecialidadField;
@@ -1026,7 +1334,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string nombreEspecialidad {
             get {
                 return this.nombreEspecialidadField;
@@ -1038,7 +1346,7 @@ namespace SoftBO.interconsultaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public double precioConsulta {
             get {
                 return this.precioConsultaField;
@@ -1058,6 +1366,54 @@ namespace SoftBO.interconsultaWS {
             set {
                 this.precioConsultaFieldSpecified = value;
                 this.RaisePropertyChanged("precioConsultaSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -1085,32 +1441,43 @@ namespace SoftBO.interconsultaWS {
         
         /// <remarks/>
         PAGADO,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosInterconusltaRequest {
         
-        public listarTodosInterconusltaRequest() {
-        }
+        /// <remarks/>
+        ATENDIDO,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosInterconusltaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarInterconusltaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.interconsultaWS.interconsultaDTO[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.interconsultaWS.interconsultaDTO turno;
         
-        public listarTodosInterconusltaResponse() {
+        public insertarInterconusltaRequest() {
         }
         
-        public listarTodosInterconusltaResponse(SoftBO.interconsultaWS.interconsultaDTO[] @return) {
+        public insertarInterconusltaRequest(SoftBO.interconsultaWS.interconsultaDTO turno) {
+            this.turno = turno;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarInterconusltaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public insertarInterconusltaResponse() {
+        }
+        
+        public insertarInterconusltaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1159,35 +1526,27 @@ namespace SoftBO.interconsultaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarInterconusltaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosInterconusltaRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.interconsultaWS.interconsultaDTO turno;
-        
-        public insertarInterconusltaRequest() {
-        }
-        
-        public insertarInterconusltaRequest(SoftBO.interconsultaWS.interconsultaDTO turno) {
-            this.turno = turno;
+        public listarTodosInterconusltaRequest() {
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarInterconusltaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosInterconusltaResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.interconsultaWS.interconsultaDTO[] @return;
         
-        public insertarInterconusltaResponse() {
+        public listarTodosInterconusltaResponse() {
         }
         
-        public insertarInterconusltaResponse(int @return) {
+        public listarTodosInterconusltaResponse(SoftBO.interconsultaWS.interconsultaDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -1220,24 +1579,26 @@ namespace SoftBO.interconsultaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.interconsultaWS.listarTodosInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.listarTodosInterconuslta(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request) {
-            return base.Channel.listarTodosInterconuslta(request);
+        SoftBO.interconsultaWS.insertarInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.insertarInterconuslta(SoftBO.interconsultaWS.insertarInterconusltaRequest request) {
+            return base.Channel.insertarInterconuslta(request);
         }
         
-        public SoftBO.interconsultaWS.interconsultaDTO[] listarTodosInterconuslta() {
-            SoftBO.interconsultaWS.listarTodosInterconusltaRequest inValue = new SoftBO.interconsultaWS.listarTodosInterconusltaRequest();
-            SoftBO.interconsultaWS.listarTodosInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).listarTodosInterconuslta(inValue);
+        public int insertarInterconuslta(SoftBO.interconsultaWS.interconsultaDTO turno) {
+            SoftBO.interconsultaWS.insertarInterconusltaRequest inValue = new SoftBO.interconsultaWS.insertarInterconusltaRequest();
+            inValue.turno = turno;
+            SoftBO.interconsultaWS.insertarInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).insertarInterconuslta(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.listarTodosInterconusltaAsync(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request) {
-            return base.Channel.listarTodosInterconusltaAsync(request);
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.insertarInterconusltaAsync(SoftBO.interconsultaWS.insertarInterconusltaRequest request) {
+            return base.Channel.insertarInterconusltaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync() {
-            SoftBO.interconsultaWS.listarTodosInterconusltaRequest inValue = new SoftBO.interconsultaWS.listarTodosInterconusltaRequest();
-            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).listarTodosInterconusltaAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> insertarInterconusltaAsync(SoftBO.interconsultaWS.interconsultaDTO turno) {
+            SoftBO.interconsultaWS.insertarInterconusltaRequest inValue = new SoftBO.interconsultaWS.insertarInterconusltaRequest();
+            inValue.turno = turno;
+            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).insertarInterconusltaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1266,26 +1627,24 @@ namespace SoftBO.interconsultaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.interconsultaWS.insertarInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.insertarInterconuslta(SoftBO.interconsultaWS.insertarInterconusltaRequest request) {
-            return base.Channel.insertarInterconuslta(request);
+        SoftBO.interconsultaWS.listarTodosInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.listarTodosInterconuslta(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request) {
+            return base.Channel.listarTodosInterconuslta(request);
         }
         
-        public int insertarInterconuslta(SoftBO.interconsultaWS.interconsultaDTO turno) {
-            SoftBO.interconsultaWS.insertarInterconusltaRequest inValue = new SoftBO.interconsultaWS.insertarInterconusltaRequest();
-            inValue.turno = turno;
-            SoftBO.interconsultaWS.insertarInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).insertarInterconuslta(inValue);
+        public SoftBO.interconsultaWS.interconsultaDTO[] listarTodosInterconuslta() {
+            SoftBO.interconsultaWS.listarTodosInterconusltaRequest inValue = new SoftBO.interconsultaWS.listarTodosInterconusltaRequest();
+            SoftBO.interconsultaWS.listarTodosInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).listarTodosInterconuslta(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.insertarInterconusltaAsync(SoftBO.interconsultaWS.insertarInterconusltaRequest request) {
-            return base.Channel.insertarInterconusltaAsync(request);
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.listarTodosInterconusltaAsync(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request) {
+            return base.Channel.listarTodosInterconusltaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.insertarInterconusltaResponse> insertarInterconusltaAsync(SoftBO.interconsultaWS.interconsultaDTO turno) {
-            SoftBO.interconsultaWS.insertarInterconusltaRequest inValue = new SoftBO.interconsultaWS.insertarInterconusltaRequest();
-            inValue.turno = turno;
-            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).insertarInterconusltaAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync() {
+            SoftBO.interconsultaWS.listarTodosInterconusltaRequest inValue = new SoftBO.interconsultaWS.listarTodosInterconusltaRequest();
+            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).listarTodosInterconusltaAsync(inValue);
         }
     }
 }

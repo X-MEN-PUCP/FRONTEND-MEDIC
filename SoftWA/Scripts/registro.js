@@ -6,44 +6,23 @@
     const ceContainer = document.getElementById(ids.ceContainerId);
     const txtDNI = document.getElementById(ids.txtDniId);
     const txtCE = document.getElementById(ids.txtCeId);
-    const rfvDNIValidator = document.getElementById(ids.rfvDniId);
-    const revDNIValidator = document.getElementById(ids.revDniId);
-    const rfvCEValidator = document.getElementById(ids.rfvCeId);
-    const revCEValidator = document.getElementById(ids.revCeId);
-
     function selectDocumentType(docType) {
         hdnField.value = docType;
-
         const isDni = (docType === 'DNI');
+
         btnDNI.classList.toggle('active', isDni);
         btnCE.classList.toggle('active', !isDni);
         dniContainer.style.display = isDni ? 'block' : 'none';
         ceContainer.style.display = isDni ? 'none' : 'block';
         txtDNI.disabled = !isDni;
         txtCE.disabled = isDni;
-        if (isDni) {
-            txtCE.value = '';
-        } else {
-            txtDNI.value = '';
-        }
 
-        if (typeof (ValidatorEnable) === 'function') {
-            ValidatorEnable(rfvDNIValidator, isDni);
-            ValidatorEnable(revDNIValidator, isDni);
-            ValidatorEnable(rfvCEValidator, !isDni);
-            ValidatorEnable(revCEValidator, !isDni);
-        }
+        if (isDni) txtCE.value = '';
+        else txtDNI.value = '';
     }
 
-    btnDNI.addEventListener('click', function () {
-        selectDocumentType('DNI');
-    });
+    btnDNI.addEventListener('click', () => selectDocumentType('DNI'));
+    btnCE.addEventListener('click', () => selectDocumentType('CE'));
 
-    btnCE.addEventListener('click', function () {
-        selectDocumentType('CE');
-    });
-
-    if (hdnField && hdnField.value) {
-        selectDocumentType(hdnField.value);
-    }
+    selectDocumentType(hdnField.value);
 }

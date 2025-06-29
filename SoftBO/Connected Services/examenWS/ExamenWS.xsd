@@ -17,9 +17,13 @@
   <xs:complexType name="examenDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="idExamen" type="xs:int" />
       <xs:element minOccurs="0" name="nombreExamen" type="xs:string" />
       <xs:element minOccurs="0" name="tipoExamen" type="tns:tipoExamenDTO" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="tipoExamenDTO">

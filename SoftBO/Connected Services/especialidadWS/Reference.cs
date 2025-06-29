@@ -16,13 +16,17 @@ namespace SoftBO.especialidadWS {
     public interface EspecialidadWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" +
+            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRespons" +
+            "e")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.especialidadWS.listarEspecialidadResponse listarEspecialidad(SoftBO.especialidadWS.listarEspecialidadRequest request);
+        SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse cambiarEstadoEspecialidad(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse")]
-        System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> listarEspecialidadAsync(SoftBO.especialidadWS.listarEspecialidadRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" +
+            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRespons" +
+            "e")]
+        System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadResponse")]
@@ -43,19 +47,6 @@ namespace SoftBO.especialidadWS {
         System.Threading.Tasks.Task<SoftBO.especialidadWS.modificarEspecialidadResponse> modificarEspecialidadAsync(SoftBO.especialidadWS.modificarEspecialidadRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" +
-            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRespons" +
-            "e")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse cambiarEstadoEspecialidad(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" +
-            "", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRespons" +
-            "e")]
-        System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadReq" +
             "uest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRes" +
             "ponse")]
@@ -67,6 +58,15 @@ namespace SoftBO.especialidadWS {
             "uest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRes" +
             "ponse")]
         System.Threading.Tasks.Task<SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadResponse> obtenerPorIdTablaEspecialidadAsync(SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.especialidadWS.listarEspecialidadResponse listarEspecialidad(SoftBO.especialidadWS.listarEspecialidadRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse")]
+        System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> listarEspecialidadAsync(SoftBO.especialidadWS.listarEspecialidadRequest request);
     }
     
     /// <remarks/>
@@ -81,6 +81,10 @@ namespace SoftBO.especialidadWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idEspecialidadField;
         
         private bool idEspecialidadFieldSpecified;
@@ -90,6 +94,14 @@ namespace SoftBO.especialidadWS {
         private double precioConsultaField;
         
         private bool precioConsultaFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -117,6 +129,30 @@ namespace SoftBO.especialidadWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idEspecialidad {
             get {
                 return this.idEspecialidadField;
@@ -140,7 +176,7 @@ namespace SoftBO.especialidadWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string nombreEspecialidad {
             get {
                 return this.nombreEspecialidadField;
@@ -152,7 +188,7 @@ namespace SoftBO.especialidadWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public double precioConsulta {
             get {
                 return this.precioConsultaField;
@@ -172,6 +208,54 @@ namespace SoftBO.especialidadWS {
             set {
                 this.precioConsultaFieldSpecified = value;
                 this.RaisePropertyChanged("precioConsultaSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -201,27 +285,40 @@ namespace SoftBO.especialidadWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarEspecialidadRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cambiarEstadoEspecialidadRequest {
         
-        public listarEspecialidadRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.especialidadWS.especialidadDTO especialidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int estado;
+        
+        public cambiarEstadoEspecialidadRequest() {
+        }
+        
+        public cambiarEstadoEspecialidadRequest(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
+            this.especialidad = especialidad;
+            this.estado = estado;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarEspecialidadResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cambiarEstadoEspecialidadResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.especialidadWS.especialidadDTO[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
         
-        public listarEspecialidadResponse() {
+        public cambiarEstadoEspecialidadResponse() {
         }
         
-        public listarEspecialidadResponse(SoftBO.especialidadWS.especialidadDTO[] @return) {
+        public cambiarEstadoEspecialidadResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -301,47 +398,6 @@ namespace SoftBO.especialidadWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cambiarEstadoEspecialidadRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.especialidadWS.especialidadDTO especialidad;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int estado;
-        
-        public cambiarEstadoEspecialidadRequest() {
-        }
-        
-        public cambiarEstadoEspecialidadRequest(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
-            this.especialidad = especialidad;
-            this.estado = estado;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cambiarEstadoEspecialidadResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public cambiarEstadoEspecialidadResponse() {
-        }
-        
-        public cambiarEstadoEspecialidadResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class obtenerPorIdTablaEspecialidadRequest {
         
@@ -375,6 +431,34 @@ namespace SoftBO.especialidadWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarEspecialidadRequest {
+        
+        public listarEspecialidadRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarEspecialidadResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.especialidadWS.especialidadDTO[] @return;
+        
+        public listarEspecialidadResponse() {
+        }
+        
+        public listarEspecialidadResponse(SoftBO.especialidadWS.especialidadDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface EspecialidadWSChannel : SoftBO.especialidadWS.EspecialidadWS, System.ServiceModel.IClientChannel {
     }
@@ -403,24 +487,28 @@ namespace SoftBO.especialidadWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.especialidadWS.listarEspecialidadResponse SoftBO.especialidadWS.EspecialidadWS.listarEspecialidad(SoftBO.especialidadWS.listarEspecialidadRequest request) {
-            return base.Channel.listarEspecialidad(request);
+        SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse SoftBO.especialidadWS.EspecialidadWS.cambiarEstadoEspecialidad(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request) {
+            return base.Channel.cambiarEstadoEspecialidad(request);
         }
         
-        public SoftBO.especialidadWS.especialidadDTO[] listarEspecialidad() {
-            SoftBO.especialidadWS.listarEspecialidadRequest inValue = new SoftBO.especialidadWS.listarEspecialidadRequest();
-            SoftBO.especialidadWS.listarEspecialidadResponse retVal = ((SoftBO.especialidadWS.EspecialidadWS)(this)).listarEspecialidad(inValue);
+        public int cambiarEstadoEspecialidad(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
+            SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest inValue = new SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest();
+            inValue.especialidad = especialidad;
+            inValue.estado = estado;
+            SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse retVal = ((SoftBO.especialidadWS.EspecialidadWS)(this)).cambiarEstadoEspecialidad(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> SoftBO.especialidadWS.EspecialidadWS.listarEspecialidadAsync(SoftBO.especialidadWS.listarEspecialidadRequest request) {
-            return base.Channel.listarEspecialidadAsync(request);
+        System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> SoftBO.especialidadWS.EspecialidadWS.cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request) {
+            return base.Channel.cambiarEstadoEspecialidadAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> listarEspecialidadAsync() {
-            SoftBO.especialidadWS.listarEspecialidadRequest inValue = new SoftBO.especialidadWS.listarEspecialidadRequest();
-            return ((SoftBO.especialidadWS.EspecialidadWS)(this)).listarEspecialidadAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
+            SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest inValue = new SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest();
+            inValue.especialidad = especialidad;
+            inValue.estado = estado;
+            return ((SoftBO.especialidadWS.EspecialidadWS)(this)).cambiarEstadoEspecialidadAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -470,31 +558,6 @@ namespace SoftBO.especialidadWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse SoftBO.especialidadWS.EspecialidadWS.cambiarEstadoEspecialidad(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request) {
-            return base.Channel.cambiarEstadoEspecialidad(request);
-        }
-        
-        public int cambiarEstadoEspecialidad(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
-            SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest inValue = new SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest();
-            inValue.especialidad = especialidad;
-            inValue.estado = estado;
-            SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse retVal = ((SoftBO.especialidadWS.EspecialidadWS)(this)).cambiarEstadoEspecialidad(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> SoftBO.especialidadWS.EspecialidadWS.cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest request) {
-            return base.Channel.cambiarEstadoEspecialidadAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.especialidadWS.cambiarEstadoEspecialidadResponse> cambiarEstadoEspecialidadAsync(SoftBO.especialidadWS.especialidadDTO especialidad, int estado) {
-            SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest inValue = new SoftBO.especialidadWS.cambiarEstadoEspecialidadRequest();
-            inValue.especialidad = especialidad;
-            inValue.estado = estado;
-            return ((SoftBO.especialidadWS.EspecialidadWS)(this)).cambiarEstadoEspecialidadAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadResponse SoftBO.especialidadWS.EspecialidadWS.obtenerPorIdTablaEspecialidad(SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadRequest request) {
             return base.Channel.obtenerPorIdTablaEspecialidad(request);
         }
@@ -515,6 +578,27 @@ namespace SoftBO.especialidadWS {
             SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadRequest inValue = new SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadRequest();
             inValue.id = id;
             return ((SoftBO.especialidadWS.EspecialidadWS)(this)).obtenerPorIdTablaEspecialidadAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.especialidadWS.listarEspecialidadResponse SoftBO.especialidadWS.EspecialidadWS.listarEspecialidad(SoftBO.especialidadWS.listarEspecialidadRequest request) {
+            return base.Channel.listarEspecialidad(request);
+        }
+        
+        public SoftBO.especialidadWS.especialidadDTO[] listarEspecialidad() {
+            SoftBO.especialidadWS.listarEspecialidadRequest inValue = new SoftBO.especialidadWS.listarEspecialidadRequest();
+            SoftBO.especialidadWS.listarEspecialidadResponse retVal = ((SoftBO.especialidadWS.EspecialidadWS)(this)).listarEspecialidad(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> SoftBO.especialidadWS.EspecialidadWS.listarEspecialidadAsync(SoftBO.especialidadWS.listarEspecialidadRequest request) {
+            return base.Channel.listarEspecialidadAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.especialidadWS.listarEspecialidadResponse> listarEspecialidadAsync() {
+            SoftBO.especialidadWS.listarEspecialidadRequest inValue = new SoftBO.especialidadWS.listarEspecialidadRequest();
+            return ((SoftBO.especialidadWS.EspecialidadWS)(this)).listarEspecialidadAsync(inValue);
         }
     }
 }

@@ -43,5 +43,9 @@ namespace SoftBO
         {
             return this.usuarioCliente.completarRolesUsuario(usuario);
         }
+        public int CambiarContraseñaUsuario(usuarioDTO usuario, string nuevaContraseña)
+        {
+            return this.usuarioCliente.CambiarContrasenhaUsuario(usuario, nuevaContraseña);
+        }
     }
 }

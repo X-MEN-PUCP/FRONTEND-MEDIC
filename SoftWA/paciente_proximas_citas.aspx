@@ -33,7 +33,7 @@
                         <a href="paciente_cita_reserva.aspx" class="alert-link ms-2">Reserve una nueva cita aquí</a>.
                     </div>
                 </asp:PlaceHolder>
-
+                <asp:Literal ID="ltlMensajeAccion" runat="server" EnableViewState="false"></asp:Literal>
                 <asp:Repeater ID="rptProximasCitas" runat="server" OnItemCommand="rptProximasCitas_ItemCommand" OnItemDataBound="rptProximasCitas_ItemDataBound">
                     <HeaderTemplate>
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -88,7 +88,6 @@
                         </div>
                     </FooterTemplate>
                 </asp:Repeater>
-                <asp:Literal ID="ltlMensajeAccion" runat="server"></asp:Literal>
             </ContentTemplate>
             <Triggers>
                  <asp:AsyncPostBackTrigger ControlID="ddlFiltroEspecialidad" EventName="SelectedIndexChanged" />

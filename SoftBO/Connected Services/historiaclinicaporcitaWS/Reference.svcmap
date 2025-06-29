@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e8fd9d12-4472-44ca-bf73-470cd44d8eac" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="75c9385e-a41b-4962-a4cc-74b8df4bf70c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HistoriaClinicaPorCitaWS.wsdl" MetadataType="Wsdl" ID="7e941e31-cef6-4333-ad28-5f8031f595c0" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?wsdl" />
-    <MetadataFile FileName="HistoriaClinicaPorCitaWS.xsd" MetadataType="Schema" ID="279b1d27-f693-4135-bfbe-692590ae2234" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?xsd=1" />
+    <MetadataFile FileName="HistoriaClinicaPorCitaWS.wsdl" MetadataType="Wsdl" ID="25002f11-6b9f-48e7-aa38-a2b78ac5b90a" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?wsdl" />
+    <MetadataFile FileName="HistoriaClinicaPorCitaWS.xsd" MetadataType="Schema" ID="fd8f8dcb-cd4b-4fc2-8c9d-8b63fa31b5aa" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaClinicaPorCitaWS?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

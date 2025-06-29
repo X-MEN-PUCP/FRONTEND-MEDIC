@@ -1,5 +1,4 @@
-﻿// --- Archivo: doctor_agenda.aspx.cs ---
-using SoftBO;
+﻿using SoftBO;
 using SoftBO.loginWS;
 using SoftBO.medicoWS;
 using System;
@@ -58,13 +57,13 @@ namespace SoftWA
             List<citaDTO> agendaCompleta;
             try
             {
-                agendaCompleta = _medicoBO.ListarCitasProgramadasMedico(idDoctor).ToList();
+                agendaCompleta = _medicoBO.ListarCitasMedicos(idDoctor,estadoCita.PAGADO).ToList();
             }
             catch (Exception ex)
             {
                 // Manejar error de conexión
                 phNoAgenda.Visible = true;
-                (phNoAgenda.Controls[0] as Literal).Text = "<div class='alert alert-danger'>Error al conectar con el servidor para obtener la agenda.</div>";
+                //(phNoAgenda.Controls[0] as Literal).Text = "<div class='alert alert-danger'>Error al conectar con el servidor para obtener la agenda.</div>";
                 pnlProximaCita.Visible = false;
                 pnlSiguientesCitas.Visible = false;
                 hrSeparadorCitas.Visible = false;
@@ -73,12 +72,11 @@ namespace SoftWA
             }
 
             // Filtrar citas pendientes (no atendidas, no canceladas, etc.)
-            // Asumimos que el estado "RESERVADO" (código 0) es el que debe atenderse.
-            var citasPendientes = agendaCompleta
-                .Where(c => c.estado == estadoCita.DISPONIBLE)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
-                .OrderBy(c => DateTime.Parse(c.fechaCita))
-                .ThenBy(c => c.turno.horaInicio)
-                .ToList();
+            var citasPendientes = agendaCompleta;
+            //    .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
+            //    .OrderBy(c => DateTime.Parse(c.fechaCita))
+            //    .ThenBy(c => c.turno.horaInicio)
+            //    .ToList();
 
             if (citasPendientes.Any())
             {
@@ -94,7 +92,9 @@ namespace SoftWA
 
                 ltlProximaPacienteNombre.Text = Server.HtmlEncode($"{paciente.nombres} {paciente.apellidoPaterno}");
                 ltlProximaFecha.Text = DateTime.Parse(proximaCita.fechaCita).ToString("dddd, dd 'de' MMMM 'de' yyyy");
-                ltlProximaHorario.Text = Server.HtmlEncode(proximaCita.turno.horaInicio.ToString("HH:mm") + " - " + proximaCita.turno.horaFin.ToString("HH:mm"));
+                string horaInicio = proximaCita.turno.horaInicio.Length >= 5 ? proximaCita.turno.horaInicio.Substring(0, 5) : proximaCita.turno.horaInicio;
+                string horaFin = proximaCita.turno.horaFin.Length >= 5 ? proximaCita.turno.horaFin.Substring(0, 5) : proximaCita.turno.horaFin;
+                ltlProximaHorario.Text = Server.HtmlEncode($"{horaInicio} - {horaFin}");
                 ltlProximaEspecialidad.Text = Server.HtmlEncode(proximaCita.especialidad.nombreEspecialidad);
                 btnAtenderProximaCita.CommandArgument = proximaCita.idCita.ToString();
 
@@ -103,7 +103,7 @@ namespace SoftWA
                 .Select(cita =>
                 {
                     var historiaClinicaPorCita1 = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(cita.idCita);
-                    var paciente1 = historiaClinicaPorCita?.historiaClinica?.paciente;
+                    var paciente1 = historiaClinicaPorCita1?.historiaClinica?.paciente;
                     var pacienteMapped = new usuarioDTO
                     {
                         idUsuario = paciente1?.idUsuario ?? 0,
@@ -112,7 +112,6 @@ namespace SoftWA
                         apellidoMaterno = paciente1?.apellidoMaterno,
                         correoElectronico = paciente1?.correoElectronico,
                         numDocumento = paciente1?.numDocumento,
-                        // Map other properties as needed
                     };
                     return new CitaConPaciente
                     {
@@ -153,11 +152,8 @@ namespace SoftWA
         private void RedirigirARegistroAtencion(int idCita)
         {
             string url = $"doctor_registrar_atencion.aspx?idCita={idCita}";
-            // Script para abrir en una nueva pestaña y luego refrescar la página actual
             string script = $"window.open('{url}', '_blank');";
             ScriptManager.RegisterStartupScript(this, GetType(), "OpenAtencionWindow", script, true);
-            // Opcional: podrías agregar un temporizador para refrescar la agenda después de un tiempo,
-            // pero es mejor que el médico la refresque manualmente para no interrumpir su flujo.
         }
 
         protected void btnAtenderProximaCita_Click(object sender, EventArgs e)

@@ -16,19 +16,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
     public interface HistoriaClinicaPorCitaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
-            "caPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
-            "caPorCitaResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
-            "caPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
-            "caPorCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
             "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
             "aPorCitaResponse")]
@@ -40,6 +27,19 @@ namespace SoftBO.historiaclinicaporcitaWS {
             "aPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinic" +
             "aPorCitaResponse")]
         System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse> InsertarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
+            "caPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
+            "caPorCitaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
+            "caPorCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClini" +
+            "caPorCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinica" +
@@ -97,6 +97,10 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private string evolucionField;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int frecuenciaCardiacaField;
         
         private bool frecuenciaCardiacaFieldSpecified;
@@ -124,6 +128,14 @@ namespace SoftBO.historiaclinicaporcitaWS {
         private bool temperaturaFieldSpecified;
         
         private string tratamientoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -175,6 +187,30 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int frecuenciaCardiaca {
             get {
                 return this.frecuenciaCardiacaField;
@@ -198,7 +234,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public historiaClinicaDTO historiaClinica {
             get {
                 return this.historiaClinicaField;
@@ -210,7 +246,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public string motivoConsulta {
             get {
                 return this.motivoConsultaField;
@@ -222,7 +258,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public double peso {
             get {
                 return this.pesoField;
@@ -246,7 +282,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public string presionArterial {
             get {
                 return this.presionArterialField;
@@ -258,7 +294,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public string receta {
             get {
                 return this.recetaField;
@@ -270,7 +306,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public string recomendacion {
             get {
                 return this.recomendacionField;
@@ -282,7 +318,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public double talla {
             get {
                 return this.tallaField;
@@ -306,7 +342,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public double temperatura {
             get {
                 return this.temperaturaField;
@@ -330,7 +366,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string tratamiento {
             get {
                 return this.tratamientoField;
@@ -338,6 +374,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.tratamientoField = value;
                 this.RaisePropertyChanged("tratamiento");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -369,9 +453,13 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private string fechaCitaField;
         
-        private localTime horaFinField;
+        private string fechaCreacionField;
         
-        private localTime horaInicioField;
+        private string fechaModificacionField;
+        
+        private string horaFinField;
+        
+        private string horaInicioField;
         
         private int idCitaField;
         
@@ -380,6 +468,14 @@ namespace SoftBO.historiaclinicaporcitaWS {
         private usuarioDTO medicoField;
         
         private turnoDTO turnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -443,7 +539,31 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
-        public localTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -454,8 +574,8 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
-        public localTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -466,7 +586,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public int idCita {
             get {
                 return this.idCitaField;
@@ -490,7 +610,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public usuarioDTO medico {
             get {
                 return this.medicoField;
@@ -502,7 +622,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public turnoDTO turno {
             get {
                 return this.turnoField;
@@ -510,6 +630,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.turnoField = value;
                 this.RaisePropertyChanged("turno");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -535,6 +703,10 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idConsultorioField;
         
         private bool idConsultorioFieldSpecified;
@@ -546,6 +718,14 @@ namespace SoftBO.historiaclinicaporcitaWS {
         private int numPisoField;
         
         private bool numPisoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -573,6 +753,30 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idConsultorio {
             get {
                 return this.idConsultorioField;
@@ -596,7 +800,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public int numConsultorio {
             get {
                 return this.numConsultorioField;
@@ -620,7 +824,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int numPiso {
             get {
                 return this.numPisoField;
@@ -640,6 +844,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.numPisoFieldSpecified = value;
                 this.RaisePropertyChanged("numPisoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -678,11 +930,23 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idHistoriaClinicaField;
         
         private bool idHistoriaClinicaFieldSpecified;
         
         private usuarioDTO pacienteField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -710,6 +974,30 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idHistoriaClinica {
             get {
                 return this.idHistoriaClinicaField;
@@ -733,7 +1021,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public usuarioDTO paciente {
             get {
                 return this.pacienteField;
@@ -741,6 +1029,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.pacienteField = value;
                 this.RaisePropertyChanged("paciente");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -780,7 +1116,11 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private bool estadoLogicoFieldSpecified;
         
-        private localDate fechaNacimientoField;
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
+        private string fechaNacimientoField;
         
         private genero generoField;
         
@@ -801,6 +1141,14 @@ namespace SoftBO.historiaclinicaporcitaWS {
         private tipoDocumento tipoDocumentoField;
         
         private bool tipoDocumentoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -912,7 +1260,31 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
-        public localDate fechaNacimiento {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
             }
@@ -923,7 +1295,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public genero genero {
             get {
                 return this.generoField;
@@ -947,7 +1319,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -971,7 +1343,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -983,7 +1355,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -995,7 +1367,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -1007,7 +1379,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -1019,7 +1391,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -1039,6 +1411,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.tipoDocumentoFieldSpecified = value;
                 this.RaisePropertyChanged("tipoDocumentoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -1072,24 +1492,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         EN_CAPACITACION,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
     
     /// <remarks/>
@@ -1133,19 +1535,27 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private bool estadoGeneralFieldSpecified;
         
-        private System.DateTime horaFinField;
+        private string fechaCreacionField;
         
-        private bool horaFinFieldSpecified;
+        private string fechaModificacionField;
         
-        private System.DateTime horaInicioField;
+        private string horaFinField;
         
-        private bool horaInicioFieldSpecified;
+        private string horaInicioField;
         
         private int idTurnoField;
         
         private bool idTurnoFieldSpecified;
         
         private string nombreTurnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -1173,7 +1583,31 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public System.DateTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -1184,20 +1618,8 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaFinSpecified {
-            get {
-                return this.horaFinFieldSpecified;
-            }
-            set {
-                this.horaFinFieldSpecified = value;
-                this.RaisePropertyChanged("horaFinSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
-        public System.DateTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -1208,19 +1630,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaInicioSpecified {
-            get {
-                return this.horaInicioFieldSpecified;
-            }
-            set {
-                this.horaInicioFieldSpecified = value;
-                this.RaisePropertyChanged("horaInicioSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int idTurno {
             get {
                 return this.idTurnoField;
@@ -1244,7 +1654,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public string nombreTurno {
             get {
                 return this.nombreTurnoField;
@@ -1255,23 +1665,53 @@ namespace SoftBO.historiaclinicaporcitaWS {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localTime : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
+            }
+        }
         
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
@@ -1295,6 +1735,10 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idEspecialidadField;
         
         private bool idEspecialidadFieldSpecified;
@@ -1304,6 +1748,14 @@ namespace SoftBO.historiaclinicaporcitaWS {
         private double precioConsultaField;
         
         private bool precioConsultaFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -1331,6 +1783,30 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idEspecialidad {
             get {
                 return this.idEspecialidadField;
@@ -1354,7 +1830,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string nombreEspecialidad {
             get {
                 return this.nombreEspecialidadField;
@@ -1366,7 +1842,7 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public double precioConsulta {
             get {
                 return this.precioConsultaField;
@@ -1386,6 +1862,54 @@ namespace SoftBO.historiaclinicaporcitaWS {
             set {
                 this.precioConsultaFieldSpecified = value;
                 this.RaisePropertyChanged("precioConsultaSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -1413,42 +1937,9 @@ namespace SoftBO.historiaclinicaporcitaWS {
         
         /// <remarks/>
         PAGADO,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ModificarHistoriaClinicaPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class ModificarHistoriaClinicaPorCitaRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita;
-        
-        public ModificarHistoriaClinicaPorCitaRequest() {
-        }
-        
-        public ModificarHistoriaClinicaPorCitaRequest(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            this.historiaPorCita = historiaPorCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ModificarHistoriaClinicaPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class ModificarHistoriaClinicaPorCitaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public ModificarHistoriaClinicaPorCitaResponse() {
-        }
-        
-        public ModificarHistoriaClinicaPorCitaResponse(int @return) {
-            this.@return = @return;
-        }
+        /// <remarks/>
+        ATENDIDO,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1483,6 +1974,42 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         public InsertarHistoriaClinicaPorCitaResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ModificarHistoriaClinicaPorCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class ModificarHistoriaClinicaPorCitaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita;
+        
+        public ModificarHistoriaClinicaPorCitaRequest() {
+        }
+        
+        public ModificarHistoriaClinicaPorCitaRequest(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            this.historiaPorCita = historiaPorCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ModificarHistoriaClinicaPorCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class ModificarHistoriaClinicaPorCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public ModificarHistoriaClinicaPorCitaResponse() {
+        }
+        
+        public ModificarHistoriaClinicaPorCitaResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1615,29 +2142,6 @@ namespace SoftBO.historiaclinicaporcitaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request) {
-            return base.Channel.ModificarHistoriaClinicaPorCita(request);
-        }
-        
-        public int ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest();
-            inValue.historiaPorCita = historiaPorCita;
-            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse retVal = ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).ModificarHistoriaClinicaPorCita(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request) {
-            return base.Channel.ModificarHistoriaClinicaPorCitaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
-            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest();
-            inValue.historiaPorCita = historiaPorCita;
-            return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).ModificarHistoriaClinicaPorCitaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.InsertarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest request) {
             return base.Channel.InsertarHistoriaClinicaPorCita(request);
         }
@@ -1658,6 +2162,29 @@ namespace SoftBO.historiaclinicaporcitaWS {
             SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.InsertarHistoriaClinicaPorCitaRequest();
             inValue.historiaPorCita = historiaPorCita;
             return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).InsertarHistoriaClinicaPorCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request) {
+            return base.Channel.ModificarHistoriaClinicaPorCita(request);
+        }
+        
+        public int ModificarHistoriaClinicaPorCita(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest();
+            inValue.historiaPorCita = historiaPorCita;
+            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse retVal = ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).ModificarHistoriaClinicaPorCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS.ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest request) {
+            return base.Channel.ModificarHistoriaClinicaPorCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaResponse> ModificarHistoriaClinicaPorCitaAsync(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO historiaPorCita) {
+            SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest inValue = new SoftBO.historiaclinicaporcitaWS.ModificarHistoriaClinicaPorCitaRequest();
+            inValue.historiaPorCita = historiaPorCita;
+            return ((SoftBO.historiaclinicaporcitaWS.HistoriaClinicaPorCitaWS)(this)).ModificarHistoriaClinicaPorCitaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

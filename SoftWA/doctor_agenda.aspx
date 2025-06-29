@@ -76,7 +76,10 @@
                                         </p>
                                         <p class="card-text mb-1">
                                             <i class="fa-solid fa-clock me-2 text-primary"></i>
-                                            <strong>Horario:</strong> <%# ((DateTime)Eval("turno.horaInicio")).ToString("HH:mm") + " - " + ((DateTime)Eval("turno.horaFin")).ToString("HH:mm") %>
+                                            <strong>Horario:</strong> 
+<%# DateTime.Parse(Eval("turno.horaInicio").ToString()).ToString("HH:mm") + " - " +
+     DateTime.Parse(Eval("turno.horaFin").ToString()).ToString("HH:mm") %>
+
                                         </p>
                                         <p class="card-text mb-2">
                                             <i class="fa-solid fa-stethoscope me-2" style="color: #5bd3c5;"></i>

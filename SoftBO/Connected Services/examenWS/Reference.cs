@@ -16,13 +16,13 @@ namespace SoftBO.examenWS {
     public interface ExamenWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.examenWS.insertarExamenResponse insertarExamen(SoftBO.examenWS.insertarExamenRequest request);
+        SoftBO.examenWS.obtenerPorIdTablaExamenResponse obtenerPorIdTablaExamen(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse")]
-        System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> insertarExamenAsync(SoftBO.examenWS.insertarExamenRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
+        System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> obtenerPorIdTablaExamenAsync(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/listarTodosTablaExamenResponse")]
@@ -34,13 +34,13 @@ namespace SoftBO.examenWS {
         System.Threading.Tasks.Task<SoftBO.examenWS.listarTodosTablaExamenResponse> listarTodosTablaExamenAsync(SoftBO.examenWS.listarTodosTablaExamenRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.examenWS.obtenerPorIdTablaExamenResponse obtenerPorIdTablaExamen(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request);
+        SoftBO.examenWS.insertarExamenResponse insertarExamen(SoftBO.examenWS.insertarExamenRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/obtenerPorIdTablaExamenResponse")]
-        System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> obtenerPorIdTablaExamenAsync(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ExamenWS/insertarExamenResponse")]
+        System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> insertarExamenAsync(SoftBO.examenWS.insertarExamenRequest request);
     }
     
     /// <remarks/>
@@ -55,6 +55,10 @@ namespace SoftBO.examenWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idExamenField;
         
         private bool idExamenFieldSpecified;
@@ -62,6 +66,14 @@ namespace SoftBO.examenWS {
         private string nombreExamenField;
         
         private tipoExamenDTO tipoExamenField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -89,6 +101,30 @@ namespace SoftBO.examenWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idExamen {
             get {
                 return this.idExamenField;
@@ -112,7 +148,7 @@ namespace SoftBO.examenWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string nombreExamen {
             get {
                 return this.nombreExamenField;
@@ -124,7 +160,7 @@ namespace SoftBO.examenWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public tipoExamenDTO tipoExamen {
             get {
                 return this.tipoExamenField;
@@ -132,6 +168,54 @@ namespace SoftBO.examenWS {
             set {
                 this.tipoExamenField = value;
                 this.RaisePropertyChanged("tipoExamen");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -235,35 +319,35 @@ namespace SoftBO.examenWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarExamenRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdTablaExamenRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.examenWS.examenDTO examen;
+        public int examenId;
         
-        public insertarExamenRequest() {
+        public obtenerPorIdTablaExamenRequest() {
         }
         
-        public insertarExamenRequest(SoftBO.examenWS.examenDTO examen) {
-            this.examen = examen;
+        public obtenerPorIdTablaExamenRequest(int examenId) {
+            this.examenId = examenId;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarExamenResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdTablaExamenResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        public SoftBO.examenWS.examenDTO @return;
         
-        public insertarExamenResponse() {
+        public obtenerPorIdTablaExamenResponse() {
         }
         
-        public insertarExamenResponse(int @return) {
+        public obtenerPorIdTablaExamenResponse(SoftBO.examenWS.examenDTO @return) {
             this.@return = @return;
         }
     }
@@ -299,35 +383,35 @@ namespace SoftBO.examenWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdTablaExamenRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarExamen", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarExamenRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int examenId;
+        public SoftBO.examenWS.examenDTO examen;
         
-        public obtenerPorIdTablaExamenRequest() {
+        public insertarExamenRequest() {
         }
         
-        public obtenerPorIdTablaExamenRequest(int examenId) {
-            this.examenId = examenId;
+        public insertarExamenRequest(SoftBO.examenWS.examenDTO examen) {
+            this.examen = examen;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdTablaExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdTablaExamenResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarExamenResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarExamenResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.examenWS.examenDTO @return;
+        public int @return;
         
-        public obtenerPorIdTablaExamenResponse() {
+        public insertarExamenResponse() {
         }
         
-        public obtenerPorIdTablaExamenResponse(SoftBO.examenWS.examenDTO @return) {
+        public insertarExamenResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -360,26 +444,26 @@ namespace SoftBO.examenWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.examenWS.insertarExamenResponse SoftBO.examenWS.ExamenWS.insertarExamen(SoftBO.examenWS.insertarExamenRequest request) {
-            return base.Channel.insertarExamen(request);
+        SoftBO.examenWS.obtenerPorIdTablaExamenResponse SoftBO.examenWS.ExamenWS.obtenerPorIdTablaExamen(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request) {
+            return base.Channel.obtenerPorIdTablaExamen(request);
         }
         
-        public int insertarExamen(SoftBO.examenWS.examenDTO examen) {
-            SoftBO.examenWS.insertarExamenRequest inValue = new SoftBO.examenWS.insertarExamenRequest();
-            inValue.examen = examen;
-            SoftBO.examenWS.insertarExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).insertarExamen(inValue);
+        public SoftBO.examenWS.examenDTO obtenerPorIdTablaExamen(int examenId) {
+            SoftBO.examenWS.obtenerPorIdTablaExamenRequest inValue = new SoftBO.examenWS.obtenerPorIdTablaExamenRequest();
+            inValue.examenId = examenId;
+            SoftBO.examenWS.obtenerPorIdTablaExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).obtenerPorIdTablaExamen(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> SoftBO.examenWS.ExamenWS.insertarExamenAsync(SoftBO.examenWS.insertarExamenRequest request) {
-            return base.Channel.insertarExamenAsync(request);
+        System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> SoftBO.examenWS.ExamenWS.obtenerPorIdTablaExamenAsync(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request) {
+            return base.Channel.obtenerPorIdTablaExamenAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> insertarExamenAsync(SoftBO.examenWS.examenDTO examen) {
-            SoftBO.examenWS.insertarExamenRequest inValue = new SoftBO.examenWS.insertarExamenRequest();
-            inValue.examen = examen;
-            return ((SoftBO.examenWS.ExamenWS)(this)).insertarExamenAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> obtenerPorIdTablaExamenAsync(int examenId) {
+            SoftBO.examenWS.obtenerPorIdTablaExamenRequest inValue = new SoftBO.examenWS.obtenerPorIdTablaExamenRequest();
+            inValue.examenId = examenId;
+            return ((SoftBO.examenWS.ExamenWS)(this)).obtenerPorIdTablaExamenAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -404,26 +488,26 @@ namespace SoftBO.examenWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.examenWS.obtenerPorIdTablaExamenResponse SoftBO.examenWS.ExamenWS.obtenerPorIdTablaExamen(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request) {
-            return base.Channel.obtenerPorIdTablaExamen(request);
+        SoftBO.examenWS.insertarExamenResponse SoftBO.examenWS.ExamenWS.insertarExamen(SoftBO.examenWS.insertarExamenRequest request) {
+            return base.Channel.insertarExamen(request);
         }
         
-        public SoftBO.examenWS.examenDTO obtenerPorIdTablaExamen(int examenId) {
-            SoftBO.examenWS.obtenerPorIdTablaExamenRequest inValue = new SoftBO.examenWS.obtenerPorIdTablaExamenRequest();
-            inValue.examenId = examenId;
-            SoftBO.examenWS.obtenerPorIdTablaExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).obtenerPorIdTablaExamen(inValue);
+        public int insertarExamen(SoftBO.examenWS.examenDTO examen) {
+            SoftBO.examenWS.insertarExamenRequest inValue = new SoftBO.examenWS.insertarExamenRequest();
+            inValue.examen = examen;
+            SoftBO.examenWS.insertarExamenResponse retVal = ((SoftBO.examenWS.ExamenWS)(this)).insertarExamen(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> SoftBO.examenWS.ExamenWS.obtenerPorIdTablaExamenAsync(SoftBO.examenWS.obtenerPorIdTablaExamenRequest request) {
-            return base.Channel.obtenerPorIdTablaExamenAsync(request);
+        System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> SoftBO.examenWS.ExamenWS.insertarExamenAsync(SoftBO.examenWS.insertarExamenRequest request) {
+            return base.Channel.insertarExamenAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.examenWS.obtenerPorIdTablaExamenResponse> obtenerPorIdTablaExamenAsync(int examenId) {
-            SoftBO.examenWS.obtenerPorIdTablaExamenRequest inValue = new SoftBO.examenWS.obtenerPorIdTablaExamenRequest();
-            inValue.examenId = examenId;
-            return ((SoftBO.examenWS.ExamenWS)(this)).obtenerPorIdTablaExamenAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.examenWS.insertarExamenResponse> insertarExamenAsync(SoftBO.examenWS.examenDTO examen) {
+            SoftBO.examenWS.insertarExamenRequest inValue = new SoftBO.examenWS.insertarExamenRequest();
+            inValue.examen = examen;
+            return ((SoftBO.examenWS.ExamenWS)(this)).insertarExamenAsync(inValue);
         }
     }
 }

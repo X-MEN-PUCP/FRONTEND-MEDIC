@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registro_cuenta_nueva.aspx.cs" Inherits="SoftWA.MA_General.resgistro_cuenta_nueva" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registro_cuenta_nueva.aspx.cs" Inherits="SoftWA.registro_cuenta_nueva"  Async="true"%>
 
 <!DOCTYPE html>
 
@@ -82,101 +82,113 @@
                 <h2>Medical App</h2>
                 <p class="text-muted">Cree su cuenta nueva</p>
             </div>
-                <asp:Literal ID="ltlMensajeError" runat="server" EnableViewState="false"></asp:Literal>
-                <div class="mb-3 document-type-toggle-container">
-                    <label class="form-label">Tipo de Documento:</label>
-                    <div class="toggle-switch-custom">
-                        <button type="button" id="btnToggleDNI" class="toggle-option active" onclick="selectDocumentType('DNI')">DNI</button>
-                        <button type="button" id="btnToggleCE" class="toggle-option" onclick="selectDocumentType('CE')">CE</button>
+                <asp:Literal ID="ltlMensaje" runat="server" EnableViewState="false"></asp:Literal>
+                <asp:Panel ID="pnlBusquedaDocumento" runat="server">
+                    <div class="mb-3 document-type-toggle-container">
+                        <label class="form-label">Tipo de Documento:</label>
+                        <div class="toggle-switch-custom">
+                            <button type="button" id="btnToggleDNI" class="toggle-option active">DNI</button>
+                            <button type="button" id="btnToggleCE" class="toggle-option">CE</button>
+                        </div>
+                        <asp:HiddenField ID="hdnSelectedDocumentType" runat="server" Value="DNI" />
                     </div>
-                    <asp:HiddenField ID="hdnSelectedDocumentType" runat="server" Value="DNI" />
-                </div>
-                <div id="dniFieldContainer" class="mb-3">
-                    <label for="<%=txtDNI.ClientID%>" class="form-label">Número de DNI:</label>
-                    <div class="input-group">
-                         <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <div id="dniFieldContainer" class="mb-3">
+                        <label for="<%=txtDNI.ClientID%>" class="form-label">Número de DNI:</label>
                         <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" placeholder="Ingrese su DNI"></asp:TextBox>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvDNI" runat="server"
-                        ControlToValidate="txtDNI"
-                        ErrorMessage="El DNI es obligatorio."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation">
-                    </asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="revDNI" runat="server"
-                        ControlToValidate="txtDNI"
-                        ValidationExpression="^\d{8}$"
-                        ErrorMessage="El DNI debe tener 8 dígitos."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation">
-                    </asp:RegularExpressionValidator>
-                </div>
-                <div id="ceFieldContainer" class="mb-3" style="display:none;">
-                    <label for="<%=txtCE.ClientID%>" class="form-label">Número de Carnet de Extranjería:</label>
-                    <div class="input-group">
-                         <span class="input-group-text"><i class="fa-solid fa-passport"></i></span>
+                    <div id="ceFieldContainer" class="mb-3" style="display:none;">
+                        <label for="<%=txtCE.ClientID%>" class="form-label">Número de Carnet de Extranjería:</label>
                         <asp:TextBox ID="txtCE" runat="server" CssClass="form-control" MaxLength="12" placeholder="Ingrese su Carnet de Extranjería" Enabled="false"></asp:TextBox>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvCE" runat="server"
-                        ControlToValidate="txtCE"
-                        ErrorMessage="El Carnet de Extranjería es obligatorio."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation" Enabled="false">
-                    </asp:RequiredFieldValidator>
-                     <asp:RegularExpressionValidator ID="revCE" runat="server"
-                        ControlToValidate="txtCE"
-                        ValidationExpression="^[a-zA-Z0-9]{9,12}$"
-                        ErrorMessage="Formato de CE inválido (9-12 alfanuméricos)."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation" Enabled="false">
-                    </asp:RegularExpressionValidator>
-                </div>
-                <div class="mb-3">
-                    <label for="<%=txtPassword.ClientID%>" class="form-label">Contraseña:</label>
-                     <div class="input-group">
-                        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Ingrese su contraseña"></asp:TextBox>
+                    <div class="d-grid">
+                        <asp:Button ID="btnValidarDocumento" runat="server" Text="Validar Documento" CssClass="btn btn-info" OnClick="btnValidarDocumento_Click" />
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
-                        ControlToValidate="txtPassword"
-                        ErrorMessage="La contraseña es obligatoria."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation">
-                     </asp:RequiredFieldValidator>
-                </div>
-                <div class="mb-3">
-                    <label for="<%=txtConfirmPassword.ClientID%>" class="form-label">Confirmar Contraseña:</label>
-                     <div class="input-group">
-                        <span class="input-group-text"><i class="fa-solid fa-lock-open"></i></span>
-                        <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirme su contraseña"></asp:TextBox>
+                </asp:Panel>
+                <asp:Panel ID="pnlDatosRegistro" runat="server" Visible="false">
+                    <hr class="my-3"/>
+                    <h5 class="text-center text-muted mb-3">Datos Personales</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Nombres:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <asp:TextBox ID="txtNombres" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                        </div>
                     </div>
-                    <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server"
-                        ControlToValidate="txtConfirmPassword"
-                        ErrorMessage="Confirmar la contraseña es obligatorio."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation">
-                     </asp:RequiredFieldValidator>
-                     <asp:CompareValidator ID="cvPassword" runat="server"
-                        ControlToValidate="txtConfirmPassword"
-                        ControlToCompare="txtPassword"
-                        Operator="Equal"
-                        ErrorMessage="Las contraseñas no coinciden."
-                        CssClass="text-danger small"
-                        Display="Dynamic"
-                        ValidationGroup="RegisterValidation">
-                    </asp:CompareValidator>
-                </div>
-                <div class="d-grid">
-                    <asp:Button ID="btnRegister" runat="server" Text="Registrar Cuenta"
-                        CssClass="btn btn-primary btn-block" OnClick="btnRegister_Click"
-                        ValidationGroup="RegisterValidation" />
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido Paterno:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <asp:TextBox ID="txtApellidoPaterno" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido Materno:</label>
+                        <div class="input-group">
+                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <asp:TextBox ID="txtApellidoMaterno" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                        </div>
+                    </div>
+                    <hr class="my-3" />
+                    <h5 class="text-center text-muted mb-3">Complete su Información</h5>
+                    <div class="mb-3">
+                        <label for="<%=txtCorreo.ClientID%>" class="form-label">Correo Electrónico:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" TextMode="Email" placeholder="ejemplo@correo.com"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreo" ErrorMessage="El correo es obligatorio." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="<%=txtCelular.ClientID%>" class="form-label">Número de Celular:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                            <asp:TextBox ID="txtCelular" runat="server" CssClass="form-control" MaxLength="9" placeholder="987654321"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvCelular" runat="server" ControlToValidate="txtCelular" ErrorMessage="El celular es obligatorio." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="<%=txtFechaNacimiento.ClientID%>" class="form-label">Fecha de Nacimiento:</label>
+                            <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ControlToValidate="txtFechaNacimiento" ErrorMessage="Campo obligatorio." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="<%=ddlGenero.ClientID%>" class="form-label">Género:</label>
+                            <asp:DropDownList ID="ddlGenero" runat="server" CssClass="form-select">
+                                <asp:ListItem Text="Seleccionar..." Value=""></asp:ListItem>
+                                <asp:ListItem Text="Masculino" Value="MASCULINO"></asp:ListItem>
+                                <asp:ListItem Text="Femenino" Value="FEMENINO"></asp:ListItem>
+                                <asp:ListItem Text="Otro" Value="OTRO"></asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvGenero" runat="server" ControlToValidate="ddlGenero" ErrorMessage="Campo obligatorio." CssClass="text-danger small" Display="Dynamic" InitialValue="" ValidationGroup="RegisterValidation" />
+                        </div>
+                    </div>
+                    <hr class="my-3" />
+                    <h5 class="text-center text-muted mb-3">Cree su Contraseña</h5>
+                    <div class="mb-3">
+                        <label for="<%=txtPassword.ClientID%>" class="form-label">Contraseña:</label>
+                         <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Ingrese su contraseña"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="La contraseña es obligatoria." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="<%=txtConfirmPassword.ClientID%>" class="form-label">Confirmar Contraseña:</label>
+                         <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-lock-open"></i></span>
+                            <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Confirme su nueva contraseña"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ErrorMessage="Confirmar la contraseña es obligatorio." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                         <asp:CompareValidator ID="cvPassword" runat="server" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" Operator="Equal" ErrorMessage="Las contraseñas no coinciden." CssClass="text-danger small" Display="Dynamic" ValidationGroup="RegisterValidation" />
+                    </div>
+                    
+                    <div class="d-grid">
+                        <asp:Button ID="btnRegister" runat="server" Text="Crear Cuenta"
+                            CssClass="btn btn-primary btn-block" OnClick="btnRegister_Click"
+                            ValidationGroup="RegisterValidation" />
+                    </div>
+                </asp:Panel>
                 <div class="mt-3 text-center">
                     ¿Ya tienes una cuenta? <a href="indexLogin.aspx" class="btn btn-link">Inicia Sesión aquí</a>
                 </div>
@@ -194,11 +206,7 @@
                 dniContainerId: 'dniFieldContainer',
                 ceContainerId: 'ceFieldContainer',
                 txtDniId: '<%= txtDNI.ClientID %>',
-                txtCeId: '<%= txtCE.ClientID %>',
-                rfvDniId: '<%= rfvDNI.ClientID %>',
-                revDniId: '<%= revDNI.ClientID %>',
-                rfvCeId: '<%= rfvCE.ClientID %>',
-                revCeId: '<%= revCE.ClientID %>'
+                txtCeId: '<%= txtCE.ClientID %>'
             };
             initializeRegistrationForm(elementIds);
         });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftBO;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,62 +9,31 @@ using System.Web.UI.WebControls;
 
 namespace SoftWA.MA_Paciente
 {
-    #region --- Estructura de Datos Perfil ---
-    public class UsuarioPerfilInfo
-    {
-        public int UsuarioId { get; set; } // Identificador del usuario
-        public string Nombres { get; set; }
-        public string ApellidoPaterno { get; set; }
-        public string ApellidoMaterno { get; set; }
-        public DateTime? FechaNacimiento { get; set; } // Nullable por si no es obligatoria
-        public string CorreoElectronico { get; set; }
-        public string NumCelular { get; set; }
-        public string Genero { get; set; } // Podría ser char 'M', 'F', 'O', 'N' o string
-        public string NombreGeneroCompleto // Propiedad calculada para mostrar
-        {
-            get
-            {
-                switch (Genero?.ToUpper())
-                {
-                    case "M": return "Masculino";
-                    case "F": return "Femenino";
-                    case "O": return "Otro";
-                    case "N": return "Prefiero no decir";
-                    default: return "No especificado";
-                }
-            }
-        }
-    }
-    #endregion
-
     public partial class perfil_paciente : System.Web.UI.Page
     {
+        private readonly UsuarioBO _usuarioBO;
+        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
+        public perfil_paciente()
+        {
+            _usuarioBO = new UsuarioBO();
+            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int usuarioActualId = ObtenerUsuarioActualId_Simulado();
+                int usuarioActualId = ObtenerUsuarioActualId();
 
                 if (usuarioActualId > 0)
                 {
-                    UsuarioPerfilInfo perfil = CargarPerfilUsuario_LlamadaBackend(usuarioActualId);
-
-                    if (perfil != null)
-                    {
-                        PopulateViewControls(perfil);
-                        ViewState["UsuarioId"] = usuarioActualId;
-                    }
-                    else
-                    {
-                        MostrarMensaje("No se pudo cargar la información del perfil.", true);
-                        pnlViewProfile.Visible = false;
-                    }
+                    ViewState["UsuarioId"] = usuarioActualId;
+                    CargarDatosPerfil(usuarioActualId);
                 }
                 else
                 {
                     MostrarMensaje("No se pudo identificar al usuario.", true);
-                    Response.Redirect("~/indexLogin.aspx");
                     pnlViewProfile.Visible = false;
+                    Response.Redirect("~/indexLogin.aspx");
                 }
 
                 pnlEditProfile.Visible = false;
@@ -71,179 +41,175 @@ namespace SoftWA.MA_Paciente
             }
         }
 
-        #region --- Lógica de Cambio de Modo y Población de Controles ---
-
-        protected void btnEdit_Click(object sender, EventArgs e)
+        #region --- Lógica de Carga y Visualización de Datos ---
+        private void CargarDatosPerfil(int usuarioActualId)
         {
-            int usuarioActualId = (int)(ViewState["UsuarioId"] ?? 0);
-            if (usuarioActualId > 0)
+            try
             {
-                UsuarioPerfilInfo perfil = CargarPerfilUsuario_LlamadaBackend(usuarioActualId);
-                if (perfil != null)
+                SoftBO.usuarioWS.usuarioDTO perfil = _usuarioBO.ObtenerPorIdUsuario(usuarioActualId);
+                if(perfil != null)
                 {
-                    PopulateEditControls(perfil);
-                    SwitchMode(true); 
+                    PopulateViewControls(perfil);
+                    ViewState["PerfilCompleto"] = perfil;
                 }
                 else
                 {
-                    MostrarMensaje("No se pudo cargar el perfil para editar.", true);
+                    MostrarMensaje("No se pudo cargar el perfil del usuario.", true);
+                    pnlViewProfile.Visible = false;
                 }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al cargar el perfil. Por favor, inténtelo más tarde.", true);
+                pnlViewProfile.Visible = false;
+                System.Diagnostics.Debug.WriteLine($"Error al cargar perfil: {ex.Message}");
+            }
+        }
+        private void PopulateViewControls(SoftBO.usuarioWS.usuarioDTO perfil)
+        {
+            lblNombresView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.nombres));
+            lblApellidoPaternoView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.apellidoPaterno));
+            lblApellidoMaternoView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.apellidoMaterno));
+            if(DateTime.TryParse(perfil.fechaNacimiento, out DateTime fechaNac))
+            {
+                lblFechaNacimientoView.Text = fechaNac.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
             }
             else
             {
-                MostrarMensaje("No se pudo identificar al usuario para editar.", true);
+                lblFechaNacimientoView.Text = "No especificada";
+            }
+            lblCorreoView.Text = Server.HtmlEncode(perfil.correoElectronico);
+            lblCelularView.Text = Server.HtmlEncode(string.IsNullOrEmpty(perfil.numCelular) ? "No especificado" : perfil.numCelular);
+            lblGeneroView.Text = Server.HtmlEncode(ObtenerNombreGenero(perfil.genero.ToString()));
+        }
+        private void PopulateEditControls(SoftBO.usuarioWS.usuarioDTO perfil)
+        {
+            txtNombresEdit.Text = CapitalizarNombre(perfil.nombres);
+            txtApellidoPaternoEdit.Text = CapitalizarNombre(perfil.apellidoPaterno);
+            txtApellidoMaternoEdit.Text = CapitalizarNombre(perfil.apellidoMaterno);
+            if (DateTime.TryParse(perfil.fechaNacimiento, out DateTime fechaNac))
+            {
+                txtFechaNacimientoEdit.Text = fechaNac.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txtFechaNacimientoEdit.Text = string.Empty;
+            }
+            txtCorreoEdit.Text = perfil.correoElectronico;
+            txtCelularEdit.Text = perfil.numCelular ?? string.Empty;
+            string generoValue = perfil.genero.ToString().ToUpperInvariant();
+            if(ddlGeneroEdit.Items.FindByValue(generoValue) != null)
+            {
+                ddlGeneroEdit.SelectedValue = generoValue;
+            }
+            ddlGeneroEdit.DataBind();
+        }
+        #endregion
+
+        #region --- Lógica de Cambio de Modo y Guardado ---
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            var perfil = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            if (perfil != null)
+            {
+                PopulateEditControls(perfil);
+                SwitchMode(true);
+            }
+            else
+            {
+                MostrarMensaje("No se pudo cargar el perfil para editar.", true);
             }
         }
-
         protected void btnCancelEdit_Click(object sender, EventArgs e)
         {
             SwitchMode(false); 
             pnlMensaje.Visible = false; 
         }
+        protected void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            Page.Validate("EditProfile");
+            if (!Page.IsValid) return;
+            var perfil = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            if (perfil == null)
+            {
+                MostrarMensaje("No se pudo cargar el perfil para guardar los cambios.", true);
+                return;
+            }
+            var perfilActualizado = Session["UsuarioCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            perfil.nombres = txtNombresEdit.Text.Trim();
+            perfil.apellidoPaterno = txtApellidoPaternoEdit.Text.Trim();
+            perfil.apellidoMaterno = txtApellidoMaternoEdit.Text.Trim();
+            perfil.correoElectronico = txtCorreoEdit.Text.Trim();
+            perfil.numCelular = txtCelularEdit.Text.Trim();
+            perfil.genero = perfilActualizado.genero;
 
+            if (DateTime.TryParse(txtFechaNacimientoEdit.Text, out DateTime fechaNac))
+            {
+                perfil.fechaNacimiento = fechaNac.ToString("yyyy-MM-dd");
+            }
+            perfil.usuarioModificacion = perfilActualizado.idUsuario;
+            perfil.usuarioModificacionSpecified = true;
+            perfil.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+            try
+            {
+                int resultado = _usuarioBO.ModificarUsuario(perfil);
+                if (resultado > 0) 
+                {
+                    MostrarMensaje("Perfil actualizado correctamente.", false);
+                    ViewState["PerfilCompleto"] = perfil; 
+                    PopulateViewControls(perfil);
+                    SwitchMode(false);
+                }
+                else
+                {
+                    MostrarMensaje("No se pudo guardar la información del perfil. Es posible que otro usuario haya modificado los datos.", true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Ocurrió un error inesperado al guardar el perfil.", true);
+                System.Diagnostics.Debug.WriteLine("Error al guardar perfil: " + ex.Message);
+            }
+        }
+        #endregion
+
+        #region --- Métodos Auxiliares ---
+        private string CapitalizarNombre(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                return "";
+            }
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(texto.ToLower());
+        }
+        private int ObtenerUsuarioActualId()
+        {
+            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            return usuario?.idUsuario ?? 0;
+        }
         private void SwitchMode(bool editMode)
         {
             pnlViewProfile.Visible = !editMode;
             pnlEditProfile.Visible = editMode;
         }
-
-        private void PopulateViewControls(UsuarioPerfilInfo perfil)
-        {
-            lblNombresView.Text = Server.HtmlEncode(perfil.Nombres);
-            lblApellidoPaternoView.Text = Server.HtmlEncode(perfil.ApellidoPaterno);
-            lblApellidoMaternoView.Text = Server.HtmlEncode(perfil.ApellidoMaterno);
-            lblFechaNacimientoView.Text = perfil.FechaNacimiento?.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES")) ?? "No especificada";
-            lblCorreoView.Text = Server.HtmlEncode(perfil.CorreoElectronico);
-            lblCelularView.Text = Server.HtmlEncode(perfil.NumCelular) ?? "No especificado";
-            lblGeneroView.Text = perfil.NombreGeneroCompleto;
-        }
-
-        private void PopulateEditControls(UsuarioPerfilInfo perfil)
-        {
-            txtNombresEdit.Text = perfil.Nombres;
-            txtApellidoPaternoEdit.Text = perfil.ApellidoPaterno;
-            txtApellidoMaternoEdit.Text = perfil.ApellidoMaterno;
-            txtFechaNacimientoEdit.Text = perfil.FechaNacimiento?.ToString("yyyy-MM-dd") ?? "";
-            txtCorreoEdit.Text = perfil.CorreoElectronico;
-            txtCelularEdit.Text = perfil.NumCelular;
-            ddlGeneroEdit.ClearSelection();
-            ListItem itemGenero = ddlGeneroEdit.Items.FindByValue(perfil.Genero?.ToUpper());
-            if (itemGenero != null)
-            {
-                itemGenero.Selected = true;
-            }
-            else if (ddlGeneroEdit.Items.FindByValue("") != null)
-            {
-                ddlGeneroEdit.SelectedValue = ""; 
-            }
-        }
-
-        #endregion
-
-        #region --- Lógica de Guardado ---
-
-        protected void btnSaveChanges_Click(object sender, EventArgs e)
-        {
-            int usuarioId = (int)(ViewState["UsuarioId"] ?? 0);
-            if (usuarioId == 0)
-            {
-                MostrarMensaje("No se puede guardar, no se identifica al usuario.", true);
-                return;
-            }
-
-            UsuarioPerfilInfo perfilActualizado = new UsuarioPerfilInfo();
-            perfilActualizado.UsuarioId = usuarioId;
-            perfilActualizado.Nombres = txtNombresEdit.Text.Trim();
-            perfilActualizado.ApellidoPaterno = txtApellidoPaternoEdit.Text.Trim();
-            perfilActualizado.ApellidoMaterno = txtApellidoMaternoEdit.Text.Trim();
-            perfilActualizado.CorreoElectronico = txtCorreoEdit.Text.Trim();
-            perfilActualizado.NumCelular = txtCelularEdit.Text.Trim();
-            perfilActualizado.Genero = ddlGeneroEdit.SelectedValue;
-
-            if (DateTime.TryParse(txtFechaNacimientoEdit.Text, out DateTime fechaNac))
-            {
-                perfilActualizado.FechaNacimiento = fechaNac;
-            }
-            else
-            {
-                perfilActualizado.FechaNacimiento = null;
-            }
-
-            if (string.IsNullOrWhiteSpace(perfilActualizado.Nombres) || string.IsNullOrWhiteSpace(perfilActualizado.CorreoElectronico))
-            {
-                MostrarMensaje("Los nombres y el correo electrónico son obligatorios.", true);
-            }
-
-            try
-            {
-                bool exito_simulado = GuardarPerfilUsuario_LlamadaBackend(perfilActualizado);
-
-                if (exito_simulado)
-                {
-                    MostrarMensaje("Perfil actualizado correctamente.", false);
-                    PopulateViewControls(perfilActualizado);
-                    SwitchMode(false);
-                }
-                else
-                {
-                    MostrarMensaje("No se pudo guardar la información del perfil.", true);
-                    SwitchMode(true);
-                }
-            }
-            catch (Exception)
-            {
-                MostrarMensaje("Ocurrió un error inesperado al guardar el perfil.", true);
-                SwitchMode(true);
-            }
-        }
-
-        #endregion
-
-        #region --- Funciones Simuladas Backend / Lógica ---
-
-        private int ObtenerUsuarioActualId_Simulado()
-        {
-            return 1;
-        }
-
-        private UsuarioPerfilInfo CargarPerfilUsuario_LlamadaBackend(int usuarioId)
-        {
-            System.Diagnostics.Debug.WriteLine($"Simulando carga de perfil para Usuario ID: {usuarioId}");
-            if (usuarioId == 1)
-            {
-                return new UsuarioPerfilInfo
-                {
-                    UsuarioId = 1,
-                    Nombres = "Ana María",
-                    ApellidoPaterno = "García",
-                    ApellidoMaterno = "López",
-                    FechaNacimiento = new DateTime(1990, 5, 15),
-                    CorreoElectronico = "ana.garcia@email.com",
-                    NumCelular = "987654321",
-                    Genero = "F"
-                };
-            }
-            return null; 
-        }
-
-        private bool GuardarPerfilUsuario_LlamadaBackend(UsuarioPerfilInfo perfil)
-        {
-
-            if (perfil.CorreoElectronico.Contains("error"))
-            {
-                return false;
-            }
-            return true; 
-        }
-
-        #endregion
-
-        #region --- Métodos Auxiliares ---
         private void MostrarMensaje(string mensaje, bool esError)
         {
             lblMensaje.Text = mensaje;
             pnlMensaje.CssClass = esError ? "alert alert-danger alert-dismissible fade show mb-3" : "alert alert-success alert-dismissible fade show mb-3";
             pnlMensaje.Visible = true;
+        }
+        private string ObtenerNombreGenero(string generoChar)
+        {
+            switch (generoChar?.ToUpper())
+            {
+                case "MASCULINO": return "Masculino";
+                case "FEMENINO": return "Femenino";
+                case "OTRO": return "Otro";
+                default: return "No especificado";
+            }
         }
         #endregion
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="2f2a436b-6c9e-4444-9adc-0c744a6508e0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="46c2b78f-cfc1-4761-9533-4a4c895d18b6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:8080/SoftCitWS/HistoriaWS?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HistoriaWS.wsdl" MetadataType="Wsdl" ID="bfed15a5-b414-4c2e-a347-85d3ce3063ca" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaWS?wsdl" />
-    <MetadataFile FileName="HistoriaWS.xsd" MetadataType="Schema" ID="5bb3a7b6-21a9-46a2-b44f-405b22072604" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaWS?xsd=1" />
+    <MetadataFile FileName="HistoriaWS.wsdl" MetadataType="Wsdl" ID="c9a54247-8847-4f69-869c-5c1420dad8c9" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaWS?wsdl" />
+    <MetadataFile FileName="HistoriaWS.xsd" MetadataType="Schema" ID="e8d55877-49f2-40da-b0e1-dbf0c5adc38b" SourceId="1" SourceUrl="http://localhost:8080/SoftCitWS/HistoriaWS?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

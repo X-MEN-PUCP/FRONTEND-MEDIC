@@ -29,5 +29,10 @@ namespace SoftBO
         {
             return this.usuarioPorEspecialidadCliente.insertarUsuarioPorEspecialidad(usuarioPorEspecialidad);
         }
+        public BindingList<usuarioPorEspecialidadDTO> ListarTodosPerfilesMedicos()
+        {
+            usuarioPorEspecialidadDTO[] usuarios = this.usuarioPorEspecialidadCliente.listarTodosPerfilesMedicos();
+            return new BindingList<usuarioPorEspecialidadDTO>(usuarios);
+        }
     }
 }

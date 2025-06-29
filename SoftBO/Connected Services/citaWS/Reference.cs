@@ -25,22 +25,31 @@ namespace SoftBO.citaWS {
         System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasProgramadasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasProgramadasResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.listarCitasProgramadasResponse listarCitasProgramadas(SoftBO.citaWS.listarCitasProgramadasRequest request);
+        SoftBO.citaWS.listarCitasMedicoWSResponse listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasProgramadasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasProgramadasResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasProgramadasResponse> listarCitasProgramadasAsync(SoftBO.citaWS.listarCitasProgramadasRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasDisponiblesRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasDisponiblesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.buscarCitasDisponiblesResponse buscarCitasDisponibles(SoftBO.citaWS.buscarCitasDisponiblesRequest request);
+        SoftBO.citaWS.buscarCitasoloCalendarioResponse buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasDisponiblesRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasDisponiblesResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasDisponiblesResponse> buscarCitasDisponiblesAsync(SoftBO.citaWS.buscarCitasDisponiblesRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.citaWS.listarTodosCitaResponse listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
@@ -52,13 +61,13 @@ namespace SoftBO.citaWS {
         System.Threading.Tasks.Task<SoftBO.citaWS.obtenerPorIdCitaCitaResponse> obtenerPorIdCitaCitaAsync(SoftBO.citaWS.obtenerPorIdCitaCitaRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.listarTodosCitaResponse listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request);
+        SoftBO.citaWS.buscarCitasWSCitasResponse buscarCitasWSCitas(SoftBO.citaWS.buscarCitasWSCitasRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarTodosCitaResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasWSCitasResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> buscarCitasWSCitasAsync(SoftBO.citaWS.buscarCitasWSCitasRequest request);
     }
     
     /// <remarks/>
@@ -68,7 +77,7 @@ namespace SoftBO.citaWS {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
     public partial class citaDTO : object, System.ComponentModel.INotifyPropertyChanged {
-        public object paciente;
+        
         private consultorioDTO consultorioField;
         
         private especialidadDTO especialidadField;
@@ -79,9 +88,13 @@ namespace SoftBO.citaWS {
         
         private string fechaCitaField;
         
-        private localTime horaFinField;
+        private string fechaCreacionField;
         
-        private localTime horaInicioField;
+        private string fechaModificacionField;
+        
+        private string horaFinField;
+        
+        private string horaInicioField;
         
         private int idCitaField;
         
@@ -90,6 +103,14 @@ namespace SoftBO.citaWS {
         private usuarioDTO medicoField;
         
         private turnoDTO turnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -153,7 +174,31 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
-        public localTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -164,8 +209,8 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
-        public localTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -176,7 +221,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public int idCita {
             get {
                 return this.idCitaField;
@@ -200,7 +245,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
         public usuarioDTO medico {
             get {
                 return this.medicoField;
@@ -212,7 +257,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public turnoDTO turno {
             get {
                 return this.turnoField;
@@ -220,6 +265,54 @@ namespace SoftBO.citaWS {
             set {
                 this.turnoField = value;
                 this.RaisePropertyChanged("turno");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -245,6 +338,10 @@ namespace SoftBO.citaWS {
         
         private bool estadoGeneralFieldSpecified;
         
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
         private int idConsultorioField;
         
         private bool idConsultorioFieldSpecified;
@@ -256,6 +353,14 @@ namespace SoftBO.citaWS {
         private int numPisoField;
         
         private bool numPisoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -283,6 +388,30 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idConsultorio {
             get {
                 return this.idConsultorioField;
@@ -306,7 +435,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public int numConsultorio {
             get {
                 return this.numConsultorioField;
@@ -330,7 +459,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int numPiso {
             get {
                 return this.numPisoField;
@@ -350,6 +479,54 @@ namespace SoftBO.citaWS {
             set {
                 this.numPisoFieldSpecified = value;
                 this.RaisePropertyChanged("numPisoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -388,19 +565,27 @@ namespace SoftBO.citaWS {
         
         private bool estadoGeneralFieldSpecified;
         
-        private System.DateTime horaFinField;
+        private string fechaCreacionField;
         
-        private bool horaFinFieldSpecified;
+        private string fechaModificacionField;
         
-        private System.DateTime horaInicioField;
+        private string horaFinField;
         
-        private bool horaInicioFieldSpecified;
+        private string horaInicioField;
         
         private int idTurnoField;
         
         private bool idTurnoFieldSpecified;
         
         private string nombreTurnoField;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -428,7 +613,31 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public System.DateTime horaFin {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string horaFin {
             get {
                 return this.horaFinField;
             }
@@ -439,20 +648,8 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaFinSpecified {
-            get {
-                return this.horaFinFieldSpecified;
-            }
-            set {
-                this.horaFinFieldSpecified = value;
-                this.RaisePropertyChanged("horaFinSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
-        public System.DateTime horaInicio {
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public string horaInicio {
             get {
                 return this.horaInicioField;
             }
@@ -463,19 +660,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool horaInicioSpecified {
-            get {
-                return this.horaInicioFieldSpecified;
-            }
-            set {
-                this.horaInicioFieldSpecified = value;
-                this.RaisePropertyChanged("horaInicioSpecified");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public int idTurno {
             get {
                 return this.idTurnoField;
@@ -499,7 +684,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public string nombreTurno {
             get {
                 return this.nombreTurnoField;
@@ -510,23 +695,53 @@ namespace SoftBO.citaWS {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localDate : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
+            }
+        }
         
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
@@ -564,7 +779,11 @@ namespace SoftBO.citaWS {
         
         private bool estadoLogicoFieldSpecified;
         
-        private localDate fechaNacimientoField;
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
+        
+        private string fechaNacimientoField;
         
         private genero generoField;
         
@@ -585,6 +804,14 @@ namespace SoftBO.citaWS {
         private tipoDocumento tipoDocumentoField;
         
         private bool tipoDocumentoFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -696,7 +923,31 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
-        public localDate fechaNacimiento {
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
             }
@@ -707,7 +958,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public genero genero {
             get {
                 return this.generoField;
@@ -731,7 +982,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -755,7 +1006,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -767,7 +1018,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -779,7 +1030,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -791,7 +1042,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -803,7 +1054,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -823,6 +1074,54 @@ namespace SoftBO.citaWS {
             set {
                 this.tipoDocumentoFieldSpecified = value;
                 this.RaisePropertyChanged("tipoDocumentoSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -893,29 +1192,15 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public partial class localTime : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
     public partial class especialidadDTO : object, System.ComponentModel.INotifyPropertyChanged {
         
         private estadoGeneral estadoGeneralField;
         
         private bool estadoGeneralFieldSpecified;
+        
+        private string fechaCreacionField;
+        
+        private string fechaModificacionField;
         
         private int idEspecialidadField;
         
@@ -926,6 +1211,14 @@ namespace SoftBO.citaWS {
         private double precioConsultaField;
         
         private bool precioConsultaFieldSpecified;
+        
+        private int usuarioCreacionField;
+        
+        private bool usuarioCreacionFieldSpecified;
+        
+        private int usuarioModificacionField;
+        
+        private bool usuarioModificacionFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
@@ -953,6 +1246,30 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string fechaCreacion {
+            get {
+                return this.fechaCreacionField;
+            }
+            set {
+                this.fechaCreacionField = value;
+                this.RaisePropertyChanged("fechaCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string fechaModificacion {
+            get {
+                return this.fechaModificacionField;
+            }
+            set {
+                this.fechaModificacionField = value;
+                this.RaisePropertyChanged("fechaModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
         public int idEspecialidad {
             get {
                 return this.idEspecialidadField;
@@ -976,7 +1293,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string nombreEspecialidad {
             get {
                 return this.nombreEspecialidadField;
@@ -988,7 +1305,7 @@ namespace SoftBO.citaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public double precioConsulta {
             get {
                 return this.precioConsultaField;
@@ -1008,6 +1325,54 @@ namespace SoftBO.citaWS {
             set {
                 this.precioConsultaFieldSpecified = value;
                 this.RaisePropertyChanged("precioConsultaSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        public int usuarioCreacion {
+            get {
+                return this.usuarioCreacionField;
+            }
+            set {
+                this.usuarioCreacionField = value;
+                this.RaisePropertyChanged("usuarioCreacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioCreacionSpecified {
+            get {
+                return this.usuarioCreacionFieldSpecified;
+            }
+            set {
+                this.usuarioCreacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioCreacionSpecified");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        public int usuarioModificacion {
+            get {
+                return this.usuarioModificacionField;
+            }
+            set {
+                this.usuarioModificacionField = value;
+                this.RaisePropertyChanged("usuarioModificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool usuarioModificacionSpecified {
+            get {
+                return this.usuarioModificacionFieldSpecified;
+            }
+            set {
+                this.usuarioModificacionFieldSpecified = value;
+                this.RaisePropertyChanged("usuarioModificacionSpecified");
             }
         }
         
@@ -1035,6 +1400,9 @@ namespace SoftBO.citaWS {
         
         /// <remarks/>
         PAGADO,
+        
+        /// <remarks/>
+        ATENDIDO,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1076,35 +1444,40 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasProgramadas", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarCitasProgramadasRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWS", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarCitasMedicoWSRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int codMedico;
+        public int idMedico;
         
-        public listarCitasProgramadasRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.estadoCita estadoCita;
+        
+        public listarCitasMedicoWSRequest() {
         }
         
-        public listarCitasProgramadasRequest(int codMedico) {
-            this.codMedico = codMedico;
+        public listarCitasMedicoWSRequest(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            this.idMedico = idMedico;
+            this.estadoCita = estadoCita;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasProgramadasResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarCitasProgramadasResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWSResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarCitasMedicoWSResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.citaWS.citaDTO[] @return;
         
-        public listarCitasProgramadasResponse() {
+        public listarCitasMedicoWSResponse() {
         }
         
-        public listarCitasProgramadasResponse(SoftBO.citaWS.citaDTO[] @return) {
+        public listarCitasMedicoWSResponse(SoftBO.citaWS.citaDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -1112,8 +1485,8 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasDisponibles", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasDisponiblesRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasoloCalendarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -1127,30 +1500,68 @@ namespace SoftBO.citaWS {
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string fecha;
         
-        public buscarCitasDisponiblesRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string hora_inicio;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.estadoCita estadoCita;
+        
+        public buscarCitasoloCalendarioRequest() {
         }
         
-        public buscarCitasDisponiblesRequest(int idEspecialidad, int codMedico, string fecha) {
+        public buscarCitasoloCalendarioRequest(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
             this.idEspecialidad = idEspecialidad;
             this.codMedico = codMedico;
             this.fecha = fecha;
+            this.hora_inicio = hora_inicio;
+            this.estadoCita = estadoCita;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasDisponiblesResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasDisponiblesResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasoloCalendarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.citaWS.citaDTO[] @return;
         
-        public buscarCitasDisponiblesResponse() {
+        public buscarCitasoloCalendarioResponse() {
         }
         
-        public buscarCitasDisponiblesResponse(SoftBO.citaWS.citaDTO[] @return) {
+        public buscarCitasoloCalendarioResponse(SoftBO.citaWS.citaDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosCitaRequest {
+        
+        public listarTodosCitaRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosCitaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO[] @return;
+        
+        public listarTodosCitaResponse() {
+        }
+        
+        public listarTodosCitaResponse(SoftBO.citaWS.citaDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -1194,27 +1605,55 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosCitaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasWSCitas", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasWSCitasRequest {
         
-        public listarTodosCitaRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idEspecialidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int codMedico;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string fecha;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string hora_inicio;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.estadoCita estadoCita;
+        
+        public buscarCitasWSCitasRequest() {
+        }
+        
+        public buscarCitasWSCitasRequest(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            this.idEspecialidad = idEspecialidad;
+            this.codMedico = codMedico;
+            this.fecha = fecha;
+            this.hora_inicio = hora_inicio;
+            this.estadoCita = estadoCita;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosCitaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosCitaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasWSCitasResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasWSCitasResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.citaWS.citaDTO[] @return;
         
-        public listarTodosCitaResponse() {
+        public buscarCitasWSCitasResponse() {
         }
         
-        public listarTodosCitaResponse(SoftBO.citaWS.citaDTO[] @return) {
+        public buscarCitasWSCitasResponse(SoftBO.citaWS.citaDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -1270,53 +1709,80 @@ namespace SoftBO.citaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.listarCitasProgramadasResponse SoftBO.citaWS.CitaWS.listarCitasProgramadas(SoftBO.citaWS.listarCitasProgramadasRequest request) {
-            return base.Channel.listarCitasProgramadas(request);
+        SoftBO.citaWS.listarCitasMedicoWSResponse SoftBO.citaWS.CitaWS.listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
+            return base.Channel.listarCitasMedicoWS(request);
         }
         
-        public SoftBO.citaWS.citaDTO[] listarCitasProgramadas(int codMedico) {
-            SoftBO.citaWS.listarCitasProgramadasRequest inValue = new SoftBO.citaWS.listarCitasProgramadasRequest();
-            inValue.codMedico = codMedico;
-            SoftBO.citaWS.listarCitasProgramadasResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarCitasProgramadas(inValue);
+        public SoftBO.citaWS.citaDTO[] listarCitasMedicoWS(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
+            inValue.idMedico = idMedico;
+            inValue.estadoCita = estadoCita;
+            SoftBO.citaWS.listarCitasMedicoWSResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWS(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasProgramadasResponse> SoftBO.citaWS.CitaWS.listarCitasProgramadasAsync(SoftBO.citaWS.listarCitasProgramadasRequest request) {
-            return base.Channel.listarCitasProgramadasAsync(request);
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> SoftBO.citaWS.CitaWS.listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
+            return base.Channel.listarCitasMedicoWSAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasProgramadasResponse> listarCitasProgramadasAsync(int codMedico) {
-            SoftBO.citaWS.listarCitasProgramadasRequest inValue = new SoftBO.citaWS.listarCitasProgramadasRequest();
-            inValue.codMedico = codMedico;
-            return ((SoftBO.citaWS.CitaWS)(this)).listarCitasProgramadasAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
+            inValue.idMedico = idMedico;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWSAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.buscarCitasDisponiblesResponse SoftBO.citaWS.CitaWS.buscarCitasDisponibles(SoftBO.citaWS.buscarCitasDisponiblesRequest request) {
-            return base.Channel.buscarCitasDisponibles(request);
+        SoftBO.citaWS.buscarCitasoloCalendarioResponse SoftBO.citaWS.CitaWS.buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
+            return base.Channel.buscarCitasoloCalendario(request);
         }
         
-        public SoftBO.citaWS.citaDTO[] buscarCitasDisponibles(int idEspecialidad, int codMedico, string fecha) {
-            SoftBO.citaWS.buscarCitasDisponiblesRequest inValue = new SoftBO.citaWS.buscarCitasDisponiblesRequest();
+        public SoftBO.citaWS.citaDTO[] buscarCitasoloCalendario(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
             inValue.idEspecialidad = idEspecialidad;
             inValue.codMedico = codMedico;
             inValue.fecha = fecha;
-            SoftBO.citaWS.buscarCitasDisponiblesResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).buscarCitasDisponibles(inValue);
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            SoftBO.citaWS.buscarCitasoloCalendarioResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasDisponiblesResponse> SoftBO.citaWS.CitaWS.buscarCitasDisponiblesAsync(SoftBO.citaWS.buscarCitasDisponiblesRequest request) {
-            return base.Channel.buscarCitasDisponiblesAsync(request);
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> SoftBO.citaWS.CitaWS.buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
+            return base.Channel.buscarCitasoloCalendarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasDisponiblesResponse> buscarCitasDisponiblesAsync(int idEspecialidad, int codMedico, string fecha) {
-            SoftBO.citaWS.buscarCitasDisponiblesRequest inValue = new SoftBO.citaWS.buscarCitasDisponiblesRequest();
+        public System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
             inValue.idEspecialidad = idEspecialidad;
             inValue.codMedico = codMedico;
             inValue.fecha = fecha;
-            return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasDisponiblesAsync(inValue);
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendarioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.listarTodosCitaResponse SoftBO.citaWS.CitaWS.listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request) {
+            return base.Channel.listarTodosCita(request);
+        }
+        
+        public SoftBO.citaWS.citaDTO[] listarTodosCita() {
+            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
+            SoftBO.citaWS.listarTodosCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarTodosCita(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> SoftBO.citaWS.CitaWS.listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request) {
+            return base.Channel.listarTodosCitaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync() {
+            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
+            return ((SoftBO.citaWS.CitaWS)(this)).listarTodosCitaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1343,24 +1809,34 @@ namespace SoftBO.citaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.listarTodosCitaResponse SoftBO.citaWS.CitaWS.listarTodosCita(SoftBO.citaWS.listarTodosCitaRequest request) {
-            return base.Channel.listarTodosCita(request);
+        SoftBO.citaWS.buscarCitasWSCitasResponse SoftBO.citaWS.CitaWS.buscarCitasWSCitas(SoftBO.citaWS.buscarCitasWSCitasRequest request) {
+            return base.Channel.buscarCitasWSCitas(request);
         }
         
-        public SoftBO.citaWS.citaDTO[] listarTodosCita() {
-            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
-            SoftBO.citaWS.listarTodosCitaResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarTodosCita(inValue);
+        public SoftBO.citaWS.citaDTO[] buscarCitasWSCitas(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasWSCitasRequest inValue = new SoftBO.citaWS.buscarCitasWSCitasRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.codMedico = codMedico;
+            inValue.fecha = fecha;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            SoftBO.citaWS.buscarCitasWSCitasResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).buscarCitasWSCitas(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> SoftBO.citaWS.CitaWS.listarTodosCitaAsync(SoftBO.citaWS.listarTodosCitaRequest request) {
-            return base.Channel.listarTodosCitaAsync(request);
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> SoftBO.citaWS.CitaWS.buscarCitasWSCitasAsync(SoftBO.citaWS.buscarCitasWSCitasRequest request) {
+            return base.Channel.buscarCitasWSCitasAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.citaWS.listarTodosCitaResponse> listarTodosCitaAsync() {
-            SoftBO.citaWS.listarTodosCitaRequest inValue = new SoftBO.citaWS.listarTodosCitaRequest();
-            return ((SoftBO.citaWS.CitaWS)(this)).listarTodosCitaAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> buscarCitasWSCitasAsync(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasWSCitasRequest inValue = new SoftBO.citaWS.buscarCitasWSCitasRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.codMedico = codMedico;
+            inValue.fecha = fecha;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasWSCitasAsync(inValue);
         }
     }
 }

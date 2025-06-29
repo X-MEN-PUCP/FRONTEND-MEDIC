@@ -23,14 +23,14 @@ namespace SoftBO
         {
             return this.tipoExamenCliente.modificarTipoExamen(tipoExamen);
         }
+        public tipoExamenDTO ObtenerPorIdTipoExamen(int id)
+        {
+            return this.tipoExamenCliente.obtenerPorIdTipoExamen(id);
+        }
         public BindingList<tipoExamenDTO> ListarTodosTipoExamen()
         {
             tipoExamenDTO[] tipos = this.tipoExamenCliente.listarTodosTipoExamen();
             return new BindingList<tipoExamenDTO>(tipos);
-        }
-        public tipoExamenDTO ObtenerPorIdTipoExamen(int id)
-        {
-            return this.tipoExamenCliente.obtenerPorIdTipoExamen(id);
         }
     }
 }

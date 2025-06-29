@@ -20,17 +20,24 @@ namespace SoftBO
             citaDTO[] citas = this.citaCliente.listarTodosCita();
             return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
         }
-        public BindingList<citaDTO> ListarCitasProgramadas(int codMedico)
+        public BindingList<citaDTO> ListarCitasMedicoWS(int codMedico, estadoCita estado)
         {
-            citaDTO[] citas = this.citaCliente.listarCitasProgramadas(codMedico);
-            return new BindingList<citaDTO>(citas);
-        }
-        public BindingList<citaDTO> BuscarCitasDisponibles(int idEspecialidad, int codMedico, DateTime fecha)
-        {
-            string fecha_convertida = fecha.ToString("yyyy-MM-dd");
-            citaDTO[] citas = this.citaCliente.buscarCitasDisponibles(idEspecialidad, codMedico, fecha_convertida);
+            citaDTO[] citas = this.citaCliente.listarCitasMedicoWS(codMedico, estado);
             return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
         }
+
+        public BindingList<citaDTO> BuscarCitasWSCitas(int idEspecialidad, int codMedico, string fecha,string hora_inicio,estadoCita estado)
+        {
+            citaDTO[] citas = this.citaCliente.buscarCitasWSCitas(idEspecialidad, codMedico, fecha,hora_inicio,estado);
+            return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
+        }
+
+        public BindingList<citaDTO> BuscarCitasoloCalendario(int idEspecialidad, int codMedico, string fecha, string hora_inicio, estadoCita estado)
+        {
+            citaDTO[] citas = this.citaCliente.buscarCitasoloCalendario(idEspecialidad, codMedico, fecha, hora_inicio, estado);
+            return new BindingList<citaDTO>(citas ?? new citaDTO[0]);
+        }
+
         public citaDTO ObtenerPorIdCitaCita(int id)
         {
             return this.citaCliente.obtenerPorIdCitaCita(id);

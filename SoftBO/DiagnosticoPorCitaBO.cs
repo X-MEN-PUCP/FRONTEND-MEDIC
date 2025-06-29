@@ -23,7 +23,7 @@ namespace SoftBO
         public BindingList<diagnosticoPorCita> ListarDiagnosticoPorIdCita(int idCita) 
         {
             diagnosticoPorCita[] diagnosticos = this.DiagnosticoPorCitaClient.ListarDiagnosticoPorIdCita(idCita);
-            return new BindingList<diagnosticoPorCita>(diagnosticos);
+            return new BindingList<diagnosticoPorCita>(diagnosticos ?? Array.Empty<diagnosticoPorCita>());
         }
         public BindingList<diagnosticoPorCita> ListarTodosLosDiagnosticos()
         {

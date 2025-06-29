@@ -28,100 +28,103 @@ namespace SoftWA
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["citaId"] != null && Request.QueryString["monto"] != null)
+                if (Session["CitaIdParaPago"] != null)
                 {
-                    if (int.TryParse(Request.QueryString["citaId"], out int citaId) &&
-                        decimal.TryParse(Request.QueryString["monto"], NumberStyles.Any, CultureInfo.InvariantCulture, out decimal monto))
+                    try
                     {
+                        int citaId = (int)Session["CitaIdParaPago"];
+                        Session.Remove("CitaIdParaPago");
                         CitaIdParaPagar = citaId;
-                        MontoDeCita = monto;
-                        CargarDetallesDeCita(citaId);
+                        CargarDetallesDeCitaParaPago(citaId);
                     }
-                    else
+                    catch (Exception)
                     {
-                        MostrarErrorFatal("Los datos de la cita para el pago son inválidos.");
+                        MostrarErrorFatal("Ocurrió un error al procesar el identificador de la cita.");
                     }
                 }
                 else
                 {
-                    MostrarErrorFatal("No se especificaron los detalles de la cita para el pago.");
+                    MostrarErrorFatal("No se ha especificado una cita para el pago o la sesión ha expirado.");
                 }
             }
         }
-        private void CargarDetallesDeCita(int citaId)
+        private void CargarDetallesDeCitaParaPago(int citaId)
         {
-            //try
-            //{
-            //    var cita = _citaBO.ObtenerPorIdCitaCita(citaId);
-            //    if (cita != null)
-            //    {
-            //        DateTime fechaCita = DateTime.Parse(cita.fechaCita);
-            //        TimeSpan horaInicio = cita.turno.horaInicio; // Asumimos que horaInicio es TimeSpan
+            try
+            {
+                var cita = _citaBO.ObtenerPorIdCitaCita(citaId);
 
-            //        string descripcion = $"Cita de {cita.especialidad.nombreEspecialidad} con el Dr(a). {cita.medico.nombres} {cita.medico.apellidoPaterno} para el día {fechaCita:dd/MM/yyyy} a las {horaInicio:hh\\:mm}.";
+                if (cita != null && cita.especialidad != null && cita.medico != null)
+                {
+                    decimal monto = (decimal)cita.especialidad.precioConsulta;
+                    string descripcion = $"Cita de {cita.especialidad.nombreEspecialidad} con Dr(a). {cita.medico.nombres} {cita.medico.apellidoPaterno} para el día {DateTime.Parse(cita.fechaCita):dd/MM/yyyy}.";
 
-            //        ltlDescripcionCita.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(descripcion, false);
-            //        ltlMontoPagar.Text = MontoDeCita.ToString("N2", new CultureInfo("es-PE"));
-            //        phDetallesPago.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        MostrarErrorFatal("La cita que intenta pagar no fue encontrada o ya no está disponible.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MostrarErrorFatal("Ocurrió un error al cargar los detalles de la cita.");
-            //    System.Diagnostics.Debug.WriteLine($"Error cargando cita para pago: {ex.ToString()}");
-            //}
+                    MontoDeCita = monto;
+
+                    ltlDescripcionCita.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(descripcion, false);
+                    ltlMontoPagar.Text = monto.ToString("N2", new CultureInfo("es-PE"));
+
+                    phDetallesPago.Visible = true;
+                }
+                else
+                {
+                    MostrarErrorFatal("La cita que intenta pagar no fue encontrada o sus datos son incompletos.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarErrorFatal("Ocurrió un error al cargar los detalles de la cita para el pago.");
+                System.Diagnostics.Debug.WriteLine($"Error cargando cita para pago: {ex.ToString()}");
+            }
         }
-
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            //if (!Page.IsValid) return;
+            if (!Page.IsValid) return;
+            bool pagoExitosoSimulado = (txtCVV.Text.Trim() != "000");
 
-            //bool pagoExitosoSimulado = (txtCVV.Text != "000");
+            if (pagoExitosoSimulado)
+            {
+                try
+                {
+                    int citaId = this.CitaIdParaPagar;
+                    if(citaId == 0)
+                    {
+                        MostrarMensajeFallo("El identificador de la cita es inválido. Por favor, intente nuevamente.");
+                        return;
+                    }
+                    var citaAPagar = _citaBO.ObtenerPorIdCitaCita(citaId);
+                    if (citaAPagar != null)
+                    {
+                        citaAPagar.estado = SoftBO.citaWS.estadoCita.PAGADO;
+                        citaAPagar.estadoSpecified = true;
+                        int resultado = _citaBO.ModificarCita(citaAPagar);
 
-            //if (pagoExitosoSimulado)
-            //{
-            //    try
-            //    {
-            //        var citaAPagar = _citaBO.ObtenerPorIdCitaCita(CitaIdParaPagar);
-            //        if (citaAPagar != null)
-            //        {
-            //            // Asumimos que el estado "PAGADO" tiene ID = 2. Ajustar si es diferente.
-            //            citaAPagar.estado = new estadoCita { idEstadoCita = 2, idEstadoCitaSpecified = true };
-
-            //            // Usar la capa de negocio para modificar la cita
-            //            int resultado = _citaBO.ModificarCita(citaAPagar);
-
-            //            if (resultado > 0)
-            //            {
-            //                MostrarMensajeExito(citaAPagar);
-            //            }
-            //            else
-            //            {
-            //                MostrarMensajeFallo("Su pago fue procesado, pero hubo un problema al confirmar su cita. Por favor, contacte a soporte con el ID de cita: " + CitaIdParaPagar);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MostrarMensajeFallo("Su pago no pudo ser procesado porque la cita ya no se encuentra disponible.");
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MostrarMensajeFallo("Ocurrió un error de comunicación al intentar confirmar su cita. Por favor, contacte a soporte.");
-            //        System.Diagnostics.Debug.WriteLine($"Error al modificar cita tras pago: {ex.ToString()}");
-            //    }
-            //}
-            //else
-            //{
-            //    MostrarMensajeFallo("Hubo un problema al procesar su pago. Por favor, verifique los datos de su tarjeta o intente con otra.");
-            //    phDetallesPago.Visible = true;
-            //}
+                        if (resultado > 0)
+                        {
+                            MostrarMensajeExito(citaAPagar);
+                        }
+                        else
+                        {
+                            MostrarMensajeFallo("Su pago fue procesado, pero hubo un problema al confirmar su cita. Por favor, contacte a soporte con el ID de cita: " + CitaIdParaPagar);
+                        }
+                    }
+                    else
+                    {
+                        MostrarMensajeFallo("Su pago no pudo ser procesado porque la cita ya no se encuentra disponible.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensajeFallo("Ocurrió un error de comunicación al intentar confirmar su cita. Por favor, contacte a soporte.");
+                    System.Diagnostics.Debug.WriteLine($"Error al modificar cita tras pago: {ex.ToString()}");
+                }
+            }
+            else
+            {
+                MostrarMensajeFallo("Hubo un problema al procesar su pago. Por favor, verifique los datos de su tarjeta o intente con otra.");
+                phDetallesPago.Visible = true;
+            }
         }
-
         private void MostrarMensajeExito(citaDTO citaPagada)
         {
             phDetallesPago.Visible = false;
@@ -134,7 +137,6 @@ namespace SoftWA
             btnVolverInicio.Visible = true;
             btnVerMisCitas.Visible = true;
 
-            // <<< CORRECCIÓN >>>: Parsear el string de la fecha antes de formatearlo.
             DateTime fechaCita = DateTime.Parse(citaPagada.fechaCita);
 
             string numeroTarjeta = txtNumeroTarjeta.Text.Trim().Replace(" ", "");
@@ -143,9 +145,12 @@ namespace SoftWA
             ltlResumenEspecialidad.Text = citaPagada.especialidad.nombreEspecialidad;
             ltlResumenMedico.Text = $"{citaPagada.medico.nombres} {citaPagada.medico.apellidoPaterno}";
             ltlResumenFecha.Text = fechaCita.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
-            ltlResumenHorario.Text = citaPagada.turno.horaInicio.ToString(@"hh\:mm");
+            ltlResumenHorario.Text = citaPagada.horaInicio.Substring(0, 5);
             ltlResumenMonto.Text = MontoDeCita.ToString("N2", new CultureInfo("es-PE"));
             ltlResumenMensaje.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(txtCorreo.Text, false);
+
+            btnVolverInicio.Visible = true;
+            btnVerMisCitas.Visible = true;
         }
 
         #region Métodos de Mensajes y Navegación
