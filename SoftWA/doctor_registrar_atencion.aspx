@@ -1,5 +1,4 @@
-﻿<%-- Archivo: doctor_registrar_atencion.aspx --%>
-<%@ Page Title="Registrar Atención Médica" Language="C#" MasterPageFile="~/SoftMA_Doctor.Master" AutoEventWireup="true" CodeBehind="doctor_registrar_atencion.aspx.cs" Inherits="SoftWA.doctor_registrar_atencion" %>
+﻿<%@ Page Title="Registrar Atención Médica" Language="C#" MasterPageFile="~/SoftMA_Doctor.Master" AutoEventWireup="true" CodeBehind="doctor_registrar_atencion.aspx.cs" Inherits="SoftWA.doctor_registrar_atencion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="chpTitulo" runat="server">
     Registro de Atención
@@ -108,9 +107,11 @@
                                                 <strong><%# Eval("diagnostico.nombreDiagnostico") %></strong><br/>
                                                 <small class="text-muted"><%# Eval("observacion") %></small>
                                             </div>
-                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                            CommandName="Quitar" CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'
-                                                            Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" 
+                                            CssClass="btn btn-outline-danger btn-sm" 
+                                            CommandName="Quitar" 
+                                            CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'
+                                            Visible='<%# !EsModoVista %>'>
                                                 <i class="fa-solid fa-trash-alt"></i> Quitar
                                             </asp:LinkButton>
                                         </li>
@@ -160,9 +161,11 @@
                                     <strong><%# Eval("examen.nombreExamen") %></strong>
                                     <small class="d-block text-muted"><%# Eval("observaciones") %></small>
                                 </div>
-                                <asp:LinkButton ID="btnQuitarExamen" runat="server" CssClass="btn btn-outline-danger btn-sm"
-                                                CommandName="Quitar" CommandArgument='<%# Eval("examen.idExamen") %>'
-                                                Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                <asp:LinkButton ID="btnQuitarExamen" runat="server" 
+                                        CssClass="btn btn-outline-danger btn-sm"
+                                        CommandName="Quitar" 
+                                        CommandArgument='<%# Eval("examen.idExamen") %>'
+                                        Visible='<%# !EsModoVista %>'>
                                     <i class="fa-solid fa-trash-alt"></i> Quitar
                                 </asp:LinkButton>
                             </li>
@@ -212,7 +215,11 @@
                                     <strong><%# Eval("especialidadInterconsulta.nombreEspecialidad") %></strong>
                                     <small class="d-block text-muted"><%# Eval("razonInterconsulta") %></small>
                                 </div>
-                                <asp:LinkButton ID="btnQuitarInterconsulta" runat="server" CommandName="Quitar" CommandArgument='<%# Eval("especialidadInterconsulta.idEspecialidad") %>' CssClass="btn btn-sm btn-outline-danger">
+                                <asp:LinkButton ID="btnQuitarInterconsulta" runat="server" 
+                                    CommandName="Quitar" 
+                                    CommandArgument='<%# Eval("especialidadInterconsulta.idEspecialidad") %>' 
+                                    CssClass="btn btn-sm btn-outline-danger"
+                                    Visible='<%# !EsModoVista %>'>
                                     <i class="fas fa-trash-alt"></i>
                                 </asp:LinkButton>
                             </li>
