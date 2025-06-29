@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.adminWS; // Cambiar si el WS se renombra o es diferente
+using SoftBO.adminWS; 
 using SoftBO.rolesporusuarioWS;
 using System;
 using System.Collections.Generic;
@@ -41,6 +41,7 @@ namespace SoftWA
         private readonly AdminBO _adminBO;
         private readonly RolesPorUsuarioBO _rolesBO;
         private readonly EspecialidadBO _especialidadBO;
+        private readonly UsuarioBO _usuarioBO;
         private static List<RolSimple> _listaCompletaRoles;
         private List<EspecialidadSimple> _listaCompletaEspecialidades;
 
@@ -49,6 +50,7 @@ namespace SoftWA
             _adminBO = new AdminBO();
             _rolesBO = new RolesPorUsuarioBO();
             _especialidadBO = new EspecialidadBO();
+            _usuarioBO = new UsuarioBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -289,7 +291,28 @@ namespace SoftWA
             }
             else if (e.CommandName == "ToggleStatus")
             {
-                MostrarMensaje("Cambio de estado exitoso", false);
+                try
+                {
+                    var usuarioAmodificar = _usuarioBO.ObtenerPorIdUsuario(usuarioId);
+                    var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.usuarioWS.estadoGeneral.ACTIVO)
+                    ? SoftBO.usuarioWS.estadoGeneral.INACTIVO
+                    : SoftBO.usuarioWS.estadoGeneral.ACTIVO;
+                    usuarioAmodificar.estadoGeneral = nuevoEstado;
+                    usuarioAmodificar.estadoGeneralSpecified = true;
+                    MostrarMensaje("Cambio de estado exitoso", false);
+                    var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                    if (adminLogueado != null)
+                    {
+                        usuarioAmodificar.usuarioModificacion = adminLogueado.idUsuario;
+                        usuarioAmodificar.usuarioModificacionSpecified = true;
+                        usuarioAmodificar.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
+                    _usuarioBO.ModificarUsuario(usuarioAmodificar);
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensaje("Error al intentar cambiar el estado del usuario: " + ex.Message, true);
+                }
             }
         }
 
