@@ -47,6 +47,15 @@ namespace SoftWA
             set { ViewState["InterconsultasDeCita"] = value; }
         }
 
+        public bool EsModoVista
+        {
+            get
+            {
+                return ViewState["ModoVista"] != null && (bool)ViewState["ModoVista"] ||
+                       Request.QueryString["modo"] == "vista";
+            }
+        }
+
         public doctor_registrar_atencion()
         {
             _citaBO = new CitaBO();
@@ -105,30 +114,63 @@ namespace SoftWA
                 }
 
                 var diagnosticosGuardados = _diagnosticoPorCitaBO.ListarDiagnosticoPorIdCita(idCita);
-                rptDiagnosticosAgregados.DataSource =
-                    (diagnosticosGuardados?.Select(d => new {
-                        diagnostico = d.diagnostico,
+                if (diagnosticosGuardados != null)
+                {
+                    rptDiagnosticosAgregados.DataSource = diagnosticosGuardados.Select(d => new
+                    {
+                        diagnostico = new
+                        {
+                            idDiagnostico = d.diagnostico.idDiagnostico,
+                            nombreDiagnostico = d.diagnostico.nombreDiagnostico
+                        },
                         observacion = d.observacion
-                    })?.ToList<object>()) ?? new List<object>();
+                    }).ToList<object>();
+                }
+                else
+                {
+                    rptDiagnosticosAgregados.DataSource = new List<object>();
+                }
 
                 rptDiagnosticosAgregados.DataBind();
 
                 var examenesGuardados = _examenPorCitaBO.ListarExamenesPorIdCita(idCita);
-                rptExamenesAgregados.DataSource =
-                    (examenesGuardados?.Select(ex => new {
-                        examen = new { nombreExamen = ex.examen.nombreExamen },
-                        ex.observaciones
-                    })?.ToList<object>()) ?? new List<object>();
+                if (examenesGuardados != null)
+                {
+                    rptExamenesAgregados.DataSource = examenesGuardados.Select(ex => new
+                    {
+                        examen = new
+                        {
+                            idExamen = ex.examen.idExamen, // IMPORTANTE: Incluir el idExamen
+                            nombreExamen = ex.examen.nombreExamen
+                        },
+                        observaciones = ex.observaciones
+                    }).ToList<object>();
+                }
+                else
+                {
+                    rptExamenesAgregados.DataSource = new List<object>();
+                }
                 rptExamenesAgregados.DataBind();
 
                 var interconsultasGuardadas = (_interconsultaBO.ListarTodosInterconuslta() ?? new BindingList<SoftBO.interconsultaWS.interconsultaDTO>())
                 .Where(i => i?.cita?.idCita == idCita)
                 .ToList();
-                rptInterconsultasAgregadas.DataSource =
-                    (interconsultasGuardadas?.Select(i => new {
-                        especialidadInterconsulta = new { nombreEspecialidad = i.especialidadInterconsulta.nombreEspecialidad },
-                        i.razonInterconsulta
-                    })?.ToList<object>()) ?? new List<object>();
+                if (interconsultasGuardadas != null && interconsultasGuardadas.Any())
+                {
+                    rptInterconsultasAgregadas.DataSource = interconsultasGuardadas.Select(i => new
+                    {
+                        especialidadInterconsulta = new
+                        {
+                            idEspecialidad = i.especialidadInterconsulta.idEspecialidad, // IMPORTANTE: Incluir el idEspecialidad
+                            nombreEspecialidad = i.especialidadInterconsulta.nombreEspecialidad
+                        },
+                        razonInterconsulta = i.razonInterconsulta
+                    }).ToList<object>();
+                }
+                else
+                {
+                    rptInterconsultasAgregadas.DataSource = new List<object>();
+                }
                 rptInterconsultasAgregadas.DataBind();
 
             }
@@ -151,6 +193,7 @@ namespace SoftWA
             panelAgregarExamen.Visible = false;
             panelAgregarInterconsulta.Visible = false;
             btnFinalizarAtencion.Visible = false;
+            ViewState["ModoVista"] = true;
 
         }
 
@@ -408,18 +451,26 @@ namespace SoftWA
                 foreach (var diag in DiagnosticosDeCita)
                 {
                     diag.cita = new SoftBO.diagnosticoporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    diag.cita.idCita = int.Parse(hfIdCita.Value);
+                    diag.cita.idCitaSpecified = true;
+                    diag.diagnostico.idDiagnosticoSpecified = true;
                     _diagnosticoPorCitaBO.InsertarDiagnosticoPorCita(diag);
                 }
                 foreach (var exam in ExamenesDeCita)
                 {
                     exam.cita = new SoftBO.examenporcitaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     exam.usuarioCreacion = usuario.idUsuario;
+                    exam.fechaCreacion = fechaHoy;
                     exam.usuarioCreacionSpecified = true;
+                    exam.cita.idCitaSpecified = true;
+                    exam.examen.idExamenSpecified= true;
                     _examenPorCitaBO.InsertarExamenPorCita(exam);
                 }
                 foreach (var inter in InterconsultasDeCita)
                 {
                     inter.cita = new SoftBO.interconsultaWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    inter.cita.idCitaSpecified = true;
+                    inter.especialidadInterconsulta.idEspecialidadSpecified= true;
                     _interconsultaBO.InsertarInterconuslta(inter);
                 }
 

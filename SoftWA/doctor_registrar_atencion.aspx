@@ -1,5 +1,4 @@
-﻿<%-- Archivo: doctor_registrar_atencion.aspx --%>
-<%@ Page Title="Registrar Atención Médica" Language="C#" MasterPageFile="~/SoftMA_Doctor.Master" AutoEventWireup="true" CodeBehind="doctor_registrar_atencion.aspx.cs" Inherits="SoftWA.doctor_registrar_atencion" %>
+﻿<%@ Page Title="Registrar Atención Médica" Language="C#" MasterPageFile="~/SoftMA_Doctor.Master" AutoEventWireup="true" CodeBehind="doctor_registrar_atencion.aspx.cs" Inherits="SoftWA.doctor_registrar_atencion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="chpTitulo" runat="server">
     Registro de Atención
@@ -21,6 +20,9 @@
                             Cita de <asp:Literal ID="ltlEspecialidad" runat="server"></asp:Literal> |
                             Fecha: <asp:Literal ID="ltlFechaCita" runat="server"></asp:Literal>
                         </p>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.cs">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.cs</a>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.cs">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.cs</a>
+                        <a href="file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-">file:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.designer.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx.csfile:///c:\users\salva\desktop\miscaleunus\prog3\app-medic\frontend-medic\softwa\indexAdmin.aspx</a>
                     </div>
                     <div>
                         <asp:Button ID="btnFinalizarAtencion" runat="server" Text="Finalizar y Guardar Atención" CssClass="btn btn-success" OnClick="btnFinalizarAtencion_Click" OnClientClick="return confirm('¿Está seguro de que desea finalizar y guardar toda la información de la atención?');" />
@@ -105,9 +107,11 @@
                                                 <strong><%# Eval("diagnostico.nombreDiagnostico") %></strong><br/>
                                                 <small class="text-muted"><%# Eval("observacion") %></small>
                                             </div>
-                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                            CommandName="Quitar" CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'
-                                                            Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                            <asp:LinkButton ID="btnQuitarDiagnostico" runat="server" 
+                                            CssClass="btn btn-outline-danger btn-sm" 
+                                            CommandName="Quitar" 
+                                            CommandArgument='<%# Eval("diagnostico.idDiagnostico") %>'
+                                            Visible='<%# !EsModoVista %>'>
                                                 <i class="fa-solid fa-trash-alt"></i> Quitar
                                             </asp:LinkButton>
                                         </li>
@@ -157,9 +161,11 @@
                                     <strong><%# Eval("examen.nombreExamen") %></strong>
                                     <small class="d-block text-muted"><%# Eval("observaciones") %></small>
                                 </div>
-                                <asp:LinkButton ID="btnQuitarExamen" runat="server" CssClass="btn btn-outline-danger btn-sm"
-                                                CommandName="Quitar" CommandArgument='<%# Eval("examen.idExamen") %>'
-                                                Visible='<%# Request.QueryString["modo"] != "vista" %>'>
+                                <asp:LinkButton ID="btnQuitarExamen" runat="server" 
+                                        CssClass="btn btn-outline-danger btn-sm"
+                                        CommandName="Quitar" 
+                                        CommandArgument='<%# Eval("examen.idExamen") %>'
+                                        Visible='<%# !EsModoVista %>'>
                                     <i class="fa-solid fa-trash-alt"></i> Quitar
                                 </asp:LinkButton>
                             </li>
@@ -209,7 +215,11 @@
                                     <strong><%# Eval("especialidadInterconsulta.nombreEspecialidad") %></strong>
                                     <small class="d-block text-muted"><%# Eval("razonInterconsulta") %></small>
                                 </div>
-                                <asp:LinkButton ID="btnQuitarInterconsulta" runat="server" CommandName="Quitar" CommandArgument='<%# Eval("especialidadInterconsulta.idEspecialidad") %>' CssClass="btn btn-sm btn-outline-danger">
+                                <asp:LinkButton ID="btnQuitarInterconsulta" runat="server" 
+                                    CommandName="Quitar" 
+                                    CommandArgument='<%# Eval("especialidadInterconsulta.idEspecialidad") %>' 
+                                    CssClass="btn btn-sm btn-outline-danger"
+                                    Visible='<%# !EsModoVista %>'>
                                     <i class="fas fa-trash-alt"></i>
                                 </asp:LinkButton>
                             </li>

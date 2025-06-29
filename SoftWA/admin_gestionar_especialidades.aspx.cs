@@ -150,6 +150,8 @@ namespace SoftWA
                     ResetForm();
                     hfEspecialidadId.Value = especialidad.idEspecialidad.ToString();
                     txtNombreAddEdit.Text = especialidad.nombreEspecialidad;
+                    txtNombreAddEdit.ReadOnly = true;
+                    txtNombreAddEdit.CssClass = "form-control-plaintext";
                     txtPrecioAddEdit.Text = especialidad.precioConsulta.ToString("F2");
                     lblFormTitle.Text = "Editar Especialidad";
                     pnlAddEditEspecialidad.Visible = true;
@@ -161,11 +163,9 @@ namespace SoftWA
                 var especialidad = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
                 if (especialidad != null)
                 {
-                    // Cambiar al estado opuesto
                     especialidad.estadoGeneral = (especialidad.estadoGeneral == estadoGeneral.ACTIVO) ? estadoGeneral.INACTIVO : estadoGeneral.ACTIVO;
                     especialidad.estadoGeneralSpecified = true;
 
-                    // Para la auditoría
                     var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
                     especialidad.usuarioModificacion = usuarioLogueado?.idUsuario ?? 0;
                     especialidad.usuarioModificacionSpecified = true;
@@ -198,6 +198,8 @@ namespace SoftWA
         {
             hfEspecialidadId.Value = "0";
             txtNombreAddEdit.Text = string.Empty;
+            txtNombreAddEdit.ReadOnly = false;
+            txtNombreAddEdit.CssClass = "form-control";
             txtPrecioAddEdit.Text = string.Empty;
             lblFormTitle.Text = "Agregar Nueva Especialidad";
         }
