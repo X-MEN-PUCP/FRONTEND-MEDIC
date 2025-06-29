@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using citaDTO = SoftBO.pacienteWS.citaDTO;
+using SoftBO;
 
 namespace SoftWA
 {
@@ -38,18 +39,16 @@ namespace SoftWA
 
             try
             {
-                using (var servicioPaciente = new PacienteWSClient())
+                var servicioPaciente = new PacienteBO();
+                var paciente = new SoftBO.pacienteWS.usuarioDTO 
+                { 
+                    idUsuario = usuario.idUsuario,
+                    idUsuarioSpecified = true
+                };
+                var historialCompleto = servicioPaciente.ListarCitasPaciente(paciente);
+                if (historialCompleto != null)
                 {
-                    var paciente = new SoftBO.pacienteWS.usuarioDTO 
-                    { 
-                        idUsuario = usuario.idUsuario,
-                        idUsuarioSpecified = true
-                    };
-                    var historialCompleto = servicioPaciente.listarCitasPorPaciente(paciente);
-                    if (historialCompleto != null)
-                    {
-                        CitasCompletasPaciente = historialCompleto.ToList();
-                    }
+                    CitasCompletasPaciente = historialCompleto.ToList();
                 }
                 CargarFiltroEspecialidades();
                 CargarFiltroMedicos();

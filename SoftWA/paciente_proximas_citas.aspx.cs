@@ -40,18 +40,16 @@ namespace SoftWA
 
             try
             {
-                using (var servicioPaciente = new PacienteWSClient())
+                var servicioPaciente = new PacienteBO();
+                var paciente = new SoftBO.pacienteWS.usuarioDTO 
+                { 
+                    idUsuario = usuario.idUsuario,
+                    idUsuarioSpecified = true
+                };
+                var historialCompleto = servicioPaciente.ListarCitasPaciente(paciente);
+                if(historialCompleto != null)
                 {
-                    var paciente = new SoftBO.pacienteWS.usuarioDTO 
-                    { 
-                        idUsuario = usuario.idUsuario,
-                        idUsuarioSpecified = true
-                    };
-                    var historialCompleto = servicioPaciente.listarCitasPorPaciente(paciente);
-                    if(historialCompleto != null)
-                    {
-                        CitasCompletasPaciente = historialCompleto.ToList();
-                    }
+                    CitasCompletasPaciente = historialCompleto.ToList();
                 }
                 CargarFiltroEspecialidades();
                 FiltrarYMostrarCitas();
@@ -134,21 +132,19 @@ namespace SoftWA
             {
                 try
                 {
-                    using (var servicioPaciente = new PacienteWSClient())
-                    {
-                        var historiaPorCita = CitasCompletasPaciente.FirstOrDefault(h => h.cita.idCita == idCita);
-                        int resultado = servicioPaciente.cancelarCitaPaciente(historiaPorCita);
+                    var servicioPaciente = new PacienteBO();
+                    var historiaPorCita = CitasCompletasPaciente.FirstOrDefault(h => h.cita.idCita == idCita);
+                    int resultado = servicioPaciente.CancelarCitaPaciente(historiaPorCita);
 
-                        if (resultado > 0)
-                        {
-                            MostrarMensaje("Cita cancelada exitosamente.", esExito: true);
-                            CargarDatosIniciales();
-                            rptProximasCitas_ItemCommand(source, e);
-                        }
-                        else
-                        {
-                            MostrarMensaje("No se pudo cancelar la cita.", esExito: false);
-                        }
+                    if (resultado > 0)
+                    {
+                        MostrarMensaje("Cita cancelada exitosamente.", esExito: true);
+                        CargarDatosIniciales();
+                        rptProximasCitas_ItemCommand(source, e);
+                    }
+                    else
+                    {
+                        MostrarMensaje("No se pudo cancelar la cita.", esExito: false);
                     }
                 }
                 catch (Exception ex)
