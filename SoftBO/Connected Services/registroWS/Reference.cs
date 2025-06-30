@@ -16,6 +16,15 @@ namespace SoftBO.registroWS {
     public interface RegistroWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.registroWS.verificarCodigoResponse verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
+        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -23,6 +32,56 @@ namespace SoftBO.registroWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse")]
         System.Threading.Tasks.Task<SoftBO.registroWS.registrarseResponse> registrarseAsync(SoftBO.registroWS.registrarseRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.registroWS.reenviarCodigoResponse reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
+        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class verificarCodigoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string correo;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string codigo;
+        
+        public verificarCodigoRequest() {
+        }
+        
+        public verificarCodigoRequest(string correo, string codigo) {
+            this.correo = correo;
+            this.codigo = codigo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class verificarCodigoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public verificarCodigoResponse() {
+        }
+        
+        public verificarCodigoResponse(bool @return) {
+            this.@return = @return;
+        }
     }
     
     /// <remarks/>
@@ -39,6 +98,8 @@ namespace SoftBO.registroWS {
         
         private string codMedicoField;
         
+        private string codigoVerificacionField;
+        
         private string contrasenhaField;
         
         private string correoElectronicoField;
@@ -52,6 +113,8 @@ namespace SoftBO.registroWS {
         private bool estadoLogicoFieldSpecified;
         
         private string fechaCreacionField;
+        
+        private string fechaExpiracionCodigoField;
         
         private string fechaModificacionField;
         
@@ -123,6 +186,18 @@ namespace SoftBO.registroWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string codigoVerificacion {
+            get {
+                return this.codigoVerificacionField;
+            }
+            set {
+                this.codigoVerificacionField = value;
+                this.RaisePropertyChanged("codigoVerificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string contrasenha {
             get {
                 return this.contrasenhaField;
@@ -134,7 +209,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public string correoElectronico {
             get {
                 return this.correoElectronicoField;
@@ -146,7 +221,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public estadoGeneral estadoGeneral {
             get {
                 return this.estadoGeneralField;
@@ -170,7 +245,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public estadoLogico estadoLogico {
             get {
                 return this.estadoLogicoField;
@@ -194,7 +269,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public string fechaCreacion {
             get {
                 return this.fechaCreacionField;
@@ -206,7 +281,19 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaExpiracionCodigo {
+            get {
+                return this.fechaExpiracionCodigoField;
+            }
+            set {
+                this.fechaExpiracionCodigoField = value;
+                this.RaisePropertyChanged("fechaExpiracionCodigo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public string fechaModificacion {
             get {
                 return this.fechaModificacionField;
@@ -218,7 +305,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
@@ -230,7 +317,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public genero genero {
             get {
                 return this.generoField;
@@ -254,7 +341,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -278,7 +365,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -290,7 +377,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -302,7 +389,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -314,7 +401,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=17)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -326,7 +413,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -350,7 +437,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=19)]
         public int usuarioCreacion {
             get {
                 return this.usuarioCreacionField;
@@ -374,7 +461,7 @@ namespace SoftBO.registroWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=20)]
         public int usuarioModificacion {
             get {
                 return this.usuarioModificacionField;
@@ -418,6 +505,9 @@ namespace SoftBO.registroWS {
         
         /// <remarks/>
         ACTIVO,
+        
+        /// <remarks/>
+        PENDIENTE_VERIFICACION,
     }
     
     /// <remarks/>
@@ -507,6 +597,42 @@ namespace SoftBO.registroWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reenviarCodigoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string correo;
+        
+        public reenviarCodigoRequest() {
+        }
+        
+        public reenviarCodigoRequest(string correo) {
+            this.correo = correo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reenviarCodigoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public reenviarCodigoResponse() {
+        }
+        
+        public reenviarCodigoResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RegistroWSChannel : SoftBO.registroWS.RegistroWS, System.ServiceModel.IClientChannel {
     }
@@ -535,6 +661,31 @@ namespace SoftBO.registroWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.registroWS.verificarCodigoResponse SoftBO.registroWS.RegistroWS.verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request) {
+            return base.Channel.verificarCodigo(request);
+        }
+        
+        public bool verificarCodigo(string correo, string codigo) {
+            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
+            inValue.correo = correo;
+            inValue.codigo = codigo;
+            SoftBO.registroWS.verificarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigo(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> SoftBO.registroWS.RegistroWS.verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request) {
+            return base.Channel.verificarCodigoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(string correo, string codigo) {
+            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
+            inValue.correo = correo;
+            inValue.codigo = codigo;
+            return ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.registroWS.registrarseResponse SoftBO.registroWS.RegistroWS.registrarse(SoftBO.registroWS.registrarseRequest request) {
             return base.Channel.registrarse(request);
         }
@@ -555,6 +706,29 @@ namespace SoftBO.registroWS {
             SoftBO.registroWS.registrarseRequest inValue = new SoftBO.registroWS.registrarseRequest();
             inValue.usuario = usuario;
             return ((SoftBO.registroWS.RegistroWS)(this)).registrarseAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.registroWS.reenviarCodigoResponse SoftBO.registroWS.RegistroWS.reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request) {
+            return base.Channel.reenviarCodigo(request);
+        }
+        
+        public bool reenviarCodigo(string correo) {
+            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
+            inValue.correo = correo;
+            SoftBO.registroWS.reenviarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigo(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> SoftBO.registroWS.RegistroWS.reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request) {
+            return base.Channel.reenviarCodigoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(string correo) {
+            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
+            inValue.correo = correo;
+            return ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigoAsync(inValue);
         }
     }
 }

@@ -5,21 +5,59 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/RegistroWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
+  <message name="verificarCodigo">
+    <part name="parameters" element="tns:verificarCodigo" />
+  </message>
+  <message name="verificarCodigoResponse">
+    <part name="parameters" element="tns:verificarCodigoResponse" />
+  </message>
   <message name="registrarse">
     <part name="parameters" element="tns:registrarse" />
   </message>
   <message name="registrarseResponse">
     <part name="parameters" element="tns:registrarseResponse" />
   </message>
+  <message name="reenviarCodigo">
+    <part name="parameters" element="tns:reenviarCodigo" />
+  </message>
+  <message name="reenviarCodigoResponse">
+    <part name="parameters" element="tns:reenviarCodigoResponse" />
+  </message>
   <portType name="RegistroWS">
+    <operation name="verificarCodigo">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest" message="tns:verificarCodigo" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse" message="tns:verificarCodigoResponse" />
+    </operation>
     <operation name="registrarse">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest" message="tns:registrarse" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse" message="tns:registrarseResponse" />
     </operation>
+    <operation name="reenviarCodigo">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest" message="tns:reenviarCodigo" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse" message="tns:reenviarCodigoResponse" />
+    </operation>
   </portType>
   <binding name="RegistroWSPortBinding" type="tns:RegistroWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="verificarCodigo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="registrarse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="reenviarCodigo">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

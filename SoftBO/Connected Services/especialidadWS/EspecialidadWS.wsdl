@@ -5,11 +5,17 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/EspecialidadWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="cambiarEstadoEspecialidad">
-    <part name="parameters" element="tns:cambiarEstadoEspecialidad" />
+  <message name="obtenerPorIdTablaEspecialidad">
+    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidad" />
   </message>
-  <message name="cambiarEstadoEspecialidadResponse">
-    <part name="parameters" element="tns:cambiarEstadoEspecialidadResponse" />
+  <message name="obtenerPorIdTablaEspecialidadResponse">
+    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidadResponse" />
+  </message>
+  <message name="listarEspecialidad">
+    <part name="parameters" element="tns:listarEspecialidad" />
+  </message>
+  <message name="listarEspecialidadResponse">
+    <part name="parameters" element="tns:listarEspecialidadResponse" />
   </message>
   <message name="insertarEspecialidad">
     <part name="parameters" element="tns:insertarEspecialidad" />
@@ -23,22 +29,20 @@
   <message name="modificarEspecialidadResponse">
     <part name="parameters" element="tns:modificarEspecialidadResponse" />
   </message>
-  <message name="obtenerPorIdTablaEspecialidad">
-    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidad" />
+  <message name="cambiarEstadoEspecialidad">
+    <part name="parameters" element="tns:cambiarEstadoEspecialidad" />
   </message>
-  <message name="obtenerPorIdTablaEspecialidadResponse">
-    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidadResponse" />
-  </message>
-  <message name="listarEspecialidad">
-    <part name="parameters" element="tns:listarEspecialidad" />
-  </message>
-  <message name="listarEspecialidadResponse">
-    <part name="parameters" element="tns:listarEspecialidadResponse" />
+  <message name="cambiarEstadoEspecialidadResponse">
+    <part name="parameters" element="tns:cambiarEstadoEspecialidadResponse" />
   </message>
   <portType name="EspecialidadWS">
-    <operation name="cambiarEstadoEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" message="tns:cambiarEstadoEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadResponse" message="tns:cambiarEstadoEspecialidadResponse" />
+    <operation name="obtenerPorIdTablaEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRequest" message="tns:obtenerPorIdTablaEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadResponse" message="tns:obtenerPorIdTablaEspecialidadResponse" />
+    </operation>
+    <operation name="listarEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest" message="tns:listarEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse" message="tns:listarEspecialidadResponse" />
     </operation>
     <operation name="insertarEspecialidad">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadRequest" message="tns:insertarEspecialidad" />
@@ -48,18 +52,23 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/modificarEspecialidadRequest" message="tns:modificarEspecialidad" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/modificarEspecialidadResponse" message="tns:modificarEspecialidadResponse" />
     </operation>
-    <operation name="obtenerPorIdTablaEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRequest" message="tns:obtenerPorIdTablaEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadResponse" message="tns:obtenerPorIdTablaEspecialidadResponse" />
-    </operation>
-    <operation name="listarEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest" message="tns:listarEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse" message="tns:listarEspecialidadResponse" />
+    <operation name="cambiarEstadoEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" message="tns:cambiarEstadoEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadResponse" message="tns:cambiarEstadoEspecialidadResponse" />
     </operation>
   </portType>
   <binding name="EspecialidadWSPortBinding" type="tns:EspecialidadWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="cambiarEstadoEspecialidad">
+    <operation name="obtenerPorIdTablaEspecialidad">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -86,16 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerPorIdTablaEspecialidad">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="listarEspecialidad">
+    <operation name="cambiarEstadoEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

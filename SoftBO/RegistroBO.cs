@@ -18,5 +18,13 @@ namespace SoftBO
         {
             return this.registroCliente.registrarse(usuario);
         }
+        public bool VerificarCodigo(string correo, string codigo)
+        {
+            return this.registroCliente.verificarCodigo(correo, codigo);
+        }
+        public bool ReenviarCodigo(string correo)
+        {
+            return this.registroCliente.reenviarCodigo(correo);
+        }
     }
 }

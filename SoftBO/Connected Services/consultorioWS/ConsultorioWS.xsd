@@ -62,6 +62,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="INACTIVO" />
       <xs:enumeration value="ACTIVO" />
+      <xs:enumeration value="PENDIENTE_VERIFICACION" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
