@@ -10,7 +10,6 @@ namespace SoftWA
 {
     public partial class admin_gestionar_especialidades : System.Web.UI.Page
     {
-        // Clase ViewModel para combinar datos de diferentes fuentes
         public class EspecialidadConteo
         {
             public int ID { get; set; }
@@ -85,7 +84,7 @@ namespace SoftWA
                     case "MedicosDesc":
                         listaViewModel = listaViewModel.OrderByDescending(esp => esp.CantMedicos).ToList();
                         break;
-                    default: // NombreAsc
+                    default: 
                         listaViewModel = listaViewModel.OrderBy(esp => esp.NombreEspecialidad).ToList();
                         break;
                 }
@@ -98,9 +97,7 @@ namespace SoftWA
             }
             catch (Exception ex)
             {
-                // Manejar error de conexión
                 phNoEspecialidad.Visible = true;
-                // Podríamos mostrar un mensaje más explícito al usuario
                 System.Diagnostics.Debug.WriteLine($"Error al bindear especialidades: {ex.Message}");
             }
         }
@@ -117,7 +114,6 @@ namespace SoftWA
                 {
                     ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
                     btnToggleStatus.ToolTip = "Desactivar";
-                    // Cambiar el color del icono para desactivar (rojo)
                     var iconPowerOff = btnToggleStatus.Controls.OfType<System.Web.UI.LiteralControl>().FirstOrDefault();
                     if (iconPowerOff != null)
                     {
@@ -128,7 +124,6 @@ namespace SoftWA
                 {
                     ltlEstado.Text = "<span class='badge bg-danger'>Inactivo</span>";
                     btnToggleStatus.ToolTip = "Activar";
-                    // Cambiar el color del icono para activar (verde)
                     var iconPowerOff = btnToggleStatus.Controls.OfType<System.Web.UI.LiteralControl>().FirstOrDefault();
                     if (iconPowerOff != null)
                     {
@@ -228,24 +223,23 @@ namespace SoftWA
                 usuarioModificacionSpecified = true
             };
 
-            if (especialidadId == 0) // Es una nueva especialidad
+            if (especialidadId == 0) 
             {
                 especialidad.usuarioCreacion = idUsuarioAuditoria;
                 especialidad.usuarioCreacionSpecified = true;
                 especialidad.fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
-                especialidad.estadoGeneral = estadoGeneral.ACTIVO; // Nueva especialidad siempre activa
+                especialidad.estadoGeneral = estadoGeneral.ACTIVO; 
                 especialidad.estadoGeneralSpecified = true;
                 _especialidadBO.InsertarEspecialidad(especialidad);
             }
-            else // Es una edición
+            else 
             {
                 especialidad.idEspecialidad = especialidadId;
-                // La fecha y usuario de creación se deben preservar
                 var espOriginal = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
                 especialidad.fechaCreacion = espOriginal.fechaCreacion;
                 especialidad.usuarioCreacion = espOriginal.usuarioCreacion;
                 especialidad.usuarioCreacionSpecified = espOriginal.usuarioCreacionSpecified;
-                especialidad.estadoGeneral = espOriginal.estadoGeneral; // Mantener el estado actual al editar
+                especialidad.estadoGeneral = espOriginal.estadoGeneral; 
                 especialidad.estadoGeneralSpecified = true;
                 especialidad.idEspecialidadSpecified = true;
                 _especialidadBO.ModificarEspecialidad(especialidad);

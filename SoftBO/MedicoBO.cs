@@ -24,5 +24,42 @@ namespace SoftBO
         {
             return this.medicoCliente.llenarEpicrisisMedico(epicrisis);
         }
+
+        public historiaClinicaPorCitaDTO ObtenerHistoriaClinicaPorCita(int idCita)
+        {
+            return this.medicoCliente.obtenerHistoriaClinicaPorCita(idCita);
+        }
+
+        public BindingList<especialidadDTO> ListarEspecialidadesParaInterconsulta()
+        {
+            especialidadDTO[] especialidades = this.medicoCliente.listarEspecialidadesParaInterconsulta();
+            return new BindingList<especialidadDTO>(especialidades ?? new especialidadDTO[0]);
+        }
+        public int InsertarInterconsultasDeCita(interconsultaDTO interconsulta)
+        {
+            return this.medicoCliente.insertarInterconsultasDeCita(interconsulta);
+        }
+        public int ModificarInteronsultaDeCita(interconsultaDTO interconsulta)
+        {
+            return this.medicoCliente.modificarInteronsultaDeCita(interconsulta);
+        }
+        public int EliminarInterconsultaDeCita(interconsultaDTO interconsulta)
+        {
+            return this.medicoCliente.eliminarInterconsultaDeCita(interconsulta);
+        }
+        public BindingList<tipoExamenDTO> ListarTiposDeExamen()
+        {
+            tipoExamenDTO[] tipos = this.medicoCliente.listarTiposDeExamen();
+            return new BindingList<tipoExamenDTO>(tipos ?? new tipoExamenDTO[0]);
+        }
+        public BindingList<examenDTO> ListarExamenesPorTipo(int idTipoExamen)
+        {
+            examenDTO[] examenes = this.medicoCliente.listarExamenesPorTipo(idTipoExamen);
+            return new BindingList<examenDTO>(examenes ?? new examenDTO[0]);
+        }
+        public int AgregarExamenPorCita(examenPorCitaDTO examenPorCita)
+        {
+            return this.medicoCliente.agregarExamenPorCita(examenPorCita);
+        }
     }
 }
