@@ -16,32 +16,6 @@ namespace SoftBO.usuarioporespecialidadWS {
     public interface UsuarioPorEspecialidadWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
-            "cialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
-            "cialidadResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
-            "cialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
-            "cialidadResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
-            "icosRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
-            "icosResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse listarTodosPerfilesMedicos(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
-            "icosRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
-            "icosResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> listarTodosPerfilesMedicosAsync(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuari" +
             "oPorEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorUsuarioUsuari" +
             "oPorEspecialidadResponse")]
@@ -55,6 +29,19 @@ namespace SoftBO.usuarioporespecialidadWS {
         System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadResponse> listarPorUsuarioUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
+            "cialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
+            "cialidadResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
+            "cialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/insertarUsuarioPorEspe" +
+            "cialidadResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadU" +
             "suarioPorEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadU" +
             "suarioPorEspecialidadResponse")]
@@ -66,6 +53,19 @@ namespace SoftBO.usuarioporespecialidadWS {
             "suarioPorEspecialidadRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarPorEspecialidadU" +
             "suarioPorEspecialidadResponse")]
         System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadResponse> listarPorEspecialidadUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
+            "icosRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
+            "icosResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse listarTodosPerfilesMedicos(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
+            "icosRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioPorEspecialidadWS/listarTodosPerfilesMed" +
+            "icosResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> listarTodosPerfilesMedicosAsync(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request);
     }
     
     /// <remarks/>
@@ -906,70 +906,6 @@ namespace SoftBO.usuarioporespecialidadWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioPorEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarUsuarioPorEspecialidadRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad;
-        
-        public insertarUsuarioPorEspecialidadRequest() {
-        }
-        
-        public insertarUsuarioPorEspecialidadRequest(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
-            this.usuarioXespecialidad = usuarioXespecialidad;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioPorEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarUsuarioPorEspecialidadResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
-        
-        public insertarUsuarioPorEspecialidadResponse() {
-        }
-        
-        public insertarUsuarioPorEspecialidadResponse(int @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosPerfilesMedicos", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosPerfilesMedicosRequest {
-        
-        public listarTodosPerfilesMedicosRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosPerfilesMedicosResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosPerfilesMedicosResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] @return;
-        
-        public listarTodosPerfilesMedicosResponse() {
-        }
-        
-        public listarTodosPerfilesMedicosResponse(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioUsuarioPorEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class listarPorUsuarioUsuarioPorEspecialidadRequest {
         
@@ -999,6 +935,42 @@ namespace SoftBO.usuarioporespecialidadWS {
         }
         
         public listarPorUsuarioUsuarioPorEspecialidadResponse(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioPorEspecialidad", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarUsuarioPorEspecialidadRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad;
+        
+        public insertarUsuarioPorEspecialidadRequest() {
+        }
+        
+        public insertarUsuarioPorEspecialidadRequest(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
+            this.usuarioXespecialidad = usuarioXespecialidad;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioPorEspecialidadResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarUsuarioPorEspecialidadResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public insertarUsuarioPorEspecialidadResponse() {
+        }
+        
+        public insertarUsuarioPorEspecialidadResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -1039,6 +1011,34 @@ namespace SoftBO.usuarioporespecialidadWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosPerfilesMedicos", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosPerfilesMedicosRequest {
+        
+        public listarTodosPerfilesMedicosRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosPerfilesMedicosResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosPerfilesMedicosResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] @return;
+        
+        public listarTodosPerfilesMedicosResponse() {
+        }
+        
+        public listarTodosPerfilesMedicosResponse(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface UsuarioPorEspecialidadWSChannel : SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS, System.ServiceModel.IClientChannel {
     }
@@ -1067,50 +1067,6 @@ namespace SoftBO.usuarioporespecialidadWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request) {
-            return base.Channel.insertarUsuarioPorEspecialidad(request);
-        }
-        
-        public int insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
-            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest inValue = new SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest();
-            inValue.usuarioXespecialidad = usuarioXespecialidad;
-            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse retVal = ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).insertarUsuarioPorEspecialidad(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request) {
-            return base.Channel.insertarUsuarioPorEspecialidadAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
-            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest inValue = new SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest();
-            inValue.usuarioXespecialidad = usuarioXespecialidad;
-            return ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).insertarUsuarioPorEspecialidadAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarTodosPerfilesMedicos(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request) {
-            return base.Channel.listarTodosPerfilesMedicos(request);
-        }
-        
-        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] listarTodosPerfilesMedicos() {
-            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest inValue = new SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest();
-            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse retVal = ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).listarTodosPerfilesMedicos(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarTodosPerfilesMedicosAsync(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request) {
-            return base.Channel.listarTodosPerfilesMedicosAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> listarTodosPerfilesMedicosAsync() {
-            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest inValue = new SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest();
-            return ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).listarTodosPerfilesMedicosAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarPorUsuarioUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.listarPorUsuarioUsuarioPorEspecialidadRequest request) {
             return base.Channel.listarPorUsuarioUsuarioPorEspecialidad(request);
         }
@@ -1134,6 +1090,29 @@ namespace SoftBO.usuarioporespecialidadWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request) {
+            return base.Channel.insertarUsuarioPorEspecialidad(request);
+        }
+        
+        public int insertarUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
+            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest inValue = new SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest();
+            inValue.usuarioXespecialidad = usuarioXespecialidad;
+            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse retVal = ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).insertarUsuarioPorEspecialidad(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest request) {
+            return base.Channel.insertarUsuarioPorEspecialidadAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadResponse> insertarUsuarioPorEspecialidadAsync(SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO usuarioXespecialidad) {
+            SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest inValue = new SoftBO.usuarioporespecialidadWS.insertarUsuarioPorEspecialidadRequest();
+            inValue.usuarioXespecialidad = usuarioXespecialidad;
+            return ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).insertarUsuarioPorEspecialidadAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarPorEspecialidadUsuarioPorEspecialidad(SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadRequest request) {
             return base.Channel.listarPorEspecialidadUsuarioPorEspecialidad(request);
         }
@@ -1154,6 +1133,27 @@ namespace SoftBO.usuarioporespecialidadWS {
             SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadRequest inValue = new SoftBO.usuarioporespecialidadWS.listarPorEspecialidadUsuarioPorEspecialidadRequest();
             inValue.idEspecialidad = idEspecialidad;
             return ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).listarPorEspecialidadUsuarioPorEspecialidadAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarTodosPerfilesMedicos(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request) {
+            return base.Channel.listarTodosPerfilesMedicos(request);
+        }
+        
+        public SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO[] listarTodosPerfilesMedicos() {
+            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest inValue = new SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest();
+            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse retVal = ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).listarTodosPerfilesMedicos(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS.listarTodosPerfilesMedicosAsync(SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest request) {
+            return base.Channel.listarTodosPerfilesMedicosAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosResponse> listarTodosPerfilesMedicosAsync() {
+            SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest inValue = new SoftBO.usuarioporespecialidadWS.listarTodosPerfilesMedicosRequest();
+            return ((SoftBO.usuarioporespecialidadWS.UsuarioPorEspecialidadWS)(this)).listarTodosPerfilesMedicosAsync(inValue);
         }
     }
 }

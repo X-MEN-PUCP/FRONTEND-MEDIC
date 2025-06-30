@@ -11,11 +11,11 @@
   <message name="listarCitasPorPacienteResponse">
     <part name="parameters" element="tns:listarCitasPorPacienteResponse" />
   </message>
-  <message name="reservarCitaPaciente">
-    <part name="parameters" element="tns:reservarCitaPaciente" />
+  <message name="buscarCitasPaciente">
+    <part name="parameters" element="tns:buscarCitasPaciente" />
   </message>
-  <message name="reservarCitaPacienteResponse">
-    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
+  <message name="buscarCitasPacienteResponse">
+    <part name="parameters" element="tns:buscarCitasPacienteResponse" />
   </message>
   <message name="cancelarCitaPaciente">
     <part name="parameters" element="tns:cancelarCitaPaciente" />
@@ -29,20 +29,20 @@
   <message name="reprogramarCitaPacienteResponse">
     <part name="parameters" element="tns:reprogramarCitaPacienteResponse" />
   </message>
-  <message name="buscarCitasPaciente">
-    <part name="parameters" element="tns:buscarCitasPaciente" />
+  <message name="reservarCitaPaciente">
+    <part name="parameters" element="tns:reservarCitaPaciente" />
   </message>
-  <message name="buscarCitasPacienteResponse">
-    <part name="parameters" element="tns:buscarCitasPacienteResponse" />
+  <message name="reservarCitaPacienteResponse">
+    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
   </message>
   <portType name="PacienteWS">
     <operation name="listarCitasPorPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteRequest" message="tns:listarCitasPorPaciente" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteResponse" message="tns:listarCitasPorPacienteResponse" />
     </operation>
-    <operation name="reservarCitaPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
+    <operation name="buscarCitasPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest" message="tns:buscarCitasPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse" message="tns:buscarCitasPacienteResponse" />
     </operation>
     <operation name="cancelarCitaPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest" message="tns:cancelarCitaPaciente" />
@@ -52,9 +52,9 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest" message="tns:reprogramarCitaPaciente" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse" message="tns:reprogramarCitaPacienteResponse" />
     </operation>
-    <operation name="buscarCitasPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest" message="tns:buscarCitasPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse" message="tns:buscarCitasPacienteResponse" />
+    <operation name="reservarCitaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
     </operation>
   </portType>
   <binding name="PacienteWSPortBinding" type="tns:PacienteWS">
@@ -68,7 +68,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="reservarCitaPaciente">
+    <operation name="buscarCitasPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="buscarCitasPaciente">
+    <operation name="reservarCitaPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

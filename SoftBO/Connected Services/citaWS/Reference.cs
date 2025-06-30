@@ -16,24 +16,6 @@ namespace SoftBO.citaWS {
     public interface CitaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.buscarCitasoloCalendarioResponse buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.citaWS.listarCitasMedicoWSResponse listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/obtenerPorIdCitaCitaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -61,6 +43,24 @@ namespace SoftBO.citaWS {
         System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasWSCitasResponse> buscarCitasWSCitasAsync(SoftBO.citaWS.buscarCitasWSCitasRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.citaWS.listarCitasMedicoWSResponse listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/listarCitasMedicoWSResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.citaWS.buscarCitasoloCalendarioResponse buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/buscarCitasoloCalendarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -68,25 +68,6 @@ namespace SoftBO.citaWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/CitaWS/modificarCitaResponse")]
         System.Threading.Tasks.Task<SoftBO.citaWS.modificarCitaResponse> modificarCitaAsync(SoftBO.citaWS.modificarCitaRequest request);
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
-    public enum estadoCita {
-        
-        /// <remarks/>
-        RESERVADO,
-        
-        /// <remarks/>
-        DISPONIBLE,
-        
-        /// <remarks/>
-        PAGADO,
-        
-        /// <remarks/>
-        ATENDIDO,
     }
     
     /// <remarks/>
@@ -1436,101 +1417,23 @@ namespace SoftBO.citaWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasoloCalendarioRequest {
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/")]
+    public enum estadoCita {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idEspecialidad;
+        /// <remarks/>
+        RESERVADO,
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int codMedico;
+        /// <remarks/>
+        DISPONIBLE,
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string fecha;
+        /// <remarks/>
+        PAGADO,
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string hora_inicio;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.estadoCita estadoCita;
-        
-        public buscarCitasoloCalendarioRequest() {
-        }
-        
-        public buscarCitasoloCalendarioRequest(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
-            this.idEspecialidad = idEspecialidad;
-            this.codMedico = codMedico;
-            this.fecha = fecha;
-            this.hora_inicio = hora_inicio;
-            this.estadoCita = estadoCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasoloCalendarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.citaDTO[] @return;
-        
-        public buscarCitasoloCalendarioResponse() {
-        }
-        
-        public buscarCitasoloCalendarioResponse(SoftBO.citaWS.citaDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWS", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarCitasMedicoWSRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idMedico;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.estadoCita estadoCita;
-        
-        public listarCitasMedicoWSRequest() {
-        }
-        
-        public listarCitasMedicoWSRequest(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
-            this.idMedico = idMedico;
-            this.estadoCita = estadoCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWSResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarCitasMedicoWSResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.citaWS.citaDTO[] @return;
-        
-        public listarCitasMedicoWSResponse() {
-        }
-        
-        public listarCitasMedicoWSResponse(SoftBO.citaWS.citaDTO[] @return) {
-            this.@return = @return;
-        }
+        /// <remarks/>
+        ATENDIDO,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1656,6 +1559,103 @@ namespace SoftBO.citaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWS", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarCitasMedicoWSRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idMedico;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.estadoCita estadoCita;
+        
+        public listarCitasMedicoWSRequest() {
+        }
+        
+        public listarCitasMedicoWSRequest(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            this.idMedico = idMedico;
+            this.estadoCita = estadoCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarCitasMedicoWSResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarCitasMedicoWSResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO[] @return;
+        
+        public listarCitasMedicoWSResponse() {
+        }
+        
+        public listarCitasMedicoWSResponse(SoftBO.citaWS.citaDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasoloCalendarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idEspecialidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int codMedico;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string fecha;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string hora_inicio;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.estadoCita estadoCita;
+        
+        public buscarCitasoloCalendarioRequest() {
+        }
+        
+        public buscarCitasoloCalendarioRequest(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            this.idEspecialidad = idEspecialidad;
+            this.codMedico = codMedico;
+            this.fecha = fecha;
+            this.hora_inicio = hora_inicio;
+            this.estadoCita = estadoCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasoloCalendarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasoloCalendarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.citaWS.citaDTO[] @return;
+        
+        public buscarCitasoloCalendarioResponse() {
+        }
+        
+        public buscarCitasoloCalendarioResponse(SoftBO.citaWS.citaDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="modificarCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class modificarCitaRequest {
         
@@ -1714,62 +1714,6 @@ namespace SoftBO.citaWS {
         
         public CitaWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.buscarCitasoloCalendarioResponse SoftBO.citaWS.CitaWS.buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
-            return base.Channel.buscarCitasoloCalendario(request);
-        }
-        
-        public SoftBO.citaWS.citaDTO[] buscarCitasoloCalendario(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
-            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.codMedico = codMedico;
-            inValue.fecha = fecha;
-            inValue.hora_inicio = hora_inicio;
-            inValue.estadoCita = estadoCita;
-            SoftBO.citaWS.buscarCitasoloCalendarioResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> SoftBO.citaWS.CitaWS.buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
-            return base.Channel.buscarCitasoloCalendarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
-            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.codMedico = codMedico;
-            inValue.fecha = fecha;
-            inValue.hora_inicio = hora_inicio;
-            inValue.estadoCita = estadoCita;
-            return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.citaWS.listarCitasMedicoWSResponse SoftBO.citaWS.CitaWS.listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
-            return base.Channel.listarCitasMedicoWS(request);
-        }
-        
-        public SoftBO.citaWS.citaDTO[] listarCitasMedicoWS(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
-            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
-            inValue.idMedico = idMedico;
-            inValue.estadoCita = estadoCita;
-            SoftBO.citaWS.listarCitasMedicoWSResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWS(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> SoftBO.citaWS.CitaWS.listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
-            return base.Channel.listarCitasMedicoWSAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
-            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
-            inValue.idMedico = idMedico;
-            inValue.estadoCita = estadoCita;
-            return ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWSAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1845,6 +1789,62 @@ namespace SoftBO.citaWS {
             inValue.hora_inicio = hora_inicio;
             inValue.estadoCita = estadoCita;
             return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasWSCitasAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.listarCitasMedicoWSResponse SoftBO.citaWS.CitaWS.listarCitasMedicoWS(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
+            return base.Channel.listarCitasMedicoWS(request);
+        }
+        
+        public SoftBO.citaWS.citaDTO[] listarCitasMedicoWS(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
+            inValue.idMedico = idMedico;
+            inValue.estadoCita = estadoCita;
+            SoftBO.citaWS.listarCitasMedicoWSResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWS(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> SoftBO.citaWS.CitaWS.listarCitasMedicoWSAsync(SoftBO.citaWS.listarCitasMedicoWSRequest request) {
+            return base.Channel.listarCitasMedicoWSAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.listarCitasMedicoWSResponse> listarCitasMedicoWSAsync(int idMedico, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.listarCitasMedicoWSRequest inValue = new SoftBO.citaWS.listarCitasMedicoWSRequest();
+            inValue.idMedico = idMedico;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).listarCitasMedicoWSAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.citaWS.buscarCitasoloCalendarioResponse SoftBO.citaWS.CitaWS.buscarCitasoloCalendario(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
+            return base.Channel.buscarCitasoloCalendario(request);
+        }
+        
+        public SoftBO.citaWS.citaDTO[] buscarCitasoloCalendario(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.codMedico = codMedico;
+            inValue.fecha = fecha;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            SoftBO.citaWS.buscarCitasoloCalendarioResponse retVal = ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> SoftBO.citaWS.CitaWS.buscarCitasoloCalendarioAsync(SoftBO.citaWS.buscarCitasoloCalendarioRequest request) {
+            return base.Channel.buscarCitasoloCalendarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.citaWS.buscarCitasoloCalendarioResponse> buscarCitasoloCalendarioAsync(int idEspecialidad, int codMedico, string fecha, string hora_inicio, SoftBO.citaWS.estadoCita estadoCita) {
+            SoftBO.citaWS.buscarCitasoloCalendarioRequest inValue = new SoftBO.citaWS.buscarCitasoloCalendarioRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.codMedico = codMedico;
+            inValue.fecha = fecha;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.citaWS.CitaWS)(this)).buscarCitasoloCalendarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -37,7 +37,7 @@ namespace SoftWA
     public partial class registro_cuenta_nueva : System.Web.UI.Page
     {
         private static readonly HttpClient client = new HttpClient();
-        private const string FactilizaToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODc5NyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImNvbnN1bHRvciJ9.Q0VZazBtc9rEHECee5F31lOommlqF8eM0uiQuh-hH8A";
+        private const string FactilizaToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk1OSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImNvbnN1bHRvciJ9.XrDaAeSivMeulRvfQf3ee4n1owZ9I7I8YEXQqx01vKc";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -168,12 +168,6 @@ namespace SoftWA
                     nuevoUsuario.genero = generoEnum;
                     nuevoUsuario.generoSpecified = true;
                 }
-                //nuevoUsuario.estadoGeneral = estadoGeneral.PENDIENTE_VERIFICACION;
-                //nuevoUsuario.estadoGeneralSpecified = true;
-                //nuevoUsuario.estadoLogico = estadoLogico.DISPONIBLE;
-                //nuevoUsuario.estadoLogicoSpecified = true;
-                //nuevoUsuario.usuarioCreacion = 1;
-                //nuevoUsuario.usuarioCreacionSpecified = true;
 
                 var servicioRegistro = new RegistroBO();
                 bool resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);

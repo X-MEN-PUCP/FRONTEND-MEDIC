@@ -25,13 +25,13 @@ namespace SoftBO.pacienteWS {
         System.Threading.Tasks.Task<SoftBO.pacienteWS.listarCitasPorPacienteResponse> listarCitasPorPacienteAsync(SoftBO.pacienteWS.listarCitasPorPacienteRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.pacienteWS.reservarCitaPacienteResponse reservarCitaPaciente(SoftBO.pacienteWS.reservarCitaPacienteRequest request);
+        SoftBO.pacienteWS.buscarCitasPacienteResponse buscarCitasPaciente(SoftBO.pacienteWS.buscarCitasPacienteRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse")]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> reservarCitaPacienteAsync(SoftBO.pacienteWS.reservarCitaPacienteRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse")]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> buscarCitasPacienteAsync(SoftBO.pacienteWS.buscarCitasPacienteRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse")]
@@ -52,13 +52,13 @@ namespace SoftBO.pacienteWS {
         System.Threading.Tasks.Task<SoftBO.pacienteWS.reprogramarCitaPacienteResponse> reprogramarCitaPacienteAsync(SoftBO.pacienteWS.reprogramarCitaPacienteRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.pacienteWS.buscarCitasPacienteResponse buscarCitasPaciente(SoftBO.pacienteWS.buscarCitasPacienteRequest request);
+        SoftBO.pacienteWS.reservarCitaPacienteResponse reservarCitaPaciente(SoftBO.pacienteWS.reservarCitaPacienteRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse")]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> buscarCitasPacienteAsync(SoftBO.pacienteWS.buscarCitasPacienteRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse")]
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> reservarCitaPacienteAsync(SoftBO.pacienteWS.reservarCitaPacienteRequest request);
     }
     
     /// <remarks/>
@@ -1992,40 +1992,55 @@ namespace SoftBO.pacienteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reservarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reservarCitaPacienteRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasPacienteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.citaDTO cita;
+        public int idEspecialidad;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.usuarioDTO paciente;
+        public string fecha;
         
-        public reservarCitaPacienteRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idMedico;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string hora_inicio;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.pacienteWS.estadoCita estadoCita;
+        
+        public buscarCitasPacienteRequest() {
         }
         
-        public reservarCitaPacienteRequest(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
-            this.cita = cita;
-            this.paciente = paciente;
+        public buscarCitasPacienteRequest(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
+            this.idEspecialidad = idEspecialidad;
+            this.fecha = fecha;
+            this.idMedico = idMedico;
+            this.hora_inicio = hora_inicio;
+            this.estadoCita = estadoCita;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reservarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reservarCitaPacienteResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCitasPacienteResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.pacienteWS.citaDTO[] @return;
         
-        public reservarCitaPacienteResponse() {
+        public buscarCitasPacienteResponse() {
         }
         
-        public reservarCitaPacienteResponse(int @return) {
+        public buscarCitasPacienteResponse(SoftBO.pacienteWS.citaDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -2110,55 +2125,40 @@ namespace SoftBO.pacienteWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasPacienteRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reservarCitaPaciente", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reservarCitaPacienteRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idEspecialidad;
+        public SoftBO.pacienteWS.citaDTO cita;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string fecha;
+        public SoftBO.pacienteWS.usuarioDTO paciente;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idMedico;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=3)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string hora_inicio;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=4)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.estadoCita estadoCita;
-        
-        public buscarCitasPacienteRequest() {
+        public reservarCitaPacienteRequest() {
         }
         
-        public buscarCitasPacienteRequest(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
-            this.idEspecialidad = idEspecialidad;
-            this.fecha = fecha;
-            this.idMedico = idMedico;
-            this.hora_inicio = hora_inicio;
-            this.estadoCita = estadoCita;
+        public reservarCitaPacienteRequest(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
+            this.cita = cita;
+            this.paciente = paciente;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCitasPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCitasPacienteResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reservarCitaPacienteResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reservarCitaPacienteResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.pacienteWS.citaDTO[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
         
-        public buscarCitasPacienteResponse() {
+        public reservarCitaPacienteResponse() {
         }
         
-        public buscarCitasPacienteResponse(SoftBO.pacienteWS.citaDTO[] @return) {
+        public reservarCitaPacienteResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -2214,28 +2214,34 @@ namespace SoftBO.pacienteWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.pacienteWS.reservarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.reservarCitaPaciente(SoftBO.pacienteWS.reservarCitaPacienteRequest request) {
-            return base.Channel.reservarCitaPaciente(request);
+        SoftBO.pacienteWS.buscarCitasPacienteResponse SoftBO.pacienteWS.PacienteWS.buscarCitasPaciente(SoftBO.pacienteWS.buscarCitasPacienteRequest request) {
+            return base.Channel.buscarCitasPaciente(request);
         }
         
-        public int reservarCitaPaciente(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
-            SoftBO.pacienteWS.reservarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reservarCitaPacienteRequest();
-            inValue.cita = cita;
-            inValue.paciente = paciente;
-            SoftBO.pacienteWS.reservarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).reservarCitaPaciente(inValue);
+        public SoftBO.pacienteWS.citaDTO[] buscarCitasPaciente(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
+            SoftBO.pacienteWS.buscarCitasPacienteRequest inValue = new SoftBO.pacienteWS.buscarCitasPacienteRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.fecha = fecha;
+            inValue.idMedico = idMedico;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            SoftBO.pacienteWS.buscarCitasPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).buscarCitasPaciente(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.reservarCitaPacienteAsync(SoftBO.pacienteWS.reservarCitaPacienteRequest request) {
-            return base.Channel.reservarCitaPacienteAsync(request);
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> SoftBO.pacienteWS.PacienteWS.buscarCitasPacienteAsync(SoftBO.pacienteWS.buscarCitasPacienteRequest request) {
+            return base.Channel.buscarCitasPacienteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> reservarCitaPacienteAsync(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
-            SoftBO.pacienteWS.reservarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reservarCitaPacienteRequest();
-            inValue.cita = cita;
-            inValue.paciente = paciente;
-            return ((SoftBO.pacienteWS.PacienteWS)(this)).reservarCitaPacienteAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> buscarCitasPacienteAsync(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
+            SoftBO.pacienteWS.buscarCitasPacienteRequest inValue = new SoftBO.pacienteWS.buscarCitasPacienteRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.fecha = fecha;
+            inValue.idMedico = idMedico;
+            inValue.hora_inicio = hora_inicio;
+            inValue.estadoCita = estadoCita;
+            return ((SoftBO.pacienteWS.PacienteWS)(this)).buscarCitasPacienteAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2287,34 +2293,28 @@ namespace SoftBO.pacienteWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.pacienteWS.buscarCitasPacienteResponse SoftBO.pacienteWS.PacienteWS.buscarCitasPaciente(SoftBO.pacienteWS.buscarCitasPacienteRequest request) {
-            return base.Channel.buscarCitasPaciente(request);
+        SoftBO.pacienteWS.reservarCitaPacienteResponse SoftBO.pacienteWS.PacienteWS.reservarCitaPaciente(SoftBO.pacienteWS.reservarCitaPacienteRequest request) {
+            return base.Channel.reservarCitaPaciente(request);
         }
         
-        public SoftBO.pacienteWS.citaDTO[] buscarCitasPaciente(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
-            SoftBO.pacienteWS.buscarCitasPacienteRequest inValue = new SoftBO.pacienteWS.buscarCitasPacienteRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.fecha = fecha;
-            inValue.idMedico = idMedico;
-            inValue.hora_inicio = hora_inicio;
-            inValue.estadoCita = estadoCita;
-            SoftBO.pacienteWS.buscarCitasPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).buscarCitasPaciente(inValue);
+        public int reservarCitaPaciente(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
+            SoftBO.pacienteWS.reservarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reservarCitaPacienteRequest();
+            inValue.cita = cita;
+            inValue.paciente = paciente;
+            SoftBO.pacienteWS.reservarCitaPacienteResponse retVal = ((SoftBO.pacienteWS.PacienteWS)(this)).reservarCitaPaciente(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> SoftBO.pacienteWS.PacienteWS.buscarCitasPacienteAsync(SoftBO.pacienteWS.buscarCitasPacienteRequest request) {
-            return base.Channel.buscarCitasPacienteAsync(request);
+        System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> SoftBO.pacienteWS.PacienteWS.reservarCitaPacienteAsync(SoftBO.pacienteWS.reservarCitaPacienteRequest request) {
+            return base.Channel.reservarCitaPacienteAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.pacienteWS.buscarCitasPacienteResponse> buscarCitasPacienteAsync(int idEspecialidad, string fecha, int idMedico, string hora_inicio, SoftBO.pacienteWS.estadoCita estadoCita) {
-            SoftBO.pacienteWS.buscarCitasPacienteRequest inValue = new SoftBO.pacienteWS.buscarCitasPacienteRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.fecha = fecha;
-            inValue.idMedico = idMedico;
-            inValue.hora_inicio = hora_inicio;
-            inValue.estadoCita = estadoCita;
-            return ((SoftBO.pacienteWS.PacienteWS)(this)).buscarCitasPacienteAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.pacienteWS.reservarCitaPacienteResponse> reservarCitaPacienteAsync(SoftBO.pacienteWS.citaDTO cita, SoftBO.pacienteWS.usuarioDTO paciente) {
+            SoftBO.pacienteWS.reservarCitaPacienteRequest inValue = new SoftBO.pacienteWS.reservarCitaPacienteRequest();
+            inValue.cita = cita;
+            inValue.paciente = paciente;
+            return ((SoftBO.pacienteWS.PacienteWS)(this)).reservarCitaPacienteAsync(inValue);
         }
     }
 }
