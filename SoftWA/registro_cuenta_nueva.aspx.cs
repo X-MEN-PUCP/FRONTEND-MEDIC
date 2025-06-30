@@ -112,8 +112,8 @@ namespace SoftWA
                 MostrarMensaje("El dominio del correo electrónico no es válido. Por favor, use un proveedor conocido (ej: Gmail, Outlook, etc.).", esExito: false);
                 return;
             }
-
-            if (DateTime.TryParse(txtFechaNacimiento.Text, out DateTime fechaNac))
+            DateTime fechaNac;
+            if (DateTime.TryParse(txtFechaNacimiento.Text, out fechaNac))
             {
                 if (!EsMayorDeEdad(fechaNac))
                 {
@@ -135,34 +135,46 @@ namespace SoftWA
             }
             try
             {
-                Enum.TryParse<tipoDocumento>(hdnSelectedDocumentType.Value, true, out tipoDocumento tipoEnum);
-                Enum.TryParse<genero>(ddlGenero.SelectedValue, true, out genero generoEnum);
-                var nuevoUsuario = new usuarioDTO
-                {
-                    tipoDocumento = tipoEnum,
-                    tipoDocumentoSpecified = true,
-                    numDocumento = (hdnSelectedDocumentType.Value == "DNI") ? txtDNI.Text.Trim() : txtCE.Text.Trim(),
-                    nombres = txtNombres.Text,
-                    apellidoPaterno = txtApellidoPaterno.Text,
-                    apellidoMaterno = txtApellidoMaterno.Text,
-                    correoElectronico = txtCorreo.Text.Trim(),
-                    numCelular = txtCelular.Text.Trim(),
-                    fechaNacimiento = txtFechaNacimiento.Text,
-                    genero = generoEnum,
-                    generoSpecified = true,
-                    contrasenha = txtPassword.Text,
-                    usuarioCreacion = 1,
-                    usuarioCreacionSpecified = true,
-                    estadoGeneral = estadoGeneral.ACTIVO,
-                    estadoGeneralSpecified = true,
-                    estadoLogico = estadoLogico.DISPONIBLE,
-                    estadoLogicoSpecified = true,
-                    codMedico = ""
-                };
+                string tipoDocumento = hdnSelectedDocumentType.Value;
+                string genero = ddlGenero.SelectedValue;
+                DateTime fechaNacParseada = DateTime.Parse(txtFechaNacimiento.Text);
 
-                bool resultadoRegistro;
+                System.Diagnostics.Debug.WriteLine($"Valor para tipoDocumento: {tipoDocumento}");
+                System.Diagnostics.Debug.WriteLine($"Valor para genero: {genero}");
+
+                Enum.TryParse<tipoDocumento>(tipoDocumento, true, out tipoDocumento tipoEnum);
+                Enum.TryParse<genero>(genero, true, out genero genEnum);
+
+                System.Diagnostics.Debug.WriteLine($"Enum parseado para tipoDocumento: {tipoEnum.ToString()}");
+                System.Diagnostics.Debug.WriteLine($"Enum parseado para genero: {genEnum.ToString()}");
+
+                var nuevoUsuario = new usuarioDTO();
+                nuevoUsuario.numDocumento = (tipoDocumento == "DNI") ? txtDNI.Text.Trim() : txtCE.Text.Trim();
+                nuevoUsuario.nombres = txtNombres.Text.Trim();
+                nuevoUsuario.apellidoPaterno = txtApellidoPaterno.Text.Trim();
+                nuevoUsuario.apellidoMaterno = txtApellidoMaterno.Text.Trim();
+                nuevoUsuario.correoElectronico = correo;
+                nuevoUsuario.numCelular = txtCelular.Text.Trim();
+                nuevoUsuario.fechaNacimiento = fechaNacParseada.ToString("yyyy-MM-dd");
+                nuevoUsuario.contrasenha = password;
+                nuevoUsuario.codMedico = "";
+                if (Enum.TryParse<tipoDocumento>(tipoDocumento, true, out var tipoDocEnum))
+                {
+                    nuevoUsuario.tipoDocumento = tipoDocEnum;
+                    nuevoUsuario.tipoDocumentoSpecified = true;
+                }
+                if (Enum.TryParse<genero>(genero, true, out var generoEnum))
+                {
+                    nuevoUsuario.genero = generoEnum;
+                    nuevoUsuario.generoSpecified = true;
+                }
+                nuevoUsuario.estadoGeneral = estadoGeneral.PENDIENTE_VERIFICACION;
+                nuevoUsuario.estadoGeneralSpecified = true;
+                nuevoUsuario.estadoLogico = estadoLogico.DISPONIBLE;
+                nuevoUsuario.estadoLogicoSpecified = true;
+
                 var servicioRegistro = new RegistroBO();
-                resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
+                bool resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
                 
                 if (resultadoRegistro)
                 {

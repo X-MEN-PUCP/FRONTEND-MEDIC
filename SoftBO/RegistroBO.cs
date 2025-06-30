@@ -18,7 +18,7 @@ namespace SoftBO
         {
             return this.registroCliente.registrarse(usuario);
         }
-        public bool VerificarCodigo(string correo, string codigo)
+        public usuarioDTO VerificarCodigo(string correo, string codigo)
         {
             return this.registroCliente.verificarCodigo(correo, codigo);
         }

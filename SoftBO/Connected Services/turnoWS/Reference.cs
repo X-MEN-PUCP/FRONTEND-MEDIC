@@ -16,13 +16,13 @@ namespace SoftBO.turnoWS {
     public interface TurnoWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.turnoWS.listarTodosTurnoResponse listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request);
+        SoftBO.turnoWS.modificarTurnoResponse modificarTurno(SoftBO.turnoWS.modificarTurnoRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse")]
+        System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> modificarTurnoAsync(SoftBO.turnoWS.modificarTurnoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoResponse")]
@@ -34,13 +34,13 @@ namespace SoftBO.turnoWS {
         System.Threading.Tasks.Task<SoftBO.turnoWS.obtenerPorIdTurnoResponse> obtenerPorIdTurnoAsync(SoftBO.turnoWS.obtenerPorIdTurnoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.turnoWS.modificarTurnoResponse modificarTurno(SoftBO.turnoWS.modificarTurnoRequest request);
+        SoftBO.turnoWS.listarTodosTurnoResponse listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse")]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> modificarTurnoAsync(SoftBO.turnoWS.modificarTurnoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
+        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request);
     }
     
     /// <remarks/>
@@ -262,27 +262,35 @@ namespace SoftBO.turnoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTurnoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarTurnoRequest {
         
-        public listarTodosTurnoRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.turnoWS.turnoDTO turno;
+        
+        public modificarTurnoRequest() {
+        }
+        
+        public modificarTurnoRequest(SoftBO.turnoWS.turnoDTO turno) {
+            this.turno = turno;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTurnoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarTurnoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.turnoWS.turnoDTO[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
         
-        public listarTodosTurnoResponse() {
+        public modificarTurnoResponse() {
         }
         
-        public listarTodosTurnoResponse(SoftBO.turnoWS.turnoDTO[] @return) {
+        public modificarTurnoResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -326,35 +334,27 @@ namespace SoftBO.turnoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarTurnoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTurnoRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.turnoWS.turnoDTO turno;
-        
-        public modificarTurnoRequest() {
-        }
-        
-        public modificarTurnoRequest(SoftBO.turnoWS.turnoDTO turno) {
-            this.turno = turno;
+        public listarTodosTurnoRequest() {
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarTurnoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTurnoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.turnoWS.turnoDTO[] @return;
         
-        public modificarTurnoResponse() {
+        public listarTodosTurnoResponse() {
         }
         
-        public modificarTurnoResponse(int @return) {
+        public listarTodosTurnoResponse(SoftBO.turnoWS.turnoDTO[] @return) {
             this.@return = @return;
         }
     }
@@ -387,24 +387,26 @@ namespace SoftBO.turnoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.turnoWS.listarTodosTurnoResponse SoftBO.turnoWS.TurnoWS.listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request) {
-            return base.Channel.listarTodosTurno(request);
+        SoftBO.turnoWS.modificarTurnoResponse SoftBO.turnoWS.TurnoWS.modificarTurno(SoftBO.turnoWS.modificarTurnoRequest request) {
+            return base.Channel.modificarTurno(request);
         }
         
-        public SoftBO.turnoWS.turnoDTO[] listarTodosTurno() {
-            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
-            SoftBO.turnoWS.listarTodosTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurno(inValue);
+        public int modificarTurno(SoftBO.turnoWS.turnoDTO turno) {
+            SoftBO.turnoWS.modificarTurnoRequest inValue = new SoftBO.turnoWS.modificarTurnoRequest();
+            inValue.turno = turno;
+            SoftBO.turnoWS.modificarTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).modificarTurno(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> SoftBO.turnoWS.TurnoWS.listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request) {
-            return base.Channel.listarTodosTurnoAsync(request);
+        System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> SoftBO.turnoWS.TurnoWS.modificarTurnoAsync(SoftBO.turnoWS.modificarTurnoRequest request) {
+            return base.Channel.modificarTurnoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync() {
-            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
-            return ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurnoAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> modificarTurnoAsync(SoftBO.turnoWS.turnoDTO turno) {
+            SoftBO.turnoWS.modificarTurnoRequest inValue = new SoftBO.turnoWS.modificarTurnoRequest();
+            inValue.turno = turno;
+            return ((SoftBO.turnoWS.TurnoWS)(this)).modificarTurnoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -431,26 +433,24 @@ namespace SoftBO.turnoWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.turnoWS.modificarTurnoResponse SoftBO.turnoWS.TurnoWS.modificarTurno(SoftBO.turnoWS.modificarTurnoRequest request) {
-            return base.Channel.modificarTurno(request);
+        SoftBO.turnoWS.listarTodosTurnoResponse SoftBO.turnoWS.TurnoWS.listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request) {
+            return base.Channel.listarTodosTurno(request);
         }
         
-        public int modificarTurno(SoftBO.turnoWS.turnoDTO turno) {
-            SoftBO.turnoWS.modificarTurnoRequest inValue = new SoftBO.turnoWS.modificarTurnoRequest();
-            inValue.turno = turno;
-            SoftBO.turnoWS.modificarTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).modificarTurno(inValue);
+        public SoftBO.turnoWS.turnoDTO[] listarTodosTurno() {
+            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
+            SoftBO.turnoWS.listarTodosTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurno(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> SoftBO.turnoWS.TurnoWS.modificarTurnoAsync(SoftBO.turnoWS.modificarTurnoRequest request) {
-            return base.Channel.modificarTurnoAsync(request);
+        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> SoftBO.turnoWS.TurnoWS.listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request) {
+            return base.Channel.listarTodosTurnoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.turnoWS.modificarTurnoResponse> modificarTurnoAsync(SoftBO.turnoWS.turnoDTO turno) {
-            SoftBO.turnoWS.modificarTurnoRequest inValue = new SoftBO.turnoWS.modificarTurnoRequest();
-            inValue.turno = turno;
-            return ((SoftBO.turnoWS.TurnoWS)(this)).modificarTurnoAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync() {
+            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
+            return ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurnoAsync(inValue);
         }
     }
 }

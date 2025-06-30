@@ -485,6 +485,9 @@
     <None Include="Connected Services\registroWS\SoftBO.registroWS.registrarseResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\registroWS\SoftBO.registroWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\registroWS\SoftBO.registroWS.verificarCodigoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
