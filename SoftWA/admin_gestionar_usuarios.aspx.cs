@@ -57,7 +57,6 @@ namespace SoftWA
         {
             if (!IsPostBack)
             {
-                // Cargar datos maestros solo una vez
                 CargarRolesMaestros();
                 PoblarFiltroRoles();
                 PoblarDropDownsModal();
@@ -69,7 +68,6 @@ namespace SoftWA
         {
             try
             {
-                // Simulación de roles estáticos (idealmente vendrían de un WS)
                 _listaCompletaRoles = new List<RolSimple>
                 {
                     new RolSimple { IdRol = 1, NombreRol = "Administrador" },
@@ -103,14 +101,12 @@ namespace SoftWA
         {
             try
             {
-                // Poblar ddlRolNuevo
                 ddlRolNuevo.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
                 ddlRolNuevo.DataTextField = "NombreRol";
                 ddlRolNuevo.DataValueField = "IdRol";
                 ddlRolNuevo.DataBind();
                 ddlRolNuevo.Items.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
 
-                // Poblar ddlEspecialidadNuevo
                 ddlEspecialidadNuevo.DataSource = _listaCompletaEspecialidades.OrderBy(e => e.NombreEspecialidad);
                 ddlEspecialidadNuevo.DataTextField = "NombreEspecialidad";
                 ddlEspecialidadNuevo.DataValueField = "IdEspecialidad";

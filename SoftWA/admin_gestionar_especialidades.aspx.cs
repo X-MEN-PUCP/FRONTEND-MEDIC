@@ -10,6 +10,7 @@ namespace SoftWA
 {
     public partial class admin_gestionar_especialidades : System.Web.UI.Page
     {
+        [Serializable]
         public class EspecialidadConteo
         {
             public int ID { get; set; }
@@ -21,7 +22,17 @@ namespace SoftWA
 
         private readonly EspecialidadBO _especialidadBO;
         private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
-
+        private List<EspecialidadConteo> ListaCompletaEspecialidades
+        {
+            get
+            {
+                return ViewState["ListaEspecialidades"] as List<EspecialidadConteo>;
+            }
+            set
+            {
+                ViewState["ListaEspecialidades"] = value;
+            }
+        }
         public admin_gestionar_especialidades()
         {
             _especialidadBO = new EspecialidadBO();
@@ -32,11 +43,12 @@ namespace SoftWA
         {
             if (!IsPostBack)
             {
-                BindEspecialidadesGrid();
+                CargarDatosDesdeServicio();
+                // Y luego los muestra en la grilla
+                AplicarFiltrosYEnlazarGrid();
             }
         }
-
-        private void BindEspecialidadesGrid()
+        private void CargarDatosDesdeServicio()
         {
             try
             {
@@ -45,6 +57,7 @@ namespace SoftWA
 
                 foreach (var esp in especialidadesWs)
                 {
+                    // Por cada especialidad, consultamos cuántos médicos tiene
                     var medicos = _usuarioPorEspecialidadBO.ListarPorEspecialidadUsuarioPorEspecialidad(esp.idEspecialidad);
                     listaViewModel.Add(new EspecialidadConteo
                     {
@@ -56,47 +69,71 @@ namespace SoftWA
                     });
                 }
 
-                string nombreFiltro = txtFiltrarNombre.Text.Trim();
-                if (!string.IsNullOrEmpty(nombreFiltro))
-                {
-                    listaViewModel = listaViewModel.Where(esp =>
-                        esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower())).ToList();
-                }
-
-                string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
-                switch (ordenSeleccionado)
-                {
-                    case "NombreDesc":
-                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.NombreEspecialidad).ToList();
-                        break;
-                    case "PrecioAsc":
-                        listaViewModel = listaViewModel.OrderBy(esp => esp.PrecioConsulta).ToList();
-                        break;
-                    case "PrecioDesc":
-                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.PrecioConsulta).ToList();
-                        break;
-                    case "MedicosAsc":
-                        listaViewModel = listaViewModel.OrderBy(esp => esp.CantMedicos).ToList();
-                        break;
-                    case "MedicosDesc":
-                        listaViewModel = listaViewModel.OrderByDescending(esp => esp.CantMedicos).ToList();
-                        break;
-                    default: 
-                        listaViewModel = listaViewModel.OrderBy(esp => esp.NombreEspecialidad).ToList();
-                        break;
-                }
-
-                rptEspecialidades.DataSource = listaViewModel;
-                rptEspecialidades.DataBind();
-
-                phNoEspecialidad.Visible = !listaViewModel.Any();
-                updGestionEspecialidades.Update();
+                // Almacenamos la lista completa en nuestra propiedad de ViewState
+                this.ListaCompletaEspecialidades = listaViewModel;
             }
             catch (Exception ex)
             {
+                // Manejar error de conexión
                 phNoEspecialidad.Visible = true;
-                System.Diagnostics.Debug.WriteLine($"Error al bindear especialidades: {ex.Message}");
+                // Podríamos mostrar un mensaje más explícito al usuario
+                System.Diagnostics.Debug.WriteLine($"Error al cargar especialidades desde el servicio: {ex.Message}");
+                // Si hay error, la lista se queda vacía.
+                this.ListaCompletaEspecialidades = new List<EspecialidadConteo>();
             }
+        }
+        private void AplicarFiltrosYEnlazarGrid()
+        {
+            // Obtenemos la lista completa desde la propiedad (que usa ViewState)
+            var listaViewModel = this.ListaCompletaEspecialidades;
+
+            // Si por alguna razón la lista es nula, la inicializamos
+            if (listaViewModel == null)
+            {
+                phNoEspecialidad.Visible = true;
+                rptEspecialidades.DataSource = null;
+                rptEspecialidades.DataBind();
+                updGestionEspecialidades.Update();
+                return;
+            }
+
+            // Aplicar filtros de la UI (esto ahora es súper rápido)
+            string nombreFiltro = txtFiltrarNombre.Text.Trim();
+            if (!string.IsNullOrEmpty(nombreFiltro))
+            {
+                listaViewModel = listaViewModel.Where(esp =>
+                    esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower())).ToList();
+            }
+
+            // Aplicar ordenamiento (también súper rápido)
+            string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
+            switch (ordenSeleccionado)
+            {
+                case "NombreDesc":
+                    listaViewModel = listaViewModel.OrderByDescending(esp => esp.NombreEspecialidad).ToList();
+                    break;
+                case "PrecioAsc":
+                    listaViewModel = listaViewModel.OrderBy(esp => esp.PrecioConsulta).ToList();
+                    break;
+                case "PrecioDesc":
+                    listaViewModel = listaViewModel.OrderByDescending(esp => esp.PrecioConsulta).ToList();
+                    break;
+                case "MedicosAsc":
+                    listaViewModel = listaViewModel.OrderBy(esp => esp.CantMedicos).ToList();
+                    break;
+                case "MedicosDesc":
+                    listaViewModel = listaViewModel.OrderByDescending(esp => esp.CantMedicos).ToList();
+                    break;
+                default: // NombreAsc
+                    listaViewModel = listaViewModel.OrderBy(esp => esp.NombreEspecialidad).ToList();
+                    break;
+            }
+
+            rptEspecialidades.DataSource = listaViewModel;
+            rptEspecialidades.DataBind();
+
+            phNoEspecialidad.Visible = !listaViewModel.Any();
+            updGestionEspecialidades.Update();
         }
 
         protected void rptEspecialidades_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -164,7 +201,8 @@ namespace SoftWA
                     especialidad.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
 
                     _especialidadBO.ModificarEspecialidad(especialidad);
-                    BindEspecialidadesGrid();
+                    CargarDatosDesdeServicio();
+                    AplicarFiltrosYEnlazarGrid();
                 }
             }
             updGestionEspecialidades.Update();
@@ -245,19 +283,20 @@ namespace SoftWA
             pnlAddEditEspecialidad.Visible = false;
             btnShowAddPanel.Visible = true;
             ResetForm();
-            BindEspecialidadesGrid();
+            CargarDatosDesdeServicio();
+            AplicarFiltrosYEnlazarGrid();
         }
 
         protected void btnAplicarFiltrosEsp_Click(object sender, EventArgs e)
         {
-            BindEspecialidadesGrid();
+            AplicarFiltrosYEnlazarGrid();
         }
 
         protected void btnLimpiarFiltrosEsp_Click(object sender, EventArgs e)
         {
             txtFiltrarNombre.Text = string.Empty;
             ddlOrdenarPor.SelectedIndex = 0;
-            BindEspecialidadesGrid();
+            AplicarFiltrosYEnlazarGrid();
         }
     }
 }
