@@ -10,12 +10,9 @@
   <xs:element name="modificarEspecialidadResponse" type="tns:modificarEspecialidadResponse" />
   <xs:element name="obtenerPorIdTablaEspecialidad" type="tns:obtenerPorIdTablaEspecialidad" />
   <xs:element name="obtenerPorIdTablaEspecialidadResponse" type="tns:obtenerPorIdTablaEspecialidadResponse" />
-  <xs:complexType name="listarEspecialidad">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarEspecialidadResponse">
+  <xs:complexType name="modificarEspecialidad">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:especialidadDTO" />
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="especialidadDTO">
@@ -30,14 +27,17 @@
       <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarEspecialidad">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="modificarEspecialidadResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarEspecialidad">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarEspecialidadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:especialidadDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="cambiarEstadoEspecialidad">

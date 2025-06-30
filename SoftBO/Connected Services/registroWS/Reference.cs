@@ -16,15 +16,6 @@ namespace SoftBO.registroWS {
     public interface RegistroWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.registroWS.verificarCodigoResponse verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
-        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -34,6 +25,15 @@ namespace SoftBO.registroWS {
         System.Threading.Tasks.Task<SoftBO.registroWS.registrarseResponse> registrarseAsync(SoftBO.registroWS.registrarseRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.registroWS.verificarCodigoResponse verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/verificarCodigoResponse")]
+        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -41,47 +41,6 @@ namespace SoftBO.registroWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
         System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class verificarCodigoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string correo;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string codigo;
-        
-        public verificarCodigoRequest() {
-        }
-        
-        public verificarCodigoRequest(string correo, string codigo) {
-            this.correo = correo;
-            this.codigo = codigo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class verificarCodigoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public verificarCodigoResponse() {
-        }
-        
-        public verificarCodigoResponse(bool @return) {
-            this.@return = @return;
-        }
     }
     
     /// <remarks/>
@@ -600,6 +559,47 @@ namespace SoftBO.registroWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class verificarCodigoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string correo;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string codigo;
+        
+        public verificarCodigoRequest() {
+        }
+        
+        public verificarCodigoRequest(string correo, string codigo) {
+            this.correo = correo;
+            this.codigo = codigo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="verificarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class verificarCodigoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.registroWS.usuarioDTO @return;
+        
+        public verificarCodigoResponse() {
+        }
+        
+        public verificarCodigoResponse(SoftBO.registroWS.usuarioDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class reenviarCodigoRequest {
         
@@ -661,31 +661,6 @@ namespace SoftBO.registroWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.registroWS.verificarCodigoResponse SoftBO.registroWS.RegistroWS.verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request) {
-            return base.Channel.verificarCodigo(request);
-        }
-        
-        public bool verificarCodigo(string correo, string codigo) {
-            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
-            inValue.correo = correo;
-            inValue.codigo = codigo;
-            SoftBO.registroWS.verificarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigo(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> SoftBO.registroWS.RegistroWS.verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request) {
-            return base.Channel.verificarCodigoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(string correo, string codigo) {
-            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
-            inValue.correo = correo;
-            inValue.codigo = codigo;
-            return ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.registroWS.registrarseResponse SoftBO.registroWS.RegistroWS.registrarse(SoftBO.registroWS.registrarseRequest request) {
             return base.Channel.registrarse(request);
         }
@@ -706,6 +681,31 @@ namespace SoftBO.registroWS {
             SoftBO.registroWS.registrarseRequest inValue = new SoftBO.registroWS.registrarseRequest();
             inValue.usuario = usuario;
             return ((SoftBO.registroWS.RegistroWS)(this)).registrarseAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.registroWS.verificarCodigoResponse SoftBO.registroWS.RegistroWS.verificarCodigo(SoftBO.registroWS.verificarCodigoRequest request) {
+            return base.Channel.verificarCodigo(request);
+        }
+        
+        public SoftBO.registroWS.usuarioDTO verificarCodigo(string correo, string codigo) {
+            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
+            inValue.correo = correo;
+            inValue.codigo = codigo;
+            SoftBO.registroWS.verificarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigo(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> SoftBO.registroWS.RegistroWS.verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request) {
+            return base.Channel.verificarCodigoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(string correo, string codigo) {
+            SoftBO.registroWS.verificarCodigoRequest inValue = new SoftBO.registroWS.verificarCodigoRequest();
+            inValue.correo = correo;
+            inValue.codigo = codigo;
+            return ((SoftBO.registroWS.RegistroWS)(this)).verificarCodigoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

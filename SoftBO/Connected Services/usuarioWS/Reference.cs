@@ -16,58 +16,13 @@ namespace SoftBO.usuarioWS {
     public interface UsuarioWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.buscarCuentaUsuarioResponse buscarCuentaUsuario(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request);
+        SoftBO.usuarioWS.insertarUsuarioResponse insertarUsuario(SoftBO.usuarioWS.insertarUsuarioRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> buscarCuentaUsuarioAsync(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.completarRolesUsuarioResponse completarRolesUsuario(SoftBO.usuarioWS.completarRolesUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> completarRolesUsuarioAsync(SoftBO.usuarioWS.completarRolesUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse CambiarContrasenhaUsuario(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.obtenerPorIdUsuarioResponse obtenerPorIdUsuario(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> obtenerPorIdUsuarioAsync(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse cambiarEstadoGeneralUsuario(SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse> cambiarEstadoGeneralUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> insertarUsuarioAsync(SoftBO.usuarioWS.insertarUsuarioRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/modificarUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/modificarUsuarioResponse")]
@@ -79,13 +34,58 @@ namespace SoftBO.usuarioWS {
         System.Threading.Tasks.Task<SoftBO.usuarioWS.modificarUsuarioResponse> modificarUsuarioAsync(SoftBO.usuarioWS.modificarUsuarioRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.usuarioWS.insertarUsuarioResponse insertarUsuario(SoftBO.usuarioWS.insertarUsuarioRequest request);
+        SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse cambiarEstadoGeneralUsuario(SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/insertarUsuarioResponse")]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> insertarUsuarioAsync(SoftBO.usuarioWS.insertarUsuarioRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoGeneralUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioResponse> cambiarEstadoGeneralUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoGeneralUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse CambiarContrasenhaUsuario(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/CambiarContrasenhaUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/cambiarEstadoLogicoUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioWS.completarRolesUsuarioResponse completarRolesUsuario(SoftBO.usuarioWS.completarRolesUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/completarRolesUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> completarRolesUsuarioAsync(SoftBO.usuarioWS.completarRolesUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioWS.obtenerPorIdUsuarioResponse obtenerPorIdUsuario(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/obtenerPorIdUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> obtenerPorIdUsuarioAsync(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.usuarioWS.buscarCuentaUsuarioResponse buscarCuentaUsuario(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/UsuarioWS/buscarCuentaUsuarioResponse")]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> buscarCuentaUsuarioAsync(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request);
     }
     
     /// <remarks/>
@@ -568,63 +568,17 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCuentaUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCuentaUsuarioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string nroDocumento;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string tipoDoc;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string contrasenha;
-        
-        public buscarCuentaUsuarioRequest() {
-        }
-        
-        public buscarCuentaUsuarioRequest(string nroDocumento, string tipoDoc, string contrasenha) {
-            this.nroDocumento = nroDocumento;
-            this.tipoDoc = tipoDoc;
-            this.contrasenha = contrasenha;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCuentaUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class buscarCuentaUsuarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioWS.usuarioDTO @return;
-        
-        public buscarCuentaUsuarioResponse() {
-        }
-        
-        public buscarCuentaUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="completarRolesUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class completarRolesUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.usuarioWS.usuarioDTO usuario;
         
-        public completarRolesUsuarioRequest() {
+        public insertarUsuarioRequest() {
         }
         
-        public completarRolesUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
+        public insertarUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
             this.usuario = usuario;
         }
     }
@@ -632,58 +586,17 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="completarRolesUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class completarRolesUsuarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioWS.usuarioDTO @return;
-        
-        public completarRolesUsuarioResponse() {
-        }
-        
-        public completarRolesUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CambiarContrasenhaUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class CambiarContrasenhaUsuarioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioWS.usuarioDTO usuario;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string contrasenhaNueva;
-        
-        public CambiarContrasenhaUsuarioRequest() {
-        }
-        
-        public CambiarContrasenhaUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
-            this.usuario = usuario;
-            this.contrasenhaNueva = contrasenhaNueva;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CambiarContrasenhaUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class CambiarContrasenhaUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class insertarUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int @return;
         
-        public CambiarContrasenhaUsuarioResponse() {
+        public insertarUsuarioResponse() {
         }
         
-        public CambiarContrasenhaUsuarioResponse(int @return) {
+        public insertarUsuarioResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -691,76 +604,35 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdUsuarioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public obtenerPorIdUsuarioRequest() {
-        }
-        
-        public obtenerPorIdUsuarioRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdUsuarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.usuarioWS.usuarioDTO @return;
-        
-        public obtenerPorIdUsuarioResponse() {
-        }
-        
-        public obtenerPorIdUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoLogicoUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cambiarEstadoLogicoUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.usuarioWS.usuarioDTO usuario;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int estadoLogico;
-        
-        public cambiarEstadoLogicoUsuarioRequest() {
+        public modificarUsuarioRequest() {
         }
         
-        public cambiarEstadoLogicoUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
+        public modificarUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
             this.usuario = usuario;
-            this.estadoLogico = estadoLogico;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoLogicoUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cambiarEstadoLogicoUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class modificarUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int @return;
         
-        public cambiarEstadoLogicoUsuarioResponse() {
+        public modificarUsuarioResponse() {
         }
         
-        public cambiarEstadoLogicoUsuarioResponse(int @return) {
+        public modificarUsuarioResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -809,35 +681,40 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="CambiarContrasenhaUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class CambiarContrasenhaUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.usuarioWS.usuarioDTO usuario;
         
-        public modificarUsuarioRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string contrasenhaNueva;
+        
+        public CambiarContrasenhaUsuarioRequest() {
         }
         
-        public modificarUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
+        public CambiarContrasenhaUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
             this.usuario = usuario;
+            this.contrasenhaNueva = contrasenhaNueva;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="modificarUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class modificarUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="CambiarContrasenhaUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class CambiarContrasenhaUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public int @return;
         
-        public modificarUsuarioResponse() {
+        public CambiarContrasenhaUsuarioResponse() {
         }
         
-        public modificarUsuarioResponse(int @return) {
+        public CambiarContrasenhaUsuarioResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -845,17 +722,58 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarUsuarioRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoLogicoUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cambiarEstadoLogicoUsuarioRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public SoftBO.usuarioWS.usuarioDTO usuario;
         
-        public insertarUsuarioRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int estadoLogico;
+        
+        public cambiarEstadoLogicoUsuarioRequest() {
         }
         
-        public insertarUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
+        public cambiarEstadoLogicoUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
+            this.usuario = usuario;
+            this.estadoLogico = estadoLogico;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cambiarEstadoLogicoUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cambiarEstadoLogicoUsuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int @return;
+        
+        public cambiarEstadoLogicoUsuarioResponse() {
+        }
+        
+        public cambiarEstadoLogicoUsuarioResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="completarRolesUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class completarRolesUsuarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.usuarioWS.usuarioDTO usuario;
+        
+        public completarRolesUsuarioRequest() {
+        }
+        
+        public completarRolesUsuarioRequest(SoftBO.usuarioWS.usuarioDTO usuario) {
             this.usuario = usuario;
         }
     }
@@ -863,17 +781,99 @@ namespace SoftBO.usuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="insertarUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class insertarUsuarioResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="completarRolesUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class completarRolesUsuarioResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int @return;
+        public SoftBO.usuarioWS.usuarioDTO @return;
         
-        public insertarUsuarioResponse() {
+        public completarRolesUsuarioResponse() {
         }
         
-        public insertarUsuarioResponse(int @return) {
+        public completarRolesUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdUsuarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public obtenerPorIdUsuarioRequest() {
+        }
+        
+        public obtenerPorIdUsuarioRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdUsuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.usuarioWS.usuarioDTO @return;
+        
+        public obtenerPorIdUsuarioResponse() {
+        }
+        
+        public obtenerPorIdUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCuentaUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCuentaUsuarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string nroDocumento;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string tipoDoc;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string contrasenha;
+        
+        public buscarCuentaUsuarioRequest() {
+        }
+        
+        public buscarCuentaUsuarioRequest(string nroDocumento, string tipoDoc, string contrasenha) {
+            this.nroDocumento = nroDocumento;
+            this.tipoDoc = tipoDoc;
+            this.contrasenha = contrasenha;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="buscarCuentaUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class buscarCuentaUsuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.usuarioWS.usuarioDTO @return;
+        
+        public buscarCuentaUsuarioResponse() {
+        }
+        
+        public buscarCuentaUsuarioResponse(SoftBO.usuarioWS.usuarioDTO @return) {
             this.@return = @return;
         }
     }
@@ -906,126 +906,49 @@ namespace SoftBO.usuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.buscarCuentaUsuarioResponse SoftBO.usuarioWS.UsuarioWS.buscarCuentaUsuario(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request) {
-            return base.Channel.buscarCuentaUsuario(request);
+        SoftBO.usuarioWS.insertarUsuarioResponse SoftBO.usuarioWS.UsuarioWS.insertarUsuario(SoftBO.usuarioWS.insertarUsuarioRequest request) {
+            return base.Channel.insertarUsuario(request);
         }
         
-        public SoftBO.usuarioWS.usuarioDTO buscarCuentaUsuario(string nroDocumento, string tipoDoc, string contrasenha) {
-            SoftBO.usuarioWS.buscarCuentaUsuarioRequest inValue = new SoftBO.usuarioWS.buscarCuentaUsuarioRequest();
-            inValue.nroDocumento = nroDocumento;
-            inValue.tipoDoc = tipoDoc;
-            inValue.contrasenha = contrasenha;
-            SoftBO.usuarioWS.buscarCuentaUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).buscarCuentaUsuario(inValue);
+        public int insertarUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.insertarUsuarioRequest inValue = new SoftBO.usuarioWS.insertarUsuarioRequest();
+            inValue.usuario = usuario;
+            SoftBO.usuarioWS.insertarUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).insertarUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.buscarCuentaUsuarioAsync(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request) {
-            return base.Channel.buscarCuentaUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.insertarUsuarioAsync(SoftBO.usuarioWS.insertarUsuarioRequest request) {
+            return base.Channel.insertarUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> buscarCuentaUsuarioAsync(string nroDocumento, string tipoDoc, string contrasenha) {
-            SoftBO.usuarioWS.buscarCuentaUsuarioRequest inValue = new SoftBO.usuarioWS.buscarCuentaUsuarioRequest();
-            inValue.nroDocumento = nroDocumento;
-            inValue.tipoDoc = tipoDoc;
-            inValue.contrasenha = contrasenha;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).buscarCuentaUsuarioAsync(inValue);
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> insertarUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.insertarUsuarioRequest inValue = new SoftBO.usuarioWS.insertarUsuarioRequest();
+            inValue.usuario = usuario;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).insertarUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.completarRolesUsuarioResponse SoftBO.usuarioWS.UsuarioWS.completarRolesUsuario(SoftBO.usuarioWS.completarRolesUsuarioRequest request) {
-            return base.Channel.completarRolesUsuario(request);
+        SoftBO.usuarioWS.modificarUsuarioResponse SoftBO.usuarioWS.UsuarioWS.modificarUsuario(SoftBO.usuarioWS.modificarUsuarioRequest request) {
+            return base.Channel.modificarUsuario(request);
         }
         
-        public SoftBO.usuarioWS.usuarioDTO completarRolesUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.completarRolesUsuarioRequest inValue = new SoftBO.usuarioWS.completarRolesUsuarioRequest();
+        public int modificarUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.modificarUsuarioRequest inValue = new SoftBO.usuarioWS.modificarUsuarioRequest();
             inValue.usuario = usuario;
-            SoftBO.usuarioWS.completarRolesUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).completarRolesUsuario(inValue);
+            SoftBO.usuarioWS.modificarUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).modificarUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.completarRolesUsuarioAsync(SoftBO.usuarioWS.completarRolesUsuarioRequest request) {
-            return base.Channel.completarRolesUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.modificarUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.modificarUsuarioAsync(SoftBO.usuarioWS.modificarUsuarioRequest request) {
+            return base.Channel.modificarUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> completarRolesUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.completarRolesUsuarioRequest inValue = new SoftBO.usuarioWS.completarRolesUsuarioRequest();
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.modificarUsuarioResponse> modificarUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.modificarUsuarioRequest inValue = new SoftBO.usuarioWS.modificarUsuarioRequest();
             inValue.usuario = usuario;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).completarRolesUsuarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse SoftBO.usuarioWS.UsuarioWS.CambiarContrasenhaUsuario(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request) {
-            return base.Channel.CambiarContrasenhaUsuario(request);
-        }
-        
-        public int CambiarContrasenhaUsuario(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
-            SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest inValue = new SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest();
-            inValue.usuario = usuario;
-            inValue.contrasenhaNueva = contrasenhaNueva;
-            SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).CambiarContrasenhaUsuario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request) {
-            return base.Channel.CambiarContrasenhaUsuarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
-            SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest inValue = new SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest();
-            inValue.usuario = usuario;
-            inValue.contrasenhaNueva = contrasenhaNueva;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).CambiarContrasenhaUsuarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.obtenerPorIdUsuarioResponse SoftBO.usuarioWS.UsuarioWS.obtenerPorIdUsuario(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request) {
-            return base.Channel.obtenerPorIdUsuario(request);
-        }
-        
-        public SoftBO.usuarioWS.usuarioDTO obtenerPorIdUsuario(int id) {
-            SoftBO.usuarioWS.obtenerPorIdUsuarioRequest inValue = new SoftBO.usuarioWS.obtenerPorIdUsuarioRequest();
-            inValue.id = id;
-            SoftBO.usuarioWS.obtenerPorIdUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).obtenerPorIdUsuario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.obtenerPorIdUsuarioAsync(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request) {
-            return base.Channel.obtenerPorIdUsuarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> obtenerPorIdUsuarioAsync(int id) {
-            SoftBO.usuarioWS.obtenerPorIdUsuarioRequest inValue = new SoftBO.usuarioWS.obtenerPorIdUsuarioRequest();
-            inValue.id = id;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).obtenerPorIdUsuarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse SoftBO.usuarioWS.UsuarioWS.cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request) {
-            return base.Channel.cambiarEstadoLogicoUsuario(request);
-        }
-        
-        public int cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
-            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest inValue = new SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest();
-            inValue.usuario = usuario;
-            inValue.estadoLogico = estadoLogico;
-            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).cambiarEstadoLogicoUsuario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request) {
-            return base.Channel.cambiarEstadoLogicoUsuarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
-            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest inValue = new SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest();
-            inValue.usuario = usuario;
-            inValue.estadoLogico = estadoLogico;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).cambiarEstadoLogicoUsuarioAsync(inValue);
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).modificarUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1054,49 +977,126 @@ namespace SoftBO.usuarioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.modificarUsuarioResponse SoftBO.usuarioWS.UsuarioWS.modificarUsuario(SoftBO.usuarioWS.modificarUsuarioRequest request) {
-            return base.Channel.modificarUsuario(request);
+        SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse SoftBO.usuarioWS.UsuarioWS.CambiarContrasenhaUsuario(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request) {
+            return base.Channel.CambiarContrasenhaUsuario(request);
         }
         
-        public int modificarUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.modificarUsuarioRequest inValue = new SoftBO.usuarioWS.modificarUsuarioRequest();
+        public int CambiarContrasenhaUsuario(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
+            SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest inValue = new SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest();
             inValue.usuario = usuario;
-            SoftBO.usuarioWS.modificarUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).modificarUsuario(inValue);
+            inValue.contrasenhaNueva = contrasenhaNueva;
+            SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).CambiarContrasenhaUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.modificarUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.modificarUsuarioAsync(SoftBO.usuarioWS.modificarUsuarioRequest request) {
-            return base.Channel.modificarUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest request) {
+            return base.Channel.CambiarContrasenhaUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.modificarUsuarioResponse> modificarUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.modificarUsuarioRequest inValue = new SoftBO.usuarioWS.modificarUsuarioRequest();
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.CambiarContrasenhaUsuarioResponse> CambiarContrasenhaUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario, string contrasenhaNueva) {
+            SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest inValue = new SoftBO.usuarioWS.CambiarContrasenhaUsuarioRequest();
             inValue.usuario = usuario;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).modificarUsuarioAsync(inValue);
+            inValue.contrasenhaNueva = contrasenhaNueva;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).CambiarContrasenhaUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.usuarioWS.insertarUsuarioResponse SoftBO.usuarioWS.UsuarioWS.insertarUsuario(SoftBO.usuarioWS.insertarUsuarioRequest request) {
-            return base.Channel.insertarUsuario(request);
+        SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse SoftBO.usuarioWS.UsuarioWS.cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request) {
+            return base.Channel.cambiarEstadoLogicoUsuario(request);
         }
         
-        public int insertarUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.insertarUsuarioRequest inValue = new SoftBO.usuarioWS.insertarUsuarioRequest();
+        public int cambiarEstadoLogicoUsuario(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
+            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest inValue = new SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest();
             inValue.usuario = usuario;
-            SoftBO.usuarioWS.insertarUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).insertarUsuario(inValue);
+            inValue.estadoLogico = estadoLogico;
+            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).cambiarEstadoLogicoUsuario(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.insertarUsuarioAsync(SoftBO.usuarioWS.insertarUsuarioRequest request) {
-            return base.Channel.insertarUsuarioAsync(request);
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest request) {
+            return base.Channel.cambiarEstadoLogicoUsuarioAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SoftBO.usuarioWS.insertarUsuarioResponse> insertarUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
-            SoftBO.usuarioWS.insertarUsuarioRequest inValue = new SoftBO.usuarioWS.insertarUsuarioRequest();
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioResponse> cambiarEstadoLogicoUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario, int estadoLogico) {
+            SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest inValue = new SoftBO.usuarioWS.cambiarEstadoLogicoUsuarioRequest();
             inValue.usuario = usuario;
-            return ((SoftBO.usuarioWS.UsuarioWS)(this)).insertarUsuarioAsync(inValue);
+            inValue.estadoLogico = estadoLogico;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).cambiarEstadoLogicoUsuarioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.usuarioWS.completarRolesUsuarioResponse SoftBO.usuarioWS.UsuarioWS.completarRolesUsuario(SoftBO.usuarioWS.completarRolesUsuarioRequest request) {
+            return base.Channel.completarRolesUsuario(request);
+        }
+        
+        public SoftBO.usuarioWS.usuarioDTO completarRolesUsuario(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.completarRolesUsuarioRequest inValue = new SoftBO.usuarioWS.completarRolesUsuarioRequest();
+            inValue.usuario = usuario;
+            SoftBO.usuarioWS.completarRolesUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).completarRolesUsuario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.completarRolesUsuarioAsync(SoftBO.usuarioWS.completarRolesUsuarioRequest request) {
+            return base.Channel.completarRolesUsuarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.completarRolesUsuarioResponse> completarRolesUsuarioAsync(SoftBO.usuarioWS.usuarioDTO usuario) {
+            SoftBO.usuarioWS.completarRolesUsuarioRequest inValue = new SoftBO.usuarioWS.completarRolesUsuarioRequest();
+            inValue.usuario = usuario;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).completarRolesUsuarioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.usuarioWS.obtenerPorIdUsuarioResponse SoftBO.usuarioWS.UsuarioWS.obtenerPorIdUsuario(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request) {
+            return base.Channel.obtenerPorIdUsuario(request);
+        }
+        
+        public SoftBO.usuarioWS.usuarioDTO obtenerPorIdUsuario(int id) {
+            SoftBO.usuarioWS.obtenerPorIdUsuarioRequest inValue = new SoftBO.usuarioWS.obtenerPorIdUsuarioRequest();
+            inValue.id = id;
+            SoftBO.usuarioWS.obtenerPorIdUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).obtenerPorIdUsuario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.obtenerPorIdUsuarioAsync(SoftBO.usuarioWS.obtenerPorIdUsuarioRequest request) {
+            return base.Channel.obtenerPorIdUsuarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.obtenerPorIdUsuarioResponse> obtenerPorIdUsuarioAsync(int id) {
+            SoftBO.usuarioWS.obtenerPorIdUsuarioRequest inValue = new SoftBO.usuarioWS.obtenerPorIdUsuarioRequest();
+            inValue.id = id;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).obtenerPorIdUsuarioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.usuarioWS.buscarCuentaUsuarioResponse SoftBO.usuarioWS.UsuarioWS.buscarCuentaUsuario(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request) {
+            return base.Channel.buscarCuentaUsuario(request);
+        }
+        
+        public SoftBO.usuarioWS.usuarioDTO buscarCuentaUsuario(string nroDocumento, string tipoDoc, string contrasenha) {
+            SoftBO.usuarioWS.buscarCuentaUsuarioRequest inValue = new SoftBO.usuarioWS.buscarCuentaUsuarioRequest();
+            inValue.nroDocumento = nroDocumento;
+            inValue.tipoDoc = tipoDoc;
+            inValue.contrasenha = contrasenha;
+            SoftBO.usuarioWS.buscarCuentaUsuarioResponse retVal = ((SoftBO.usuarioWS.UsuarioWS)(this)).buscarCuentaUsuario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> SoftBO.usuarioWS.UsuarioWS.buscarCuentaUsuarioAsync(SoftBO.usuarioWS.buscarCuentaUsuarioRequest request) {
+            return base.Channel.buscarCuentaUsuarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.usuarioWS.buscarCuentaUsuarioResponse> buscarCuentaUsuarioAsync(string nroDocumento, string tipoDoc, string contrasenha) {
+            SoftBO.usuarioWS.buscarCuentaUsuarioRequest inValue = new SoftBO.usuarioWS.buscarCuentaUsuarioRequest();
+            inValue.nroDocumento = nroDocumento;
+            inValue.tipoDoc = tipoDoc;
+            inValue.contrasenha = contrasenha;
+            return ((SoftBO.usuarioWS.UsuarioWS)(this)).buscarCuentaUsuarioAsync(inValue);
         }
     }
 }

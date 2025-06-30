@@ -25,6 +25,15 @@ namespace SoftBO.consultorioWS {
         System.Threading.Tasks.Task<SoftBO.consultorioWS.insertarConsultorioResponse> insertarConsultorioAsync(SoftBO.consultorioWS.insertarConsultorioRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.consultorioWS.obtenerPorIdConsultorioResponse obtenerPorIdConsultorio(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioResponse")]
+        System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> obtenerPorIdConsultorioAsync(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/listarTodosConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/listarTodosConsultorioResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -41,15 +50,6 @@ namespace SoftBO.consultorioWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/modificarConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/modificarConsultorioResponse")]
         System.Threading.Tasks.Task<SoftBO.consultorioWS.modificarConsultorioResponse> modificarConsultorioAsync(SoftBO.consultorioWS.modificarConsultorioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.consultorioWS.obtenerPorIdConsultorioResponse obtenerPorIdConsultorio(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/ConsultorioWS/obtenerPorIdConsultorioResponse")]
-        System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> obtenerPorIdConsultorioAsync(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request);
     }
     
     /// <remarks/>
@@ -321,6 +321,42 @@ namespace SoftBO.consultorioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdConsultorio", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdConsultorioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int consultorioId;
+        
+        public obtenerPorIdConsultorioRequest() {
+        }
+        
+        public obtenerPorIdConsultorioRequest(int consultorioId) {
+            this.consultorioId = consultorioId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdConsultorioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdConsultorioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.consultorioWS.consultorioDTO @return;
+        
+        public obtenerPorIdConsultorioResponse() {
+        }
+        
+        public obtenerPorIdConsultorioResponse(SoftBO.consultorioWS.consultorioDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosConsultorio", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class listarTodosConsultorioRequest {
         
@@ -382,42 +418,6 @@ namespace SoftBO.consultorioWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdConsultorio", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdConsultorioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int consultorioId;
-        
-        public obtenerPorIdConsultorioRequest() {
-        }
-        
-        public obtenerPorIdConsultorioRequest(int consultorioId) {
-            this.consultorioId = consultorioId;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdConsultorioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdConsultorioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.consultorioWS.consultorioDTO @return;
-        
-        public obtenerPorIdConsultorioResponse() {
-        }
-        
-        public obtenerPorIdConsultorioResponse(SoftBO.consultorioWS.consultorioDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ConsultorioWSChannel : SoftBO.consultorioWS.ConsultorioWS, System.ServiceModel.IClientChannel {
     }
@@ -469,6 +469,29 @@ namespace SoftBO.consultorioWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.consultorioWS.obtenerPorIdConsultorioResponse SoftBO.consultorioWS.ConsultorioWS.obtenerPorIdConsultorio(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request) {
+            return base.Channel.obtenerPorIdConsultorio(request);
+        }
+        
+        public SoftBO.consultorioWS.consultorioDTO obtenerPorIdConsultorio(int consultorioId) {
+            SoftBO.consultorioWS.obtenerPorIdConsultorioRequest inValue = new SoftBO.consultorioWS.obtenerPorIdConsultorioRequest();
+            inValue.consultorioId = consultorioId;
+            SoftBO.consultorioWS.obtenerPorIdConsultorioResponse retVal = ((SoftBO.consultorioWS.ConsultorioWS)(this)).obtenerPorIdConsultorio(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> SoftBO.consultorioWS.ConsultorioWS.obtenerPorIdConsultorioAsync(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request) {
+            return base.Channel.obtenerPorIdConsultorioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> obtenerPorIdConsultorioAsync(int consultorioId) {
+            SoftBO.consultorioWS.obtenerPorIdConsultorioRequest inValue = new SoftBO.consultorioWS.obtenerPorIdConsultorioRequest();
+            inValue.consultorioId = consultorioId;
+            return ((SoftBO.consultorioWS.ConsultorioWS)(this)).obtenerPorIdConsultorioAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.consultorioWS.listarTodosConsultorioResponse SoftBO.consultorioWS.ConsultorioWS.listarTodosConsultorio(SoftBO.consultorioWS.listarTodosConsultorioRequest request) {
             return base.Channel.listarTodosConsultorio(request);
         }
@@ -510,29 +533,6 @@ namespace SoftBO.consultorioWS {
             SoftBO.consultorioWS.modificarConsultorioRequest inValue = new SoftBO.consultorioWS.modificarConsultorioRequest();
             inValue.consultorio = consultorio;
             return ((SoftBO.consultorioWS.ConsultorioWS)(this)).modificarConsultorioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.consultorioWS.obtenerPorIdConsultorioResponse SoftBO.consultorioWS.ConsultorioWS.obtenerPorIdConsultorio(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request) {
-            return base.Channel.obtenerPorIdConsultorio(request);
-        }
-        
-        public SoftBO.consultorioWS.consultorioDTO obtenerPorIdConsultorio(int consultorioId) {
-            SoftBO.consultorioWS.obtenerPorIdConsultorioRequest inValue = new SoftBO.consultorioWS.obtenerPorIdConsultorioRequest();
-            inValue.consultorioId = consultorioId;
-            SoftBO.consultorioWS.obtenerPorIdConsultorioResponse retVal = ((SoftBO.consultorioWS.ConsultorioWS)(this)).obtenerPorIdConsultorio(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> SoftBO.consultorioWS.ConsultorioWS.obtenerPorIdConsultorioAsync(SoftBO.consultorioWS.obtenerPorIdConsultorioRequest request) {
-            return base.Channel.obtenerPorIdConsultorioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.consultorioWS.obtenerPorIdConsultorioResponse> obtenerPorIdConsultorioAsync(int consultorioId) {
-            SoftBO.consultorioWS.obtenerPorIdConsultorioRequest inValue = new SoftBO.consultorioWS.obtenerPorIdConsultorioRequest();
-            inValue.consultorioId = consultorioId;
-            return ((SoftBO.consultorioWS.ConsultorioWS)(this)).obtenerPorIdConsultorioAsync(inValue);
         }
     }
 }
