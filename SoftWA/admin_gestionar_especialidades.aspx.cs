@@ -45,7 +45,6 @@ namespace SoftWA
 
                 foreach (var esp in especialidadesWs)
                 {
-                    // Por cada especialidad, consultamos cuántos médicos tiene
                     var medicos = _usuarioPorEspecialidadBO.ListarPorEspecialidadUsuarioPorEspecialidad(esp.idEspecialidad);
                     listaViewModel.Add(new EspecialidadConteo
                     {
@@ -57,7 +56,6 @@ namespace SoftWA
                     });
                 }
 
-                // Aplicar filtros de la UI
                 string nombreFiltro = txtFiltrarNombre.Text.Trim();
                 if (!string.IsNullOrEmpty(nombreFiltro))
                 {
@@ -65,7 +63,6 @@ namespace SoftWA
                         esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower())).ToList();
                 }
 
-                // Aplicar ordenamiento
                 string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
                 switch (ordenSeleccionado)
                 {

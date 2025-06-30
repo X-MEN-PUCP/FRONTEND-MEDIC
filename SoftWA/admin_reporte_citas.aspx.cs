@@ -15,15 +15,15 @@ namespace SoftWA
     {
         private readonly ReporteCitasBO _reporteCitasBO;
         private readonly EspecialidadBO _especialidadBO;
-        private readonly UsuarioBO _usuarioBO;
+        private readonly AdminBO _adminBO;
 
         public admin_reporte_citas()
         {
             _reporteCitasBO = new ReporteCitasBO();
             _especialidadBO = new EspecialidadBO();
-            _usuarioBO = new UsuarioBO();
+            _adminBO = new AdminBO();
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -145,7 +145,6 @@ namespace SoftWA
         }
         private List<reporteCitaDTO> ObtenerDatosReporte()
         {
-            // Recoger valores de los filtros
             string fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text) ? null : txtFechaDesdeReporte.Text;
             string fechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text) ? null : txtFechaHastaReporte.Text;
 
@@ -153,7 +152,6 @@ namespace SoftWA
 
             int.TryParse(ddlDoctorReporte.SelectedValue, out int idDoctor);
 
-            // Llamar al servicio web
             var reporte = _reporteCitasBO.ReporteCitasGeneral(
                 idEspecialidad,
                 idDoctor,
