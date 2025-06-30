@@ -168,10 +168,12 @@ namespace SoftWA
                     nuevoUsuario.genero = generoEnum;
                     nuevoUsuario.generoSpecified = true;
                 }
-                nuevoUsuario.estadoGeneral = estadoGeneral.PENDIENTE_VERIFICACION;
-                nuevoUsuario.estadoGeneralSpecified = true;
-                nuevoUsuario.estadoLogico = estadoLogico.DISPONIBLE;
-                nuevoUsuario.estadoLogicoSpecified = true;
+                //nuevoUsuario.estadoGeneral = estadoGeneral.PENDIENTE_VERIFICACION;
+                //nuevoUsuario.estadoGeneralSpecified = true;
+                //nuevoUsuario.estadoLogico = estadoLogico.DISPONIBLE;
+                //nuevoUsuario.estadoLogicoSpecified = true;
+                //nuevoUsuario.usuarioCreacion = 1;
+                //nuevoUsuario.usuarioCreacionSpecified = true;
 
                 var servicioRegistro = new RegistroBO();
                 bool resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
