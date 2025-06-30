@@ -73,12 +73,13 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuario">
+  <xs:complexType name="cambiarEstadoLogicoUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="estadoLogico" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuarioResponse">
+  <xs:complexType name="cambiarEstadoLogicoUsuarioResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
@@ -105,13 +106,12 @@
       <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="cambiarEstadoLogicoUsuario">
+  <xs:complexType name="modificarUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
-      <xs:element minOccurs="0" name="estadoLogico" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="cambiarEstadoLogicoUsuarioResponse">
+  <xs:complexType name="modificarUsuarioResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>

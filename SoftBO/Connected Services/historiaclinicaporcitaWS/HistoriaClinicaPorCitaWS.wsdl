@@ -17,17 +17,17 @@
   <message name="ListarHistoriasClinicasPorIdHistoriaResponse">
     <part name="parameters" element="tns:ListarHistoriasClinicasPorIdHistoriaResponse" />
   </message>
-  <message name="ModificarHistoriaClinicaPorCita">
-    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCita" />
-  </message>
-  <message name="ModificarHistoriaClinicaPorCitaResponse">
-    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCitaResponse" />
-  </message>
   <message name="ObtenerHistoriaClinicaPorIdCita">
     <part name="parameters" element="tns:ObtenerHistoriaClinicaPorIdCita" />
   </message>
   <message name="ObtenerHistoriaClinicaPorIdCitaResponse">
     <part name="parameters" element="tns:ObtenerHistoriaClinicaPorIdCitaResponse" />
+  </message>
+  <message name="ModificarHistoriaClinicaPorCita">
+    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCita" />
+  </message>
+  <message name="ModificarHistoriaClinicaPorCitaResponse">
+    <part name="parameters" element="tns:ModificarHistoriaClinicaPorCitaResponse" />
   </message>
   <message name="InsertarHistoriaClinicaPorCita">
     <part name="parameters" element="tns:InsertarHistoriaClinicaPorCita" />
@@ -44,13 +44,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ListarHistoriasClinicasPorIdHistoriaRequest" message="tns:ListarHistoriasClinicasPorIdHistoria" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ListarHistoriasClinicasPorIdHistoriaResponse" message="tns:ListarHistoriasClinicasPorIdHistoriaResponse" />
     </operation>
-    <operation name="ModificarHistoriaClinicaPorCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaRequest" message="tns:ModificarHistoriaClinicaPorCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaResponse" message="tns:ModificarHistoriaClinicaPorCitaResponse" />
-    </operation>
     <operation name="ObtenerHistoriaClinicaPorIdCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinicaPorIdCitaRequest" message="tns:ObtenerHistoriaClinicaPorIdCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ObtenerHistoriaClinicaPorIdCitaResponse" message="tns:ObtenerHistoriaClinicaPorIdCitaResponse" />
+    </operation>
+    <operation name="ModificarHistoriaClinicaPorCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaRequest" message="tns:ModificarHistoriaClinicaPorCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/ModificarHistoriaClinicaPorCitaResponse" message="tns:ModificarHistoriaClinicaPorCitaResponse" />
     </operation>
     <operation name="InsertarHistoriaClinicaPorCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/HistoriaClinicaPorCitaWS/InsertarHistoriaClinicaPorCitaRequest" message="tns:InsertarHistoriaClinicaPorCita" />
@@ -77,7 +77,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="ModificarHistoriaClinicaPorCita">
+    <operation name="ObtenerHistoriaClinicaPorIdCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -86,7 +86,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="ObtenerHistoriaClinicaPorIdCita">
+    <operation name="ModificarHistoriaClinicaPorCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

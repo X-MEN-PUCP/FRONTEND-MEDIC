@@ -11,11 +11,11 @@
   <message name="listarEspecialidadResponse">
     <part name="parameters" element="tns:listarEspecialidadResponse" />
   </message>
-  <message name="obtenerPorIdTablaEspecialidad">
-    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidad" />
+  <message name="insertarEspecialidad">
+    <part name="parameters" element="tns:insertarEspecialidad" />
   </message>
-  <message name="obtenerPorIdTablaEspecialidadResponse">
-    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidadResponse" />
+  <message name="insertarEspecialidadResponse">
+    <part name="parameters" element="tns:insertarEspecialidadResponse" />
   </message>
   <message name="modificarEspecialidad">
     <part name="parameters" element="tns:modificarEspecialidad" />
@@ -29,20 +29,20 @@
   <message name="cambiarEstadoEspecialidadResponse">
     <part name="parameters" element="tns:cambiarEstadoEspecialidadResponse" />
   </message>
-  <message name="insertarEspecialidad">
-    <part name="parameters" element="tns:insertarEspecialidad" />
+  <message name="obtenerPorIdTablaEspecialidad">
+    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidad" />
   </message>
-  <message name="insertarEspecialidadResponse">
-    <part name="parameters" element="tns:insertarEspecialidadResponse" />
+  <message name="obtenerPorIdTablaEspecialidadResponse">
+    <part name="parameters" element="tns:obtenerPorIdTablaEspecialidadResponse" />
   </message>
   <portType name="EspecialidadWS">
     <operation name="listarEspecialidad">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadRequest" message="tns:listarEspecialidad" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/listarEspecialidadResponse" message="tns:listarEspecialidadResponse" />
     </operation>
-    <operation name="obtenerPorIdTablaEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRequest" message="tns:obtenerPorIdTablaEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadResponse" message="tns:obtenerPorIdTablaEspecialidadResponse" />
+    <operation name="insertarEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadRequest" message="tns:insertarEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadResponse" message="tns:insertarEspecialidadResponse" />
     </operation>
     <operation name="modificarEspecialidad">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/modificarEspecialidadRequest" message="tns:modificarEspecialidad" />
@@ -52,9 +52,9 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadRequest" message="tns:cambiarEstadoEspecialidad" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/cambiarEstadoEspecialidadResponse" message="tns:cambiarEstadoEspecialidadResponse" />
     </operation>
-    <operation name="insertarEspecialidad">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadRequest" message="tns:insertarEspecialidad" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/insertarEspecialidadResponse" message="tns:insertarEspecialidadResponse" />
+    <operation name="obtenerPorIdTablaEspecialidad">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadRequest" message="tns:obtenerPorIdTablaEspecialidad" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/EspecialidadWS/obtenerPorIdTablaEspecialidadResponse" message="tns:obtenerPorIdTablaEspecialidadResponse" />
     </operation>
   </portType>
   <binding name="EspecialidadWSPortBinding" type="tns:EspecialidadWS">
@@ -68,7 +68,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerPorIdTablaEspecialidad">
+    <operation name="insertarEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +95,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="insertarEspecialidad">
+    <operation name="obtenerPorIdTablaEspecialidad">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

@@ -16,15 +16,6 @@ namespace SoftBO.loginWS {
     public interface LoginWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.loginWS.cerrarSesionResponse cerrarSesion(SoftBO.loginWS.cerrarSesionRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionResponse")]
-        System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> cerrarSesionAsync(SoftBO.loginWS.cerrarSesionRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/iniciarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/iniciarSesionResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -32,6 +23,15 @@ namespace SoftBO.loginWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/iniciarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/iniciarSesionResponse")]
         System.Threading.Tasks.Task<SoftBO.loginWS.iniciarSesionResponse> iniciarSesionAsync(SoftBO.loginWS.iniciarSesionRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.loginWS.cerrarSesionResponse cerrarSesion(SoftBO.loginWS.cerrarSesionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/LoginWS/cerrarSesionResponse")]
+        System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> cerrarSesionAsync(SoftBO.loginWS.cerrarSesionRequest request);
     }
     
     /// <remarks/>
@@ -514,42 +514,6 @@ namespace SoftBO.loginWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cerrarSesion", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cerrarSesionRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.loginWS.usuarioDTO usuarioDTO;
-        
-        public cerrarSesionRequest() {
-        }
-        
-        public cerrarSesionRequest(SoftBO.loginWS.usuarioDTO usuarioDTO) {
-            this.usuarioDTO = usuarioDTO;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="cerrarSesionResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class cerrarSesionResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public cerrarSesionResponse() {
-        }
-        
-        public cerrarSesionResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="iniciarSesion", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class iniciarSesionRequest {
         
@@ -593,6 +557,42 @@ namespace SoftBO.loginWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cerrarSesion", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cerrarSesionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.loginWS.usuarioDTO usuarioDTO;
+        
+        public cerrarSesionRequest() {
+        }
+        
+        public cerrarSesionRequest(SoftBO.loginWS.usuarioDTO usuarioDTO) {
+            this.usuarioDTO = usuarioDTO;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="cerrarSesionResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class cerrarSesionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public cerrarSesionResponse() {
+        }
+        
+        public cerrarSesionResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface LoginWSChannel : SoftBO.loginWS.LoginWS, System.ServiceModel.IClientChannel {
     }
@@ -621,29 +621,6 @@ namespace SoftBO.loginWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.loginWS.cerrarSesionResponse SoftBO.loginWS.LoginWS.cerrarSesion(SoftBO.loginWS.cerrarSesionRequest request) {
-            return base.Channel.cerrarSesion(request);
-        }
-        
-        public bool cerrarSesion(SoftBO.loginWS.usuarioDTO usuarioDTO) {
-            SoftBO.loginWS.cerrarSesionRequest inValue = new SoftBO.loginWS.cerrarSesionRequest();
-            inValue.usuarioDTO = usuarioDTO;
-            SoftBO.loginWS.cerrarSesionResponse retVal = ((SoftBO.loginWS.LoginWS)(this)).cerrarSesion(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> SoftBO.loginWS.LoginWS.cerrarSesionAsync(SoftBO.loginWS.cerrarSesionRequest request) {
-            return base.Channel.cerrarSesionAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> cerrarSesionAsync(SoftBO.loginWS.usuarioDTO usuarioDTO) {
-            SoftBO.loginWS.cerrarSesionRequest inValue = new SoftBO.loginWS.cerrarSesionRequest();
-            inValue.usuarioDTO = usuarioDTO;
-            return ((SoftBO.loginWS.LoginWS)(this)).cerrarSesionAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.loginWS.iniciarSesionResponse SoftBO.loginWS.LoginWS.iniciarSesion(SoftBO.loginWS.iniciarSesionRequest request) {
             return base.Channel.iniciarSesion(request);
         }
@@ -668,6 +645,29 @@ namespace SoftBO.loginWS {
             inValue.tipoDoc = tipoDoc;
             inValue.contrasenha = contrasenha;
             return ((SoftBO.loginWS.LoginWS)(this)).iniciarSesionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.loginWS.cerrarSesionResponse SoftBO.loginWS.LoginWS.cerrarSesion(SoftBO.loginWS.cerrarSesionRequest request) {
+            return base.Channel.cerrarSesion(request);
+        }
+        
+        public bool cerrarSesion(SoftBO.loginWS.usuarioDTO usuarioDTO) {
+            SoftBO.loginWS.cerrarSesionRequest inValue = new SoftBO.loginWS.cerrarSesionRequest();
+            inValue.usuarioDTO = usuarioDTO;
+            SoftBO.loginWS.cerrarSesionResponse retVal = ((SoftBO.loginWS.LoginWS)(this)).cerrarSesion(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> SoftBO.loginWS.LoginWS.cerrarSesionAsync(SoftBO.loginWS.cerrarSesionRequest request) {
+            return base.Channel.cerrarSesionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.loginWS.cerrarSesionResponse> cerrarSesionAsync(SoftBO.loginWS.usuarioDTO usuarioDTO) {
+            SoftBO.loginWS.cerrarSesionRequest inValue = new SoftBO.loginWS.cerrarSesionRequest();
+            inValue.usuarioDTO = usuarioDTO;
+            return ((SoftBO.loginWS.LoginWS)(this)).cerrarSesionAsync(inValue);
         }
     }
 }

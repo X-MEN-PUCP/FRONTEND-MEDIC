@@ -76,6 +76,14 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorEspecialidadDTO" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="listarTodosPerfilesMedicos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosPerfilesMedicosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorEspecialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="insertarUsuarioPorEspecialidad">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuarioXespecialidad" type="tns:usuarioPorEspecialidadDTO" />
@@ -84,14 +92,6 @@
   <xs:complexType name="insertarUsuarioPorEspecialidadResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="listarTodosPerfilesMedicos">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarTodosPerfilesMedicosResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorEspecialidadDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoGeneral">

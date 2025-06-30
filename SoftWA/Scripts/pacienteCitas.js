@@ -1,28 +1,17 @@
-﻿function mostrarModalConfirmacionReserva(idCita, especialidad, medico, fecha, horario, precio, hfId) {
+﻿function mostrarModalConfirmacionReserva(idCita, especialidad, medico, fecha, hora, precio, hfId) {
     try {
-        document.getElementById(hfId).value = idCita;
-        const setText = (id, text) => {
-            const el = document.getElementById(id);
-            if (el) {
-                el.textContent = text || 'N/A';
-            } else {
-                console.error(`Elemento con ID '${id}' no fue encontrado en el modal.`);
-            }
-        };
-
-        setText('modalConfirmEspecialidad', especialidad);
-        setText('modalConfirmMedico', medico);
-        setText('modalConfirmFecha', fecha);
-        setText('modalConfirmHorario', horario);
-        setText('modalConfirmPrecio', "S/. " + precio);
-
-        const modalElement = document.getElementById('confirmarReservaModal');
-        if (modalElement) {
-            const myModal = new bootstrap.Modal(modalElement);
-            myModal.show();
-        } else {
-            console.error("El elemento del modal 'confirmarReservaModal' no fue encontrado.");
+        document.getElementById('modalConfirmEspecialidad').textContent = especialidad;
+        document.getElementById('modalConfirmMedico').textContent = medico;
+        document.getElementById('modalConfirmFecha').textContent = fecha;
+        document.getElementById('modalConfirmHorario').textContent = hora;
+        document.getElementById('modalConfirmPrecio').textContent = "s/ " + parseFloat(precio).toFixed(2);
+        const hiddenField = document.getElementById(hfId);
+        if (hiddenField) {
+            hiddenField.value = idCita;
         }
+        const ModalElementoConfirmar = document.getElementById('confirmarReservaModal');
+        const ModalConfirmar = new bootstrap.Modal(ModalElementoConfirmar);
+        ModalConfirmar.show();
     } catch (e) {
         console.error("Error en mostrarModalConfirmacionReserva:", e);
     }
