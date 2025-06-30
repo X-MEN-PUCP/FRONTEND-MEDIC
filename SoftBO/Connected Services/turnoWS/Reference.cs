@@ -254,6 +254,9 @@ namespace SoftBO.turnoWS {
         
         /// <remarks/>
         ACTIVO,
+        
+        /// <remarks/>
+        PENDIENTE_VERIFICACION,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

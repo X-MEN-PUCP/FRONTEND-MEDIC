@@ -67,11 +67,13 @@
       <xs:element minOccurs="0" name="apellidoMaterno" type="xs:string" />
       <xs:element minOccurs="0" name="apellidoPaterno" type="xs:string" />
       <xs:element minOccurs="0" name="codMedico" type="xs:string" />
+      <xs:element minOccurs="0" name="codigoVerificacion" type="xs:string" />
       <xs:element minOccurs="0" name="contrasenha" type="xs:string" />
       <xs:element minOccurs="0" name="correoElectronico" type="xs:string" />
       <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
       <xs:element minOccurs="0" name="estadoLogico" type="tns:estadoLogico" />
       <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaExpiracionCodigo" type="xs:string" />
       <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
       <xs:element minOccurs="0" name="fechaNacimiento" type="xs:string" />
       <xs:element minOccurs="0" name="genero" type="tns:genero" />
@@ -123,6 +125,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="INACTIVO" />
       <xs:enumeration value="ACTIVO" />
+      <xs:enumeration value="PENDIENTE_VERIFICACION" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="estadoCita">

@@ -22,9 +22,29 @@ namespace SoftWA
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            ConfigurarValidadoresSegunTipoDocumento();
             if (!IsPostBack)
             {
                 ltlMensajeError.Text = string.Empty;
+            }
+        }
+        private void ConfigurarValidadoresSegunTipoDocumento()
+        {
+            string tipoDocumento = hdnLoginDocType.Value;
+            bool esDNI = (tipoDocumento == "DNI");
+
+            revDNI.Enabled = esDNI;
+            revCE.Enabled = !esDNI;
+
+            if (esDNI)
+            {
+                txtDNI.MaxLength = 8;
+                txtDNI.Attributes["placeholder"] = "Ingrese su DNI";
+            }
+            else
+            {
+                txtDNI.MaxLength = 12;
+                txtDNI.Attributes["placeholder"] = "Ingrese su Carnet de Extranjería";
             }
         }
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -33,7 +53,7 @@ namespace SoftWA
             
             string numeroDocumento = txtDNI.Text.Trim();
             string contrasenha = txtPassword.Text;
-            string tipoDocumento = hdnLoginDocType.Value;
+            string tipoDocumento = hdnLoginDocType.Value=="DNI"? hdnLoginDocType.Value:"CE";
             SoftBO.loginWS.usuarioDTO usuarioAutenticadoLogin = null;
             try
             {

@@ -479,7 +479,13 @@
     <None Include="Connected Services\registroWS\RegistroWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\registroWS\SoftBO.registroWS.reenviarCodigoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\registroWS\SoftBO.registroWS.registrarseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\registroWS\SoftBO.registroWS.verificarCodigoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\reporteCitasWS\ReporteWS.wsdl" />

@@ -16,6 +16,19 @@ namespace SoftBO.rolesporusuarioWS {
     public interface RolesPorUsuarioWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
+            "ioResponse")]
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioReques" +
             "t", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/insertarRolesPorUsuarioRespon" +
             "se")]
@@ -38,19 +51,6 @@ namespace SoftBO.rolesporusuarioWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/eliminarRolPorUsuarioResponse" +
             "")]
         System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioResponse> eliminarRolPorUsuarioAsync(SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RolesPorUsuarioWS/listarPorUsuarioRolesPorUsuar" +
-            "ioResponse")]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request);
     }
     
     /// <remarks/>
@@ -222,6 +222,9 @@ namespace SoftBO.rolesporusuarioWS {
         
         /// <remarks/>
         ACTIVO,
+        
+        /// <remarks/>
+        PENDIENTE_VERIFICACION,
     }
     
     /// <remarks/>
@@ -382,6 +385,8 @@ namespace SoftBO.rolesporusuarioWS {
         
         private string codMedicoField;
         
+        private string codigoVerificacionField;
+        
         private string contrasenhaField;
         
         private string correoElectronicoField;
@@ -395,6 +400,8 @@ namespace SoftBO.rolesporusuarioWS {
         private bool estadoLogicoFieldSpecified;
         
         private string fechaCreacionField;
+        
+        private string fechaExpiracionCodigoField;
         
         private string fechaModificacionField;
         
@@ -466,6 +473,18 @@ namespace SoftBO.rolesporusuarioWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string codigoVerificacion {
+            get {
+                return this.codigoVerificacionField;
+            }
+            set {
+                this.codigoVerificacionField = value;
+                this.RaisePropertyChanged("codigoVerificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string contrasenha {
             get {
                 return this.contrasenhaField;
@@ -477,7 +496,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public string correoElectronico {
             get {
                 return this.correoElectronicoField;
@@ -489,7 +508,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public estadoGeneral estadoGeneral {
             get {
                 return this.estadoGeneralField;
@@ -513,7 +532,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public estadoLogico estadoLogico {
             get {
                 return this.estadoLogicoField;
@@ -537,7 +556,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public string fechaCreacion {
             get {
                 return this.fechaCreacionField;
@@ -549,7 +568,19 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaExpiracionCodigo {
+            get {
+                return this.fechaExpiracionCodigoField;
+            }
+            set {
+                this.fechaExpiracionCodigoField = value;
+                this.RaisePropertyChanged("fechaExpiracionCodigo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public string fechaModificacion {
             get {
                 return this.fechaModificacionField;
@@ -561,7 +592,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
@@ -573,7 +604,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public genero genero {
             get {
                 return this.generoField;
@@ -597,7 +628,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -621,7 +652,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -633,7 +664,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -645,7 +676,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -657,7 +688,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=17)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -669,7 +700,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -693,7 +724,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=19)]
         public int usuarioCreacion {
             get {
                 return this.usuarioCreacionField;
@@ -717,7 +748,7 @@ namespace SoftBO.rolesporusuarioWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=20)]
         public int usuarioModificacion {
             get {
                 return this.usuarioModificacionField;
@@ -804,6 +835,42 @@ namespace SoftBO.rolesporusuarioWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorUsuarioRolesPorUsuarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public listarPorUsuarioRolesPorUsuarioRequest() {
+        }
+        
+        public listarPorUsuarioRolesPorUsuarioRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarPorUsuarioRolesPorUsuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return;
+        
+        public listarPorUsuarioRolesPorUsuarioResponse() {
+        }
+        
+        public listarPorUsuarioRolesPorUsuarioResponse(SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="insertarRolesPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class insertarRolesPorUsuarioRequest {
         
@@ -873,42 +940,6 @@ namespace SoftBO.rolesporusuarioWS {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuario", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorUsuarioRolesPorUsuarioRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public listarPorUsuarioRolesPorUsuarioRequest() {
-        }
-        
-        public listarPorUsuarioRolesPorUsuarioRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarPorUsuarioRolesPorUsuarioResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarPorUsuarioRolesPorUsuarioResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return;
-        
-        public listarPorUsuarioRolesPorUsuarioResponse() {
-        }
-        
-        public listarPorUsuarioRolesPorUsuarioResponse(SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface RolesPorUsuarioWSChannel : SoftBO.rolesporusuarioWS.RolesPorUsuarioWS, System.ServiceModel.IClientChannel {
     }
@@ -934,6 +965,29 @@ namespace SoftBO.rolesporusuarioWS {
         
         public RolesPorUsuarioWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
+            return base.Channel.listarPorUsuarioRolesPorUsuario(request);
+        }
+        
+        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] listarPorUsuarioRolesPorUsuario(int id) {
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
+            inValue.id = id;
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuario(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
+            return base.Channel.listarPorUsuarioRolesPorUsuarioAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(int id) {
+            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
+            inValue.id = id;
+            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuarioAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -980,29 +1034,6 @@ namespace SoftBO.rolesporusuarioWS {
             SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.eliminarRolPorUsuarioRequest();
             inValue.usarioPorRol = usarioPorRol;
             return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).eliminarRolPorUsuarioAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuario(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
-            return base.Channel.listarPorUsuarioRolesPorUsuario(request);
-        }
-        
-        public SoftBO.rolesporusuarioWS.usuarioPorRolDTO[] listarPorUsuarioRolesPorUsuario(int id) {
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
-            inValue.id = id;
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse retVal = ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuario(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> SoftBO.rolesporusuarioWS.RolesPorUsuarioWS.listarPorUsuarioRolesPorUsuarioAsync(SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest request) {
-            return base.Channel.listarPorUsuarioRolesPorUsuarioAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioResponse> listarPorUsuarioRolesPorUsuarioAsync(int id) {
-            SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest inValue = new SoftBO.rolesporusuarioWS.listarPorUsuarioRolesPorUsuarioRequest();
-            inValue.id = id;
-            return ((SoftBO.rolesporusuarioWS.RolesPorUsuarioWS)(this)).listarPorUsuarioRolesPorUsuarioAsync(inValue);
         }
     }
 }
