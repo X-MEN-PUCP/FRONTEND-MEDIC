@@ -10,9 +10,9 @@ namespace SoftWA
 {
     public partial class paciente_perfiles_medicos : System.Web.UI.Page
     {
-        private List<usuarioPorEspecialidadDTO> ListaCompletaMedicos
+        private List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO> ListaCompletaMedicos
         {
-            get { return ViewState["ListaCompletaMedicos"] as List<usuarioPorEspecialidadDTO>; }
+            get { return ViewState["ListaCompletaMedicos"] as List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>; }
             set { ViewState["ListaCompletaMedicos"] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace SoftWA
                 }
                 else
                 {
-                    ListaCompletaMedicos = new List<usuarioPorEspecialidadDTO>();
+                    ListaCompletaMedicos = new List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>();
                 }
                 System.Diagnostics.Debug.WriteLine($"Número de médicos cargados: {ListaCompletaMedicos?.Count ?? 0}");
             }
@@ -45,7 +45,7 @@ namespace SoftWA
                 phNoMedicos.Visible = true;
                 rptPerfilesMedicos.Visible = false;
                 System.Diagnostics.Debug.WriteLine($"Error al cargar médicos: {ex.ToString()}");
-                ListaCompletaMedicos = new List<usuarioPorEspecialidadDTO>();
+                ListaCompletaMedicos = new List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>();
             }
         }
         protected void btnAplicarFiltros_Click(object sender, EventArgs e)
