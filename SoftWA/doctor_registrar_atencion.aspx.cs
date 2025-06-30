@@ -114,7 +114,7 @@ namespace SoftWA
                 }
 
                 var diagnosticosGuardados = _diagnosticoPorCitaBO.ListarDiagnosticoPorIdCita(idCita);
-                if (diagnosticosGuardados != null)
+                if (diagnosticosGuardados != null && diagnosticosGuardados.Count >0)
                 {
                     rptDiagnosticosAgregados.DataSource = diagnosticosGuardados.Select(d => new
                     {
@@ -134,7 +134,7 @@ namespace SoftWA
                 rptDiagnosticosAgregados.DataBind();
 
                 var examenesGuardados = _examenPorCitaBO.ListarExamenesPorIdCita(idCita);
-                if (examenesGuardados != null)
+                if (examenesGuardados != null && examenesGuardados.Count > 0)
                 {
                     rptExamenesAgregados.DataSource = examenesGuardados.Select(ex => new
                     {
@@ -155,7 +155,7 @@ namespace SoftWA
                 var interconsultasGuardadas = (_interconsultaBO.ListarTodosInterconuslta() ?? new BindingList<SoftBO.interconsultaWS.interconsultaDTO>())
                 .Where(i => i?.cita?.idCita == idCita)
                 .ToList();
-                if (interconsultasGuardadas != null && interconsultasGuardadas.Any())
+                if (interconsultasGuardadas != null && interconsultasGuardadas.Any() && interconsultasGuardadas.Count > 0)
                 {
                     rptInterconsultasAgregadas.DataSource = interconsultasGuardadas.Select(i => new
                     {
