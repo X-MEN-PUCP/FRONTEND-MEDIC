@@ -497,7 +497,8 @@ namespace SoftWA
                 }
                 else
                 {
-                    MostrarMensaje("Funcionalidad para crear usuarios no médicos pendiente de implementación en backend.", false);
+                    //_usuarioBO.InsertarUsuario(nuevoUsuario); faltaimplementar
+                    LimpiarFormularioNuevoUsuario();
                 }
 
                 CargarDatosUsuariosDesdeServicio();

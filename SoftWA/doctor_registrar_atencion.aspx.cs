@@ -239,6 +239,7 @@ namespace SoftWA
                 ddlDiagnosticos.DataTextField = "nombreDiagnostico";
                 ddlDiagnosticos.DataValueField = "idDiagnostico";
                 ddlDiagnosticos.DataBind();
+                ddlDiagnosticos.Items.Insert(0, new ListItem("", "0"));
             }
             catch (Exception ex)
             {
@@ -302,6 +303,7 @@ namespace SoftWA
                 DiagnosticosDeCita = listaActual;
                 RefrescarListaDiagnosticos();
                 txtObservacionDiagnostico.Text = string.Empty;
+                ddlDiagnosticos.SelectedValue = "0";
             }
         }
         
