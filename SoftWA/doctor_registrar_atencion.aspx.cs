@@ -18,7 +18,6 @@ namespace SoftWA
     public partial class doctor_registrar_atencion : System.Web.UI.Page
     {
         private readonly CitaBO _citaBO;
-        private readonly HistoriaBO _historiaBO;
         private readonly HistoriaClinicaPorCitaBO _historiaClinicaPorCitaBO;
         private readonly DiagnosticoBO _diagnosticoBO;
         private readonly DiagnosticoPorCitaBO _diagnosticoPorCitaBO;
@@ -28,6 +27,8 @@ namespace SoftWA
         private readonly ExamenPorCitaBO _examenPorCitaBO;
         private readonly InterconsultaBO _interconsultaBO;
         private readonly EspecialidadBO _especialidadBO;
+
+        private readonly MedicoWS;
 
         private List<diagnosticoPorCita> DiagnosticosDeCita
         {
