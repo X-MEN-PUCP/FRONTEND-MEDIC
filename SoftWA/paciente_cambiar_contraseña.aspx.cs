@@ -38,15 +38,6 @@ namespace SoftWA
             try
             {
                 var usuarioCompleto = new UsuarioBO().ObtenerPorIdUsuario(usuarioLogueado.idUsuario);
-                //var usuarioVerificar = new SoftBO.usuarioWS.usuarioDTO
-                //{
-                //    idUsuario = usuarioLogueado.idUsuario,
-                //    idUsuarioSpecified = true,
-                //    numDocumento = usuarioLogueado.numDocumento,
-                //    tipoDocumento = (SoftBO.usuarioWS.tipoDocumento)Enum.Parse(typeof(SoftBO.usuarioWS.tipoDocumento), usuarioLogueado.tipoDocumento.ToString()),
-                //    tipoDocumentoSpecified = true,
-                //    contrasenha = contraseñaActual
-                //};
                 
                 int resultado;
                 var usuarioService = new UsuarioBO();

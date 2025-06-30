@@ -309,60 +309,6 @@ namespace SoftWA
             }
             ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
-        private void ProcesarReserva(bool pagarAhora)
-        {
-            if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
-                CerrarModalDesdeServidor();
-                return;
-            }
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
-            if (usuarioLogueado == null)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
-                CerrarModalDesdeServidor();
-                return;
-            }
-            try
-            {
-                var citaParaReserva = PrepararCitaReserva(idCita);
-                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
-                int resultadoReserva;
-                var servicioPaciente = new PacienteBO();
-                resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
-                
-                if (resultadoReserva > 0)
-                {
-                    Session["CitaIdParaPago"] = idCita;
-                    if(pagarAhora)
-                    {
-                        string scriptRedir = "window.location.href = 'paciente_pago_cita.aspx';";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "RedirigirPago", scriptRedir, true);
-                    }
-                    else
-                    {
-                        LimpiarResultadosBusqueda();
-                        pnlResultados.Visible = true;
-                        MostrarMensaje(ltlMensajeReserva, "¡Su cita ha sido reservada con éxito!", esError: false);
-                        ActualizarDisponibilidadCompleta();
-                        CerrarModalDesdeServidor();
-                    }
-                }
-                else
-                {
-                    MostrarMensaje(ltlMensajeReserva, "No se pudo completar la reserva, la cita ya no esté disponible.", esError: true);
-                    btnBuscarCitas_Click(this, EventArgs.Empty);
-                    CerrarModalDesdeServidor();
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Ocurrió un error inesperado al procesar su reserva.", esError: true);
-                System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
-                CerrarModalDesdeServidor();
-            }
-        }
         private SoftBO.pacienteWS.citaDTO PrepararCitaReserva(int idCita)
         {
             SoftBO.citaWS.citaDTO citaCompleta;
@@ -453,13 +399,51 @@ namespace SoftWA
             }
             return citaMapeada;
         }
-        protected void btnModalPagarDespues_Click(object sender, EventArgs e)
+        protected void btnConfirmarReserva_Click(object sender, EventArgs e)
         {
-            ProcesarReserva(pagarAhora: false);
-        }
-        protected void btnModalPagarAhora_Click(object sender, EventArgs e)
-        {
-            ProcesarReserva(pagarAhora: true);
+            if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuarioLogueado == null)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
+            try
+            {
+                int resultadoReserva;
+                var servicioPaciente = new PacienteBO();
+                var citaParaReserva = PrepararCitaReserva(idCita);
+                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
+                resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
+                if (resultadoReserva > 0)
+                {
+                    LimpiarResultadosBusqueda();
+                    pnlResultados.Visible = true;
+                    MostrarMensaje(ltlMensajeReserva, "¡Su cita ha sido reservada con éxito!", esError: false);
+                    ActualizarDisponibilidadCompleta();
+                }
+                else
+                {
+                    MostrarMensaje(ltlMensajeReserva, "No se pudo completar la reserva, la cita ya no esté disponible.", esError: true);
+                    btnBuscarCitas_Click(this, EventArgs.Empty);
+                    //CerrarModalDesdeServidor();
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Ocurrió un error inesperado al procesar su reserva.", esError: true);
+                System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
+            }
+            finally
+            {
+                CerrarModalDesdeServidor();
+            }
         }
         private void MostrarMensaje(Literal lit, string mensaje, bool esError)
         {
@@ -471,12 +455,17 @@ namespace SoftWA
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 dynamic cita = e.Item.DataItem;
+                if (cita == null) return;
                 LinkButton btnAccion = (LinkButton)e.Item.FindControl("btnAccionReserva");
+                if (btnAccion == null) return;
 
-                btnAccion.Text = "<i class='fa-solid fa-check-circle me-1'></i>Reservar";
-                btnAccion.CssClass = "btn btn-success btn-sm";
-                btnAccion.Enabled = true;
-                btnAccion.OnClientClick = string.Format("return mostrarModalConfirmacionReserva({0});", cita.IdCitaDisponible);
+                string especialidad = System.Web.HttpUtility.JavaScriptStringEncode(cita.NombreEspecialidad);
+                string medico = System.Web.HttpUtility.JavaScriptStringEncode(cita.NombreMedico);
+                string fecha = System.Web.HttpUtility.JavaScriptStringEncode(cita.FechaCita.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES")));
+                string hora = System.Web.HttpUtility.JavaScriptStringEncode(cita.DescripcionHorario);
+                string precio = cita.Precio.ToString("N2", CultureInfo.InvariantCulture);
+                string hiddenFieldId = hfModalCitaId.ClientID;
+                btnAccion.OnClientClick = $"return mostrarModalConfirmacionReserva({cita.IdCitaDisponible}, '{especialidad}', '{medico}', '{fecha}', '{hora}', '{precio}', '{hiddenFieldId}');";
             }
         }
         private void CerrarModalDesdeServidor()

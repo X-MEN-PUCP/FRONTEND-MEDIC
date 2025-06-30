@@ -177,15 +177,6 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.HiddenField hfModalCitaId;
 
         /// <summary>
-        /// Control pnlResultados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlResultados;
-
-        /// <summary>
         /// Control updResultadosCitas.
         /// </summary>
         /// <remarks>
@@ -193,6 +184,15 @@ namespace SoftWA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel updResultadosCitas;
+
+        /// <summary>
+        /// Control pnlResultados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlResultados;
 
         /// <summary>
         /// Control phNoResultados.
@@ -222,21 +222,12 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.Repeater rptResultadosCitas;
 
         /// <summary>
-        /// Control btnModalPagarDespues.
+        /// Control btnConfirmarReserva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModalPagarDespues;
-
-        /// <summary>
-        /// Control btnModalPagarAhora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModalPagarAhora;
+        protected global::System.Web.UI.WebControls.Button btnConfirmarReserva;
     }
 }
