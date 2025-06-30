@@ -15,16 +15,16 @@
         <div class="container">
             <div class="verify-container text-center">
                 <h2>Verificar Correo Electrónico</h2>
-                <p class="text-muted">Hemos enviado un código de 6 dígitos a: <asp:Label ID="lblCorreoUsuario" runat="server" CssClass="fw-bold"></asp:Label></p>
+                <p class="text-muted">Hemos enviado un código de 6 dígitos a: 
+                    <strong><asp:Literal ID="ltlCorreoUsuario" runat="server"></asp:Literal></strong>
+                </p>
                 <hr />
                 <asp:Literal ID="ltlMensaje" runat="server" EnableViewState="false"></asp:Literal>
-                
                 <div class="mb-3">
                     <label for="<%=txtCodigo.ClientID %>" class="form-label visually-hidden">Código de Verificación:</label>
                     <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control text-center fs-4" MaxLength="6" placeholder="------" autocomplete="one-time-code"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvCodigo" runat="server" ControlToValidate="txtCodigo" ErrorMessage="El código es obligatorio." CssClass="text-danger small" ValidationGroup="Verificacion" />
                 </div>
-
                 <div class="d-grid">
                     <asp:Button ID="btnVerificar" runat="server" Text="Verificar y Activar Cuenta" OnClick="btnVerificar_Click" CssClass="btn btn-primary" ValidationGroup="Verificacion" />
                 </div>

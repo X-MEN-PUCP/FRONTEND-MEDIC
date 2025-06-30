@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading.Tasks;
+using SoftBO;
 
 namespace SoftWA
 {
@@ -160,14 +161,13 @@ namespace SoftWA
                 };
 
                 bool resultadoRegistro;
-                using (var servicioRegistro = new RegistroWSClient())
-                {
-                    resultadoRegistro = servicioRegistro.registrarse(nuevoUsuario);
-                }
-
+                var servicioRegistro = new RegistroBO();
+                resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
+                
                 if (resultadoRegistro)
                 {
-                    Response.Redirect("indexPaciente.aspx?reg=success", false);
+                    Session["CorreoVerificacion"] = nuevoUsuario.correoElectronico;
+                    Response.Redirect("verificar_correo.aspx", false);
                 }
                 else
                 {

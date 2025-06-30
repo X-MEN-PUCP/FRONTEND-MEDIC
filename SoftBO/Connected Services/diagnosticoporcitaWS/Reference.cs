@@ -16,19 +16,6 @@ namespace SoftBO.diagnosticoporcitaWS {
     public interface DiagnosticoPorCitaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
-            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
-            "Response")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse ListarTodosLosDiagnosticos(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
-            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
-            "Response")]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> ListarTodosLosDiagnosticosAsync(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Response")]
@@ -40,6 +27,19 @@ namespace SoftBO.diagnosticoporcitaWS {
             "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarDiagnosticoPorIdCita" +
             "Response")]
         System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaResponse> ListarDiagnosticoPorIdCitaAsync(SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
+            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
+            "Response")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse ListarTodosLosDiagnosticos(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
+            "Request", ReplyAction="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/ListarTodosLosDiagnosticos" +
+            "Response")]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> ListarTodosLosDiagnosticosAsync(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/DiagnosticoPorCitaWS/InsertarDiagnosticoPorCita" +
@@ -596,6 +596,9 @@ namespace SoftBO.diagnosticoporcitaWS {
         
         /// <remarks/>
         ACTIVO,
+        
+        /// <remarks/>
+        PENDIENTE_VERIFICACION,
     }
     
     /// <remarks/>
@@ -942,6 +945,8 @@ namespace SoftBO.diagnosticoporcitaWS {
         
         private string codMedicoField;
         
+        private string codigoVerificacionField;
+        
         private string contrasenhaField;
         
         private string correoElectronicoField;
@@ -955,6 +960,8 @@ namespace SoftBO.diagnosticoporcitaWS {
         private bool estadoLogicoFieldSpecified;
         
         private string fechaCreacionField;
+        
+        private string fechaExpiracionCodigoField;
         
         private string fechaModificacionField;
         
@@ -1026,6 +1033,18 @@ namespace SoftBO.diagnosticoporcitaWS {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string codigoVerificacion {
+            get {
+                return this.codigoVerificacionField;
+            }
+            set {
+                this.codigoVerificacionField = value;
+                this.RaisePropertyChanged("codigoVerificacion");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
         public string contrasenha {
             get {
                 return this.contrasenhaField;
@@ -1037,7 +1056,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
         public string correoElectronico {
             get {
                 return this.correoElectronicoField;
@@ -1049,7 +1068,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
         public estadoGeneral estadoGeneral {
             get {
                 return this.estadoGeneralField;
@@ -1073,7 +1092,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
         public estadoLogico estadoLogico {
             get {
                 return this.estadoLogicoField;
@@ -1097,7 +1116,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
         public string fechaCreacion {
             get {
                 return this.fechaCreacionField;
@@ -1109,7 +1128,19 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=8)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        public string fechaExpiracionCodigo {
+            get {
+                return this.fechaExpiracionCodigoField;
+            }
+            set {
+                this.fechaExpiracionCodigoField = value;
+                this.RaisePropertyChanged("fechaExpiracionCodigo");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
         public string fechaModificacion {
             get {
                 return this.fechaModificacionField;
@@ -1121,7 +1152,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=9)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
         public string fechaNacimiento {
             get {
                 return this.fechaNacimientoField;
@@ -1133,7 +1164,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=10)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
         public genero genero {
             get {
                 return this.generoField;
@@ -1157,7 +1188,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=11)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
         public int idUsuario {
             get {
                 return this.idUsuarioField;
@@ -1181,7 +1212,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=12)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
         public string nombres {
             get {
                 return this.nombresField;
@@ -1193,7 +1224,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=13)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=15)]
         public string numCelular {
             get {
                 return this.numCelularField;
@@ -1205,7 +1236,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=14)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
         public string numDocumento {
             get {
                 return this.numDocumentoField;
@@ -1217,7 +1248,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=15)]
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=17)]
         public System.Nullable<int>[] roles {
             get {
                 return this.rolesField;
@@ -1229,7 +1260,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=16)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
         public tipoDocumento tipoDocumento {
             get {
                 return this.tipoDocumentoField;
@@ -1253,7 +1284,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=17)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=19)]
         public int usuarioCreacion {
             get {
                 return this.usuarioCreacionField;
@@ -1277,7 +1308,7 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=18)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=20)]
         public int usuarioModificacion {
             get {
                 return this.usuarioModificacionField;
@@ -1583,34 +1614,6 @@ namespace SoftBO.diagnosticoporcitaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ListarTodosLosDiagnosticos", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class ListarTodosLosDiagnosticosRequest {
-        
-        public ListarTodosLosDiagnosticosRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="ListarTodosLosDiagnosticosResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class ListarTodosLosDiagnosticosResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return;
-        
-        public ListarTodosLosDiagnosticosResponse() {
-        }
-        
-        public ListarTodosLosDiagnosticosResponse(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="ListarDiagnosticoPorIdCita", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class ListarDiagnosticoPorIdCitaRequest {
         
@@ -1640,6 +1643,34 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         public ListarDiagnosticoPorIdCitaResponse(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ListarTodosLosDiagnosticos", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class ListarTodosLosDiagnosticosRequest {
+        
+        public ListarTodosLosDiagnosticosRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ListarTodosLosDiagnosticosResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class ListarTodosLosDiagnosticosResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return;
+        
+        public ListarTodosLosDiagnosticosResponse() {
+        }
+        
+        public ListarTodosLosDiagnosticosResponse(SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] @return) {
             this.@return = @return;
         }
     }
@@ -1708,27 +1739,6 @@ namespace SoftBO.diagnosticoporcitaWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarTodosLosDiagnosticos(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request) {
-            return base.Channel.ListarTodosLosDiagnosticos(request);
-        }
-        
-        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] ListarTodosLosDiagnosticos() {
-            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest();
-            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse retVal = ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarTodosLosDiagnosticos(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarTodosLosDiagnosticosAsync(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request) {
-            return base.Channel.ListarTodosLosDiagnosticosAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> ListarTodosLosDiagnosticosAsync() {
-            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest();
-            return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarTodosLosDiagnosticosAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarDiagnosticoPorIdCita(SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest request) {
             return base.Channel.ListarDiagnosticoPorIdCita(request);
         }
@@ -1749,6 +1759,27 @@ namespace SoftBO.diagnosticoporcitaWS {
             SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarDiagnosticoPorIdCitaRequest();
             inValue.idCita = idCita;
             return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarDiagnosticoPorIdCitaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarTodosLosDiagnosticos(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request) {
+            return base.Channel.ListarTodosLosDiagnosticos(request);
+        }
+        
+        public SoftBO.diagnosticoporcitaWS.diagnosticoPorCita[] ListarTodosLosDiagnosticos() {
+            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest();
+            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse retVal = ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarTodosLosDiagnosticos(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS.ListarTodosLosDiagnosticosAsync(SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest request) {
+            return base.Channel.ListarTodosLosDiagnosticosAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosResponse> ListarTodosLosDiagnosticosAsync() {
+            SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest inValue = new SoftBO.diagnosticoporcitaWS.ListarTodosLosDiagnosticosRequest();
+            return ((SoftBO.diagnosticoporcitaWS.DiagnosticoPorCitaWS)(this)).ListarTodosLosDiagnosticosAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
