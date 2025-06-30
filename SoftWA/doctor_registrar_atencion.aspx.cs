@@ -253,7 +253,7 @@ namespace SoftWA
                 ddlExamenes.DataTextField = "nombreExamen";
                 ddlExamenes.DataValueField = "idExamen";
                 ddlExamenes.DataBind();
-                ddlExamenes.Items.Insert(0, new ListItem("-- Seleccione un examen --", "0"));
+                ddlExamenes.Items.Insert(0, new ListItem("", "0"));
             }
             catch (Exception ex)
             {
@@ -267,7 +267,7 @@ namespace SoftWA
                 ddlEspecialidadInterconsulta.DataTextField = "nombreEspecialidad";
                 ddlEspecialidadInterconsulta.DataValueField = "idEspecialidad";
                 ddlEspecialidadInterconsulta.DataBind();
-                ddlEspecialidadInterconsulta.Items.Insert(0, new ListItem("-- Seleccione especialidad --", "0"));
+                ddlEspecialidadInterconsulta.Items.Insert(0, new ListItem("", "0"));
             }
             catch (Exception ex)
             {
@@ -351,7 +351,7 @@ namespace SoftWA
                 ExamenesDeCita = listaActual;
                 RefrescarListaExamenes();
                 txtObservacionExamen.Text = string.Empty;
-                ddlExamenes.SelectedIndex = 0;
+                ddlExamenes.SelectedValue = "0";
             }
         }
 
@@ -400,7 +400,7 @@ namespace SoftWA
                 InterconsultasDeCita = listaActual;
                 RefrescarListaInterconsultas();
                 txtRazonInterconsulta.Text = string.Empty;
-                ddlEspecialidadInterconsulta.SelectedIndex = 0;
+                ddlEspecialidadInterconsulta.SelectedValue = "0";
             }
         }
 

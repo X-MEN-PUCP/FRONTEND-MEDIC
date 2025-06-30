@@ -83,7 +83,6 @@
                     <div class="accordion-body">
                         <asp:UpdatePanel ID="updDiagnosticos" runat="server">
                             <ContentTemplate>
-                                <!-- Formulario para agregar nuevo diagnóstico -->
                                 <div id="panelAgregarDiagnostico" runat="server">
                                     <div class="input-group mb-3">
                                         <asp:DropDownList ID="ddlDiagnosticos" runat="server" CssClass="form-control select2-diagnosticos" Width="50%"></asp:DropDownList>
@@ -139,7 +138,7 @@
                 <ContentTemplate>
                     <div id="panelAgregarExamen" runat="server">
                         <div class="input-group mb-3">
-                            <asp:DropDownList ID="ddlExamenes" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlExamenes" runat="server" CssClass="form-control select2-busqueda" Width="50%"></asp:DropDownList>
                             <asp:Button ID="btnAgregarExamen" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarExamen_Click" />
                         </div>
                         <div class="mb-3">
@@ -193,7 +192,7 @@
                 <ContentTemplate>
                     <div id="panelAgregarInterconsulta" runat="server">
                         <div class="input-group mb-3">
-                            <asp:DropDownList ID="ddlEspecialidadInterconsulta" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlEspecialidadInterconsulta" runat="server" CssClass="form-control select2-busqueda" Width="50%"></asp:DropDownList>
                             <asp:Button ID="btnAgregarInterconsulta" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarInterconsulta_Click" />
                         </div>
                         <div class="mb-3">
@@ -248,8 +247,13 @@
     </script>
     <script type="text/javascript">
         function inicializarSelect2() {
+            $('.select2-busqueda').select2({
+                placeholder: "Escriba para buscar...",
+                allowClear: true
+            });
+
             $('.select2-diagnosticos').select2({
-                placeholder: "Escriba para buscar un diagnóstico...",
+                placeholder: "Buscar diagnóstico por nombre o CIE-10...",
                 allowClear: true
             });
         }
