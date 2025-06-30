@@ -1,8 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.citaWS;
-using SoftBO.loginWS;
 using SoftBO.pacienteWS;
-using SoftBO.especialidadWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using citaDTO = SoftBO.pacienteWS.citaDTO;
 
 namespace SoftWA
 {
@@ -187,6 +183,7 @@ namespace SoftWA
                 case SoftBO.pacienteWS.estadoCita.RESERVADO: return "Reservado";
                 case SoftBO.pacienteWS.estadoCita.PAGADO: return "Pagado";
                 case SoftBO.pacienteWS.estadoCita.DISPONIBLE: return "Disponible";
+                case SoftBO.pacienteWS.estadoCita.ATENDIDO: return "Atendido";
                 default: return "Desconocido";
             }
         }
