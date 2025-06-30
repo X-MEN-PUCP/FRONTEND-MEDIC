@@ -30,10 +30,6 @@ namespace SoftBO
         {
             return this.adminCliente.insertarNuevaEspecialidad(especialidad);
         }
-        public bool InsertarNuevoMedico(usuarioDTO medico, BindingList<especialidadDTO> especialidad)
-        {
-            return this.adminCliente.insertarNuevoMedico(medico, especialidad.ToArray());
-        }
         public BindingList<usuarioDTO> ListarMedicos()
         {
             usuarioDTO[] medicos = this.adminCliente.listarMedicos();
@@ -44,5 +40,71 @@ namespace SoftBO
             usuarioDTO[] usuarios = this.adminCliente.listarTodosUsuarios();
             return new BindingList<usuarioDTO>(usuarios);
         }
+
+        public BindingList<especialidadDTO> ListarEspecialidades()
+        {
+            especialidadDTO[] especialidades = this.adminCliente.listarEspecialidades();
+            return new BindingList<especialidadDTO>(especialidades);
+        }
+
+        public especialidadDTO ObtenerEspecialidadPorId(int idEspecialidad)
+        {
+            return this.adminCliente.obtenerEspecialidadPorId(idEspecialidad);
+        }
+
+        public int ModificarEspecialidad(especialidadDTO especialidad)
+        {
+            return this.adminCliente.modificarEspecialidads(especialidad);
+        }
+
+        public BindingList<usuarioPorEspecialidadDTO> ListarUsuariosPorEspecialidad(int idEspecialidad)
+        {
+            var lista = this.adminCliente.listarUsuariosPorEspecialidad(idEspecialidad);
+            return new BindingList<usuarioPorEspecialidadDTO>(lista);
+        }
+
+        public BindingList<usuarioPorRolDTO> ListarRolesDeUsuario(int idUsuario)
+        {
+            var lista = this.adminCliente.listarRolesDeUsuario(idUsuario);
+            return new BindingList<usuarioPorRolDTO>(lista);
+        }
+
+        public usuarioDTO ObtenerUsuarioPorId(int idUsuario)
+        {
+            return this.adminCliente.obtenerUsuarioPorId(idUsuario);
+        }
+
+        public int ModificarUsuario(usuarioDTO usuario)
+        {
+            return this.adminCliente.modificarUsuarios(usuario);
+        }
+
+        public int AgregarEspecialidadAMedico(usuarioPorEspecialidadDTO usuarioPorEspecialidad)
+        {
+            return this.adminCliente.agregarEspecialidadAMedico(usuarioPorEspecialidad);
+        }
+
+        public int EliminarEspecialidadMedico(usuarioPorEspecialidadDTO usuarioPorEspecialidad)
+        {
+            return this.adminCliente.eliminarEspecialidadMedico(usuarioPorEspecialidad);
+        }
+
+        public int InsertarNuevoAdministrador(usuarioDTO administrador)
+        {
+            return this.adminCliente.insertarNuevoAdministrador(administrador);
+        }
+
+        public int InsertarNuevoPaciente(usuarioDTO paciente)
+        {
+            return this.adminCliente.insertarNuevoPaciente(paciente);
+        }
+
+
+
+
+
+
+
+
     }
 }

@@ -14,13 +14,11 @@ namespace SoftWA
     public partial class admin_reporte_citas : System.Web.UI.Page
     {
         private readonly ReporteCitasBO _reporteCitasBO;
-        private readonly EspecialidadBO _especialidadBO;
         private readonly AdminBO _adminBO;
 
         public admin_reporte_citas()
         {
             _reporteCitasBO = new ReporteCitasBO();
-            _especialidadBO = new EspecialidadBO();
             _adminBO = new AdminBO();
         }
         
@@ -37,7 +35,7 @@ namespace SoftWA
         {
             try
             {
-                var especialidades = _especialidadBO.ListarEspecialidad();
+                var especialidades = _adminBO.ListarEspecialidades();
                 ddlEspecialidadReporte.DataSource = especialidades.OrderBy(e => e.nombreEspecialidad);
                 ddlEspecialidadReporte.DataTextField = "nombreEspecialidad";
                 ddlEspecialidadReporte.DataValueField = "idEspecialidad";

@@ -40,9 +40,6 @@ namespace SoftWA
     public partial class admin_gestionar_usuarios : System.Web.UI.Page
     {
         private readonly AdminBO _adminBO;
-        private readonly RolesPorUsuarioBO _rolesBO;
-        private readonly EspecialidadBO _especialidadBO;
-        private readonly UsuarioBO _usuarioBO;
         private List<UsuarioGestionInfo> ListaCompletaUsuarios
         {
             get { return ViewState["ListaCompletaUsuarios"] as List<UsuarioGestionInfo>; }
@@ -63,9 +60,6 @@ namespace SoftWA
         public admin_gestionar_usuarios()
         {
             _adminBO = new AdminBO();
-            _rolesBO = new RolesPorUsuarioBO();
-            _especialidadBO = new EspecialidadBO();
-            _usuarioBO = new UsuarioBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -99,7 +93,7 @@ namespace SoftWA
 
             try
             {
-                var especialidadesWs = _especialidadBO.ListarEspecialidad();
+                var especialidadesWs = _adminBO.ListarEspecialidades();
                 ListaCompletaEspecialidades = especialidadesWs.Select(e => new EspecialidadSimple
                 {
                     IdEspecialidad = e.idEspecialidad,
@@ -127,7 +121,7 @@ namespace SoftWA
 
                 foreach (var u in usuariosWs)
                 {
-                    var rolesPorUsuarioWs = _rolesBO.ListarPorUsuarioRolesPorUsuario(u.idUsuario);
+                    var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(u.idUsuario);
 
                     var rolesDelUsuario = new List<SoftBO.adminWS.rolDTO>();
                     if (rolesPorUsuarioWs != null)
@@ -290,7 +284,7 @@ namespace SoftWA
 
             if (e.CommandName == "GestionarRoles")
             {
-                var rolesPorUsuarioWs = _rolesBO.ListarPorUsuarioRolesPorUsuario(usuarioId);
+                var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(usuarioId);
                 var usuarioWs = _adminBO.ListarTodosUsuarios().FirstOrDefault(u => u.idUsuario == usuarioId);
 
                 if (usuarioWs != null)
@@ -323,10 +317,10 @@ namespace SoftWA
             {
                 try
                 {
-                    var usuarioAmodificar = _usuarioBO.ObtenerPorIdUsuario(usuarioId);
-                    var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.usuarioWS.estadoGeneral.ACTIVO)
-                    ? SoftBO.usuarioWS.estadoGeneral.INACTIVO
-                    : SoftBO.usuarioWS.estadoGeneral.ACTIVO;
+                    var usuarioAmodificar = _adminBO.ObtenerUsuarioPorId(usuarioId);
+                    var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO)
+                    ? SoftBO.adminWS.estadoGeneral.INACTIVO
+                    : SoftBO.adminWS.estadoGeneral.ACTIVO;
                     usuarioAmodificar.estadoGeneral = nuevoEstado;
                     usuarioAmodificar.estadoGeneralSpecified = true;
                     var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
@@ -336,7 +330,7 @@ namespace SoftWA
                         usuarioAmodificar.usuarioModificacionSpecified = true;
                         usuarioAmodificar.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
                     }
-                    _usuarioBO.ModificarUsuario(usuarioAmodificar);
+                    _adminBO.ModificarUsuario(usuarioAmodificar);
                     MostrarMensaje("Cambio de estado exitoso", false);
                     CargarDatosUsuariosDesdeServicio();
                     AplicarFiltrosYEnlazarGrid();
@@ -483,8 +477,8 @@ namespace SoftWA
                     BindingList<SoftBO.adminWS.especialidadDTO> especialidades = new BindingList<SoftBO.adminWS.especialidadDTO>();
                     var especialidad = new especialidadDTO { idEspecialidad = especialidadId, idEspecialidadSpecified = true };
                     especialidades.Add(especialidad);
-                    bool resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidades);
-
+                    //bool resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidades);
+                    bool resultado = false; // falta implementar la llamada al servicio
                     if (resultado)
                     {
                         MostrarMensaje("Médico creado y asignado correctamente.", false);

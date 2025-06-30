@@ -180,25 +180,67 @@
     <None Include="Connected Services\adminWS\AdminWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.agregarEspecialidadAMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.asignarNuevoRolParaUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.eliminarEspecialidadMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.eliminarRolDeUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.especialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevaEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevoAdministradorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevoMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.insertarNuevoPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.listarEspecialidadesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.listarMedicosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.listarRolesDeUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.listarTodosUsuariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.listarUsuariosPorEspecialidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.modificarEspecialidadsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.modificarUsuariosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.obtenerEspecialidadPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.obtenerUsuarioPorIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.usuarioPorEspecialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.usuarioPorRolDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\citaWS\CitaWS.wsdl" />

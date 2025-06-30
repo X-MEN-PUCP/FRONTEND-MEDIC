@@ -17,11 +17,10 @@ namespace SoftWA
             public string NombreEspecialidad { get; set; }
             public double PrecioConsulta { get; set; }
             public int CantMedicos { get; set; }
-            public estadoGeneral Estado { get; set; }
+            public SoftBO.adminWS.estadoGeneral Estado { get; set; }
         }
 
-        private readonly EspecialidadBO _especialidadBO;
-        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
+        private readonly AdminBO _adminBO;
         private List<EspecialidadConteo> ListaCompletaEspecialidades
         {
             get
@@ -35,8 +34,7 @@ namespace SoftWA
         }
         public admin_gestionar_especialidades()
         {
-            _especialidadBO = new EspecialidadBO();
-            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
+            _adminBO = new AdminBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -44,7 +42,6 @@ namespace SoftWA
             if (!IsPostBack)
             {
                 CargarDatosDesdeServicio();
-                // Y luego los muestra en la grilla
                 AplicarFiltrosYEnlazarGrid();
             }
         }
@@ -52,13 +49,12 @@ namespace SoftWA
         {
             try
             {
-                var especialidadesWs = _especialidadBO.ListarEspecialidad();
+                var especialidadesWs = _adminBO.ListarEspecialidades();
                 var listaViewModel = new List<EspecialidadConteo>();
 
                 foreach (var esp in especialidadesWs)
                 {
-                    // Por cada especialidad, consultamos cuántos médicos tiene
-                    var medicos = _usuarioPorEspecialidadBO.ListarPorEspecialidadUsuarioPorEspecialidad(esp.idEspecialidad);
+                    var medicos = _adminBO.ListarUsuariosPorEspecialidad(esp.idEspecialidad);
                     listaViewModel.Add(new EspecialidadConteo
                     {
                         ID = esp.idEspecialidad,
@@ -69,25 +65,19 @@ namespace SoftWA
                     });
                 }
 
-                // Almacenamos la lista completa en nuestra propiedad de ViewState
                 this.ListaCompletaEspecialidades = listaViewModel;
             }
             catch (Exception ex)
             {
-                // Manejar error de conexión
                 phNoEspecialidad.Visible = true;
-                // Podríamos mostrar un mensaje más explícito al usuario
                 System.Diagnostics.Debug.WriteLine($"Error al cargar especialidades desde el servicio: {ex.Message}");
-                // Si hay error, la lista se queda vacía.
                 this.ListaCompletaEspecialidades = new List<EspecialidadConteo>();
             }
         }
         private void AplicarFiltrosYEnlazarGrid()
         {
-            // Obtenemos la lista completa desde la propiedad (que usa ViewState)
             var listaViewModel = this.ListaCompletaEspecialidades;
 
-            // Si por alguna razón la lista es nula, la inicializamos
             if (listaViewModel == null)
             {
                 phNoEspecialidad.Visible = true;
@@ -97,7 +87,6 @@ namespace SoftWA
                 return;
             }
 
-            // Aplicar filtros de la UI (esto ahora es súper rápido)
             string nombreFiltro = txtFiltrarNombre.Text.Trim();
             if (!string.IsNullOrEmpty(nombreFiltro))
             {
@@ -105,7 +94,6 @@ namespace SoftWA
                     esp.NombreEspecialidad.ToLower().Contains(nombreFiltro.ToLower())).ToList();
             }
 
-            // Aplicar ordenamiento (también súper rápido)
             string ordenSeleccionado = ddlOrdenarPor.SelectedValue;
             switch (ordenSeleccionado)
             {
@@ -124,7 +112,7 @@ namespace SoftWA
                 case "MedicosDesc":
                     listaViewModel = listaViewModel.OrderByDescending(esp => esp.CantMedicos).ToList();
                     break;
-                default: // NombreAsc
+                default: 
                     listaViewModel = listaViewModel.OrderBy(esp => esp.NombreEspecialidad).ToList();
                     break;
             }
@@ -144,7 +132,7 @@ namespace SoftWA
                 var ltlEstado = (Literal)e.Item.FindControl("ltlEstado");
                 var btnToggleStatus = (LinkButton)e.Item.FindControl("btnToggleStatus");
 
-                if (especialidad.Estado == estadoGeneral.ACTIVO)
+                if (especialidad.Estado == SoftBO.adminWS.estadoGeneral.ACTIVO)
                 {
                     ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
                     btnToggleStatus.ToolTip = "Desactivar";
@@ -173,7 +161,7 @@ namespace SoftWA
 
             if (e.CommandName == "EditEspecialidad")
             {
-                var especialidad = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                var especialidad = _adminBO.ObtenerEspecialidadPorId(especialidadId);
                 if (especialidad != null)
                 {
                     ResetForm();
@@ -189,10 +177,10 @@ namespace SoftWA
             }
             else if (e.CommandName == "ToggleStatus")
             {
-                var especialidad = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                var especialidad = _adminBO.ObtenerEspecialidadPorId(especialidadId);
                 if (especialidad != null)
                 {
-                    especialidad.estadoGeneral = (especialidad.estadoGeneral == estadoGeneral.ACTIVO) ? estadoGeneral.INACTIVO : estadoGeneral.ACTIVO;
+                    especialidad.estadoGeneral = (especialidad.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO) ? SoftBO.adminWS.estadoGeneral.INACTIVO : SoftBO.adminWS.estadoGeneral.ACTIVO;
                     especialidad.estadoGeneralSpecified = true;
 
                     var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
@@ -200,7 +188,7 @@ namespace SoftWA
                     especialidad.usuarioModificacionSpecified = true;
                     especialidad.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    _especialidadBO.ModificarEspecialidad(especialidad);
+                    _adminBO.ModificarEspecialidad(especialidad);
                     CargarDatosDesdeServicio();
                     AplicarFiltrosYEnlazarGrid();
                 }
@@ -248,7 +236,7 @@ namespace SoftWA
 
             int especialidadId = Convert.ToInt32(hfEspecialidadId.Value);
 
-            especialidadDTO especialidad = new especialidadDTO
+            SoftBO.adminWS.especialidadDTO especialidad = new SoftBO.adminWS.especialidadDTO
             {
                 nombreEspecialidad = txtNombreAddEdit.Text.Trim(),
                 precioConsulta = Convert.ToDouble(txtPrecioAddEdit.Text),
@@ -263,21 +251,21 @@ namespace SoftWA
                 especialidad.usuarioCreacion = idUsuarioAuditoria;
                 especialidad.usuarioCreacionSpecified = true;
                 especialidad.fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
-                especialidad.estadoGeneral = estadoGeneral.ACTIVO; 
+                especialidad.estadoGeneral = SoftBO.adminWS.estadoGeneral.ACTIVO; 
                 especialidad.estadoGeneralSpecified = true;
-                _especialidadBO.InsertarEspecialidad(especialidad);
+                _adminBO.InsertarNuevaEspecialidad(especialidad);
             }
             else 
             {
                 especialidad.idEspecialidad = especialidadId;
-                var espOriginal = _especialidadBO.ObtenerPorIdTablaEspecialidad(especialidadId);
+                var espOriginal = _adminBO.ObtenerEspecialidadPorId(especialidadId);
                 especialidad.fechaCreacion = espOriginal.fechaCreacion;
                 especialidad.usuarioCreacion = espOriginal.usuarioCreacion;
                 especialidad.usuarioCreacionSpecified = espOriginal.usuarioCreacionSpecified;
                 especialidad.estadoGeneral = espOriginal.estadoGeneral; 
                 especialidad.estadoGeneralSpecified = true;
                 especialidad.idEspecialidadSpecified = true;
-                _especialidadBO.ModificarEspecialidad(especialidad);
+                _adminBO.ModificarEspecialidad(especialidad);
             }
 
             pnlAddEditEspecialidad.Visible = false;
