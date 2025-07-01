@@ -5,12 +5,6 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/TurnoWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarTodosTurno">
-    <part name="parameters" element="tns:listarTodosTurno" />
-  </message>
-  <message name="listarTodosTurnoResponse">
-    <part name="parameters" element="tns:listarTodosTurnoResponse" />
-  </message>
   <message name="modificarTurno">
     <part name="parameters" element="tns:modificarTurno" />
   </message>
@@ -23,11 +17,13 @@
   <message name="obtenerPorIdTurnoResponse">
     <part name="parameters" element="tns:obtenerPorIdTurnoResponse" />
   </message>
+  <message name="listarTodosTurno">
+    <part name="parameters" element="tns:listarTodosTurno" />
+  </message>
+  <message name="listarTodosTurnoResponse">
+    <part name="parameters" element="tns:listarTodosTurnoResponse" />
+  </message>
   <portType name="TurnoWS">
-    <operation name="listarTodosTurno">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest" message="tns:listarTodosTurno" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse" message="tns:listarTodosTurnoResponse" />
-    </operation>
     <operation name="modificarTurno">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest" message="tns:modificarTurno" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse" message="tns:modificarTurnoResponse" />
@@ -36,18 +32,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoRequest" message="tns:obtenerPorIdTurno" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoResponse" message="tns:obtenerPorIdTurnoResponse" />
     </operation>
+    <operation name="listarTodosTurno">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest" message="tns:listarTodosTurno" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse" message="tns:listarTodosTurnoResponse" />
+    </operation>
   </portType>
   <binding name="TurnoWSPortBinding" type="tns:TurnoWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarTodosTurno">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="modificarTurno">
       <soap:operation soapAction="" />
       <input>
@@ -58,6 +49,15 @@
       </output>
     </operation>
     <operation name="obtenerPorIdTurno">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodosTurno">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

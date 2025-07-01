@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
-using SoftBO.usuarioporespecialidadWS;
-using SoftBO.adminWS;
 using SoftBO;
+using SoftBO.pacienteWS;
 
 namespace SoftWA
 {
     public partial class paciente_perfiles_medicos : System.Web.UI.Page
     {
-        private List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO> ListaCompletaMedicos
+        private List<usuarioPorEspecialidadDTO> ListaCompletaMedicos
         {
-            get { return ViewState["ListaCompletaMedicos"] as List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>; }
+            get { return ViewState["ListaCompletaMedicos"] as List<usuarioPorEspecialidadDTO>; }
             set { ViewState["ListaCompletaMedicos"] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -27,15 +26,15 @@ namespace SoftWA
         {
             try
             { 
-                var servicioUsuarioEsp = new UsuarioPorEspecialidadBO();
-                var perfiles = servicioUsuarioEsp.ListarTodosPerfilesMedicos();
+                var servicioUsuarioEsp = new PacienteBO();
+                var perfiles = servicioUsuarioEsp.ListarTodosPerfilesMedicosParaPaciente();
                 if (perfiles != null)
                 {
                     ListaCompletaMedicos = perfiles.ToList();
                 }
                 else
                 {
-                    ListaCompletaMedicos = new List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>();
+                    ListaCompletaMedicos = new List<usuarioPorEspecialidadDTO>();
                 }
                 System.Diagnostics.Debug.WriteLine($"Número de médicos cargados: {ListaCompletaMedicos?.Count ?? 0}");
             }
@@ -45,7 +44,7 @@ namespace SoftWA
                 phNoMedicos.Visible = true;
                 rptPerfilesMedicos.Visible = false;
                 System.Diagnostics.Debug.WriteLine($"Error al cargar médicos: {ex.ToString()}");
-                ListaCompletaMedicos = new List<SoftBO.usuarioporespecialidadWS.usuarioPorEspecialidadDTO>();
+                ListaCompletaMedicos = new List<usuarioPorEspecialidadDTO>();
             }
         }
         protected void btnAplicarFiltros_Click(object sender, EventArgs e)

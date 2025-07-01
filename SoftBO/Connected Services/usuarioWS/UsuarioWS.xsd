@@ -12,8 +12,10 @@
   <xs:element name="completarRolesUsuarioResponse" type="tns:completarRolesUsuarioResponse" />
   <xs:element name="insertarUsuario" type="tns:insertarUsuario" />
   <xs:element name="insertarUsuarioResponse" type="tns:insertarUsuarioResponse" />
-  <xs:element name="modificarUsuario" type="tns:modificarUsuario" />
-  <xs:element name="modificarUsuarioResponse" type="tns:modificarUsuarioResponse" />
+  <xs:element name="modificarUsuario" nillable="true" type="tns:modificarUsuarios" />
+  <xs:element name="modificarUsuarioResponse" nillable="true" type="tns:modificarUsuariosResponse" />
+  <xs:element name="modificarUsuarios" type="tns:modificarUsuarios" />
+  <xs:element name="modificarUsuariosResponse" type="tns:modificarUsuariosResponse" />
   <xs:element name="obtenerPorIdUsuario" type="tns:obtenerPorIdUsuario" />
   <xs:element name="obtenerPorIdUsuarioResponse" type="tns:obtenerPorIdUsuarioResponse" />
   <xs:complexType name="CambiarContrasenhaUsuario">
@@ -106,12 +108,12 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuario">
+  <xs:complexType name="modificarUsuarios">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuarioResponse">
+  <xs:complexType name="modificarUsuariosResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>

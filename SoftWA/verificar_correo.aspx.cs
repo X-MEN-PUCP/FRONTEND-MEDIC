@@ -15,6 +15,13 @@ namespace SoftWA
 {
     public partial class verificar_correo : System.Web.UI.Page
     {
+        private RegistroBO registroBO;
+        private UsuarioBO usuarioBO;
+        public verificar_correo()
+        {
+            registroBO = new RegistroBO();
+            usuarioBO = new UsuarioBO();
+        }
         private string CorreoVerificacion => Session["CorreoVerificacion"] as string;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,8 +47,7 @@ namespace SoftWA
             try
             {
                 SoftBO.registroWS.usuarioDTO usuarioVerificado;
-                var servicioRegistro = new RegistroBO();
-                usuarioVerificado = servicioRegistro.VerificarCodigo(CorreoVerificacion, codigoIngresado);
+                usuarioVerificado = registroBO.VerificarCodigo(CorreoVerificacion, codigoIngresado);
                 if (usuarioVerificado != null && usuarioVerificado.idUsuario > 0)
                 {
                     var usuarioRoles = new SoftBO.usuarioWS.usuarioDTO
@@ -49,8 +55,7 @@ namespace SoftWA
                         idUsuario = usuarioVerificado.idUsuario,
                         idUsuarioSpecified = true,
                     };
-                    var servicioUsuario = new UsuarioBO();
-                    var usuarioParaSesion = servicioUsuario.CompletarRolesUsuario(usuarioRoles);
+                    var usuarioParaSesion = usuarioBO.CompletarRolesUsuario(usuarioRoles);
                     usuarioParaSesion.nombres = usuarioVerificado.nombres;
                     usuarioParaSesion.apellidoPaterno = usuarioVerificado.apellidoPaterno;
                     usuarioParaSesion.apellidoMaterno = usuarioVerificado.apellidoMaterno;
@@ -79,8 +84,7 @@ namespace SoftWA
         {
             try
             {
-                var servicioRegistro = new RegistroBO();
-                bool resultado = servicioRegistro.ReenviarCodigo(CorreoVerificacion);
+                bool resultado = registroBO.ReenviarCodigo(CorreoVerificacion);
                 if (resultado)
                 {
                     MostrarMensaje("El código de verificación ha sido reenviado a su correo electrónico.", esExito: true);

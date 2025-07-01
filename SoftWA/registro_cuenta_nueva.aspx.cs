@@ -36,8 +36,13 @@ namespace SoftWA
     }
     public partial class registro_cuenta_nueva : System.Web.UI.Page
     {
+        private RegistroBO servicioRegistro;
         private static readonly HttpClient client = new HttpClient();
         private const string FactilizaToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzODk1OSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImNvbnN1bHRvciJ9.XrDaAeSivMeulRvfQf3ee4n1owZ9I7I8YEXQqx01vKc";
+        public registro_cuenta_nueva()
+        {
+            servicioRegistro = new RegistroBO();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -160,7 +165,6 @@ namespace SoftWA
                     nuevoUsuario.generoSpecified = true;
                 }
                 int resultadoRegistro = 0;
-                var servicioRegistro = new RegistroBO();
                 resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
                 
                 if (resultadoRegistro>0)

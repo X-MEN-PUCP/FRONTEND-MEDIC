@@ -234,6 +234,12 @@
     <None Include="Connected Services\adminWS\SoftBO.adminWS.obtenerUsuarioPorIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.reporteCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.ReporteDeCitasGeneralAdministradorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.usuarioDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -450,6 +456,9 @@
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.citaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.diagnosticoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.eliminarInterconsultaDeCitaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -459,10 +468,16 @@
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.examenDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.examenPorCitaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.historiaClinicaPorCitaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.insertarInterconsultasDeCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.interconsultaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarCitasMedicoResponse.datasource">
@@ -471,16 +486,40 @@
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarEspecialidadesParaInterconsultaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarExamenesPorIdCitaParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarExamenesPorTipoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarInterconsultasPorIdCitaParMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarTiposDeExamenResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarTodasLasInterconsultasParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.listarTodosLosExamenesParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.llenarEpicrisisMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.modificarCitaParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.modificarInteronsultaDeCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.obtenerCitaPorIdCitaParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.obtenerDiagnosticoPorIdParaMedicoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\medicoWS\SoftBO.medicoWS.obtenerExamenPorIdParaMedicoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\medicoWS\SoftBO.medicoWS.obtenerHistoriaClinicaPorCitaResponse.datasource">
@@ -499,10 +538,16 @@
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.buscarCitasPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.buscarCitasParaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.cancelarCitaPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.citaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.especialidadDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.historiaClinicaPorCitaDTO.datasource">
@@ -511,10 +556,34 @@
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarCitasPorPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarMedicosPorEspecialidadPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarRolesPorUsuarioVistaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarTodasLasEspecialidadesParaElPaceinteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.listarTodosPerfilesMedicosParaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.modificarCitaParaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.obtenerPorIdCitaParaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.reprogramarCitaPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.reservarCitaPacienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.usuarioPorEspecialidadDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.usuarioPorRolDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\registroWS\RegistroWS.wsdl" />

@@ -99,12 +99,18 @@ namespace SoftBO
             return this.adminCliente.insertarNuevoPaciente(paciente);
         }
 
+        //////////////////////////////////////////////////////////////////////////////////
+        /////////////////////// NUEVOS METODOS PARA ADMINISTRADOR/////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
+        public int InsertarNuevoMedico(usuarioDTO medico, BindingList<especialidadDTO> especialidades)
+        {
+            return this.adminCliente.insertarNuevoMedico(medico, especialidades.ToArray());
+        }
+        public BindingList<reporteCitaDTO> ReporteDeCitasGeneralAdministrador(int idEspecialidad, int idMedico, string fechaInicio, string fechaFin)
+        {
+            reporteCitaDTO[] lista = this.adminCliente.ReporteDeCitasGeneralAdministrador(idEspecialidad, idMedico, fechaInicio, fechaFin);
+            return new BindingList<reporteCitaDTO>(lista ?? new reporteCitaDTO[0]);
+        }
     }
 }

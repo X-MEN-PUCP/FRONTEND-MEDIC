@@ -5,11 +5,17 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/PacienteWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarCitasPorPaciente">
-    <part name="parameters" element="tns:listarCitasPorPaciente" />
+  <message name="modificarCitaParaPaciente">
+    <part name="parameters" element="tns:modificarCitaParaPaciente" />
   </message>
-  <message name="listarCitasPorPacienteResponse">
-    <part name="parameters" element="tns:listarCitasPorPacienteResponse" />
+  <message name="modificarCitaParaPacienteResponse">
+    <part name="parameters" element="tns:modificarCitaParaPacienteResponse" />
+  </message>
+  <message name="reservarCitaPaciente">
+    <part name="parameters" element="tns:reservarCitaPaciente" />
+  </message>
+  <message name="reservarCitaPacienteResponse">
+    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
   </message>
   <message name="buscarCitasPaciente">
     <part name="parameters" element="tns:buscarCitasPaciente" />
@@ -23,11 +29,17 @@
   <message name="ActualizarEStadoDeCitaResponse">
     <part name="parameters" element="tns:ActualizarEStadoDeCitaResponse" />
   </message>
-  <message name="reservarCitaPaciente">
-    <part name="parameters" element="tns:reservarCitaPaciente" />
+  <message name="cancelarCitaPaciente">
+    <part name="parameters" element="tns:cancelarCitaPaciente" />
   </message>
-  <message name="reservarCitaPacienteResponse">
-    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
+  <message name="cancelarCitaPacienteResponse">
+    <part name="parameters" element="tns:cancelarCitaPacienteResponse" />
+  </message>
+  <message name="buscarCitasParaPaciente">
+    <part name="parameters" element="tns:buscarCitasParaPaciente" />
+  </message>
+  <message name="buscarCitasParaPacienteResponse">
+    <part name="parameters" element="tns:buscarCitasParaPacienteResponse" />
   </message>
   <message name="reprogramarCitaPaciente">
     <part name="parameters" element="tns:reprogramarCitaPaciente" />
@@ -35,16 +47,50 @@
   <message name="reprogramarCitaPacienteResponse">
     <part name="parameters" element="tns:reprogramarCitaPacienteResponse" />
   </message>
-  <message name="cancelarCitaPaciente">
-    <part name="parameters" element="tns:cancelarCitaPaciente" />
+  <message name="obtenerPorIdCitaParaPaciente">
+    <part name="parameters" element="tns:obtenerPorIdCitaParaPaciente" />
   </message>
-  <message name="cancelarCitaPacienteResponse">
-    <part name="parameters" element="tns:cancelarCitaPacienteResponse" />
+  <message name="obtenerPorIdCitaParaPacienteResponse">
+    <part name="parameters" element="tns:obtenerPorIdCitaParaPacienteResponse" />
+  </message>
+  <message name="listarRolesPorUsuarioVistaPaciente">
+    <part name="parameters" element="tns:listarRolesPorUsuarioVistaPaciente" />
+  </message>
+  <message name="listarRolesPorUsuarioVistaPacienteResponse">
+    <part name="parameters" element="tns:listarRolesPorUsuarioVistaPacienteResponse" />
+  </message>
+  <message name="listarCitasPorPaciente">
+    <part name="parameters" element="tns:listarCitasPorPaciente" />
+  </message>
+  <message name="listarCitasPorPacienteResponse">
+    <part name="parameters" element="tns:listarCitasPorPacienteResponse" />
+  </message>
+  <message name="listarMedicosPorEspecialidadPaciente">
+    <part name="parameters" element="tns:listarMedicosPorEspecialidadPaciente" />
+  </message>
+  <message name="listarMedicosPorEspecialidadPacienteResponse">
+    <part name="parameters" element="tns:listarMedicosPorEspecialidadPacienteResponse" />
+  </message>
+  <message name="listarTodosPerfilesMedicosParaPaciente">
+    <part name="parameters" element="tns:listarTodosPerfilesMedicosParaPaciente" />
+  </message>
+  <message name="listarTodosPerfilesMedicosParaPacienteResponse">
+    <part name="parameters" element="tns:listarTodosPerfilesMedicosParaPacienteResponse" />
+  </message>
+  <message name="listarTodasLasEspecialidadesParaElPaceinte">
+    <part name="parameters" element="tns:listarTodasLasEspecialidadesParaElPaceinte" />
+  </message>
+  <message name="listarTodasLasEspecialidadesParaElPaceinteResponse">
+    <part name="parameters" element="tns:listarTodasLasEspecialidadesParaElPaceinteResponse" />
   </message>
   <portType name="PacienteWS">
-    <operation name="listarCitasPorPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteRequest" message="tns:listarCitasPorPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteResponse" message="tns:listarCitasPorPacienteResponse" />
+    <operation name="modificarCitaParaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/modificarCitaParaPacienteRequest" message="tns:modificarCitaParaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/modificarCitaParaPacienteResponse" message="tns:modificarCitaParaPacienteResponse" />
+    </operation>
+    <operation name="reservarCitaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
     </operation>
     <operation name="buscarCitasPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest" message="tns:buscarCitasPaciente" />
@@ -54,22 +100,55 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/ActualizarEStadoDeCitaRequest" message="tns:ActualizarEStadoDeCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/ActualizarEStadoDeCitaResponse" message="tns:ActualizarEStadoDeCitaResponse" />
     </operation>
-    <operation name="reservarCitaPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
+    <operation name="cancelarCitaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest" message="tns:cancelarCitaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse" message="tns:cancelarCitaPacienteResponse" />
+    </operation>
+    <operation name="buscarCitasParaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasParaPacienteRequest" message="tns:buscarCitasParaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasParaPacienteResponse" message="tns:buscarCitasParaPacienteResponse" />
     </operation>
     <operation name="reprogramarCitaPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest" message="tns:reprogramarCitaPaciente" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteResponse" message="tns:reprogramarCitaPacienteResponse" />
     </operation>
-    <operation name="cancelarCitaPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest" message="tns:cancelarCitaPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse" message="tns:cancelarCitaPacienteResponse" />
+    <operation name="obtenerPorIdCitaParaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/obtenerPorIdCitaParaPacienteRequest" message="tns:obtenerPorIdCitaParaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/obtenerPorIdCitaParaPacienteResponse" message="tns:obtenerPorIdCitaParaPacienteResponse" />
+    </operation>
+    <operation name="listarRolesPorUsuarioVistaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarRolesPorUsuarioVistaPacienteRequest" message="tns:listarRolesPorUsuarioVistaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarRolesPorUsuarioVistaPacienteResponse" message="tns:listarRolesPorUsuarioVistaPacienteResponse" />
+    </operation>
+    <operation name="listarCitasPorPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteRequest" message="tns:listarCitasPorPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteResponse" message="tns:listarCitasPorPacienteResponse" />
+    </operation>
+    <operation name="listarMedicosPorEspecialidadPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarMedicosPorEspecialidadPacienteRequest" message="tns:listarMedicosPorEspecialidadPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarMedicosPorEspecialidadPacienteResponse" message="tns:listarMedicosPorEspecialidadPacienteResponse" />
+    </operation>
+    <operation name="listarTodosPerfilesMedicosParaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarTodosPerfilesMedicosParaPacienteRequest" message="tns:listarTodosPerfilesMedicosParaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarTodosPerfilesMedicosParaPacienteResponse" message="tns:listarTodosPerfilesMedicosParaPacienteResponse" />
+    </operation>
+    <operation name="listarTodasLasEspecialidadesParaElPaceinte">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarTodasLasEspecialidadesParaElPaceinteRequest" message="tns:listarTodasLasEspecialidadesParaElPaceinte" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarTodasLasEspecialidadesParaElPaceinteResponse" message="tns:listarTodasLasEspecialidadesParaElPaceinteResponse" />
     </operation>
   </portType>
   <binding name="PacienteWSPortBinding" type="tns:PacienteWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarCitasPorPaciente">
+    <operation name="modificarCitaParaPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="reservarCitaPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -96,7 +175,16 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="reservarCitaPaciente">
+    <operation name="cancelarCitaPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="buscarCitasParaPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -114,7 +202,52 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="cancelarCitaPaciente">
+    <operation name="obtenerPorIdCitaParaPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarRolesPorUsuarioVistaPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarCitasPorPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarMedicosPorEspecialidadPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodosPerfilesMedicosParaPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarTodasLasEspecialidadesParaElPaceinte">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

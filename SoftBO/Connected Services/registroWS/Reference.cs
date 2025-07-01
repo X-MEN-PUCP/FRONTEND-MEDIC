@@ -25,15 +25,6 @@ namespace SoftBO.registroWS {
         System.Threading.Tasks.Task<SoftBO.registroWS.verificarCodigoResponse> verificarCodigoAsync(SoftBO.registroWS.verificarCodigoRequest request);
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.registroWS.reenviarCodigoResponse reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
-        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -41,6 +32,15 @@ namespace SoftBO.registroWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/registrarseResponse")]
         System.Threading.Tasks.Task<SoftBO.registroWS.registrarseResponse> registrarseAsync(SoftBO.registroWS.registrarseRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.registroWS.reenviarCodigoResponse reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/RegistroWS/reenviarCodigoResponse")]
+        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request);
     }
     
     /// <remarks/>
@@ -564,42 +564,6 @@ namespace SoftBO.registroWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reenviarCodigoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string correo;
-        
-        public reenviarCodigoRequest() {
-        }
-        
-        public reenviarCodigoRequest(string correo) {
-            this.correo = correo;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class reenviarCodigoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public reenviarCodigoResponse() {
-        }
-        
-        public reenviarCodigoResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="registrarse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class registrarseRequest {
         
@@ -629,6 +593,42 @@ namespace SoftBO.registroWS {
         }
         
         public registrarseResponse(int @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigo", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reenviarCodigoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string correo;
+        
+        public reenviarCodigoRequest() {
+        }
+        
+        public reenviarCodigoRequest(string correo) {
+            this.correo = correo;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="reenviarCodigoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class reenviarCodigoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public reenviarCodigoResponse() {
+        }
+        
+        public reenviarCodigoResponse(bool @return) {
             this.@return = @return;
         }
     }
@@ -686,29 +686,6 @@ namespace SoftBO.registroWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.registroWS.reenviarCodigoResponse SoftBO.registroWS.RegistroWS.reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request) {
-            return base.Channel.reenviarCodigo(request);
-        }
-        
-        public bool reenviarCodigo(string correo) {
-            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
-            inValue.correo = correo;
-            SoftBO.registroWS.reenviarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigo(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> SoftBO.registroWS.RegistroWS.reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request) {
-            return base.Channel.reenviarCodigoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(string correo) {
-            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
-            inValue.correo = correo;
-            return ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         SoftBO.registroWS.registrarseResponse SoftBO.registroWS.RegistroWS.registrarse(SoftBO.registroWS.registrarseRequest request) {
             return base.Channel.registrarse(request);
         }
@@ -729,6 +706,29 @@ namespace SoftBO.registroWS {
             SoftBO.registroWS.registrarseRequest inValue = new SoftBO.registroWS.registrarseRequest();
             inValue.usuario = usuario;
             return ((SoftBO.registroWS.RegistroWS)(this)).registrarseAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.registroWS.reenviarCodigoResponse SoftBO.registroWS.RegistroWS.reenviarCodigo(SoftBO.registroWS.reenviarCodigoRequest request) {
+            return base.Channel.reenviarCodigo(request);
+        }
+        
+        public bool reenviarCodigo(string correo) {
+            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
+            inValue.correo = correo;
+            SoftBO.registroWS.reenviarCodigoResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigo(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> SoftBO.registroWS.RegistroWS.reenviarCodigoAsync(SoftBO.registroWS.reenviarCodigoRequest request) {
+            return base.Channel.reenviarCodigoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.registroWS.reenviarCodigoResponse> reenviarCodigoAsync(string correo) {
+            SoftBO.registroWS.reenviarCodigoRequest inValue = new SoftBO.registroWS.reenviarCodigoRequest();
+            inValue.correo = correo;
+            return ((SoftBO.registroWS.RegistroWS)(this)).reenviarCodigoAsync(inValue);
         }
     }
 }

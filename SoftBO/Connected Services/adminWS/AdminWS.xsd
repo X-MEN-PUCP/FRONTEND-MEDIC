@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://softcitws.soft.pucp.edu.pe/" targetNamespace="http://softcitws.soft.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ReporteDeCitasGeneralAdministrador" type="tns:ReporteDeCitasGeneralAdministrador" />
+  <xs:element name="ReporteDeCitasGeneralAdministradorResponse" type="tns:ReporteDeCitasGeneralAdministradorResponse" />
   <xs:element name="agregarEspecialidadAMedico" type="tns:agregarEspecialidadAMedico" />
   <xs:element name="agregarEspecialidadAMedicoResponse" type="tns:agregarEspecialidadAMedicoResponse" />
   <xs:element name="asignarNuevoRolParaUsuario" type="tns:asignarNuevoRolParaUsuario" />
@@ -28,10 +30,8 @@
   <xs:element name="listarUsuariosPorEspecialidadResponse" type="tns:listarUsuariosPorEspecialidadResponse" />
   <xs:element name="modificarEspecialidads" type="tns:modificarEspecialidads" />
   <xs:element name="modificarEspecialidadsResponse" type="tns:modificarEspecialidadsResponse" />
-  <xs:element name="modificarUsuario" type="tns:modificarUsuario" />
-  <xs:element name="modificarUsuarioResponse" type="tns:modificarUsuarioResponse" />
-  <xs:element name="modificarUsuarios" nillable="true" type="tns:modificarUsuario" />
-  <xs:element name="modificarUsuariosResponse" nillable="true" type="tns:modificarUsuarioResponse" />
+  <xs:element name="modificarUsuarios" type="tns:modificarUsuarios" />
+  <xs:element name="modificarUsuariosResponse" type="tns:modificarUsuariosResponse" />
   <xs:element name="obtenerEspecialidadPorId" type="tns:obtenerEspecialidadPorId" />
   <xs:element name="obtenerEspecialidadPorIdResponse" type="tns:obtenerEspecialidadPorIdResponse" />
   <xs:element name="obtenerUsuarioPorId" type="tns:obtenerUsuarioPorId" />
@@ -183,6 +183,30 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ReporteDeCitasGeneralAdministrador">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+      <xs:element minOccurs="0" name="codMedico" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha_inicio" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha_fini" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReporteDeCitasGeneralAdministradorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:reporteCitaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reporteCitaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codMedico" type="xs:string" />
+      <xs:element minOccurs="0" name="doctor" type="xs:string" />
+      <xs:element minOccurs="0" name="especialidad" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaCita" type="xs:string" />
+      <xs:element minOccurs="0" name="hora" type="xs:string" />
+      <xs:element minOccurs="0" name="idCita" type="xs:string" />
+      <xs:element minOccurs="0" name="paciente" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="obtenerUsuarioPorId">
     <xs:sequence>
       <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
@@ -193,12 +217,12 @@
       <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuario">
+  <xs:complexType name="modificarUsuarios">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarUsuarioResponse">
+  <xs:complexType name="modificarUsuariosResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
@@ -250,16 +274,6 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="insertarNuevaEspecialidad">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarNuevaEspecialidadResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="obtenerEspecialidadPorId">
     <xs:sequence>
       <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
@@ -268,6 +282,16 @@
   <xs:complexType name="obtenerEspecialidadPorIdResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoGeneral">

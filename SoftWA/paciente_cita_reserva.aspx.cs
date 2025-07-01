@@ -10,6 +10,11 @@ namespace SoftWA
 {
     public partial class paciente_cita_reserva : System.Web.UI.Page
     {
+        private PacienteBO servicioPaciente;
+        public paciente_cita_reserva()
+        {
+            servicioPaciente = new PacienteBO();
+        }
         private Dictionary<DateTime, List<TimeSpan>> HorariosDisponiblesPorFecha
         {
             get { return ViewState["HorariosDisponibles"] as Dictionary<DateTime, List<TimeSpan>> ?? new Dictionary<DateTime, List<TimeSpan>>(); }
@@ -46,8 +51,7 @@ namespace SoftWA
         {
             try
             {
-                var servicioEspecialidad = new EspecialidadBO();
-                var especialidades = servicioEspecialidad.ListarEspecialidad();
+                var especialidades = servicioPaciente.ListarTodasLasEspecialidadesParaPaciente();
                 ddlEspecialidad.DataSource = especialidades;
                 ddlEspecialidad.DataTextField = "nombreEspecialidad";
                 ddlEspecialidad.DataValueField = "idEspecialidad";
@@ -67,8 +71,7 @@ namespace SoftWA
             {
                 try
                 {
-                    var servicioMedicos = new UsuarioPorEspecialidadBO();
-                    var medicos = servicioMedicos.ListarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
+                    var medicos = servicioPaciente.ListarMedicosPorEspecialidadPaciente(idEspecialidad);
                     if (medicos != null && medicos.Any())
                     {
                         var listaMedicos = medicos.Select(m => new ListItem(
@@ -116,8 +119,7 @@ namespace SoftWA
 
             try
             {
-                var servicioCita = new CitaBO();
-                var citasDisponibles = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, null, null, SoftBO.citaWS.estadoCita.DISPONIBLE);
+                var citasDisponibles = servicioPaciente.BuscarCitasParaPaciente(idEspecialidad, idMedico, null, null, SoftBO.pacienteWS.estadoCita.DISPONIBLE);
                 if (citasDisponibles != null && citasDisponibles.Any())
                 {
                     var disponibilidad = citasDisponibles
@@ -162,10 +164,9 @@ namespace SoftWA
 
             try
             {
-                var servicioCita = new CitaBO();
-                var resultados = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
+                var resultados = servicioPaciente.BuscarCitasParaPaciente(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
                                                                     string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
-                                                                    SoftBO.citaWS.estadoCita.DISPONIBLE);
+                                                                    SoftBO.pacienteWS.estadoCita.DISPONIBLE);
                 if (resultados != null && resultados.Any())
                 {
                     var citasParaMostrar = resultados
@@ -203,10 +204,6 @@ namespace SoftWA
         #region flujo de reserva de citas
         protected void btnConfirmarReserva_Click(object sender, EventArgs e)
         {
-            ProcesarReserva();
-        }
-        private void ProcesarReserva()
-        {
             if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
             {
                 MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
@@ -223,9 +220,18 @@ namespace SoftWA
             try
             {
                 int resultadoReserva;
-                var servicioPaciente = new PacienteBO();
-                var citaParaReserva = PrepararCitaReserva(idCita);
-                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
+                var citaParaReserva = servicioPaciente.ObtenerPorIdCitaParaPaciente(idCita);
+                if (citaParaReserva == null)
+                {
+                    MostrarMensaje(ltlMensajeReserva, "Error: La cita ya no existe o no está disponible.", esError: true);
+                    CerrarModalDesdeServidor();
+                    return;
+                }
+                var pacienteParaReserva = new SoftBO.pacienteWS.usuarioDTO
+                {
+                    idUsuario = usuarioLogueado.idUsuario,
+                    idUsuarioSpecified = true
+                };
                 resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
                 if (resultadoReserva > 0)
                 {
@@ -384,96 +390,6 @@ namespace SoftWA
             phNoResultados.Visible = true;
             ltlMensajeReserva.Text = "";
             pnlResultados.Visible = false;
-        }
-        private SoftBO.pacienteWS.citaDTO PrepararCitaReserva(int idCita)
-        {
-            SoftBO.citaWS.citaDTO citaCompleta;
-            var servicioCita = new CitaBO();
-            citaCompleta = servicioCita.ObtenerPorIdCitaCita(idCita);
-
-            if (citaCompleta == null)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: La cita ya no existe.", esError: true);
-                CerrarModalDesdeServidor();
-                return null;
-            }
-            if (citaCompleta.medico == null || citaCompleta.medico.idUsuario == 0 ||
-                citaCompleta.especialidad == null || citaCompleta.especialidad.idEspecialidad == 0 ||
-                citaCompleta.consultorio == null || citaCompleta.consultorio.idConsultorio == 0)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: Los detalles de la cita son incompletos.", esError: true);
-                CerrarModalDesdeServidor();
-                return null;
-            }
-            var cita = MapearCitaParaPacienteWS(citaCompleta);
-            return cita;
-        }
-        private SoftBO.pacienteWS.usuarioDTO PrepararPacienteReserva(int idusuario)
-        {
-            var paciente = new SoftBO.pacienteWS.usuarioDTO
-            {
-                idUsuario = idusuario,
-                idUsuarioSpecified = true
-            };
-            return paciente;
-        }
-        private SoftBO.pacienteWS.citaDTO MapearCitaParaPacienteWS(SoftBO.citaWS.citaDTO citaOriginal)
-        {
-            if (citaOriginal == null) return null;
-
-            var citaMapeada = new SoftBO.pacienteWS.citaDTO();
-
-            citaMapeada.idCita = citaOriginal.idCita;
-            citaMapeada.idCitaSpecified = true;
-            citaMapeada.fechaCita = citaOriginal.fechaCita;
-            citaMapeada.horaInicio = citaOriginal.horaInicio;
-            citaMapeada.horaFin = citaOriginal.horaFin;
-            if (citaOriginal.estadoSpecified)
-            {
-                string nombreEstado = citaOriginal.estado.ToString().ToUpperInvariant();
-                SoftBO.pacienteWS.estadoCita estadoDestino;
-                if (Enum.TryParse<SoftBO.pacienteWS.estadoCita>(nombreEstado, true, out estadoDestino))
-                {
-                    citaMapeada.estado = estadoDestino;
-                    citaMapeada.estadoSpecified = true;
-                }
-            }
-            citaMapeada.usuarioCreacion = citaOriginal.usuarioCreacion;
-            citaMapeada.usuarioCreacionSpecified = true;
-            citaMapeada.fechaCreacion = citaOriginal.fechaCreacion;
-            if (citaOriginal.medico != null)
-            {
-                citaMapeada.medico = new SoftBO.pacienteWS.usuarioDTO
-                {
-                    idUsuario = citaOriginal.medico.idUsuario,
-                    idUsuarioSpecified = true
-                };
-            }
-            if (citaOriginal.especialidad != null)
-            {
-                citaMapeada.especialidad = new SoftBO.pacienteWS.especialidadDTO
-                {
-                    idEspecialidad = citaOriginal.especialidad.idEspecialidad,
-                    idEspecialidadSpecified = true
-                };
-            }
-            if (citaOriginal.consultorio != null)
-            {
-                citaMapeada.consultorio = new SoftBO.pacienteWS.consultorioDTO
-                {
-                    idConsultorio = citaOriginal.consultorio.idConsultorio,
-                    idConsultorioSpecified = true
-                };
-            }
-            if (citaOriginal.turno != null)
-            {
-                citaMapeada.turno = new SoftBO.pacienteWS.turnoDTO
-                {
-                    idTurno = citaOriginal.turno.idTurno,
-                    idTurnoSpecified = true
-                };
-            }
-            return citaMapeada;
         }
         private void MostrarMensaje(Literal lit, string mensaje, bool esError)
         {

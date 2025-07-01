@@ -1,4 +1,4 @@
-﻿using SoftBO.rolesporusuarioWS;
+﻿
 using SoftBO.loginWS;
 using System;
 using System.Collections.Generic;
@@ -8,17 +8,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
+using SoftBO.pacienteWS;
 
 namespace SoftWA
 {
     public partial class indexLogin : System.Web.UI.Page
     {
         private readonly LoginBO _loginBO;
-        private readonly RolesPorUsuarioBO _rolesBO;
+        private readonly PacienteBO _pacienteBO;
         public indexLogin()
         {
             _loginBO = new LoginBO();
-            _rolesBO = new RolesPorUsuarioBO();
+            _pacienteBO = new PacienteBO();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -71,7 +72,7 @@ namespace SoftWA
                 IEnumerable<usuarioPorRolDTO> listaRoles = null;
                 try
                 {
-                    listaRoles = _rolesBO.ListarPorUsuarioRolesPorUsuario(usuarioAutenticadoLogin.idUsuario);
+                    listaRoles = _pacienteBO.ListarRolesPorUsuarioVistaPaciente(usuarioAutenticadoLogin.idUsuario);
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +119,6 @@ namespace SoftWA
             }
             return roles.OrderBy(r => r.rol.idRol).FirstOrDefault();
         }
-
         private string ObtenerUrlRedireccion(usuarioPorRolDTO rolPrincipal)
         {
             if (rolPrincipal?.rol == null) return null;
@@ -131,7 +131,6 @@ namespace SoftWA
                 default: return null;
             }
         }
-
         private void MostrarError(string mensaje)
         {
             ltlMensajeError.Text = $"<div class='alert alert-danger alert-dismissible fade show' role='alert'>{HttpUtility.HtmlEncode(mensaje)}<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";

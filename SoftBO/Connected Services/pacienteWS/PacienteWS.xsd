@@ -4,18 +4,31 @@
   <xs:element name="ActualizarEStadoDeCitaResponse" type="tns:ActualizarEStadoDeCitaResponse" />
   <xs:element name="buscarCitasPaciente" type="tns:buscarCitasPaciente" />
   <xs:element name="buscarCitasPacienteResponse" type="tns:buscarCitasPacienteResponse" />
+  <xs:element name="buscarCitasParaPaciente" type="tns:buscarCitasParaPaciente" />
+  <xs:element name="buscarCitasParaPacienteResponse" type="tns:buscarCitasParaPacienteResponse" />
   <xs:element name="cancelarCitaPaciente" type="tns:cancelarCitaPaciente" />
   <xs:element name="cancelarCitaPacienteResponse" type="tns:cancelarCitaPacienteResponse" />
   <xs:element name="listarCitasPorPaciente" type="tns:listarCitasPorPaciente" />
   <xs:element name="listarCitasPorPacienteResponse" type="tns:listarCitasPorPacienteResponse" />
+  <xs:element name="listarMedicosPorEspecialidadPaciente" type="tns:listarMedicosPorEspecialidadPaciente" />
+  <xs:element name="listarMedicosPorEspecialidadPacienteResponse" type="tns:listarMedicosPorEspecialidadPacienteResponse" />
+  <xs:element name="listarRolesPorUsuarioVistaPaciente" type="tns:listarRolesPorUsuarioVistaPaciente" />
+  <xs:element name="listarRolesPorUsuarioVistaPacienteResponse" type="tns:listarRolesPorUsuarioVistaPacienteResponse" />
+  <xs:element name="listarTodasLasEspecialidadesParaElPaceinte" type="tns:listarTodasLasEspecialidadesParaElPaceinte" />
+  <xs:element name="listarTodasLasEspecialidadesParaElPaceinteResponse" type="tns:listarTodasLasEspecialidadesParaElPaceinteResponse" />
+  <xs:element name="listarTodosPerfilesMedicosParaPaciente" type="tns:listarTodosPerfilesMedicosParaPaciente" />
+  <xs:element name="listarTodosPerfilesMedicosParaPacienteResponse" type="tns:listarTodosPerfilesMedicosParaPacienteResponse" />
+  <xs:element name="modificarCitaParaPaciente" type="tns:modificarCitaParaPaciente" />
+  <xs:element name="modificarCitaParaPacienteResponse" type="tns:modificarCitaParaPacienteResponse" />
+  <xs:element name="obtenerPorIdCitaParaPaciente" type="tns:obtenerPorIdCitaParaPaciente" />
+  <xs:element name="obtenerPorIdCitaParaPacienteResponse" type="tns:obtenerPorIdCitaParaPacienteResponse" />
   <xs:element name="reprogramarCitaPaciente" type="tns:reprogramarCitaPaciente" />
   <xs:element name="reprogramarCitaPacienteResponse" type="tns:reprogramarCitaPacienteResponse" />
   <xs:element name="reservarCitaPaciente" type="tns:reservarCitaPaciente" />
   <xs:element name="reservarCitaPacienteResponse" type="tns:reservarCitaPacienteResponse" />
-  <xs:complexType name="reprogramarCitaPaciente">
+  <xs:complexType name="modificarCitaParaPaciente">
     <xs:sequence>
-      <xs:element minOccurs="0" name="citaNueva" type="tns:citaDTO" />
-      <xs:element minOccurs="0" name="historia_por_cita" type="tns:historiaClinicaPorCitaDTO" />
+      <xs:element minOccurs="0" name="idCita" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="citaDTO">
@@ -97,6 +110,21 @@
       <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="modificarCitaParaPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarCitasPorPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="paciente" type="tns:usuarioDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarCitasPorPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:historiaClinicaPorCitaDTO" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="historiaClinicaPorCitaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="cita" type="tns:citaDTO" />
@@ -129,19 +157,35 @@
       <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="reprogramarCitaPacienteResponse">
+  <xs:complexType name="obtenerPorIdCitaParaPaciente">
     <xs:sequence>
-      <xs:element name="return" type="xs:int" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarCitasPorPaciente">
+  <xs:complexType name="obtenerPorIdCitaParaPacienteResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="paciente" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarCitasPorPacienteResponse">
+  <xs:complexType name="listarMedicosPorEspecialidadPaciente">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:historiaClinicaPorCitaDTO" />
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarMedicosPorEspecialidadPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorEspecialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuarioPorEspecialidadDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
+      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="buscarCitasPaciente">
@@ -158,6 +202,56 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="listarTodosPerfilesMedicosParaPaciente">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosPerfilesMedicosParaPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorEspecialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarRolesPorUsuarioVistaPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarRolesPorUsuarioVistaPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:usuarioPorRolDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuarioPorRolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estadoGeneral" type="tns:estadoGeneral" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="rol" type="tns:rolDTO" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioDTO" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaModificacion" type="xs:string" />
+      <xs:element minOccurs="0" name="idRol" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreRol" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reprogramarCitaPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="citaNueva" type="tns:citaDTO" />
+      <xs:element minOccurs="0" name="historia_por_cita" type="tns:historiaClinicaPorCitaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reprogramarCitaPacienteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="reservarCitaPaciente">
     <xs:sequence>
       <xs:element minOccurs="0" name="cita" type="tns:citaDTO" />
@@ -167,6 +261,14 @@
   <xs:complexType name="reservarCitaPacienteResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarTodasLasEspecialidadesParaElPaceinte">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodasLasEspecialidadesParaElPaceinteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:especialidadDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ActualizarEStadoDeCita">
@@ -187,6 +289,20 @@
   <xs:complexType name="cancelarCitaPacienteResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="buscarCitasParaPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+      <xs:element minOccurs="0" name="codMedico" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha" type="xs:string" />
+      <xs:element minOccurs="0" name="hora_inicio" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoCita" type="tns:estadoCita" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="buscarCitasParaPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoGeneral">

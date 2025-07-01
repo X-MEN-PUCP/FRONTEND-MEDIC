@@ -9,6 +9,11 @@ namespace SoftWA
 {
     public partial class paciente_cambiar_contraseña : System.Web.UI.Page
     {
+        private UsuarioBO usuarioBO;
+        public paciente_cambiar_contraseña()
+        {
+            usuarioBO = new UsuarioBO();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -37,11 +42,8 @@ namespace SoftWA
             }
             try
             {
-                var usuarioCompleto = new UsuarioBO().ObtenerPorIdUsuario(usuarioLogueado.idUsuario);
-                
-                int resultado;
-                var usuarioService = new UsuarioBO();
-                resultado = usuarioService.CambiarContraseñaUsuario(usuarioCompleto,nuevaContraseña);
+                var usuarioCompleto = usuarioBO.ObtenerPorIdUsuario(usuarioLogueado.idUsuario);
+                int resultado = usuarioBO.CambiarContraseñaUsuario(usuarioCompleto,nuevaContraseña);
                 
                 if(resultado > 0)
                 {

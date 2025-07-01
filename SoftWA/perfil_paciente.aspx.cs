@@ -12,11 +12,9 @@ namespace SoftWA.MA_Paciente
     public partial class perfil_paciente : System.Web.UI.Page
     {
         private readonly UsuarioBO _usuarioBO;
-        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
         public perfil_paciente()
         {
             _usuarioBO = new UsuarioBO();
-            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
         }
         protected void Page_Load(object sender, EventArgs e)
         {

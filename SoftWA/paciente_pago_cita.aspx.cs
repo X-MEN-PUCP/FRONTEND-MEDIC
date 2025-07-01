@@ -3,16 +3,16 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using SoftBO;
-using SoftBO.citaWS;
+using SoftBO.pacienteWS;
 
 namespace SoftWA
 {
     public partial class paciente_pago_cita : System.Web.UI.Page
     {
-        private readonly CitaBO _citaBO;
+        private readonly PacienteBO citaPaciente;
         public paciente_pago_cita()
         {
-            _citaBO = new CitaBO();
+            citaPaciente = new PacienteBO();
         }
         protected int CitaIdParaPagar
         {
@@ -52,7 +52,7 @@ namespace SoftWA
         {
             try
             {
-                var cita = _citaBO.ObtenerPorIdCitaCita(citaId);
+                var cita = citaPaciente.ObtenerPorIdCitaParaPaciente(citaId);
 
                 if (cita != null && cita.especialidad != null && cita.medico != null)
                 {
@@ -92,12 +92,12 @@ namespace SoftWA
                         MostrarMensajeFallo("El identificador de la cita es inválido. Por favor, intente nuevamente.");
                         return;
                     }
-                    var citaAPagar = _citaBO.ObtenerPorIdCitaCita(citaId);
+                    var citaAPagar = citaPaciente.ObtenerPorIdCitaParaPaciente(citaId);
                     if (citaAPagar != null)
                     {
-                        citaAPagar.estado = SoftBO.citaWS.estadoCita.PAGADO;
+                        citaAPagar.estado = SoftBO.pacienteWS.estadoCita.PAGADO;
                         citaAPagar.estadoSpecified = true;
-                        int resultado = _citaBO.ModificarCita(citaAPagar);
+                        int resultado = citaPaciente.ModificarCitaParaPaciente(citaAPagar);
 
                         if (resultado > 0)
                         {
@@ -166,7 +166,6 @@ namespace SoftWA
             btnVolverInicio.Visible = true;
             btnVerMisCitas.Visible = false;
         }
-
         private void MostrarErrorFatal(string mensaje)
         {
             phDetallesPago.Visible = false;
@@ -179,12 +178,10 @@ namespace SoftWA
             btnVolverInicio.Visible = true;
             btnVerMisCitas.Visible = false;
         }
-
         protected void btnCancelarPago_Click(object sender, EventArgs e)
         {
             Response.Redirect("paciente_proximas_citas.aspx");
         }
-
         protected void btnVolverInicio_Click(object sender, EventArgs e)
         {
             Response.Redirect("indexPaciente.aspx");

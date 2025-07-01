@@ -16,15 +16,6 @@ namespace SoftBO.turnoWS {
     public interface TurnoWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.turnoWS.listarTodosTurnoResponse listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/modificarTurnoResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -41,6 +32,15 @@ namespace SoftBO.turnoWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/obtenerPorIdTurnoResponse")]
         System.Threading.Tasks.Task<SoftBO.turnoWS.obtenerPorIdTurnoResponse> obtenerPorIdTurnoAsync(SoftBO.turnoWS.obtenerPorIdTurnoRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.turnoWS.listarTodosTurnoResponse listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/TurnoWS/listarTodosTurnoResponse")]
+        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request);
     }
     
     /// <remarks/>
@@ -262,34 +262,6 @@ namespace SoftBO.turnoWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTurnoRequest {
-        
-        public listarTodosTurnoRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarTodosTurnoResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.turnoWS.turnoDTO[] @return;
-        
-        public listarTodosTurnoResponse() {
-        }
-        
-        public listarTodosTurnoResponse(SoftBO.turnoWS.turnoDTO[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="modificarTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class modificarTurnoRequest {
         
@@ -359,6 +331,34 @@ namespace SoftBO.turnoWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurno", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTurnoRequest {
+        
+        public listarTodosTurnoRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarTodosTurnoResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarTodosTurnoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.turnoWS.turnoDTO[] @return;
+        
+        public listarTodosTurnoResponse() {
+        }
+        
+        public listarTodosTurnoResponse(SoftBO.turnoWS.turnoDTO[] @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface TurnoWSChannel : SoftBO.turnoWS.TurnoWS, System.ServiceModel.IClientChannel {
     }
@@ -384,27 +384,6 @@ namespace SoftBO.turnoWS {
         
         public TurnoWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.turnoWS.listarTodosTurnoResponse SoftBO.turnoWS.TurnoWS.listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request) {
-            return base.Channel.listarTodosTurno(request);
-        }
-        
-        public SoftBO.turnoWS.turnoDTO[] listarTodosTurno() {
-            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
-            SoftBO.turnoWS.listarTodosTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurno(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> SoftBO.turnoWS.TurnoWS.listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request) {
-            return base.Channel.listarTodosTurnoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync() {
-            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
-            return ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurnoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -451,6 +430,27 @@ namespace SoftBO.turnoWS {
             SoftBO.turnoWS.obtenerPorIdTurnoRequest inValue = new SoftBO.turnoWS.obtenerPorIdTurnoRequest();
             inValue.idTurno = idTurno;
             return ((SoftBO.turnoWS.TurnoWS)(this)).obtenerPorIdTurnoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.turnoWS.listarTodosTurnoResponse SoftBO.turnoWS.TurnoWS.listarTodosTurno(SoftBO.turnoWS.listarTodosTurnoRequest request) {
+            return base.Channel.listarTodosTurno(request);
+        }
+        
+        public SoftBO.turnoWS.turnoDTO[] listarTodosTurno() {
+            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
+            SoftBO.turnoWS.listarTodosTurnoResponse retVal = ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurno(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> SoftBO.turnoWS.TurnoWS.listarTodosTurnoAsync(SoftBO.turnoWS.listarTodosTurnoRequest request) {
+            return base.Channel.listarTodosTurnoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.turnoWS.listarTodosTurnoResponse> listarTodosTurnoAsync() {
+            SoftBO.turnoWS.listarTodosTurnoRequest inValue = new SoftBO.turnoWS.listarTodosTurnoRequest();
+            return ((SoftBO.turnoWS.TurnoWS)(this)).listarTodosTurnoAsync(inValue);
         }
     }
 }

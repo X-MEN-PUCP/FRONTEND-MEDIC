@@ -61,5 +61,44 @@ namespace SoftBO
         {
             return this.medicoCliente.agregarExamenPorCita(examenPorCita);
         }
+        ///////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////NUEVOS METODOS MEDICO////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////
+        public citaDTO ObtenerCitaPorIdCitaParaMedico(int idCita)
+        {
+            return this.medicoCliente.obtenerCitaPorIdCitaParaMedico(idCita);
+        }
+        public int ModificarCitaParaMedico(citaDTO cita)
+        {
+            return this.medicoCliente.modificarCitaParaMedico(cita);
+        }
+        public BindingList<interconsultaDTO> ListarInterconsultasPorIdCitaParaMedico(int idCita)
+        {
+            interconsultaDTO[] interconsultas = this.medicoCliente.listarInterconsultasPorIdCitaParMedico(idCita);
+            return new BindingList<interconsultaDTO>(interconsultas ?? new interconsultaDTO[0]);
+        }
+        public BindingList<interconsultaDTO> ListarTodasLasInterconsultasParaMedico()
+        {
+            interconsultaDTO[] interconsultas = this.medicoCliente.listarTodasLasInterconsultasParaMedico();
+            return new BindingList<interconsultaDTO>(interconsultas ?? new interconsultaDTO[0]);
+        }
+        public BindingList<examenDTO> ListarTodosLosExamenesParaMedico()
+        {
+            examenDTO[] examenes = this.medicoCliente.listarTodosLosExamenesParaMedico();
+            return new BindingList<examenDTO>(examenes ?? new examenDTO[0]);
+        }
+        public examenDTO ObtenerExamenPorIdParaMedico(int idExamen)
+        {
+            return this.medicoCliente.obtenerExamenPorIdParaMedico(idExamen);
+        }
+        public BindingList<examenPorCitaDTO> ListarExamenesPorIdCitaParaMedico(int idCita)
+        {
+            examenPorCitaDTO[] examenes = this.medicoCliente.listarExamenesPorIdCitaParaMedico(idCita);
+            return new BindingList<examenPorCitaDTO>(examenes ?? new examenPorCitaDTO[0]);
+        }
+        public diagnosticoDTO ObtenerDiagnosticoPorIdParaMedico(int idDiagnostico)
+        {
+            return this.medicoCliente.obtenerDiagnosticoPorIdParaMedico(idDiagnostico);
+        }
     }
 }
