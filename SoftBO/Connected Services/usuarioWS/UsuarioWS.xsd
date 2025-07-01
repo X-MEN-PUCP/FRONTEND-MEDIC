@@ -73,16 +73,15 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="buscarCuentaUsuario">
+  <xs:complexType name="cambiarEstadoLogicoUsuario">
     <xs:sequence>
-      <xs:element minOccurs="0" name="nroDocumento" type="xs:string" />
-      <xs:element minOccurs="0" name="tipoDoc" type="xs:string" />
-      <xs:element minOccurs="0" name="contrasenha" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="estadoLogico" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="buscarCuentaUsuarioResponse">
+  <xs:complexType name="cambiarEstadoLogicoUsuarioResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
+      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="completarRolesUsuario">
@@ -95,15 +94,16 @@
       <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="cambiarEstadoLogicoUsuario">
+  <xs:complexType name="buscarCuentaUsuario">
     <xs:sequence>
-      <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
-      <xs:element minOccurs="0" name="estadoLogico" type="xs:int" />
+      <xs:element minOccurs="0" name="nroDocumento" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDoc" type="xs:string" />
+      <xs:element minOccurs="0" name="contrasenha" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="cambiarEstadoLogicoUsuarioResponse">
+  <xs:complexType name="buscarCuentaUsuarioResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:int" />
+      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="modificarUsuario">

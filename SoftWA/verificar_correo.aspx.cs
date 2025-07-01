@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
 using SoftBO.registroWS;
+using SoftBO.usuarioWS;
 
 namespace SoftWA
 {
@@ -35,12 +36,24 @@ namespace SoftWA
             }
             try
             {
+                SoftBO.registroWS.usuarioDTO usuarioVerificado;
                 var servicioRegistro = new RegistroBO();
-                bool resultado = servicioRegistro.VerificarCodigo(CorreoVerificacion,codigoIngresado);
-                if (resultado)
+                usuarioVerificado = servicioRegistro.VerificarCodigo(CorreoVerificacion,codigoIngresado);
+                if (usuarioVerificado != null && usuarioVerificado.idUsuario > 0)
                 {
+                    var usuarioRoles = new SoftBO.usuarioWS.usuarioDTO { 
+                        idUsuario = usuarioVerificado.idUsuario,
+                        idUsuarioSpecified = true,
+                    };
+                    SoftBO.usuarioWS.usuarioDTO usuarioRolesLleno;
+                    var servicioUsuario = new UsuarioBO();
+                    usuarioRolesLleno = servicioUsuario.CompletarRolesUsuario(usuarioRoles);
+                    Session["UsuarioCompleto"] = usuarioRolesLleno;
+                    string nombreCompleto = $"{usuarioRolesLleno.nombres} {usuarioRolesLleno.apellidoPaterno}".Trim();
+                    Session["UsuarioLogueado_NombreCompleto"] = nombreCompleto;
+                    Session["RolPrincipal"] = new { rol = new { idRol = 3, nombreRol = "Paciente"}};
                     Session.Remove("CorreoVerificacion");
-                    Response.Redirect("indexLogin.aspx?reg=verified", false);
+                    Response.Redirect("indexPaciente.aspx", false);
                 }
                 else
                 {

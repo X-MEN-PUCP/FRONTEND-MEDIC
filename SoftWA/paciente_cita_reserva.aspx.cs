@@ -40,26 +40,8 @@ namespace SoftWA
                 }
             }
         }
-        private void PrecargarFiltros(string especialidadId, string medicoId)
-        {
-            try
-            {
-                if (ddlEspecialidad.Items.FindByValue(especialidadId) != null)
-                {
-                    ddlEspecialidad.SelectedValue = especialidadId;
-                    CargarMedicosPorEspecialidad();
-                    if (ddlMedico.Items.FindByValue(medicoId) != null)
-                    {
-                        ddlMedico.SelectedValue = medicoId;
-                    }
-                    ActualizarDisponibilidadCompleta();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error precargando filtros: {ex}");
-            }
-        }
+
+        #region carga y busqueda de citas disponible
         private void CargarEspecialidades()
         {
             try
@@ -70,7 +52,7 @@ namespace SoftWA
                 ddlEspecialidad.DataTextField = "nombreEspecialidad";
                 ddlEspecialidad.DataValueField = "idEspecialidad";
                 ddlEspecialidad.DataBind();
-                
+
             }
             catch (Exception ex)
             {
@@ -78,16 +60,44 @@ namespace SoftWA
             }
             ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccione Especialidad --", ""));
         }
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarMedicosPorEspecialidad()
         {
-            CargarMedicosPorEspecialidad();
-            LimpiarFiltrosDependientes(limpiarMedico: false);
-            ActualizarDisponibilidadCompleta();
-        }
-        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LimpiarFiltrosDependientes(limpiarMedico: false);
-            ActualizarDisponibilidadCompleta();
+            ddlMedico.Items.Clear();
+            if (int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) && idEspecialidad > 0)
+            {
+                try
+                {
+                    var servicioMedicos = new UsuarioPorEspecialidadBO();
+                    var medicos = servicioMedicos.ListarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
+                    if (medicos != null && medicos.Any())
+                    {
+                        var listaMedicos = medicos.Select(m => new ListItem(
+                            $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
+                            m.usuario.idUsuario.ToString()
+                        )).ToList();
+                        ddlMedico.DataSource = listaMedicos;
+                        ddlMedico.DataTextField = "Text";
+                        ddlMedico.DataValueField = "Value";
+                        ddlMedico.DataBind();
+                        ddlMedico.Enabled = true;
+                    }
+                    else
+                    {
+                        ddlMedico.Enabled = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error cargando médicos: " + ex.Message);
+                    ddlMedico.Enabled = false;
+                }
+                ddlMedico.Enabled = true;
+            }
+            else
+            {
+                ddlMedico.Enabled = false;
+            }
+            ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
         }
         private void ActualizarDisponibilidadCompleta()
         {
@@ -132,13 +142,127 @@ namespace SoftWA
                         lblCalendarioStatus.Visible = true;
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error actualizando disponibilidad completa: " + ex.Message);
             }
             calFechaCita.DataBind();
+        }
+        protected void btnBuscarCitas_Click(object sender, EventArgs e)
+        {
+            pnlResultados.Visible = true;
+            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0) return;
+            if (calFechaCita.SelectedDate.Year == 1) return;
+            lblErrorBusqueda.Visible = false;
+            int.TryParse(ddlMedico.SelectedValue, out int idMedico);
+            DateTime fecha = calFechaCita.SelectedDate;
+            string horaSeleccionada = rblHorarios.SelectedValue;
+
+            try
+            {
+                var servicioCita = new CitaBO();
+                var resultados = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
+                                                                    string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
+                                                                    SoftBO.citaWS.estadoCita.DISPONIBLE);
+                if (resultados != null && resultados.Any())
+                {
+                    var citasParaMostrar = resultados
+                        .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
+                        .Select(c => new
+                        {
+                            IdCitaDisponible = c.idCita,
+                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
+                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
+                            FechaCita = DateTime.Parse(c.fechaCita),
+                            DescripcionHorario = c.horaInicio.Substring(0, 5),
+                            Precio = c.especialidad.precioConsulta
+                        }).ToList();
+
+                    rptResultadosCitas.DataSource = citasParaMostrar;
+                    rptResultadosCitas.DataBind();
+                    phNoResultados.Visible = !citasParaMostrar.Any();
+                }
+                else
+                {
+                    LimpiarResultadosBusqueda();
+                    phNoResultados.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error buscando citas: " + ex.Message);
+                LimpiarResultadosBusqueda();
+                phNoResultados.Visible = true;
+            }
+        }
+        #endregion
+
+        #region flujo de reserva de citas
+        protected void btnConfirmarReserva_Click(object sender, EventArgs e)
+        {
+            ProcesarReserva();
+        }
+        private void ProcesarReserva()
+        {
+            if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuarioLogueado == null)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
+            try
+            {
+                int resultadoReserva;
+                var servicioPaciente = new PacienteBO();
+                var citaParaReserva = PrepararCitaReserva(idCita);
+                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
+                resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
+                if (resultadoReserva > 0)
+                {
+                    LimpiarResultadosBusqueda();
+                    pnlResultados.Visible = true;
+                    MostrarMensaje(ltlMensajeReserva, "¡Su cita ha sido reservada con éxito!", esError: false);
+                    ActualizarDisponibilidadCompleta();
+                }
+                else
+                {
+                    MostrarMensaje(ltlMensajeReserva, "No se pudo completar la reserva, la cita ya no esté disponible.", esError: true);
+                    btnBuscarCitas_Click(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Ocurrió un error inesperado al procesar su reserva.", esError: true);
+                System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
+            }
+            finally
+            {
+                CerrarModalDesdeServidor();
+            }
+        }
+        #endregion
+
+        #region controles y eventos de la UI
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarMedicosPorEspecialidad();
+            LimpiarFiltrosDependientes(limpiarMedico: false);
+            ActualizarDisponibilidadCompleta();
+        }
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LimpiarFiltrosDependientes(limpiarMedico: false);
+            ActualizarDisponibilidadCompleta();
         }
         protected void calFechaCita_SelectionChanged(object sender, EventArgs e)
         {
@@ -191,54 +315,45 @@ namespace SoftWA
                 e.Cell.ToolTip = "No hay citas disponibles este día";
             }
         }
-        protected void btnBuscarCitas_Click(object sender, EventArgs e)
+        protected void rptResultadosCitas_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            pnlResultados.Visible = true;
-            if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0) return;
-            if (calFechaCita.SelectedDate.Year == 1) return;
-            lblErrorBusqueda.Visible = false;
-            int.TryParse(ddlMedico.SelectedValue, out int idMedico);
-            DateTime fecha = calFechaCita.SelectedDate;
-            string horaSeleccionada = rblHorarios.SelectedValue;
-
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                dynamic cita = e.Item.DataItem;
+                if (cita == null) return;
+                var btnAccion = (LinkButton)e.Item.FindControl("btnAccionReserva");
+                if (btnAccion == null) return;
+                btnAccion.OnClientClick = "return mostrarModalConDatosDeBoton(this);";
+                btnAccion.Attributes["data-id-cita"] = cita.IdCitaDisponible.ToString();
+                btnAccion.Attributes["data-especialidad"] = cita.NombreEspecialidad;
+                btnAccion.Attributes["data-medico"] = cita.NombreMedico;
+                btnAccion.Attributes["data-fecha"] = cita.FechaCita.ToString("dddd, dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+                btnAccion.Attributes["data-hora"] = cita.DescripcionHorario;
+                btnAccion.Attributes["data-precio"] = cita.Precio.ToString("F2", CultureInfo.InvariantCulture);
+            }
+        }
+        private void PrecargarFiltros(string especialidadId, string medicoId)
+        {
             try
             {
-                var servicioCita = new CitaBO();
-                var resultados = servicioCita.BuscarCitasWSCitas(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
-                                                                    string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
-                                                                    SoftBO.citaWS.estadoCita.DISPONIBLE);
-                if (resultados != null && resultados.Any())
+                if (ddlEspecialidad.Items.FindByValue(especialidadId) != null)
                 {
-                    var citasParaMostrar = resultados
-                        .Where(c => c.especialidad != null && c.medico != null && c.turno != null)
-                        .Select(c => new
-                        {
-                            IdCitaDisponible = c.idCita,
-                            NombreEspecialidad = c.especialidad.nombreEspecialidad,
-                            NombreMedico = $"{c.medico.nombres} {c.medico.apellidoPaterno}",
-                            FechaCita = DateTime.Parse(c.fechaCita),
-                            DescripcionHorario = c.horaInicio.Substring(0, 5),
-                            Precio = c.especialidad.precioConsulta
-                        }).ToList();
-
-                    rptResultadosCitas.DataSource = citasParaMostrar;
-                    rptResultadosCitas.DataBind();
-                    phNoResultados.Visible = !citasParaMostrar.Any();
+                    ddlEspecialidad.SelectedValue = especialidadId;
+                    CargarMedicosPorEspecialidad();
+                    if (ddlMedico.Items.FindByValue(medicoId) != null)
+                    {
+                        ddlMedico.SelectedValue = medicoId;
+                    }
+                    ActualizarDisponibilidadCompleta();
                 }
-                else
-                {
-                    LimpiarResultadosBusqueda();
-                    phNoResultados.Visible = true;
-                }
-                
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error buscando citas: " + ex.Message);
-                LimpiarResultadosBusqueda();
-                phNoResultados.Visible = true;
+                System.Diagnostics.Debug.WriteLine($"Error precargando filtros: {ex}");
             }
         }
+        #endregion
+
         #region Metodos de Limpieza y UI
         private void LimpiarFiltrosDependientes(bool limpiarMedico = true)
         {
@@ -269,99 +384,6 @@ namespace SoftWA
             phNoResultados.Visible = true;
             ltlMensajeReserva.Text = "";
             pnlResultados.Visible = false;
-        }
-        private void CargarMedicosPorEspecialidad()
-        {
-            ddlMedico.Items.Clear();
-            if (int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) && idEspecialidad > 0)
-            {
-                try
-                {
-                    var servicioMedicos = new UsuarioPorEspecialidadBO();
-                    var medicos = servicioMedicos.ListarPorEspecialidadUsuarioPorEspecialidad(idEspecialidad);
-                    if(medicos != null && medicos.Any())
-                    {
-                        var listaMedicos = medicos.Select(m => new ListItem(
-                            $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
-                            m.usuario.idUsuario.ToString()
-                        )).ToList();
-                        ddlMedico.DataSource = listaMedicos;
-                        ddlMedico.DataTextField = "Text";
-                        ddlMedico.DataValueField = "Value";
-                        ddlMedico.DataBind();
-                        ddlMedico.Enabled = true;
-                    }
-                    else
-                    {
-                        ddlMedico.Enabled = false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine("Error cargando médicos: " + ex.Message);
-                    ddlMedico.Enabled = false;
-                }
-                ddlMedico.Enabled = true;
-            }
-            else
-            {
-                ddlMedico.Enabled = false;
-            }
-            ddlMedico.Items.Insert(0, new ListItem("-- Cualquier Médico --", ""));
-        }
-        private void ProcesarReserva(bool pagarAhora)
-        {
-            if (!int.TryParse(hfModalCitaId.Value, out int idCita) || idCita == 0)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: No se pudo identificar la cita a reservar.", esError: true);
-                CerrarModalDesdeServidor();
-                return;
-            }
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
-            if (usuarioLogueado == null)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
-                CerrarModalDesdeServidor();
-                return;
-            }
-            try
-            {
-                var citaParaReserva = PrepararCitaReserva(idCita);
-                var pacienteParaReserva = PrepararPacienteReserva(usuarioLogueado.idUsuario);
-                int resultadoReserva;
-                var servicioPaciente = new PacienteBO();
-                resultadoReserva = servicioPaciente.ReservarCitaPaciente(citaParaReserva, pacienteParaReserva);
-                
-                if (resultadoReserva > 0)
-                {
-                    Session["CitaIdParaPago"] = idCita;
-                    if(pagarAhora)
-                    {
-                        string scriptRedir = "window.location.href = 'paciente_pago_cita.aspx';";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "RedirigirPago", scriptRedir, true);
-                    }
-                    else
-                    {
-                        LimpiarResultadosBusqueda();
-                        pnlResultados.Visible = true;
-                        MostrarMensaje(ltlMensajeReserva, "¡Su cita ha sido reservada con éxito!", esError: false);
-                        ActualizarDisponibilidadCompleta();
-                        CerrarModalDesdeServidor();
-                    }
-                }
-                else
-                {
-                    MostrarMensaje(ltlMensajeReserva, "No se pudo completar la reserva, la cita ya no esté disponible.", esError: true);
-                    btnBuscarCitas_Click(this, EventArgs.Empty);
-                    CerrarModalDesdeServidor();
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarMensaje(ltlMensajeReserva, "Ocurrió un error inesperado al procesar su reserva.", esError: true);
-                System.Diagnostics.Debug.WriteLine("Error al reservar cita: " + ex.ToString());
-                CerrarModalDesdeServidor();
-            }
         }
         private SoftBO.pacienteWS.citaDTO PrepararCitaReserva(int idCita)
         {
@@ -453,31 +475,10 @@ namespace SoftWA
             }
             return citaMapeada;
         }
-        protected void btnModalPagarDespues_Click(object sender, EventArgs e)
-        {
-            ProcesarReserva(pagarAhora: false);
-        }
-        protected void btnModalPagarAhora_Click(object sender, EventArgs e)
-        {
-            ProcesarReserva(pagarAhora: true);
-        }
         private void MostrarMensaje(Literal lit, string mensaje, bool esError)
         {
             string cssClass = esError ? "alert alert-danger" : "alert alert-success";
             lit.Text = $"<div class='{cssClass} mt-3'>{Server.HtmlEncode(mensaje)}</div>";
-        }
-        protected void rptResultadosCitas_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                dynamic cita = e.Item.DataItem;
-                LinkButton btnAccion = (LinkButton)e.Item.FindControl("btnAccionReserva");
-
-                btnAccion.Text = "<i class='fa-solid fa-check-circle me-1'></i>Reservar";
-                btnAccion.CssClass = "btn btn-success btn-sm";
-                btnAccion.Enabled = true;
-                btnAccion.OnClientClick = string.Format("return mostrarModalConfirmacionReserva({0});", cita.IdCitaDisponible);
-            }
         }
         private void CerrarModalDesdeServidor()
         {

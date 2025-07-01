@@ -25,11 +25,9 @@ namespace SoftWA
     public partial class doctor_agenda : System.Web.UI.Page
     {
         private readonly MedicoBO _medicoBO;
-        private readonly HistoriaClinicaPorCitaBO _historiaClinicaPorCitaBO;
         public doctor_agenda()
         {
             _medicoBO = new MedicoBO();
-            _historiaClinicaPorCitaBO = new HistoriaClinicaPorCitaBO();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -86,7 +84,7 @@ namespace SoftWA
                 var proximaCita = citasPendientes.First();
                 pnlProximaCita.Visible = true;
 
-                var historiaClinicaPorCita = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(proximaCita.idCita);
+                var historiaClinicaPorCita = _medicoBO.ObtenerHistoriaClinicaPorCita(proximaCita.idCita);
                 var historiaClinica = historiaClinicaPorCita.historiaClinica;
                 var paciente = historiaClinica.paciente;
 
@@ -102,7 +100,7 @@ namespace SoftWA
                 var siguientesCitas = citasPendientes.Skip(1)
                 .Select(cita =>
                 {
-                    var historiaClinicaPorCita1 = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(cita.idCita);
+                    var historiaClinicaPorCita1 = _medicoBO.ObtenerHistoriaClinicaPorCita(cita.idCita);
                     var paciente1 = historiaClinicaPorCita1?.historiaClinica?.paciente;
                     var pacienteMapped = new usuarioDTO
                     {

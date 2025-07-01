@@ -110,13 +110,20 @@
     </form>
     <script src='<%= ResolveUrl("~/Scripts/loadingGlobal.js") %>' type="text/javascript"></script>
     <script type="text/javascript">
-        window.addEventListener('load', function () {
+        Sys.Application.add_load(function () {
             initializeGlobalLoadingIndicators(
                 'loadingSpinner',
                 500,
                 '.nav-link-spinner'
             );
         });
+        //window.addEventListener('load', function () {
+        //    initializeGlobalLoadingIndicators(
+        //        'loadingSpinner',
+        //        500,
+        //        '.nav-link-spinner'
+        //    );
+        //});
     </script>
 </body>
 </html>

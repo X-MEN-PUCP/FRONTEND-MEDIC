@@ -15,15 +15,15 @@ namespace SoftWA
     {
         private readonly ReporteCitasBO _reporteCitasBO;
         private readonly EspecialidadBO _especialidadBO;
-        private readonly UsuarioBO _usuarioBO;
+        private readonly AdminBO _adminBO;
 
         public admin_reporte_citas()
         {
             _reporteCitasBO = new ReporteCitasBO();
             _especialidadBO = new EspecialidadBO();
-            _usuarioBO = new UsuarioBO();
+            _adminBO = new AdminBO();
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +37,6 @@ namespace SoftWA
         {
             try
             {
-                // Poblar especialidades
                 var especialidades = _especialidadBO.ListarEspecialidad();
                 ddlEspecialidadReporte.DataSource = especialidades.OrderBy(e => e.nombreEspecialidad);
                 ddlEspecialidadReporte.DataTextField = "nombreEspecialidad";
@@ -45,7 +44,6 @@ namespace SoftWA
                 ddlEspecialidadReporte.DataBind();
                 ddlEspecialidadReporte.Items.Insert(0, new ListItem("-- Todas --", "0"));
 
-                // Poblar doctores
                 PoblarFiltroDoctores();
             }
             catch (Exception ex)
@@ -63,7 +61,6 @@ namespace SoftWA
                 //var todosLosUsuarios = _usuarioBO.ListarTodos();
                 var todosLosUsuarios = new List<usuarioDTO>();
 
-                // Filtrar solo los que tienen el rol de Médico (asumiendo ID de Rol 2)
                 //var doctores = todosLosUsuarios
                 //    .Where(u => u.roles != null && u.roles.Contains(2))
                 //    .OrderBy(d => d.apellidoPaterno)
@@ -148,7 +145,6 @@ namespace SoftWA
         }
         private List<reporteCitaDTO> ObtenerDatosReporte()
         {
-            // Recoger valores de los filtros
             string fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text) ? null : txtFechaDesdeReporte.Text;
             string fechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text) ? null : txtFechaHastaReporte.Text;
 
@@ -156,7 +152,6 @@ namespace SoftWA
 
             int.TryParse(ddlDoctorReporte.SelectedValue, out int idDoctor);
 
-            // Llamar al servicio web
             var reporte = _reporteCitasBO.ReporteCitasGeneral(
                 idEspecialidad,
                 idDoctor,
@@ -175,18 +170,14 @@ namespace SoftWA
 
                 if (!listaParaExportar.Any())
                 {
-                    // Opcional: mostrar un mensaje si no hay datos para exportar
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('No hay datos para exportar con los filtros actuales.');", true);
                     return;
                 }
 
-                // Usamos StringBuilder para construir el contenido del CSV
                 StringBuilder sb = new StringBuilder();
 
-                // Encabezados
                 sb.AppendLine("ID Cita,Paciente,Especialidad,CMP Doctor,Doctor,Fecha Cita,Hora");
 
-                // Filas de datos
                 foreach (var cita in listaParaExportar)
                 {
                     sb.AppendFormat("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\"",
@@ -201,7 +192,6 @@ namespace SoftWA
                     sb.AppendLine();
                 }
 
-                // Configurar la respuesta HTTP para la descarga del archivo
                 Response.Clear();
                 Response.Buffer = true;
                 Response.AddHeader("content-disposition", $"attachment;filename=ReporteCitas_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
@@ -219,14 +209,12 @@ namespace SoftWA
             }
         }
 
-        // Función auxiliar para limpiar los campos del CSV
         private string SanitizeCsvField(string field)
         {
             if (string.IsNullOrEmpty(field))
             {
                 return string.Empty;
             }
-            // Reemplaza las comillas dobles con dos comillas dobles para escaparlas en CSV
             return field.Replace("\"", "\"\"");
         }
 

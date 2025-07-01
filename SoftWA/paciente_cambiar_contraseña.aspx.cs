@@ -1,7 +1,9 @@
-﻿using System;
-using System.Web.UI;
+﻿using SoftBO;
 using SoftBO.loginWS;
 using SoftBO.usuarioWS;
+using System;
+using System.Linq;
+using System.Web.UI;
 
 namespace SoftWA
 {
@@ -25,21 +27,22 @@ namespace SoftWA
             }
             string contraseñaActual = txtCurrentPassword.Text;
             string nuevaContraseña = txtNewPassword.Text;
+            string confirmacionContraseña = txtConfirmNewPassword.Text;
             
+            if (!EsValido(contraseñaActual, nuevaContraseña, confirmacionContraseña)) return;
+            if (!EsContrasenaSegura(nuevaContraseña))
+            {
+                MostrarMensaje("La nueva contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos.", false);
+                return;
+            }
             try
             {
-                var usuarioVerificar = new SoftBO.usuarioWS.usuarioDTO
-                {
-                    idUsuario = usuarioLogueado.idUsuario,
-                    idUsuarioSpecified = true,
-                    contrasenha = contraseñaActual
-                };
+                var usuarioCompleto = new UsuarioBO().ObtenerPorIdUsuario(usuarioLogueado.idUsuario);
                 
                 int resultado;
-                using (var usuarioService = new SoftBO.usuarioWS.UsuarioWSClient())
-                {
-                    resultado = usuarioService.CambiarContrasenhaUsuario(usuarioVerificar,nuevaContraseña);
-                }
+                var usuarioService = new UsuarioBO();
+                resultado = usuarioService.CambiarContraseñaUsuario(usuarioCompleto,nuevaContraseña);
+                
                 if(resultado > 0)
                 {
                     MostrarMensaje("Contraseña modificada correctamente.", true);
@@ -61,6 +64,37 @@ namespace SoftWA
                 System.Diagnostics.Debug.WriteLine("Error en btnChangePassword_Click: " + ex.Message);
                 MostrarMensaje("Ocurrió un error inesperado. Por favor, contacte al administrador.", false);
             }
+        }
+        private bool EsValido(string contraseñaActual, string nuevaContraseña, string confirmacionContraseña)
+        {
+            if (string.IsNullOrWhiteSpace(contraseñaActual) || string.IsNullOrWhiteSpace(nuevaContraseña) || string.IsNullOrWhiteSpace(confirmacionContraseña))
+            {
+                MostrarMensaje("Por favor, complete todos los campos requeridos.", false);
+                return false;
+            }
+            if (nuevaContraseña != confirmacionContraseña)
+            {
+                MostrarMensaje("La nueva contraseña y su confirmación no coinciden. Por favor, inténtelo de nuevo.", false);
+                return false;
+            }
+            if (contraseñaActual == nuevaContraseña)
+            {
+                MostrarMensaje("La nueva contraseña no puede ser la misma que la actual. Por favor, elija una contraseña diferente.", false);
+                return false;
+            }
+
+            return true;
+        }
+        private bool EsContrasenaSegura(string password)
+        {
+            if (string.IsNullOrEmpty(password) || password.Length < 8) return false;
+
+            bool tieneMayuscula = password.Any(char.IsUpper);
+            bool tieneMinuscula = password.Any(char.IsLower);
+            bool tieneNumero = password.Any(char.IsDigit);
+            bool tieneSimbolo = password.Any(c => !char.IsLetterOrDigit(c));
+
+            return tieneMayuscula && tieneMinuscula && tieneNumero && tieneSimbolo;
         }
         private void MostrarMensaje(string mensaje, bool esExito)
         {

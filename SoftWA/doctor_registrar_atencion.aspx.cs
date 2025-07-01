@@ -18,7 +18,6 @@ namespace SoftWA
     public partial class doctor_registrar_atencion : System.Web.UI.Page
     {
         private readonly CitaBO _citaBO;
-        private readonly HistoriaBO _historiaBO;
         private readonly HistoriaClinicaPorCitaBO _historiaClinicaPorCitaBO;
         private readonly DiagnosticoBO _diagnosticoBO;
         private readonly DiagnosticoPorCitaBO _diagnosticoPorCitaBO;
@@ -28,6 +27,8 @@ namespace SoftWA
         private readonly ExamenPorCitaBO _examenPorCitaBO;
         private readonly InterconsultaBO _interconsultaBO;
         private readonly EspecialidadBO _especialidadBO;
+
+        private readonly MedicoBO _medicoBO;
 
         private List<diagnosticoPorCita> DiagnosticosDeCita
         {
@@ -59,7 +60,7 @@ namespace SoftWA
         public doctor_registrar_atencion()
         {
             _citaBO = new CitaBO();
-            _historiaBO = new HistoriaBO();
+            _medicoBO = new MedicoBO();
             _historiaClinicaPorCitaBO = new HistoriaClinicaPorCitaBO();
             _diagnosticoBO = new DiagnosticoBO();
             _diagnosticoPorCitaBO = new DiagnosticoPorCitaBO();
@@ -101,7 +102,7 @@ namespace SoftWA
         {
             try
             {
-                var epicrisis = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
+                var epicrisis = _medicoBO.ObtenerHistoriaClinicaPorCita(idCita);
                 if (epicrisis != null)
                 {
                     txtPeso.Text = epicrisis.peso.ToString() ;
@@ -204,7 +205,7 @@ namespace SoftWA
                 var cita = _citaBO.ObtenerPorIdCitaCita(idCita);
                 if (cita != null)
                 {
-                    var historiaClinicaPorCita = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(cita.idCita);
+                    var historiaClinicaPorCita = _medicoBO.ObtenerHistoriaClinicaPorCita(cita.idCita);
                     var historiaClinica = historiaClinicaPorCita.historiaClinica;
                     var paciente = historiaClinica.paciente;
                     hfIdPaciente.Value = paciente.idUsuario.ToString();
@@ -238,6 +239,7 @@ namespace SoftWA
                 ddlDiagnosticos.DataTextField = "nombreDiagnostico";
                 ddlDiagnosticos.DataValueField = "idDiagnostico";
                 ddlDiagnosticos.DataBind();
+                ddlDiagnosticos.Items.Insert(0, new ListItem("", "0"));
             }
             catch (Exception ex)
             {
@@ -260,7 +262,7 @@ namespace SoftWA
 
             try
             {
-                var todasEspecialidades = _especialidadBO.ListarEspecialidad();
+                var todasEspecialidades = _medicoBO.ListarEspecialidadesParaInterconsulta();
                 ddlEspecialidadInterconsulta.DataSource = todasEspecialidades;
                 ddlEspecialidadInterconsulta.DataTextField = "nombreEspecialidad";
                 ddlEspecialidadInterconsulta.DataValueField = "idEspecialidad";
@@ -301,6 +303,7 @@ namespace SoftWA
                 DiagnosticosDeCita = listaActual;
                 RefrescarListaDiagnosticos();
                 txtObservacionDiagnostico.Text = string.Empty;
+                ddlDiagnosticos.SelectedValue = "0";
             }
         }
         

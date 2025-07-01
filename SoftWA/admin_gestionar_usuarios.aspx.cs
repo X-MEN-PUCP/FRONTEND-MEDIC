@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace SoftWA
 {
+    [Serializable]
     public class UsuarioGestionInfo
     {
         public int IdUsuario { get; set; }
@@ -23,13 +24,13 @@ namespace SoftWA
             : "Sin roles";
         public SoftBO.adminWS.estadoGeneral EstadoGeneral { get; set; }
     }
-
+    [Serializable]
     public class RolSimple
     {
         public int IdRol { get; set; }
         public string NombreRol { get; set; }
     }
-
+    [Serializable]
     public class EspecialidadSimple
     {
         public int IdEspecialidad { get; set; }
@@ -42,9 +43,23 @@ namespace SoftWA
         private readonly RolesPorUsuarioBO _rolesBO;
         private readonly EspecialidadBO _especialidadBO;
         private readonly UsuarioBO _usuarioBO;
-        private static List<RolSimple> _listaCompletaRoles;
-        private List<EspecialidadSimple> _listaCompletaEspecialidades;
+        private List<UsuarioGestionInfo> ListaCompletaUsuarios
+        {
+            get { return ViewState["ListaCompletaUsuarios"] as List<UsuarioGestionInfo>; }
+            set { ViewState["ListaCompletaUsuarios"] = value; }
+        }
 
+        private List<RolSimple> ListaCompletaRoles
+        {
+            get { return ViewState["ListaCompletaRoles"] as List<RolSimple>; }
+            set { ViewState["ListaCompletaRoles"] = value; }
+        }
+
+        private List<EspecialidadSimple> ListaCompletaEspecialidades
+        {
+            get { return ViewState["ListaCompletaEspecialidades"] as List<EspecialidadSimple>; }
+            set { ViewState["ListaCompletaEspecialidades"] = value; }
+        }
         public admin_gestionar_usuarios()
         {
             _adminBO = new AdminBO();
@@ -57,20 +72,19 @@ namespace SoftWA
         {
             if (!IsPostBack)
             {
-                // Cargar datos maestros solo una vez
-                CargarRolesMaestros();
-                PoblarFiltroRoles();
-                PoblarDropDownsModal();
-                BindUsuariosGrid();
+                CargarDatosMaestros();
+
+                CargarDatosUsuariosDesdeServicio();
+
+                AplicarFiltrosYEnlazarGrid();
             }
         }
 
-        private void CargarRolesMaestros()
+        private void CargarDatosMaestros()
         {
             try
             {
-                // Simulación de roles estáticos (idealmente vendrían de un WS)
-                _listaCompletaRoles = new List<RolSimple>
+                ListaCompletaRoles = new List<RolSimple>
                 {
                     new RolSimple { IdRol = 1, NombreRol = "Administrador" },
                     new RolSimple { IdRol = 2, NombreRol = "Médico" },
@@ -80,13 +94,13 @@ namespace SoftWA
             catch (Exception ex)
             {
                 MostrarMensaje("Error al cargar la lista de roles maestros. " + ex.Message, true);
-                _listaCompletaRoles = new List<RolSimple>();
+                ListaCompletaRoles = new List<RolSimple>();
             }
 
             try
             {
                 var especialidadesWs = _especialidadBO.ListarEspecialidad();
-                _listaCompletaEspecialidades = especialidadesWs.Select(e => new EspecialidadSimple
+                ListaCompletaEspecialidades = especialidadesWs.Select(e => new EspecialidadSimple
                 {
                     IdEspecialidad = e.idEspecialidad,
                     NombreEspecialidad = e.nombreEspecialidad
@@ -95,60 +109,21 @@ namespace SoftWA
             catch (Exception ex)
             {
                 MostrarMensaje("Error al cargar especialidades. " + ex.Message, true);
-                _listaCompletaEspecialidades = new List<EspecialidadSimple>();
+                ListaCompletaEspecialidades = new List<EspecialidadSimple>();
             }
+
+            PoblarFiltroRoles();
+            PoblarDropDownsModal();
         }
 
-        private void PoblarDropDownsModal()
+        private void CargarDatosUsuariosDesdeServicio()
         {
-            try
-            {
-                // Poblar ddlRolNuevo
-                ddlRolNuevo.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
-                ddlRolNuevo.DataTextField = "NombreRol";
-                ddlRolNuevo.DataValueField = "IdRol";
-                ddlRolNuevo.DataBind();
-                ddlRolNuevo.Items.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
-
-                // Poblar ddlEspecialidadNuevo
-                ddlEspecialidadNuevo.DataSource = _listaCompletaEspecialidades.OrderBy(e => e.NombreEspecialidad);
-                ddlEspecialidadNuevo.DataTextField = "NombreEspecialidad";
-                ddlEspecialidadNuevo.DataValueField = "IdEspecialidad";
-                ddlEspecialidadNuevo.DataBind();
-                ddlEspecialidadNuevo.Items.Insert(0, new ListItem("-- Seleccione especialidad --", "0"));
-            }
-            catch (Exception ex)
-            {
-                MostrarMensaje("Error al poblar dropdowns del modal: " + ex.Message, true);
-            }
-        }
-
-        private void PoblarFiltroRoles()
-        {
-            try
-            {
-                ddlFiltroRol.DataSource = _listaCompletaRoles.OrderBy(r => r.NombreRol);
-                ddlFiltroRol.DataTextField = "NombreRol";
-                ddlFiltroRol.DataValueField = "IdRol";
-                ddlFiltroRol.DataBind();
-                ddlFiltroRol.Items.Insert(0, new ListItem("-- Todos los Roles --", "0"));
-            }
-            catch (Exception ex)
-            {
-                MostrarMensaje("Error al poblar filtro de roles: " + ex.Message, true);
-            }
-        }
-
-        private void BindUsuariosGrid()
-        {
-            List<UsuarioGestionInfo> listaUsuariosParaMostrar;
-
             try
             {
                 var usuariosWs = _adminBO.ListarTodosUsuarios();
                 if (usuariosWs == null) throw new Exception("El servicio no devolvió usuarios.");
 
-                listaUsuariosParaMostrar = new List<UsuarioGestionInfo>();
+                var listaUsuariosParaMostrar = new List<UsuarioGestionInfo>();
 
                 foreach (var u in usuariosWs)
                 {
@@ -159,7 +134,7 @@ namespace SoftWA
                     {
                         rolesDelUsuario = rolesPorUsuarioWs.Select(rpu =>
                         {
-                            var rolInfo = _listaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
+                            var rolInfo = this.ListaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
                             return new SoftBO.adminWS.rolDTO { idRol = rpu.rol.idRol, nombreRol = rolInfo?.NombreRol ?? "Desconocido" };
                         }).ToList();
                     }
@@ -175,10 +150,65 @@ namespace SoftWA
                         Roles = rolesDelUsuario
                     });
                 }
+
+                this.ListaCompletaUsuarios = listaUsuariosParaMostrar;
             }
             catch (Exception ex)
             {
                 MostrarMensaje("Error de conexión al obtener la lista de usuarios. " + ex.Message, true);
+                this.ListaCompletaUsuarios = new List<UsuarioGestionInfo>();
+            }
+        }
+
+        private void PoblarDropDownsModal()
+        {
+            try
+            {
+                var roles = this.ListaCompletaRoles;
+                var especialidades = this.ListaCompletaEspecialidades;
+
+                ddlRolNuevo.DataSource = roles.OrderBy(r => r.NombreRol);
+                ddlRolNuevo.DataTextField = "NombreRol";
+                ddlRolNuevo.DataValueField = "IdRol";
+                ddlRolNuevo.DataBind();
+                ddlRolNuevo.Items.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
+
+                ddlEspecialidadNuevo.DataSource = especialidades.OrderBy(e => e.NombreEspecialidad);
+                ddlEspecialidadNuevo.DataTextField = "NombreEspecialidad";
+                ddlEspecialidadNuevo.DataValueField = "IdEspecialidad";
+                ddlEspecialidadNuevo.DataBind();
+                ddlEspecialidadNuevo.Items.Insert(0, new ListItem("-- Seleccione especialidad --", "0"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al poblar dropdowns del modal: " + ex.Message, true);
+            }
+        }
+
+        private void PoblarFiltroRoles()
+        {
+            try
+            {
+                var roles = this.ListaCompletaRoles;
+                ddlFiltroRol.DataSource = roles.OrderBy(r => r.NombreRol);
+                ddlFiltroRol.DataTextField = "NombreRol";
+                ddlFiltroRol.DataValueField = "IdRol";
+                ddlFiltroRol.DataBind();
+                ddlFiltroRol.Items.Insert(0, new ListItem("-- Todos los Roles --", "0"));
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al poblar filtro de roles: " + ex.Message, true);
+            }
+        }
+
+        private void AplicarFiltrosYEnlazarGrid()
+        {
+            var listaUsuariosParaMostrar = this.ListaCompletaUsuarios;
+
+            if (listaUsuariosParaMostrar == null)
+            {
+                MostrarMensaje("No se pudieron cargar los datos de los usuarios.", true);
                 lvUsuarios.DataSource = null;
                 lvUsuarios.DataBind();
                 return;
@@ -216,7 +246,7 @@ namespace SoftWA
 
         protected void btnAplicarFiltros_Click(object sender, EventArgs e)
         {
-            BindUsuariosGrid();
+            AplicarFiltrosYEnlazarGrid();
         }
 
         protected void lnkLimpiarFiltros_Click(object sender, EventArgs e)
@@ -224,7 +254,7 @@ namespace SoftWA
             txtFiltroNombre.Text = string.Empty;
             ddlFiltroRol.SelectedValue = "0";
             ddlOrdenarUsuarios.SelectedValue = "IdAsc";
-            BindUsuariosGrid();
+            AplicarFiltrosYEnlazarGrid();
         }
 
         protected void lvUsuarios_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -267,7 +297,7 @@ namespace SoftWA
                 {
                     var rolesActuales = rolesPorUsuarioWs?.Select(rpu =>
                     {
-                        var rolInfo = _listaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
+                        var rolInfo = ListaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
                         return new RolSimple { IdRol = rpu.rol.idRol, NombreRol = rolInfo?.NombreRol ?? "Desconocido" };
                     }).ToList() ?? new List<RolSimple>();
 
@@ -277,7 +307,7 @@ namespace SoftWA
                     rptRolesActuales.DataSource = rolesActuales;
                     rptRolesActuales.DataBind();
 
-                    var rolesDisponibles = _listaCompletaRoles.Where(r => !rolesActuales.Any(ur => ur.IdRol == r.IdRol)).ToList();
+                    var rolesDisponibles = ListaCompletaRoles.Where(r => !rolesActuales.Any(ur => ur.IdRol == r.IdRol)).ToList();
                     ddlRolesDisponibles.DataSource = rolesDisponibles;
                     ddlRolesDisponibles.DataTextField = "NombreRol";
                     ddlRolesDisponibles.DataValueField = "IdRol";
@@ -299,7 +329,6 @@ namespace SoftWA
                     : SoftBO.usuarioWS.estadoGeneral.ACTIVO;
                     usuarioAmodificar.estadoGeneral = nuevoEstado;
                     usuarioAmodificar.estadoGeneralSpecified = true;
-                    MostrarMensaje("Cambio de estado exitoso", false);
                     var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
                     if (adminLogueado != null)
                     {
@@ -308,6 +337,9 @@ namespace SoftWA
                         usuarioAmodificar.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
                     }
                     _usuarioBO.ModificarUsuario(usuarioAmodificar);
+                    MostrarMensaje("Cambio de estado exitoso", false);
+                    CargarDatosUsuariosDesdeServicio();
+                    AplicarFiltrosYEnlazarGrid();
                 }
                 catch (Exception ex)
                 {
@@ -341,7 +373,8 @@ namespace SoftWA
                     if (resultado > 0)
                     {
                         MostrarMensaje("Rol asignado correctamente.", false);
-                        BindUsuariosGrid();
+                        CargarDatosUsuariosDesdeServicio();
+                        AplicarFiltrosYEnlazarGrid();
                     }
                     else
                     {
@@ -375,7 +408,8 @@ namespace SoftWA
                     if (resultado > 0)
                     {
                         MostrarMensaje("Rol eliminado correctamente.", false);
-                        BindUsuariosGrid();
+                        CargarDatosUsuariosDesdeServicio();
+                        AplicarFiltrosYEnlazarGrid();
                     }
                     else
                     {
@@ -463,10 +497,12 @@ namespace SoftWA
                 }
                 else
                 {
-                    MostrarMensaje("Funcionalidad para crear usuarios no médicos pendiente de implementación en backend.", false);
+                    //_usuarioBO.InsertarUsuario(nuevoUsuario); faltaimplementar
+                    LimpiarFormularioNuevoUsuario();
                 }
 
-                BindUsuariosGrid();
+                CargarDatosUsuariosDesdeServicio();
+                AplicarFiltrosYEnlazarGrid();
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideAddModal", "$('#modalAgregarUsuario').modal('hide');", true);
             }

@@ -86,7 +86,7 @@
                                 <!-- Formulario para agregar nuevo diagnóstico -->
                                 <div id="panelAgregarDiagnostico" runat="server">
                                     <div class="input-group mb-3">
-                                        <asp:DropDownList ID="ddlDiagnosticos" runat="server" CssClass="form-select"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDiagnosticos" runat="server" CssClass="form-control select2-diagnosticos" Width="50%"></asp:DropDownList>
                                         <asp:Button ID="btnAgregarDiagnostico" runat="server" Text="Agregar" CssClass="btn btn-outline-primary" OnClick="btnAgregarDiagnostico_Click" />
                                     </div>
                                     <div class="mb-3">
@@ -240,15 +240,31 @@
     function avanzarAcordeon(actualId, siguienteId) {
         var actual = document.getElementById(actualId);
         var siguiente = document.getElementById(siguienteId);
-
-        // Cierra el actual
         var bsActual = bootstrap.Collapse.getOrCreateInstance(actual);
         bsActual.hide();
-
-        // Abre el siguiente
         var bsSiguiente = bootstrap.Collapse.getOrCreateInstance(siguiente);
         bsSiguiente.show();
     }
     </script>
+    <script type="text/javascript">
+        function inicializarSelect2() {
+            $('.select2-diagnosticos').select2({
+                placeholder: "Escriba para buscar un diagnóstico...",
+                allowClear: true
+            });
+        }
 
+        $(document).ready(function () {
+            inicializarSelect2();
+        });
+
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        if (prm != null) {
+            prm.add_endRequest(function (sender, e) {
+                if (e.get_error() == null) {
+                    inicializarSelect2();
+                }
+            });
+        }
+    </script>
 </asp:Content>

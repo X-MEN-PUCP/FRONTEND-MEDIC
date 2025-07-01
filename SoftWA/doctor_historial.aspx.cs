@@ -21,15 +21,11 @@ namespace SoftWA
 
     public partial class doctor_historial : System.Web.UI.Page
     {
-        private readonly CitaBO _citaBO;
         private readonly MedicoBO _medicoBO;
-        private readonly HistoriaClinicaPorCitaBO _historiaClinicaPorCitaBO;    
 
         public doctor_historial()
         {
-            _citaBO = new CitaBO();
             _medicoBO = new MedicoBO();
-            _historiaClinicaPorCitaBO = new HistoriaClinicaPorCitaBO();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,7 +63,7 @@ namespace SoftWA
 
                 foreach (var cita in historial)
                 {
-                    var historiaClinicaPorCita = _historiaClinicaPorCitaBO.ObtenerHistoriaClinicaPorIdCita(cita.idCita);
+                    var historiaClinicaPorCita = _medicoBO.ObtenerHistoriaClinicaPorCita(cita.idCita);
 
                     string nombreCompletoPaciente = "Paciente no encontrado";
                     if (historiaClinicaPorCita?.historiaClinica?.paciente != null)
