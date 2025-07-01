@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://softcitws.soft.pucp.edu.pe/" targetNamespace="http://softcitws.soft.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ActualizarEStadoDeCita" type="tns:ActualizarEStadoDeCita" />
+  <xs:element name="ActualizarEStadoDeCitaResponse" type="tns:ActualizarEStadoDeCitaResponse" />
   <xs:element name="buscarCitasPaciente" type="tns:buscarCitasPaciente" />
   <xs:element name="buscarCitasPacienteResponse" type="tns:buscarCitasPacienteResponse" />
   <xs:element name="cancelarCitaPaciente" type="tns:cancelarCitaPaciente" />
@@ -142,17 +144,6 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:historiaClinicaPorCitaDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="reservarCitaPaciente">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="cita" type="tns:citaDTO" />
-      <xs:element minOccurs="0" name="paciente" type="tns:usuarioDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="reservarCitaPacienteResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="buscarCitasPaciente">
     <xs:sequence>
       <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
@@ -166,6 +157,27 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reservarCitaPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cita" type="tns:citaDTO" />
+      <xs:element minOccurs="0" name="paciente" type="tns:usuarioDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reservarCitaPacienteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActualizarEStadoDeCita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idCita" type="xs:int" />
+      <xs:element minOccurs="0" name="Estado" type="xs:int" />
+      <xs:element minOccurs="0" name="IdModificacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActualizarEStadoDeCitaResponse">
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="cancelarCitaPaciente">
     <xs:sequence>

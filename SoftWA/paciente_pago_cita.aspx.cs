@@ -182,7 +182,7 @@ namespace SoftWA
 
         protected void btnCancelarPago_Click(object sender, EventArgs e)
         {
-            Response.Redirect("paciente_cita_reserva.aspx");
+            Response.Redirect("paciente_proximas_citas.aspx");
         }
 
         protected void btnVolverInicio_Click(object sender, EventArgs e)

@@ -65,7 +65,7 @@ namespace SoftWA
                 System.Diagnostics.Debug.WriteLine($"Error General en Login: {ex.ToString()}");
                 return;
             }
-
+            System.Diagnostics.Debug.WriteLine($"Usuario autenticado: {usuarioAutenticadoLogin?.numDocumento} - ID: {usuarioAutenticadoLogin?.idUsuario}");
             if (usuarioAutenticadoLogin != null && usuarioAutenticadoLogin.idUsuario > 0)
             {
                 IEnumerable<usuarioPorRolDTO> listaRoles = null;

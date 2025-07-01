@@ -493,6 +493,9 @@
     <None Include="Connected Services\pacienteWS\PacienteWS.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.ActualizarEStadoDeCitaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\pacienteWS\SoftBO.pacienteWS.buscarCitasPacienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

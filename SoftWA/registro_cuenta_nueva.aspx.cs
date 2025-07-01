@@ -139,15 +139,6 @@ namespace SoftWA
                 string genero = ddlGenero.SelectedValue;
                 DateTime fechaNacParseada = DateTime.Parse(txtFechaNacimiento.Text);
 
-                System.Diagnostics.Debug.WriteLine($"Valor para tipoDocumento: {tipoDocumento}");
-                System.Diagnostics.Debug.WriteLine($"Valor para genero: {genero}");
-
-                Enum.TryParse<tipoDocumento>(tipoDocumento, true, out tipoDocumento tipoEnum);
-                Enum.TryParse<genero>(genero, true, out genero genEnum);
-
-                System.Diagnostics.Debug.WriteLine($"Enum parseado para tipoDocumento: {tipoEnum.ToString()}");
-                System.Diagnostics.Debug.WriteLine($"Enum parseado para genero: {genEnum.ToString()}");
-
                 var nuevoUsuario = new usuarioDTO();
                 nuevoUsuario.numDocumento = (tipoDocumento == "DNI") ? txtDNI.Text.Trim() : txtCE.Text.Trim();
                 nuevoUsuario.nombres = txtNombres.Text.Trim();
@@ -168,9 +159,9 @@ namespace SoftWA
                     nuevoUsuario.genero = generoEnum;
                     nuevoUsuario.generoSpecified = true;
                 }
-
+                int resultadoRegistro = 0;
                 var servicioRegistro = new RegistroBO();
-                int resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
+                resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
                 
                 if (resultadoRegistro>0)
                 {

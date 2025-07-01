@@ -127,20 +127,37 @@ namespace SoftWA
             if (usuario == null || usuario.idUsuario == 0)
             {
                 MostrarMensaje("Error: Usuario no encontrado.", esExito: false);
+                Response.Redirect("~/indexLogin.aspx");
                 return;
             }
             if (e.CommandName == "Cancelar")
             {
                 try
                 {
-                    var historiaClinicaBO = new HistoriaClinicaPorCitaBO();
-                    var historiaClinica = historiaClinicaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
-                    if (historiaClinica == null)
+                    var historiaOriginal = CitasCompletasPaciente.FirstOrDefault(h => h.cita?.idCita == idCita);
+                    if (historiaOriginal == null || historiaOriginal.historiaClinica == null)
                     {
-                        MostrarMensaje("Error: No se encontraron los datos de la historia clínica para esta cita.", esExito: false);
+                        MostrarMensaje("No se encontró la cita a cancelar.", esExito: false);
                         return;
                     }
-                    var historiaParaCancelar = MapearCitaParaPacienteWS(historiaClinica, usuario);
+                    var historiaParaCancelar = new SoftBO.pacienteWS.historiaClinicaPorCitaDTO
+                    {
+                        cita = new SoftBO.pacienteWS.citaDTO
+                        {
+                            idCita = idCita,
+                            idCitaSpecified = true
+                        },
+                        historiaClinica = new SoftBO.pacienteWS.historiaClinicaDTO
+                        {
+                            idHistoriaClinica = historiaOriginal.historiaClinica.idHistoriaClinica,
+                            idHistoriaClinicaSpecified = true,
+                            paciente = new SoftBO.pacienteWS.usuarioDTO
+                            {
+                                idUsuario = usuario.idUsuario,
+                                idUsuarioSpecified = true
+                            }
+                        }
+                    };
                     var servicioPaciente = new PacienteBO();
                     int resultado = servicioPaciente.CancelarCitaPaciente(historiaParaCancelar);
 
@@ -165,71 +182,6 @@ namespace SoftWA
                 Session["CitaIdParaPago"] = idCita;
                 Response.Redirect("paciente_pago_cita.aspx", false);
             }
-        }
-        private SoftBO.pacienteWS.historiaClinicaPorCitaDTO MapearCitaParaPacienteWS(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO citaOriginal,
-            SoftBO.loginWS.usuarioDTO paciente)
-        {
-            if (citaOriginal == null) return null;
-
-            var mapeado = new SoftBO.pacienteWS.historiaClinicaPorCitaDTO();
-            if(citaOriginal.cita != null)
-            {
-                var citaMapeada = new SoftBO.pacienteWS.citaDTO
-                {
-                    idCita = citaOriginal.cita.idCita,
-                    idCitaSpecified = true
-                };
-                if(citaOriginal.cita.medico != null)
-                {
-                    citaMapeada.medico = new SoftBO.pacienteWS.usuarioDTO
-                    {
-                        idUsuario = citaOriginal.cita.medico.idUsuario,
-                        idUsuarioSpecified = true
-                    };
-                }
-                if(citaOriginal.cita.especialidad != null)
-                {
-                    citaMapeada.especialidad = new SoftBO.pacienteWS.especialidadDTO
-                    {
-                        idEspecialidad = citaOriginal.cita.especialidad.idEspecialidad,
-                        idEspecialidadSpecified = true
-                    };
-                }
-                if(citaOriginal.cita.consultorio != null)
-                {
-                    citaMapeada.consultorio = new SoftBO.pacienteWS.consultorioDTO
-                    {
-                        idConsultorio = citaOriginal.cita.consultorio.idConsultorio,
-                        idConsultorioSpecified = true
-                    };
-                }
-                if(citaOriginal.cita.turno != null)
-                {
-                    citaMapeada.turno = new SoftBO.pacienteWS.turnoDTO
-                    {
-                        idTurno = citaOriginal.cita.turno.idTurno,
-                        idTurnoSpecified = true
-                    };
-                }
-                mapeado.cita = citaMapeada;
-            }
-            if(citaOriginal.historiaClinica != null)
-            {
-                mapeado.historiaClinica = new SoftBO.pacienteWS.historiaClinicaDTO
-                {
-                    idHistoriaClinica = citaOriginal.historiaClinica.idHistoriaClinica,
-                    idHistoriaClinicaSpecified = true,
-                    paciente = new SoftBO.pacienteWS.usuarioDTO
-                    {
-                        idUsuario = paciente.idUsuario,
-                        idUsuarioSpecified = true,
-                        nombres = paciente.nombres,
-                        apellidoPaterno = paciente.apellidoPaterno
-                    }
-                };
-            }
-            
-            return mapeado;
         }
         #region Métodos de Ayuda para la UI
 

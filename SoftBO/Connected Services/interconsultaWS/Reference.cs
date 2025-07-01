@@ -16,19 +16,6 @@ namespace SoftBO.interconsultaWS {
     public interface InterconsultaWS {
         
         // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaReques" +
-            "t", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRespon" +
-            "se")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse obtenerPorIdInterconuslta(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaReques" +
-            "t", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRespon" +
-            "se")]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> obtenerPorIdInterconusltaAsync(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request);
-        
-        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaRequest", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/insertarInterconusltaResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -49,6 +36,19 @@ namespace SoftBO.interconsultaWS {
             "", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/listarTodosInterconusltaRespons" +
             "e")]
         System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync(SoftBO.interconsultaWS.listarTodosInterconusltaRequest request);
+        
+        // CODEGEN: El parámetro 'return' requiere información adicional de esquema que no se puede capturar con el modo de parámetros. El atributo específico es 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaReques" +
+            "t", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRespon" +
+            "se")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse obtenerPorIdInterconuslta(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaReques" +
+            "t", ReplyAction="http://softcitws.soft.pucp.edu.pe/InterconsultaWS/obtenerPorIdInterconusltaRespon" +
+            "se")]
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> obtenerPorIdInterconusltaAsync(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request);
     }
     
     /// <remarks/>
@@ -1480,47 +1480,6 @@ namespace SoftBO.interconsultaWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdInterconusltaRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idEspecialidad;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int idCita;
-        
-        public obtenerPorIdInterconusltaRequest() {
-        }
-        
-        public obtenerPorIdInterconusltaRequest(int idEspecialidad, int idCita) {
-            this.idEspecialidad = idEspecialidad;
-            this.idCita = idCita;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
-    public partial class obtenerPorIdInterconusltaResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public SoftBO.interconsultaWS.interconsultaDTO @return;
-        
-        public obtenerPorIdInterconusltaResponse() {
-        }
-        
-        public obtenerPorIdInterconusltaResponse(SoftBO.interconsultaWS.interconsultaDTO @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="insertarInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
     public partial class insertarInterconusltaRequest {
         
@@ -1582,6 +1541,47 @@ namespace SoftBO.interconsultaWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdInterconuslta", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdInterconusltaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idEspecialidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int idCita;
+        
+        public obtenerPorIdInterconusltaRequest() {
+        }
+        
+        public obtenerPorIdInterconusltaRequest(int idEspecialidad, int idCita) {
+            this.idEspecialidad = idEspecialidad;
+            this.idCita = idCita;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="obtenerPorIdInterconusltaResponse", WrapperNamespace="http://softcitws.soft.pucp.edu.pe/", IsWrapped=true)]
+    public partial class obtenerPorIdInterconusltaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public SoftBO.interconsultaWS.interconsultaDTO @return;
+        
+        public obtenerPorIdInterconusltaResponse() {
+        }
+        
+        public obtenerPorIdInterconusltaResponse(SoftBO.interconsultaWS.interconsultaDTO @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface InterconsultaWSChannel : SoftBO.interconsultaWS.InterconsultaWS, System.ServiceModel.IClientChannel {
     }
@@ -1607,31 +1607,6 @@ namespace SoftBO.interconsultaWS {
         
         public InterconsultaWSClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.obtenerPorIdInterconuslta(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request) {
-            return base.Channel.obtenerPorIdInterconuslta(request);
-        }
-        
-        public SoftBO.interconsultaWS.interconsultaDTO obtenerPorIdInterconuslta(int idEspecialidad, int idCita) {
-            SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest inValue = new SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.idCita = idCita;
-            SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).obtenerPorIdInterconuslta(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.obtenerPorIdInterconusltaAsync(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request) {
-            return base.Channel.obtenerPorIdInterconusltaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> obtenerPorIdInterconusltaAsync(int idEspecialidad, int idCita) {
-            SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest inValue = new SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest();
-            inValue.idEspecialidad = idEspecialidad;
-            inValue.idCita = idCita;
-            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).obtenerPorIdInterconusltaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1676,6 +1651,31 @@ namespace SoftBO.interconsultaWS {
         public System.Threading.Tasks.Task<SoftBO.interconsultaWS.listarTodosInterconusltaResponse> listarTodosInterconusltaAsync() {
             SoftBO.interconsultaWS.listarTodosInterconusltaRequest inValue = new SoftBO.interconsultaWS.listarTodosInterconusltaRequest();
             return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).listarTodosInterconusltaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse SoftBO.interconsultaWS.InterconsultaWS.obtenerPorIdInterconuslta(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request) {
+            return base.Channel.obtenerPorIdInterconuslta(request);
+        }
+        
+        public SoftBO.interconsultaWS.interconsultaDTO obtenerPorIdInterconuslta(int idEspecialidad, int idCita) {
+            SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest inValue = new SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.idCita = idCita;
+            SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse retVal = ((SoftBO.interconsultaWS.InterconsultaWS)(this)).obtenerPorIdInterconuslta(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> SoftBO.interconsultaWS.InterconsultaWS.obtenerPorIdInterconusltaAsync(SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest request) {
+            return base.Channel.obtenerPorIdInterconusltaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SoftBO.interconsultaWS.obtenerPorIdInterconusltaResponse> obtenerPorIdInterconusltaAsync(int idEspecialidad, int idCita) {
+            SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest inValue = new SoftBO.interconsultaWS.obtenerPorIdInterconusltaRequest();
+            inValue.idEspecialidad = idEspecialidad;
+            inValue.idCita = idCita;
+            return ((SoftBO.interconsultaWS.InterconsultaWS)(this)).obtenerPorIdInterconusltaAsync(inValue);
         }
     }
 }

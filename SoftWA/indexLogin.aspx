@@ -125,12 +125,27 @@
                 <div class="d-grid">
                     <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" ValidationGroup="LoginValidation" />
                 </div>
-                <div class="mb-3 text-center">
-                    <a href="#" class="btn btn-link">¿Olvidaste tu contraseña?</a>
-                </div>
                 <div class="mt-3 text-center">
                     ¿No tienes cuenta? <a href="registro_cuenta_nueva.aspx" class="btn btn-link">Regístrate aquí</a>
                 </div>
+                <hr class="my-3" />
+                <div class="text-center form-text px-3">
+                    <i class="fa-solid fa-circle-info me-1"></i>
+                    <strong>¿Olvidó su contraseña?</strong>
+                    <p class="mb-1">
+                        Para recuperarla, por favor comuníquese con nosotros indicando su número de documento y el correo con el que se registró.
+                    </p>
+                    <div>
+                        <a href="mailto:medicalapp.pro@gmail.com" class="btn btn-sm btn-link text-decoration-none">
+                            <i class="fa-solid fa-envelope me-1"></i> Correo
+                        </a>
+                        <span class="mx-1">|</span>
+                        <a href="https://wa.me/51951043269" target="_blank" class="btn btn-sm btn-link text-decoration-none">
+                           <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </form>

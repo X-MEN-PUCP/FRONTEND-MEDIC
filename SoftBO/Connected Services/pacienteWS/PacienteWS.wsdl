@@ -5,17 +5,29 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftCitWS/PacienteWS?xsd=1" namespace="http://softcitws.soft.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="reservarCitaPaciente">
-    <part name="parameters" element="tns:reservarCitaPaciente" />
+  <message name="listarCitasPorPaciente">
+    <part name="parameters" element="tns:listarCitasPorPaciente" />
   </message>
-  <message name="reservarCitaPacienteResponse">
-    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
+  <message name="listarCitasPorPacienteResponse">
+    <part name="parameters" element="tns:listarCitasPorPacienteResponse" />
   </message>
   <message name="buscarCitasPaciente">
     <part name="parameters" element="tns:buscarCitasPaciente" />
   </message>
   <message name="buscarCitasPacienteResponse">
     <part name="parameters" element="tns:buscarCitasPacienteResponse" />
+  </message>
+  <message name="ActualizarEStadoDeCita">
+    <part name="parameters" element="tns:ActualizarEStadoDeCita" />
+  </message>
+  <message name="ActualizarEStadoDeCitaResponse">
+    <part name="parameters" element="tns:ActualizarEStadoDeCitaResponse" />
+  </message>
+  <message name="reservarCitaPaciente">
+    <part name="parameters" element="tns:reservarCitaPaciente" />
+  </message>
+  <message name="reservarCitaPacienteResponse">
+    <part name="parameters" element="tns:reservarCitaPacienteResponse" />
   </message>
   <message name="reprogramarCitaPaciente">
     <part name="parameters" element="tns:reprogramarCitaPaciente" />
@@ -29,20 +41,22 @@
   <message name="cancelarCitaPacienteResponse">
     <part name="parameters" element="tns:cancelarCitaPacienteResponse" />
   </message>
-  <message name="listarCitasPorPaciente">
-    <part name="parameters" element="tns:listarCitasPorPaciente" />
-  </message>
-  <message name="listarCitasPorPacienteResponse">
-    <part name="parameters" element="tns:listarCitasPorPacienteResponse" />
-  </message>
   <portType name="PacienteWS">
-    <operation name="reservarCitaPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
+    <operation name="listarCitasPorPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteRequest" message="tns:listarCitasPorPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteResponse" message="tns:listarCitasPorPacienteResponse" />
     </operation>
     <operation name="buscarCitasPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteRequest" message="tns:buscarCitasPaciente" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/buscarCitasPacienteResponse" message="tns:buscarCitasPacienteResponse" />
+    </operation>
+    <operation name="ActualizarEStadoDeCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/ActualizarEStadoDeCitaRequest" message="tns:ActualizarEStadoDeCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/ActualizarEStadoDeCitaResponse" message="tns:ActualizarEStadoDeCitaResponse" />
+    </operation>
+    <operation name="reservarCitaPaciente">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteRequest" message="tns:reservarCitaPaciente" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reservarCitaPacienteResponse" message="tns:reservarCitaPacienteResponse" />
     </operation>
     <operation name="reprogramarCitaPaciente">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/reprogramarCitaPacienteRequest" message="tns:reprogramarCitaPaciente" />
@@ -52,14 +66,10 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteRequest" message="tns:cancelarCitaPaciente" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/cancelarCitaPacienteResponse" message="tns:cancelarCitaPacienteResponse" />
     </operation>
-    <operation name="listarCitasPorPaciente">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteRequest" message="tns:listarCitasPorPaciente" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/PacienteWS/listarCitasPorPacienteResponse" message="tns:listarCitasPorPacienteResponse" />
-    </operation>
   </portType>
   <binding name="PacienteWSPortBinding" type="tns:PacienteWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="reservarCitaPaciente">
+    <operation name="listarCitasPorPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -69,6 +79,24 @@
       </output>
     </operation>
     <operation name="buscarCitasPaciente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ActualizarEStadoDeCita">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="reservarCitaPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -87,15 +115,6 @@
       </output>
     </operation>
     <operation name="cancelarCitaPaciente">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="listarCitasPorPaciente">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
