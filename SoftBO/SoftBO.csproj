@@ -335,9 +335,6 @@
     <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.listarEspecialidadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.modificarEspecialidadResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\especialidadWS\SoftBO.especialidadWS.obtenerPorIdTablaEspecialidadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

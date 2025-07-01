@@ -1,5 +1,6 @@
 ﻿using SoftBO;
 using SoftBO.pacienteWS;
+using SoftBO.historiaclinicaporcitaWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,9 +13,9 @@ namespace SoftWA
 {
     public partial class paciente_proximas_citas : System.Web.UI.Page
     {
-        private List<historiaClinicaPorCitaDTO> CitasCompletasPaciente
+        private List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> CitasCompletasPaciente
         {
-            get { return ViewState["CitasCompletasPaciente"] as List<historiaClinicaPorCitaDTO> ?? new List<historiaClinicaPorCitaDTO>(); }
+            get { return ViewState["CitasCompletasPaciente"] as List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> ?? new List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO>(); }
             set { ViewState["CitasCompletasPaciente"] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +25,6 @@ namespace SoftWA
                 CargarDatosIniciales();
             }
         }
-
         private void CargarDatosIniciales()
         {
             var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
@@ -76,7 +76,7 @@ namespace SoftWA
         {
             ltlMensajeAccion.Text = "";
             int.TryParse(ddlFiltroEspecialidad.SelectedValue, out int filtroEspecialidadId);
-            IEnumerable<historiaClinicaPorCitaDTO> citasFiltradas = CitasCompletasPaciente
+            IEnumerable<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> citasFiltradas = CitasCompletasPaciente
                     .Where(h => h.cita != null && (h.cita.estado == SoftBO.pacienteWS.estadoCita.RESERVADO || h.cita.estado == SoftBO.pacienteWS.estadoCita.PAGADO) &&
                     DateTime.TryParse(h.cita.fechaCita, out var fecha) && fecha.Date >= DateTime.Today);
             if (filtroEspecialidadId > 0)
@@ -94,7 +94,7 @@ namespace SoftWA
                     FechaCita = DateTime.Parse(h.cita.fechaCita),
                     DescripcionHorario = h.cita.horaInicio.Substring(0, 5),
                     EstadoCita = FormatearNombreEstado(h.cita.estado),
-                    Precio = h.cita.especialidad?.precioConsulta ?? 0,
+                    Precio = (h.cita.especialidad?.precioConsulta ?? 0).ToString("F2",CultureInfo.InvariantCulture),
                     EsCancelable = DateTime.Parse(h.cita.fechaCita).Date > DateTime.Today.AddDays(1)
                 }).ToList();
 
@@ -123,20 +123,31 @@ namespace SoftWA
         protected void rptProximasCitas_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (!int.TryParse(e.CommandArgument.ToString(), out int idCita)) return;
-
+            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuario == null || usuario.idUsuario == 0)
+            {
+                MostrarMensaje("Error: Usuario no encontrado.", esExito: false);
+                return;
+            }
             if (e.CommandName == "Cancelar")
             {
                 try
                 {
+                    var historiaClinicaBO = new HistoriaClinicaPorCitaBO();
+                    var historiaClinica = historiaClinicaBO.ObtenerHistoriaClinicaPorIdCita(idCita);
+                    if (historiaClinica == null)
+                    {
+                        MostrarMensaje("Error: No se encontraron los datos de la historia clínica para esta cita.", esExito: false);
+                        return;
+                    }
+                    var historiaParaCancelar = MapearCitaParaPacienteWS(historiaClinica, usuario);
                     var servicioPaciente = new PacienteBO();
-                    var historiaPorCita = CitasCompletasPaciente.FirstOrDefault(h => h.cita.idCita == idCita);
-                    int resultado = servicioPaciente.CancelarCitaPaciente(historiaPorCita);
+                    int resultado = servicioPaciente.CancelarCitaPaciente(historiaParaCancelar);
 
                     if (resultado > 0)
                     {
                         MostrarMensaje("Cita cancelada exitosamente.", esExito: true);
                         CargarDatosIniciales();
-                        rptProximasCitas_ItemCommand(source, e);
                     }
                     else
                     {
@@ -155,7 +166,71 @@ namespace SoftWA
                 Response.Redirect("paciente_pago_cita.aspx", false);
             }
         }
+        private SoftBO.pacienteWS.historiaClinicaPorCitaDTO MapearCitaParaPacienteWS(SoftBO.historiaclinicaporcitaWS.historiaClinicaPorCitaDTO citaOriginal,
+            SoftBO.loginWS.usuarioDTO paciente)
+        {
+            if (citaOriginal == null) return null;
 
+            var mapeado = new SoftBO.pacienteWS.historiaClinicaPorCitaDTO();
+            if(citaOriginal.cita != null)
+            {
+                var citaMapeada = new SoftBO.pacienteWS.citaDTO
+                {
+                    idCita = citaOriginal.cita.idCita,
+                    idCitaSpecified = true
+                };
+                if(citaOriginal.cita.medico != null)
+                {
+                    citaMapeada.medico = new SoftBO.pacienteWS.usuarioDTO
+                    {
+                        idUsuario = citaOriginal.cita.medico.idUsuario,
+                        idUsuarioSpecified = true
+                    };
+                }
+                if(citaOriginal.cita.especialidad != null)
+                {
+                    citaMapeada.especialidad = new SoftBO.pacienteWS.especialidadDTO
+                    {
+                        idEspecialidad = citaOriginal.cita.especialidad.idEspecialidad,
+                        idEspecialidadSpecified = true
+                    };
+                }
+                if(citaOriginal.cita.consultorio != null)
+                {
+                    citaMapeada.consultorio = new SoftBO.pacienteWS.consultorioDTO
+                    {
+                        idConsultorio = citaOriginal.cita.consultorio.idConsultorio,
+                        idConsultorioSpecified = true
+                    };
+                }
+                if(citaOriginal.cita.turno != null)
+                {
+                    citaMapeada.turno = new SoftBO.pacienteWS.turnoDTO
+                    {
+                        idTurno = citaOriginal.cita.turno.idTurno,
+                        idTurnoSpecified = true
+                    };
+                }
+                mapeado.cita = citaMapeada;
+            }
+            if(citaOriginal.historiaClinica != null)
+            {
+                mapeado.historiaClinica = new SoftBO.pacienteWS.historiaClinicaDTO
+                {
+                    idHistoriaClinica = citaOriginal.historiaClinica.idHistoriaClinica,
+                    idHistoriaClinicaSpecified = true,
+                    paciente = new SoftBO.pacienteWS.usuarioDTO
+                    {
+                        idUsuario = paciente.idUsuario,
+                        idUsuarioSpecified = true,
+                        nombres = paciente.nombres,
+                        apellidoPaterno = paciente.apellidoPaterno
+                    }
+                };
+            }
+            
+            return mapeado;
+        }
         #region Métodos de Ayuda para la UI
 
         public string GetEstadoBadgeClass(string estado)

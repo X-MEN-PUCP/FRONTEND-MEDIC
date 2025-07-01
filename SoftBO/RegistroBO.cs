@@ -14,7 +14,7 @@ namespace SoftBO
         {
             this.registroCliente = new RegistroWSClient();
         }
-        public bool Registrarse(usuarioDTO usuario)
+        public int Registrarse(usuarioDTO usuario)
         {
             return this.registroCliente.registrarse(usuario);
         }

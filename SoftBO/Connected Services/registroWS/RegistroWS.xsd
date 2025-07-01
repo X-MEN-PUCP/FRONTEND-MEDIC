@@ -38,7 +38,7 @@
   </xs:complexType>
   <xs:complexType name="registrarseResponse">
     <xs:sequence>
-      <xs:element name="return" type="xs:boolean" />
+      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="verificarCodigo">

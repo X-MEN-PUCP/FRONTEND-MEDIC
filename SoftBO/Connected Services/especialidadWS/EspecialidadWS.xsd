@@ -6,8 +6,6 @@
   <xs:element name="insertarEspecialidadResponse" type="tns:insertarEspecialidadResponse" />
   <xs:element name="listarEspecialidad" type="tns:listarEspecialidad" />
   <xs:element name="listarEspecialidadResponse" type="tns:listarEspecialidadResponse" />
-  <xs:element name="modificarEspecialidad" type="tns:modificarEspecialidad" />
-  <xs:element name="modificarEspecialidadResponse" type="tns:modificarEspecialidadResponse" />
   <xs:element name="obtenerPorIdTablaEspecialidad" type="tns:obtenerPorIdTablaEspecialidad" />
   <xs:element name="obtenerPorIdTablaEspecialidadResponse" type="tns:obtenerPorIdTablaEspecialidadResponse" />
   <xs:complexType name="listarEspecialidad">
@@ -28,16 +26,6 @@
       <xs:element minOccurs="0" name="precioConsulta" type="xs:double" />
       <xs:element minOccurs="0" name="usuarioCreacion" type="xs:int" />
       <xs:element minOccurs="0" name="usuarioModificacion" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="modificarEspecialidad">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="modificarEspecialidadResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="cambiarEstadoEspecialidad">

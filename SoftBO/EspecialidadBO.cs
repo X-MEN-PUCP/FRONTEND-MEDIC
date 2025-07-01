@@ -24,10 +24,10 @@ namespace SoftBO
         {
             return this.especialidadCliente.insertarEspecialidad(especialidad);
         }
-        public int ModificarEspecialidad(especialidadDTO especialidad)
-        {
-            return this.especialidadCliente.modificarEspecialidad(especialidad);
-        }
+        //public int ModificarEspecialidad(especialidadDTO especialidad)
+        //{
+        //    return this.especialidadCliente.modificarEspecialidad(especialidad);
+        //}
         public int CambiarEstadoEspecialidad(especialidadDTO especialidad, int estado)
         {
             return this.especialidadCliente.cambiarEstadoEspecialidad(especialidad, estado);

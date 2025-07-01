@@ -61,7 +61,7 @@
                                     </p>
                                     <p class="card-text">
                                         <i class="fa-solid fa-money-bill-1-wave me-2 text-info"></i>
-                                        <strong>Precio:</strong> S/. <%# Eval("Precio", "{0:N2}") %>
+                                        <strong>Precio:</strong> S/. <%# Eval("Precio") %>
                                     </p>
                                 </div>
                                 <div class="card-footer bg-light text-end"> 

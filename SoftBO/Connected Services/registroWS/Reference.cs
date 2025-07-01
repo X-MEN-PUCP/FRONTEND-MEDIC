@@ -546,12 +546,12 @@ namespace SoftBO.registroWS {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://softcitws.soft.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
+        public int @return;
         
         public registrarseResponse() {
         }
         
-        public registrarseResponse(bool @return) {
+        public registrarseResponse(int @return) {
             this.@return = @return;
         }
     }
@@ -665,7 +665,7 @@ namespace SoftBO.registroWS {
             return base.Channel.registrarse(request);
         }
         
-        public bool registrarse(SoftBO.registroWS.usuarioDTO usuario) {
+        public int registrarse(SoftBO.registroWS.usuarioDTO usuario) {
             SoftBO.registroWS.registrarseRequest inValue = new SoftBO.registroWS.registrarseRequest();
             inValue.usuario = usuario;
             SoftBO.registroWS.registrarseResponse retVal = ((SoftBO.registroWS.RegistroWS)(this)).registrarse(inValue);

@@ -183,16 +183,6 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerUsuarioPorId">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerUsuarioPorIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="modificarUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
@@ -201,6 +191,16 @@
   <xs:complexType name="modificarUsuarioResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerUsuarioPorId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerUsuarioPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarTodosUsuarios">
@@ -250,16 +250,6 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="insertarNuevaEspecialidad">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="insertarNuevaEspecialidadResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="obtenerEspecialidadPorId">
     <xs:sequence>
       <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
@@ -268,6 +258,16 @@
   <xs:complexType name="obtenerEspecialidadPorIdResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="especialidad" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertarNuevaEspecialidadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="estadoGeneral">

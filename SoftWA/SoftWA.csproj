@@ -127,7 +127,6 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="Scripts\loadingGlobal.js" />
     <Content Include="Scripts\login.js" />
-    <Content Include="Scripts\pacienteCitas.js" />
     <Content Include="Scripts\pagoCita.js" />
     <Content Include="Scripts\registro.js" />
     <Content Include="verificar_correo.aspx" />

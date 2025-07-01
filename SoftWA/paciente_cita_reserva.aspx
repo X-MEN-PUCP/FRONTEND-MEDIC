@@ -113,6 +113,31 @@
                         </FooterTemplate>
                     </asp:Repeater>
                 </asp:Panel>
+                <div class="modal fade" id="confirmarReservaModal" tabindex="-1" aria-labelledby="confirmarReservaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #5bd3c5; color: white;">
+                                <h5 class="modal-title" id="confirmarReservaModalLabel"><i class="fa-solid fa-circle-question me-2"></i>Confirmar su Reserva</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Por favor, confirme los detalles de la cita que desea reservar:</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><strong>Especialidad:</strong> <span id="modalConfirmEspecialidad"></span></li>
+                                    <li class="list-group-item"><strong>Médico:</strong> <span id="modalConfirmMedico"></span></li>
+                                    <li class="list-group-item"><strong>Fecha:</strong> <span id="modalConfirmFecha"></span></li>
+                                    <li class="list-group-item"><strong>Horario:</strong> <span id="modalConfirmHorario"></span></li>
+                                    <li class="list-group-item"><strong>Precio:</strong> <span id="modalConfirmPrecio"></span></li>
+                                </ul>
+                                <p class="text-muted small mt-3">Una vez reservada, tendrá 24 horas para realizar el pago desde la sección "Pendientes".</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <asp:Button ID="btnConfirmarReserva" runat="server" Text="Confirmar Reserva" CssClass="btn btn-primary" OnClick="btnConfirmarReserva_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnBuscarCitas" EventName="Click" />
@@ -120,34 +145,36 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
-    <div class="modal fade" id="confirmarReservaModal" tabindex="-1" aria-labelledby="confirmarReservaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #5bd3c5; color: white;">
-                    <h5 class="modal-title" id="confirmarReservaModalLabel"><i class="fa-solid fa-circle-question me-2"></i>Confirmar su Reserva</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Por favor, confirme los detalles de la cita que desea reservar:</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Especialidad:</strong> <span id="modalConfirmEspecialidad"></span></li>
-                        <li class="list-group-item"><strong>Médico:</strong> <span id="modalConfirmMedico"></span></li>
-                        <li class="list-group-item"><strong>Fecha:</strong> <span id="modalConfirmFecha"></span></li>
-                        <li class="list-group-item"><strong>Horario:</strong> <span id="modalConfirmHorario"></span></li>
-                        <li class="list-group-item"><strong>Precio:</strong> <span id="modalConfirmPrecio"></span></li>
-                    </ul>
-                    <p class="text-muted small mt-3">Una vez reservada, tendrá 24 horas para realizar el pago desde la sección "Pendientes".</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnConfirmarReserva" runat="server" Text="Sí, Confirmar Reserva" CssClass="btn btn-primary" OnClick="btnConfirmarReserva_Click" />
-                </div>
-            </div>
-        </div>
-</div>
 
+    <script type="text/javascript">
+        function mostrarModalConDatosDeBoton(botonPresionado) {
+            console.log("Función 'mostrarModalConDatosDeBoton' llamada. Botón:", botonPresionado);
+            try {
+                const idCita = botonPresionado.getAttribute('data-id-cita');
+                const especialidad = botonPresionado.getAttribute('data-especialidad');
+                const medico = botonPresionado.getAttribute('data-medico');
+                const fecha = botonPresionado.getAttribute('data-fecha');
+                const hora = botonPresionado.getAttribute('data-hora');
+                const precio = parseFloat(botonPresionado.getAttribute('data-precio'));
+                console.log("Datos extraídos:", { idCita, especialidad, medico, fecha, hora, precio });
 
-    <script src='<%= ResolveUrl("~/Scripts/pacienteCitas.js") %>' type="text/javascript"></script>
+                document.getElementById('modalConfirmEspecialidad').textContent = especialidad;
+                document.getElementById('modalConfirmMedico').textContent = medico;
+                document.getElementById('modalConfirmFecha').textContent = fecha;
+                document.getElementById('modalConfirmHorario').textContent = hora;
+                document.getElementById('modalConfirmPrecio').textContent = 'S/ ' + precio.toFixed(2);
+                document.getElementById('<%= hfModalCitaId.ClientID %>').value = idCita;
+
+                const confirmModalElement = document.getElementById('confirmarReservaModal');
+                const confirmModal = new bootstrap.Modal(confirmModalElement);
+                confirmModal.show();
+            }
+            catch (e) {
+                console.error("Error dentro de mostrarModalConDatosDeBoton:", e);
+            }
+            return false;
+        }
+    </script>
     <style>
         .cita-card {
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;

@@ -170,9 +170,9 @@ namespace SoftWA
                 }
 
                 var servicioRegistro = new RegistroBO();
-                bool resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
+                int resultadoRegistro = servicioRegistro.Registrarse(nuevoUsuario);
                 
-                if (resultadoRegistro)
+                if (resultadoRegistro>0)
                 {
                     Session["CorreoVerificacion"] = nuevoUsuario.correoElectronico;
                     Response.Redirect("verificar_correo.aspx", false);

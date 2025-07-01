@@ -17,29 +17,17 @@
   <message name="listarEspecialidadesParaInterconsultaResponse">
     <part name="parameters" element="tns:listarEspecialidadesParaInterconsultaResponse" />
   </message>
-  <message name="listarTiposDeExamen">
-    <part name="parameters" element="tns:listarTiposDeExamen" />
+  <message name="obtenerHistoriaClinicaPorCita">
+    <part name="parameters" element="tns:obtenerHistoriaClinicaPorCita" />
   </message>
-  <message name="listarTiposDeExamenResponse">
-    <part name="parameters" element="tns:listarTiposDeExamenResponse" />
+  <message name="obtenerHistoriaClinicaPorCitaResponse">
+    <part name="parameters" element="tns:obtenerHistoriaClinicaPorCitaResponse" />
   </message>
-  <message name="listarExamenesPorTipo">
-    <part name="parameters" element="tns:listarExamenesPorTipo" />
+  <message name="modificarInteronsultaDeCita">
+    <part name="parameters" element="tns:modificarInteronsultaDeCita" />
   </message>
-  <message name="listarExamenesPorTipoResponse">
-    <part name="parameters" element="tns:listarExamenesPorTipoResponse" />
-  </message>
-  <message name="agregarExamenPorCita">
-    <part name="parameters" element="tns:agregarExamenPorCita" />
-  </message>
-  <message name="agregarExamenPorCitaResponse">
-    <part name="parameters" element="tns:agregarExamenPorCitaResponse" />
-  </message>
-  <message name="llenarEpicrisisMedico">
-    <part name="parameters" element="tns:llenarEpicrisisMedico" />
-  </message>
-  <message name="llenarEpicrisisMedicoResponse">
-    <part name="parameters" element="tns:llenarEpicrisisMedicoResponse" />
+  <message name="modificarInteronsultaDeCitaResponse">
+    <part name="parameters" element="tns:modificarInteronsultaDeCitaResponse" />
   </message>
   <message name="insertarInterconsultasDeCita">
     <part name="parameters" element="tns:insertarInterconsultasDeCita" />
@@ -53,17 +41,29 @@
   <message name="eliminarInterconsultaDeCitaResponse">
     <part name="parameters" element="tns:eliminarInterconsultaDeCitaResponse" />
   </message>
-  <message name="modificarInteronsultaDeCita">
-    <part name="parameters" element="tns:modificarInteronsultaDeCita" />
+  <message name="agregarExamenPorCita">
+    <part name="parameters" element="tns:agregarExamenPorCita" />
   </message>
-  <message name="modificarInteronsultaDeCitaResponse">
-    <part name="parameters" element="tns:modificarInteronsultaDeCitaResponse" />
+  <message name="agregarExamenPorCitaResponse">
+    <part name="parameters" element="tns:agregarExamenPorCitaResponse" />
   </message>
-  <message name="obtenerHistoriaClinicaPorCita">
-    <part name="parameters" element="tns:obtenerHistoriaClinicaPorCita" />
+  <message name="listarTiposDeExamen">
+    <part name="parameters" element="tns:listarTiposDeExamen" />
   </message>
-  <message name="obtenerHistoriaClinicaPorCitaResponse">
-    <part name="parameters" element="tns:obtenerHistoriaClinicaPorCitaResponse" />
+  <message name="listarTiposDeExamenResponse">
+    <part name="parameters" element="tns:listarTiposDeExamenResponse" />
+  </message>
+  <message name="listarExamenesPorTipo">
+    <part name="parameters" element="tns:listarExamenesPorTipo" />
+  </message>
+  <message name="listarExamenesPorTipoResponse">
+    <part name="parameters" element="tns:listarExamenesPorTipoResponse" />
+  </message>
+  <message name="llenarEpicrisisMedico">
+    <part name="parameters" element="tns:llenarEpicrisisMedico" />
+  </message>
+  <message name="llenarEpicrisisMedicoResponse">
+    <part name="parameters" element="tns:llenarEpicrisisMedicoResponse" />
   </message>
   <portType name="MedicoWS">
     <operation name="listarCitasMedico">
@@ -74,21 +74,13 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarEspecialidadesParaInterconsultaRequest" message="tns:listarEspecialidadesParaInterconsulta" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarEspecialidadesParaInterconsultaResponse" message="tns:listarEspecialidadesParaInterconsultaResponse" />
     </operation>
-    <operation name="listarTiposDeExamen">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarTiposDeExamenRequest" message="tns:listarTiposDeExamen" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarTiposDeExamenResponse" message="tns:listarTiposDeExamenResponse" />
+    <operation name="obtenerHistoriaClinicaPorCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/obtenerHistoriaClinicaPorCitaRequest" message="tns:obtenerHistoriaClinicaPorCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/obtenerHistoriaClinicaPorCitaResponse" message="tns:obtenerHistoriaClinicaPorCitaResponse" />
     </operation>
-    <operation name="listarExamenesPorTipo">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarExamenesPorTipoRequest" message="tns:listarExamenesPorTipo" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarExamenesPorTipoResponse" message="tns:listarExamenesPorTipoResponse" />
-    </operation>
-    <operation name="agregarExamenPorCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/agregarExamenPorCitaRequest" message="tns:agregarExamenPorCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/agregarExamenPorCitaResponse" message="tns:agregarExamenPorCitaResponse" />
-    </operation>
-    <operation name="llenarEpicrisisMedico">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoRequest" message="tns:llenarEpicrisisMedico" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoResponse" message="tns:llenarEpicrisisMedicoResponse" />
+    <operation name="modificarInteronsultaDeCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/modificarInteronsultaDeCitaRequest" message="tns:modificarInteronsultaDeCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/modificarInteronsultaDeCitaResponse" message="tns:modificarInteronsultaDeCitaResponse" />
     </operation>
     <operation name="insertarInterconsultasDeCita">
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/insertarInterconsultasDeCitaRequest" message="tns:insertarInterconsultasDeCita" />
@@ -98,13 +90,21 @@
       <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/eliminarInterconsultaDeCitaRequest" message="tns:eliminarInterconsultaDeCita" />
       <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/eliminarInterconsultaDeCitaResponse" message="tns:eliminarInterconsultaDeCitaResponse" />
     </operation>
-    <operation name="modificarInteronsultaDeCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/modificarInteronsultaDeCitaRequest" message="tns:modificarInteronsultaDeCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/modificarInteronsultaDeCitaResponse" message="tns:modificarInteronsultaDeCitaResponse" />
+    <operation name="agregarExamenPorCita">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/agregarExamenPorCitaRequest" message="tns:agregarExamenPorCita" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/agregarExamenPorCitaResponse" message="tns:agregarExamenPorCitaResponse" />
     </operation>
-    <operation name="obtenerHistoriaClinicaPorCita">
-      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/obtenerHistoriaClinicaPorCitaRequest" message="tns:obtenerHistoriaClinicaPorCita" />
-      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/obtenerHistoriaClinicaPorCitaResponse" message="tns:obtenerHistoriaClinicaPorCitaResponse" />
+    <operation name="listarTiposDeExamen">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarTiposDeExamenRequest" message="tns:listarTiposDeExamen" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarTiposDeExamenResponse" message="tns:listarTiposDeExamenResponse" />
+    </operation>
+    <operation name="listarExamenesPorTipo">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarExamenesPorTipoRequest" message="tns:listarExamenesPorTipo" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/listarExamenesPorTipoResponse" message="tns:listarExamenesPorTipoResponse" />
+    </operation>
+    <operation name="llenarEpicrisisMedico">
+      <input wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoRequest" message="tns:llenarEpicrisisMedico" />
+      <output wsam:Action="http://softcitws.soft.pucp.edu.pe/MedicoWS/llenarEpicrisisMedicoResponse" message="tns:llenarEpicrisisMedicoResponse" />
     </operation>
   </portType>
   <binding name="MedicoWSPortBinding" type="tns:MedicoWS">
@@ -127,7 +127,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarTiposDeExamen">
+    <operation name="obtenerHistoriaClinicaPorCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -136,25 +136,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarExamenesPorTipo">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="agregarExamenPorCita">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="llenarEpicrisisMedico">
+    <operation name="modificarInteronsultaDeCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -181,7 +163,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="modificarInteronsultaDeCita">
+    <operation name="agregarExamenPorCita">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -190,7 +172,25 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerHistoriaClinicaPorCita">
+    <operation name="listarTiposDeExamen">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarExamenesPorTipo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="llenarEpicrisisMedico">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
