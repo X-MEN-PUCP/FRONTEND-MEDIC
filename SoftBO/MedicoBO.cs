@@ -64,11 +64,11 @@ namespace SoftBO
         ///////////////////////////////////////////////////////////////////////////////////
         //////////////////////////NUEVOS METODOS MEDICO////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
-        public citaDTO ObtenerCitaPorIdCitaParaMedico(int idCita)
+        public medicoWS.citaDTO ObtenerCitaPorIdCitaParaMedico(int idCita)
         {
             return this.medicoCliente.obtenerCitaPorIdCitaParaMedico(idCita);
         }
-        public int ModificarCitaParaMedico(citaDTO cita)
+        public int ModificarCitaParaMedico(medicoWS.citaDTO cita)
         {
             return this.medicoCliente.modificarCitaParaMedico(cita);
         }
@@ -96,9 +96,31 @@ namespace SoftBO
             examenPorCitaDTO[] examenes = this.medicoCliente.listarExamenesPorIdCitaParaMedico(idCita);
             return new BindingList<examenPorCitaDTO>(examenes ?? new examenPorCitaDTO[0]);
         }
-        public diagnosticoDTO ObtenerDiagnosticoPorIdParaMedico(int idDiagnostico)
+        public medicoWS.diagnosticoDTO ObtenerDiagnosticoPorIdParaMedico(int idDiagnostico)
         {
             return this.medicoCliente.obtenerDiagnosticoPorIdParaMedico(idDiagnostico);
+        }
+
+        public BindingList<medicoWS.diagnosticoDTO> ListarTodosLosDiagnosticosParaMedico()
+        {
+            medicoWS.diagnosticoDTO[] diagnosticos = this.medicoCliente.listarTodosLosDiaganosticosParaMedico();
+            return new BindingList<medicoWS.diagnosticoDTO>(diagnosticos ?? new medicoWS.diagnosticoDTO[0]);
+        }
+
+        public medicoWS.especialidadDTO ObtenerEspecialidadPorIdParaMedico(int id)
+        {
+            return this.medicoCliente.obtenerEspecialidadPorIdParaMedico(id);
+        }
+
+        public BindingList<medicoWS.diagnosticoPorCita> ListarDiagnosticoPorIdCitaParaMedico(int idCita)
+        {
+            medicoWS.diagnosticoPorCita[] diagnosticos = this.medicoCliente.ListarDiagnosticoPorIdCitaParaMedico(idCita);
+            return new BindingList<medicoWS.diagnosticoPorCita>(diagnosticos ?? new medicoWS.diagnosticoPorCita[0]);
+        }
+
+        public int InsertarDiagnosticoPorCitaParaMedico(medicoWS.diagnosticoPorCita diagnostico)
+        {
+            return this.medicoCliente.InsertarDiagnosticoPorCitaParaMedico(diagnostico);
         }
     }
 }

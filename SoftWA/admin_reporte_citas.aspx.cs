@@ -13,12 +13,10 @@ namespace SoftWA
 {
     public partial class admin_reporte_citas : System.Web.UI.Page
     {
-        private readonly ReporteCitasBO _reporteCitasBO;
         private readonly AdminBO _adminBO;
 
         public admin_reporte_citas()
         {
-            _reporteCitasBO = new ReporteCitasBO();
             _adminBO = new AdminBO();
         }
         
@@ -141,7 +139,7 @@ namespace SoftWA
                 lvCitas.DataBind();
             }
         }
-        private List<reporteCitaDTO> ObtenerDatosReporte()
+        private List<SoftBO.adminWS.reporteCitaDTO> ObtenerDatosReporte()
         {
             string fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text) ? null : txtFechaDesdeReporte.Text;
             string fechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text) ? null : txtFechaHastaReporte.Text;
@@ -150,7 +148,7 @@ namespace SoftWA
 
             int.TryParse(ddlDoctorReporte.SelectedValue, out int idDoctor);
 
-            var reporte = _reporteCitasBO.ReporteCitasGeneral(
+            var reporte = _adminBO.ReporteDeCitasGeneralAdministrador(
                 idEspecialidad,
                 idDoctor,
                 fechaDesde,
@@ -216,7 +214,7 @@ namespace SoftWA
             return field.Replace("\"", "\"\"");
         }
 
-        private void CalcularYMostrarEstadisticas(List<reporteCitaDTO> listaCitas)
+        private void CalcularYMostrarEstadisticas(List<SoftBO.adminWS.reporteCitaDTO> listaCitas)
         {
             if (listaCitas == null || !listaCitas.Any())
             {
