@@ -416,14 +416,12 @@ namespace SoftWA
 
       
 
-        // Archivo: admin_gestionar_usuarios.aspx.cs
 
         protected void ddlRolNuevo_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool esMedico = ddlRolNuevo.SelectedValue == "2";
             pnlCamposMedico.Visible = esMedico;
     
-            // Habilitar/deshabilitar validación de campos de médico
             rfvCodMedico.Enabled = esMedico;
     
             if (esMedico)
@@ -531,7 +529,6 @@ namespace SoftWA
                             };
                             Page.Validators.Add(customValidator);
 
-                            // Mantenemos el modal abierto para que el usuario corrija
                             string script = @"
                                 setTimeout(function() {
                                     if (!$('#modalAgregarUsuario').hasClass('show')) {
@@ -587,7 +584,6 @@ namespace SoftWA
             }
         }
 
-        // *** NUEVO: Método de limpieza más completo ***
         private void LimpiarFormularioNuevoUsuario()
         {
             txtNombresNuevo.Text = string.Empty;
@@ -601,7 +597,6 @@ namespace SoftWA
             ddlGeneroNuevo.SelectedIndex = 0;
             ddlRolNuevo.SelectedValue = "0";
 
-            // Limpieza de campos de médico
             pnlCamposMedico.Visible = false;
             txtCodMedicoNuevo.Text = string.Empty;
             foreach (ListItem item in chkEspecialidadesNuevo.Items)
