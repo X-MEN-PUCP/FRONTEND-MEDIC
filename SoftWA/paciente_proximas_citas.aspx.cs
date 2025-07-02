@@ -90,6 +90,8 @@ namespace SoftWA
                     IdCita=h.cita.idCita,
                     NombreEspecialidad = h.cita.especialidad?.nombreEspecialidad ?? "N/A",
                     NombreMedico = h.cita.medico != null ? $"{h.cita.medico.nombres} {h.cita.medico.apellidoPaterno}" : "N/A",
+                    Consultorio=h.cita.consultorio != null ? $"{h.cita.consultorio.numConsultorio}" : "N/A",
+                    Piso= h.cita.consultorio != null ? $"{h.cita.consultorio.numPiso}" : "N/A",
                     FechaCita = DateTime.Parse(h.cita.fechaCita),
                     DescripcionHorario = h.cita.horaInicio.Substring(0, 5),
                     EstadoCita = FormatearNombreEstado(h.cita.estado),

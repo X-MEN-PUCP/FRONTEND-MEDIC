@@ -158,7 +158,20 @@ namespace SoftWA
             if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0) return;
             if (calFechaCita.SelectedDate.Year == 1) return;
             lblErrorBusqueda.Visible = false;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            if (usuarioLogueado == null)
+            {
+                MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
             int.TryParse(ddlMedico.SelectedValue, out int idMedico);
+            if(idMedico == usuarioLogueado.idUsuario)
+            {
+                MostrarMensaje(ltlMensajeReserva, "No puede reservar una cita con usted mismo.", esError: true);
+                CerrarModalDesdeServidor();
+                return;
+            }
             DateTime fecha = calFechaCita.SelectedDate;
             string horaSeleccionada = rblHorarios.SelectedValue;
 

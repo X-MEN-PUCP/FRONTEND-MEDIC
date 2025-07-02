@@ -52,6 +52,10 @@
                                         <strong>Médico:</strong> <%# Eval("NombreMedico") %>
                                     </p>
                                     <p class="card-text mb-1">
+                                        <i class="fa-solid fa-map-pin me-2 text-primary"></i>
+                                        <strong>Consultorio:</strong> <%# Eval("Consultorio") %> - Piso <%# Eval("Piso") %>
+                                    </p>
+                                    <p class="card-text mb-1">
                                         <i class="fa-solid fa-calendar-day me-2 text-success"></i>
                                         <strong>Fecha:</strong> <%# Eval("FechaCita", "{0:dddd, dd 'de' MMMM 'de' yyyy}") %>
                                     </p>
