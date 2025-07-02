@@ -158,23 +158,15 @@ namespace SoftWA
             try
             {
                 var roles = this.ListaCompletaRoles;
-                var especialidades = this.ListaCompletaEspecialidades;
-
                 ddlRolNuevo.DataSource = roles.OrderBy(r => r.NombreRol);
                 ddlRolNuevo.DataTextField = "NombreRol";
                 ddlRolNuevo.DataValueField = "IdRol";
                 ddlRolNuevo.DataBind();
                 ddlRolNuevo.Items.Insert(0, new ListItem("-- Seleccione un rol --", "0"));
-
-                ddlEspecialidadNuevo.DataSource = especialidades.OrderBy(e => e.NombreEspecialidad);
-                ddlEspecialidadNuevo.DataTextField = "NombreEspecialidad";
-                ddlEspecialidadNuevo.DataValueField = "IdEspecialidad";
-                ddlEspecialidadNuevo.DataBind();
-                ddlEspecialidadNuevo.Items.Insert(0, new ListItem("-- Seleccione especialidad --", "0"));
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Error al poblar dropdowns del modal: " + ex.Message, true);
+                MostrarMensaje("Error al poblar dropdown de roles del modal: " + ex.Message, true);
             }
         }
 
@@ -207,7 +199,6 @@ namespace SoftWA
                 return;
             }
 
-            // Aplicar filtros
             int filtroRolId = 0;
             int.TryParse(ddlFiltroRol.SelectedValue, out filtroRolId);
             if (filtroRolId > 0)
@@ -224,7 +215,6 @@ namespace SoftWA
                 ).ToList();
             }
 
-            // Aplicar ordenamiento
             switch (ddlOrdenarUsuarios.SelectedValue)
             {
                 case "IdDesc": listaUsuariosParaMostrar = listaUsuariosParaMostrar.OrderByDescending(u => u.IdUsuario).ToList(); break;
@@ -424,10 +414,50 @@ namespace SoftWA
             divAlert.Attributes["class"] = esError ? "alert alert-danger alert-dismissible fade show" : "alert alert-success alert-dismissible fade show";
         }
 
+      
+
+        // Archivo: admin_gestionar_usuarios.aspx.cs
+
         protected void ddlRolNuevo_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool esMedico = ddlRolNuevo.SelectedValue == "2";
-            pnlEspecialidadNuevo.Visible = esMedico;
+            pnlCamposMedico.Visible = esMedico;
+    
+            // Habilitar/deshabilitar validación de campos de médico
+            rfvCodMedico.Enabled = esMedico;
+    
+            if (esMedico)
+            {
+                CargarEspecialidadesEnModal();
+            }
+
+            string script = @"
+                setTimeout(function() {
+                    if (!$('#modalAgregarUsuario').hasClass('show')) {
+                        $('#modalAgregarUsuario').modal('show');
+                    }
+                }, 100);";
+    
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MantenerModalAbierto", script, true);
+        }
+
+        private void CargarEspecialidadesEnModal()
+        {
+            try
+            {
+                chkEspecialidadesNuevo.Items.Clear();
+                if (ListaCompletaEspecialidades != null && ListaCompletaEspecialidades.Any())
+                {
+                    foreach (var esp in ListaCompletaEspecialidades.OrderBy(e => e.NombreEspecialidad))
+                    {
+                        chkEspecialidadesNuevo.Items.Add(new ListItem(esp.NombreEspecialidad, esp.IdEspecialidad.ToString()));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al cargar especialidades: " + ex.Message, true);
+            }
         }
 
         protected void btnGuardarNuevoUsuario_Click(object sender, EventArgs e)
@@ -435,7 +465,6 @@ namespace SoftWA
             Page.Validate("NuevoUsuario");
             if (!Page.IsValid)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpen", "$('#modalAgregarUsuario').modal('show');", true);
                 return;
             }
 
@@ -443,6 +472,7 @@ namespace SoftWA
             if (adminLogueado == null)
             {
                 MostrarMensaje("Su sesión ha expirado. Por favor, inicie sesión de nuevo.", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModalError", "$('#modalAgregarUsuario').modal('hide');", true);
                 return;
             }
 
@@ -450,72 +480,168 @@ namespace SoftWA
             {
                 nombres = txtNombresNuevo.Text.Trim(),
                 apellidoPaterno = txtApellidoPaternoNuevo.Text.Trim(),
-                apellidoMaterno = "",
+                apellidoMaterno = txtApellidoMaternoNuevo.Text.Trim(),
                 tipoDocumento = (SoftBO.adminWS.tipoDocumento)Enum.Parse(typeof(SoftBO.adminWS.tipoDocumento), ddlTipoDocumentoNuevo.SelectedValue),
                 tipoDocumentoSpecified = true,
                 numDocumento = txtNumDocumentoNuevo.Text.Trim(),
-                contrasenha = txtContrasenhaNuevo.Text,
                 correoElectronico = txtCorreoNuevo.Text.Trim(),
+                numCelular = txtCelularNuevo.Text.Trim(),
+                fechaNacimiento = txtFechaNacimientoNuevo.Text,
+                genero = (SoftBO.adminWS.genero)Enum.Parse(typeof(SoftBO.adminWS.genero), ddlGeneroNuevo.SelectedValue),
+                generoSpecified = true,
                 usuarioCreacion = adminLogueado.idUsuario,
                 usuarioCreacionSpecified = true,
                 fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd")
             };
 
+            int resultado = 0;
+            int rolId = Convert.ToInt32(ddlRolNuevo.SelectedValue);
+            string nombreRolSeleccionado = ddlRolNuevo.SelectedItem.Text;
+
             try
             {
-                int rolId = Convert.ToInt32(ddlRolNuevo.SelectedValue);
-                if (rolId == 2)
+                switch (rolId)
                 {
-                    int especialidadId = Convert.ToInt32(ddlEspecialidadNuevo.SelectedValue);
-                    if (especialidadId == 0)
-                    {
-                        MostrarMensaje("Debe seleccionar una especialidad para el rol de Médico.", true);
+                    case 1: 
+                        resultado = _adminBO.InsertarNuevoAdministrador(nuevoUsuario);
+                        break;
+                    case 2:
+                        nuevoUsuario.codMedico = txtCodMedicoNuevo.Text.Trim();
+                        var especialidadesSeleccionadas = new BindingList<especialidadDTO>();
+                        foreach (ListItem item in chkEspecialidadesNuevo.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                especialidadesSeleccionadas.Add(new especialidadDTO
+                                {
+                                    idEspecialidad = Convert.ToInt32(item.Value),
+                                    idEspecialidadSpecified = true
+                                });
+                            }
+                        }
+
+                        if (!especialidadesSeleccionadas.Any())
+                        {
+                            vsNuevoUsuario.HeaderText = "Por favor, corrija los siguientes errores:";
+                            var customValidator = new CustomValidator
+                            {
+                                IsValid = false,
+                                ErrorMessage = "Debe seleccionar al menos una especialidad para el rol de Médico.",
+                                ValidationGroup = "NuevoUsuario"
+                            };
+                            Page.Validators.Add(customValidator);
+
+                            // Mantenemos el modal abierto para que el usuario corrija
+                            string script = @"
+                                setTimeout(function() {
+                                    if (!$('#modalAgregarUsuario').hasClass('show')) {
+                                        $('#modalAgregarUsuario').modal('show');
+                                    }
+                                }, 100);";
+
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "MantenerModalAbierto", script, true);
+                            return;
+                        }
+
+                        resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidadesSeleccionadas);
+                        break;
+                    case 3: // Paciente
+                        resultado = _adminBO.InsertarNuevoPaciente(nuevoUsuario);
+                        break;
+                    default:
+                        MostrarMensaje("Debe seleccionar un rol válido.", true);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpenOnError", "$('#modalAgregarUsuario').modal('show');", true);
                         return;
-                    }
-                    BindingList<SoftBO.adminWS.especialidadDTO> especialidades = new BindingList<SoftBO.adminWS.especialidadDTO>();
-                    var especialidad = new especialidadDTO { idEspecialidad = especialidadId, idEspecialidadSpecified = true };
-                    especialidades.Add(especialidad);
-                    //bool resultado = _adminBO.InsertarNuevoMedico(nuevoUsuario, especialidades);
-                    bool resultado = false; // falta implementar la llamada al servicio
-                    if (resultado)
-                    {
-                        MostrarMensaje("Médico creado y asignado correctamente.", false);
-                        LimpiarFormularioNuevoUsuario();
-                    }
-                    else
-                    {
-                        MostrarMensaje("Error: No se pudo crear el médico.", true);
-                    }
+                }
+
+                if (resultado > 0)
+                {
+                    string contrasenhaPorDefecto = nuevoUsuario.numDocumento +
+                                                   nuevoUsuario.apellidoPaterno.Substring(0, 1).ToUpper() +
+                                                   nuevoUsuario.apellidoMaterno.Substring(0, 1).ToUpper();
+
+                    MostrarMensajeExitoConContrasenha(nombreRolSeleccionado, contrasenhaPorDefecto);
+
+                    LimpiarFormularioNuevoUsuario();
+                    CargarDatosUsuariosDesdeServicio();
+                    AplicarFiltrosYEnlazarGrid();
+                    CerrarModalDesdeServidor();
+                    string scriptCerrar = @"
+                        setTimeout(function() {
+                            $('#modalAgregarUsuario').modal('hide');
+                            // Limpiar el backdrop si queda
+                            $('.modal-backdrop').remove();
+                            $('body').removeClass('modal-open');
+                        }, 500);";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "HideAddModal", "$('#modalAgregarUsuario').modal('hide');", true);
                 }
                 else
                 {
-                    //_usuarioBO.InsertarUsuario(nuevoUsuario); faltaimplementar
-                    LimpiarFormularioNuevoUsuario();
+                    MostrarMensaje($"Error: No se pudo crear el nuevo {nombreRolSeleccionado.ToLower()}.", true);
+                    CerrarModalDesdeServidor();
                 }
-
-                CargarDatosUsuariosDesdeServicio();
-                AplicarFiltrosYEnlazarGrid();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideAddModal", "$('#modalAgregarUsuario').modal('hide');", true);
             }
             catch (Exception ex)
             {
                 MostrarMensaje($"Error al guardar el nuevo usuario: {ex.Message}", true);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "KeepModalOpenOnError", "$('#modalAgregarUsuario').modal('show');", true);
             }
         }
 
+        // *** NUEVO: Método de limpieza más completo ***
         private void LimpiarFormularioNuevoUsuario()
         {
             txtNombresNuevo.Text = string.Empty;
             txtApellidoPaternoNuevo.Text = string.Empty;
+            txtApellidoMaternoNuevo.Text = string.Empty;
+            ddlTipoDocumentoNuevo.SelectedIndex = 0;
             txtNumDocumentoNuevo.Text = string.Empty;
             txtCorreoNuevo.Text = string.Empty;
-            txtContrasenhaNuevo.Text = string.Empty;
+            txtCelularNuevo.Text = string.Empty;
+            txtFechaNacimientoNuevo.Text = string.Empty;
+            ddlGeneroNuevo.SelectedIndex = 0;
             ddlRolNuevo.SelectedValue = "0";
-            ddlEspecialidadNuevo.SelectedValue = "0";
-            pnlEspecialidadNuevo.Visible = false;
+
+            // Limpieza de campos de médico
+            pnlCamposMedico.Visible = false;
+            txtCodMedicoNuevo.Text = string.Empty;
+            foreach (ListItem item in chkEspecialidadesNuevo.Items)
+            {
+                item.Selected = false;
+            }
+        }
+
+        private void MostrarMensajeExitoConContrasenha(string rol, string contrasenha)
+        {
+            phMensaje.Visible = true;
+            string mensajeHtml = $@"
+                <strong>¡Éxito!</strong> Se ha creado el nuevo {rol.ToLower()} correctamente.
+                <hr>
+                La contraseña temporal es: <strong class='fs-5'>{contrasenha}</strong>
+                <br>
+                <small>Se recomienda al usuario cambiarla en su primer inicio de sesión.</small>";
+            ltlMensaje.Text = mensajeHtml;
+            divAlert.Attributes["class"] = "alert alert-success alert-dismissible fade show";
+        }
+
+        private void CerrarModalDesdeServidor()
+        {
+            string script = @"
+                var modalElement = document.getElementById('modalAgregarUsuario');
+                if (modalElement) {
+                    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
+                }
+                var backdrops = document.getElementsByClassName('modal-backdrop');
+                while (backdrops[0]) {
+                    backdrops[0].parentNode.removeChild(backdrops[0]);
+                }
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = 'auto';
+                ";
+
+            ScriptManager.RegisterStartupScript(updGestionUsuarios, updGestionUsuarios.GetType(), "CloseModalScript", script, true);
         }
     }
 }

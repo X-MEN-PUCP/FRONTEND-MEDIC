@@ -153,131 +153,189 @@
                 </div>
             </div>
             <!-- Modificar el modal para usar UpdatePanel específico -->
-            <div class="modal fade" id="modalAgregarUsuario" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+           <div class="modal fade" id="modalAgregarUsuario" tabindex="-1" aria-labelledby="modalAgregarUsuarioLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAgregarLabel">Agregar Nuevo Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarFormulario()"></button>
+                <h5 class="modal-title" id="modalAgregarUsuarioLabel">Agregar Nuevo Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="confirmarCerrarModal()"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Nombres*</label>
-                        <asp:TextBox ID="txtNombresNuevo" runat="server" CssClass="form-control" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ControlToValidate="txtNombresNuevo" ErrorMessage="Nombres es requerido." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Apellido Paterno*</label>
-                        <asp:TextBox ID="txtApellidoPaternoNuevo" runat="server" CssClass="form-control" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvApellidoPaterno" runat="server" ControlToValidate="txtApellidoPaternoNuevo" ErrorMessage="Apellido Paterno es requerido." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Tipo Documento*</label>
-                        <asp:DropDownList ID="ddlTipoDocumentoNuevo" runat="server" CssClass="form-select" ValidationGroup="NuevoUsuario">
-                            <asp:ListItem Value="DNI">DNI</asp:ListItem>
-                            <asp:ListItem Value="CE">Carnet de Extranjería</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Número Documento*</label>
-                        <asp:TextBox ID="txtNumDocumentoNuevo" runat="server" CssClass="form-control" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvNumDocumento" runat="server" ControlToValidate="txtNumDocumentoNuevo" ErrorMessage="Número de documento es requerido." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Correo Electrónico*</label>
-                        <asp:TextBox ID="txtCorreoNuevo" runat="server" CssClass="form-control" TextMode="Email" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ControlToValidate="txtCorreoNuevo" ErrorMessage="Correo es requerido." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Contraseña Temporal*</label>
-                        <asp:TextBox ID="txtContrasenhaNuevo" runat="server" CssClass="form-control" TextMode="Password" ValidationGroup="NuevoUsuario"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvContrasenha" runat="server" ControlToValidate="txtContrasenhaNuevo" ErrorMessage="Contraseña es requerida." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Rol Principal*</label>
-                        <!-- QUITAR AutoPostBack y OnSelectedIndexChanged, AGREGAR onchange -->
-                        <asp:DropDownList ID="ddlRolNuevo" runat="server" CssClass="form-select" ValidationGroup="NuevoUsuario" onchange="manejarCambioRol()"></asp:DropDownList>
-                    </div>
-                    <%-- Panel para la especialidad, visible solo para médicos --%>
-                    <asp:Panel ID="pnlEspecialidadNuevo" runat="server" Visible="false" CssClass="col-md-6 mb-3" style="display: none;">
-                        <label class="form-label">Especialidad del Médico*</label>
-                        <asp:DropDownList ID="ddlEspecialidadNuevo" runat="server" CssClass="form-select" ValidationGroup="NuevoUsuario"></asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvEspecialidad" runat="server" ControlToValidate="ddlEspecialidadNuevo" InitialValue="0" ErrorMessage="Especialidad es requerida para médicos." CssClass="text-danger" ValidationGroup="NuevoUsuario" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </asp:Panel>
-                </div>
+                <asp:UpdatePanel ID="updModalAgregar" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <div class="row g-3">
+                            <!-- Fila para Nombres y Apellido Paterno -->
+                            <div class="col-md-6">
+                                <label for="<%= txtNombresNuevo.ClientID %>" class="form-label">Nombres</label>
+                                <asp:TextBox ID="txtNombresNuevo" runat="server" CssClass="form-control" />
+                                <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ErrorMessage="Los nombres son requeridos."
+                                    ControlToValidate="txtNombresNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="<%= txtApellidoPaternoNuevo.ClientID %>" class="form-label">Apellido Paterno</label>
+                                <asp:TextBox ID="txtApellidoPaternoNuevo" runat="server" CssClass="form-control" />
+                                <asp:RequiredFieldValidator ID="rfvApellidoPaterno" runat="server" ErrorMessage="El apellido paterno es requerido."
+                                    ControlToValidate="txtApellidoPaternoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+
+                            <!-- Fila para Apellido Materno y Tipo de Documento -->
+                            <div class="col-md-6">
+                                <label for="<%= txtApellidoMaternoNuevo.ClientID %>" class="form-label">Apellido Materno</label>
+                                <asp:TextBox ID="txtApellidoMaternoNuevo" runat="server" CssClass="form-control" />
+                                <asp:RequiredFieldValidator ID="rfvApellidoMaterno" runat="server" ErrorMessage="El apellido materno es requerido."
+                                    ControlToValidate="txtApellidoMaternoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="<%= ddlTipoDocumentoNuevo.ClientID %>" class="form-label">Tipo Doc.</label>
+                                <asp:DropDownList ID="ddlTipoDocumentoNuevo" runat="server" CssClass="form-select">
+                                    <asp:ListItem Value="DNI">DNI</asp:ListItem>
+                                    <asp:ListItem Value="CE">CE</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="<%= txtNumDocumentoNuevo.ClientID %>" class="form-label">N° Documento</label>
+                                <asp:TextBox ID="txtNumDocumentoNuevo" runat="server" CssClass="form-control" MaxLength="12" />
+                                <asp:RequiredFieldValidator ID="rfvNumDocumento" runat="server" ErrorMessage="El número de documento es requerido."
+                                    ControlToValidate="txtNumDocumentoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+
+                            <!-- Fila para Correo y Celular -->
+                            <div class="col-md-6">
+                                <label for="<%= txtCorreoNuevo.ClientID %>" class="form-label">Correo Electrónico</label>
+                                <asp:TextBox ID="txtCorreoNuevo" runat="server" CssClass="form-control" TextMode="Email" />
+                                <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ErrorMessage="El correo es requerido."
+                                    ControlToValidate="txtCorreoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="<%= txtCelularNuevo.ClientID %>" class="form-label">Celular</label>
+                                <asp:TextBox ID="txtCelularNuevo" runat="server" CssClass="form-control" MaxLength="9" />
+                                <asp:RequiredFieldValidator ID="rfvCelular" runat="server" ErrorMessage="El celular es requerido."
+                                    ControlToValidate="txtCelularNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+
+                            <!-- Fila para Fecha de Nacimiento y Género -->
+                            <div class="col-md-6">
+                                <label for="<%= txtFechaNacimientoNuevo.ClientID %>" class="form-label">Fecha de Nacimiento</label>
+                                <asp:TextBox ID="txtFechaNacimientoNuevo" runat="server" CssClass="form-control" TextMode="Date" />
+                                <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ErrorMessage="La fecha de nacimiento es requerida."
+                                    ControlToValidate="txtFechaNacimientoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="<%= ddlGeneroNuevo.ClientID %>" class="form-label">Género</label>
+                                <asp:DropDownList ID="ddlGeneroNuevo" runat="server" CssClass="form-select">
+                                    <asp:ListItem Value="" Text="-- Seleccione --" />
+                                    <asp:ListItem Value="MASCULINO">Masculino</asp:ListItem>
+                                    <asp:ListItem Value="FEMENINO">Femenino</asp:ListItem>
+                                    <asp:ListItem Value="OTRO">Otro</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator InitialValue="" ID="rfvGenero" runat="server" ErrorMessage="El género es requerido."
+                                    ControlToValidate="ddlGeneroNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            
+                            <hr class="my-3"/>
+                            
+                            <!-- Fila para Selección de Rol -->
+                            <div class="col-12">
+                                <label for="<%= ddlRolNuevo.ClientID %>" class="form-label fw-bold">Rol del Nuevo Usuario</label>
+                                <asp:DropDownList ID="ddlRolNuevo" runat="server" CssClass="form-select" 
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlRolNuevo_SelectedIndexChanged" />
+                                <asp:RequiredFieldValidator InitialValue="0" ID="rfvRolNuevo" runat="server" ErrorMessage="Debe seleccionar un rol."
+                                    ControlToValidate="ddlRolNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            
+                            <!-- Panel Dinámico para campos de Médico -->
+                            <asp:Panel ID="pnlCamposMedico" runat="server" Visible="false" CssClass="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label for="<%= txtCodMedicoNuevo.ClientID %>" class="form-label">Código de Médico (CMP)</label>
+                                    <asp:TextBox ID="txtCodMedicoNuevo" runat="server" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator ID="rfvCodMedico" runat="server" Enabled="false" ErrorMessage="El código de médico es requerido."
+                                        ControlToValidate="txtCodMedicoNuevo" ValidationGroup="NuevoUsuario" CssClass="text-danger" Display="Dynamic" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Especialidades</label>
+                                    <div class="border rounded p-2" style="max-height: 150px; overflow-y: auto;">
+                                        <asp:CheckBoxList ID="chkEspecialidadesNuevo" runat="server" CssClass="w-100" />
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                        </div>
+
+                        <!-- Resumen de Validación -->
+                        <asp:ValidationSummary ID="vsNuevoUsuario" runat="server" ValidationGroup="NuevoUsuario"
+                            CssClass="alert alert-danger mt-3" HeaderText="Por favor, corrija los siguientes errores:" />
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="ddlRolNuevo" EventName="SelectedIndexChanged" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarFormulario()">Cancelar</button>
-                <asp:Button ID="btnGuardarNuevoUsuario" runat="server" Text="Guardar Usuario" CssClass="btn btn-primary" OnClick="btnGuardarNuevoUsuario_Click" ValidationGroup="NuevoUsuario" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarFormularioAlCerrar()">Cancelar</button>
+                <asp:Button ID="btnGuardarNuevoUsuario" runat="server" Text="Guardar Usuario" 
+                    OnClick="btnGuardarNuevoUsuario_Click" CssClass="btn btn-primary" ValidationGroup="NuevoUsuario" />
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    function manejarCambioRol() {
-        var ddlRol = document.getElementById('<%= ddlRolNuevo.ClientID %>');
-        var pnlEspecialidad = document.getElementById('<%= pnlEspecialidadNuevo.ClientID %>');
-        var ddlEspecialidad = document.getElementById('<%= ddlEspecialidadNuevo.ClientID %>');
-        var rfvEspecialidad = document.getElementById('<%= rfvEspecialidad.ClientID %>');
+    
+    var formularioModificado = false;
 
-        if (ddlRol.value === '2') { // ID del rol Médico
-            pnlEspecialidad.style.display = 'block';
-            // Habilitar validación para especialidad
-            if (typeof ValidatorEnable === 'function') {
-                ValidatorEnable(rfvEspecialidad, true);
+    function confirmarCerrarModal() {
+        if (formularioModificado) {
+            if (confirm('¿Está seguro de que desea cerrar? Se perderán los datos ingresados.')) {
+                limpiarFormularioAlCerrar();
+                $('#modalAgregarUsuario').modal('hide');
             }
         } else {
-            pnlEspecialidad.style.display = 'none';
-            // Limpiar selección de especialidad
-            ddlEspecialidad.selectedIndex = 0;
-            // Deshabilitar validación para especialidad
-            if (typeof ValidatorEnable === 'function') {
-                ValidatorEnable(rfvEspecialidad, false);
-            }
+            $('#modalAgregarUsuario').modal('hide');
         }
     }
 
-    function limpiarFormulario() {
-        // Limpia los campos del formulario de creación de usuario al cerrar el modal
-        document.getElementById('<%= txtNombresNuevo.ClientID %>').value = '';
-        document.getElementById('<%= txtApellidoPaternoNuevo.ClientID %>').value = '';
-        document.getElementById('<%= txtNumDocumentoNuevo.ClientID %>').value = '';
-        document.getElementById('<%= txtCorreoNuevo.ClientID %>').value = '';
-        document.getElementById('<%= txtContrasenhaNuevo.ClientID %>').value = '';
-        document.getElementById('<%= ddlRolNuevo.ClientID %>').selectedIndex = 0;
-        document.getElementById('<%= ddlEspecialidadNuevo.ClientID %>').selectedIndex = 0;
-        
-        // Oculta el panel de especialidad
-        var panelEspecialidad = document.getElementById('<%= pnlEspecialidadNuevo.ClientID %>');
-        if (panelEspecialidad) {
-            panelEspecialidad.style.display = 'none';
-        }
+    function limpiarFormularioAlCerrar() {
+        $('#<%= txtNombresNuevo.ClientID %>').val('');
+        $('#<%= txtApellidoPaternoNuevo.ClientID %>').val('');
+        $('#<%= txtApellidoMaternoNuevo.ClientID %>').val('');
+        $('#<%= txtNumDocumentoNuevo.ClientID %>').val('');
+        $('#<%= txtCorreoNuevo.ClientID %>').val('');
+        $('#<%= txtCelularNuevo.ClientID %>').val('');
+        $('#<%= txtFechaNacimientoNuevo.ClientID %>').val('');
+        $('#<%= ddlGeneroNuevo.ClientID %>').val('');
+        $('#<%= ddlRolNuevo.ClientID %>').val('0');
+        $('#<%= txtCodMedicoNuevo.ClientID %>').val('');
 
-        // Limpia los mensajes de validación
-        if (typeof (Page_ClientValidate) == 'function') {
-            var validators = Page_Validators;
-            for (var i = 0; i < validators.length; i++) {
-                if (validators[i].validationGroup == 'NuevoUsuario') {
-                    ValidatorUpdateDisplay(validators[i]);
-                }
-            }
-        }
+        $('#<%= chkEspecialidadesNuevo.ClientID %> input[type="checkbox"]').prop('checked', false);
+
+        $('#<%= pnlCamposMedico.ClientID %>').hide();
+
+        $('.text-danger').hide();
+        $('.alert-danger').hide();
+
+        formularioModificado = false;
     }
 
-    // Función para mantener el estado al reabrir el modal
-    function inicializarModal() {
-        manejarCambioRol(); // Verificar el estado inicial
+    $(document).ready(function () {
+        $('#modalAgregarUsuario input, #modalAgregarUsuario select, #modalAgregarUsuario textarea').on('change keyup', function () {
+            formularioModificado = true;
+        });
+
+        $('#modalAgregarUsuario').on('show.bs.modal', function () {
+            formularioModificado = false;
+        });
+
+        $('#modalAgregarUsuario').on('hidden.bs.modal', function () {
+            limpiarFormularioAlCerrar();
+        });
+    });
+
+    function forzarCierreModal() {
+        formularioModificado = false;
+        $('#modalAgregarUsuario').modal('hide');
+        $('.modal-backdrop').remove();
+        $('body').removeClass('modal-open');
     }
 
-    // Ejecutar cuando se abre el modal
     document.addEventListener('DOMContentLoaded', function () {
         var modalAgregar = document.getElementById('modalAgregarUsuario');
         if (modalAgregar) {

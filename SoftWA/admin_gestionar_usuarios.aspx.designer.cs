@@ -150,6 +150,15 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.Button btnAsignarRol;
 
         /// <summary>
+        /// updModalAgregar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updModalAgregar;
+
+        /// <summary>
         /// txtNombresNuevo control.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,24 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApellidoPaterno;
+
+        /// <summary>
+        /// txtApellidoMaternoNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoMaternoNuevo;
+
+        /// <summary>
+        /// rfvApellidoMaterno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvApellidoMaterno;
 
         /// <summary>
         /// ddlTipoDocumentoNuevo control.
@@ -231,22 +258,58 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCorreo;
 
         /// <summary>
-        /// txtContrasenhaNuevo control.
+        /// txtCelularNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContrasenhaNuevo;
+        protected global::System.Web.UI.WebControls.TextBox txtCelularNuevo;
 
         /// <summary>
-        /// rfvContrasenha control.
+        /// rfvCelular control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContrasenha;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCelular;
+
+        /// <summary>
+        /// txtFechaNacimientoNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoNuevo;
+
+        /// <summary>
+        /// rfvFechaNacimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFechaNacimiento;
+
+        /// <summary>
+        /// ddlGeneroNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGeneroNuevo;
+
+        /// <summary>
+        /// rfvGenero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGenero;
 
         /// <summary>
         /// ddlRolNuevo control.
@@ -258,31 +321,58 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.DropDownList ddlRolNuevo;
 
         /// <summary>
-        /// pnlEspecialidadNuevo control.
+        /// rfvRolNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEspecialidadNuevo;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRolNuevo;
 
         /// <summary>
-        /// ddlEspecialidadNuevo control.
+        /// pnlCamposMedico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidadNuevo;
+        protected global::System.Web.UI.WebControls.Panel pnlCamposMedico;
 
         /// <summary>
-        /// rfvEspecialidad control.
+        /// txtCodMedicoNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEspecialidad;
+        protected global::System.Web.UI.WebControls.TextBox txtCodMedicoNuevo;
+
+        /// <summary>
+        /// rfvCodMedico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCodMedico;
+
+        /// <summary>
+        /// chkEspecialidadesNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkEspecialidadesNuevo;
+
+        /// <summary>
+        /// vsNuevoUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsNuevoUsuario;
 
         /// <summary>
         /// btnGuardarNuevoUsuario control.
