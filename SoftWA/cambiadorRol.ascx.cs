@@ -1,4 +1,4 @@
-﻿using SoftBO.rolesporusuarioWS;
+﻿using SoftBO.pacienteWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace SoftWA
         {
             var listaRoles = Session["ListaRolesUsuario"] as List<usuarioPorRolDTO>;
             var rolActual = Session["RolActual"] as rolDTO;
-            if (listaRoles != null && listaRoles.Count > 1 && rolActual != null)
+            if (listaRoles != null && listaRoles.Count > 0 && rolActual != null)
             {
                 phCambiador.Visible = true;
                 int rolActualId = rolActual.idRol;
