@@ -14,12 +14,12 @@ namespace SoftWA.MA_Medico
     public partial class perfil_medico : System.Web.UI.Page
     {
         private readonly UsuarioBO _usuarioBO;
-        private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
+        //private readonly UsuarioPorEspecialidadBO _usuarioPorEspecialidadBO;
 
         public perfil_medico()
         {
             _usuarioBO = new UsuarioBO();
-            _usuarioPorEspecialidadBO = new UsuarioPorEspecialidadBO();
+            
         }
 
         protected void Page_Load(object sender, EventArgs e)
