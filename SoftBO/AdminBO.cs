@@ -59,8 +59,8 @@ namespace SoftBO
 
         public BindingList<usuarioPorEspecialidadDTO> ListarUsuariosPorEspecialidad(int idEspecialidad)
         {
-            var lista = this.adminCliente.listarUsuariosPorEspecialidad(idEspecialidad);
-            return new BindingList<usuarioPorEspecialidadDTO>(lista);
+            usuarioPorEspecialidadDTO[] usuarios = this.adminCliente.listarUsuariosPorEspecialidad(idEspecialidad);
+            return new BindingList<usuarioPorEspecialidadDTO>(usuarios ?? new usuarioPorEspecialidadDTO[0]);
         }
 
         public BindingList<usuarioPorRolDTO> ListarRolesDeUsuario(int idUsuario)
