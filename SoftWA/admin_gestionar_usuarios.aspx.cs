@@ -489,7 +489,8 @@ namespace SoftWA
                 generoSpecified = true,
                 usuarioCreacion = adminLogueado.idUsuario,
                 usuarioCreacionSpecified = true,
-                fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd")
+                fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd"),
+                estadoGeneral = SoftBO.adminWS.estadoGeneral.ACTIVO  
             };
 
             int resultado = 0;
