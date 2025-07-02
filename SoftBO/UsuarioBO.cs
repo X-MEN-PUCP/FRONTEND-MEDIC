@@ -47,5 +47,11 @@ namespace SoftBO
         {
             return this.usuarioCliente.CambiarContrasenhaUsuario(usuario, nuevaContraseña);
         }
+
+        public BindingList<usuarioPorEspecialidadDTO> listarEspecialidadesPorUsuarioParaUsaurio(int id)
+        {
+            BindingList<usuarioPorEspecialidadDTO> usuarios = this.listarEspecialidadesPorUsuarioParaUsaurio(id);
+            return new BindingList<usuarioPorEspecialidadDTO>(usuarios);
+        }
     }
 }

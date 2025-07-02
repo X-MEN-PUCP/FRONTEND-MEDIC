@@ -150,26 +150,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ConsultorioBO.cs" />
-    <Compile Include="DiagnosticoBO.cs" />
-    <Compile Include="DiagnosticoPorCitaBO.cs" />
-    <Compile Include="EspecialidadBO.cs" />
-    <Compile Include="ExamenBO.cs" />
-    <Compile Include="ExamenPorCitaBO.cs" />
-    <Compile Include="HistoriaBO.cs" />
-    <Compile Include="HistoriaClinicaPorCitaBO.cs" />
-    <Compile Include="InterconsultaBO.cs" />
     <Compile Include="LoginBO.cs" />
     <Compile Include="MedicoBO.cs" />
     <Compile Include="PacienteBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistroBO.cs" />
-    <Compile Include="ReporteCitasBO.cs" />
-    <Compile Include="RolesPorUsuarioBO.cs" />
-    <Compile Include="TipoExamenBO.cs" />
-    <Compile Include="TurnoBO.cs" />
     <Compile Include="UsuarioBO.cs" />
-    <Compile Include="UsuarioPorEspecialidadBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -715,6 +701,9 @@
     <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.insertarUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.listarEspecialidadesPorUsuarioParaUsaurioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.modificarUsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -722,6 +711,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.usuarioDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\usuarioWS\SoftBO.usuarioWS.usuarioPorEspecialidadDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\usuarioWS\UsuarioWS.wsdl" />
