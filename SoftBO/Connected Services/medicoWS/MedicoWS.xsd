@@ -30,8 +30,10 @@
   <xs:element name="listarTodosLosExamenesParaMedicoResponse" type="tns:listarTodosLosExamenesParaMedicoResponse" />
   <xs:element name="llenarEpicrisisMedico" type="tns:llenarEpicrisisMedico" />
   <xs:element name="llenarEpicrisisMedicoResponse" type="tns:llenarEpicrisisMedicoResponse" />
-  <xs:element name="modificarCitaParaMedico" type="tns:modificarCitaParaMedico" />
-  <xs:element name="modificarCitaParaMedicoResponse" type="tns:modificarCitaParaMedicoResponse" />
+  <xs:element name="modificarCitaParaMedico" nillable="true" type="tns:modificarCitaParaPaciente" />
+  <xs:element name="modificarCitaParaMedicoResponse" nillable="true" type="tns:modificarCitaParaPacienteResponse" />
+  <xs:element name="modificarCitaParaPaciente" type="tns:modificarCitaParaPaciente" />
+  <xs:element name="modificarCitaParaPacienteResponse" type="tns:modificarCitaParaPacienteResponse" />
   <xs:element name="modificarInteronsultaDeCita" type="tns:modificarInteronsultaDeCita" />
   <xs:element name="modificarInteronsultaDeCitaResponse" type="tns:modificarInteronsultaDeCitaResponse" />
   <xs:element name="obtenerCitaPorIdCitaParaMedico" type="tns:obtenerCitaPorIdCitaParaMedico" />
@@ -175,16 +177,6 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="modificarCitaParaMedico">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idCita" type="tns:citaDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="modificarCitaParaMedicoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="listarCitasMedico">
     <xs:sequence>
       <xs:element minOccurs="0" name="idMedico" type="xs:int" />
@@ -194,6 +186,16 @@
   <xs:complexType name="listarCitasMedicoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:citaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarCitaParaPaciente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idCita" type="tns:citaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarCitaParaPacienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InsertarDiagnosticoPorCitaParaMedico">
@@ -223,6 +225,14 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="listarEspecialidadesParaInterconsulta">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarEspecialidadesParaInterconsultaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:especialidadDTO" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="modificarInteronsultaDeCita">
     <xs:sequence>
       <xs:element minOccurs="0" name="interconsulta" type="tns:interconsultaDTO" />
@@ -240,12 +250,14 @@
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarEspecialidadesParaInterconsulta">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarEspecialidadesParaInterconsultaResponse">
+  <xs:complexType name="ListarDiagnosticoPorIdCitaParaMedico">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:especialidadDTO" />
+      <xs:element minOccurs="0" name="idCita" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ListarDiagnosticoPorIdCitaParaMedicoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:diagnosticoPorCita" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="insertarInterconsultasDeCita">
@@ -256,16 +268,6 @@
   <xs:complexType name="insertarInterconsultasDeCitaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ListarDiagnosticoPorIdCitaParaMedico">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idCita" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ListarDiagnosticoPorIdCitaParaMedicoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:diagnosticoPorCita" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerExamenPorIdParaMedico">
@@ -357,6 +359,14 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:interconsultaDTO" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="listarTodosLosDiaganosticosParaMedico">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarTodosLosDiaganosticosParaMedicoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:diagnosticoDTO" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="eliminarInterconsultaDeCita">
     <xs:sequence>
       <xs:element minOccurs="0" name="interconsulta" type="tns:interconsultaDTO" />
@@ -375,12 +385,14 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:examenDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarTodosLosDiaganosticosParaMedico">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarTodosLosDiaganosticosParaMedicoResponse">
+  <xs:complexType name="listarInterconsultasPorIdCitaParMedico">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:diagnosticoDTO" />
+      <xs:element minOccurs="0" name="idCita" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarInterconsultasPorIdCitaParMedicoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:interconsultaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="obtenerDiagnosticoPorIdParaMedico">
@@ -391,16 +403,6 @@
   <xs:complexType name="obtenerDiagnosticoPorIdParaMedicoResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:diagnosticoDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="listarInterconsultasPorIdCitaParMedico">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idCita" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="listarInterconsultasPorIdCitaParMedicoResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:interconsultaDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarTiposDeExamen">

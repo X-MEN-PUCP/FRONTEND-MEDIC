@@ -108,5 +108,10 @@ namespace SoftBO
             reporteCitaDTO[] lista = this.adminCliente.ReporteDeCitasGeneralAdministrador(idEspecialidad, idMedico, fechaInicio, fechaFin);
             return new BindingList<reporteCitaDTO>(lista ?? new reporteCitaDTO[0]);
         }
+
+        public int modificarUsuarioPoneContraDefault(usuarioDTO usuario)
+        {
+            return this.adminCliente.modificarUsuarioPoneContraDefault(usuario);
+        }
     }
 }

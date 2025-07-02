@@ -30,6 +30,8 @@
   <xs:element name="listarUsuariosPorEspecialidadResponse" type="tns:listarUsuariosPorEspecialidadResponse" />
   <xs:element name="modificarEspecialidads" type="tns:modificarEspecialidads" />
   <xs:element name="modificarEspecialidadsResponse" type="tns:modificarEspecialidadsResponse" />
+  <xs:element name="modificarUsuarioPoneContraDefault" type="tns:modificarUsuarioPoneContraDefault" />
+  <xs:element name="modificarUsuarioPoneContraDefaultResponse" type="tns:modificarUsuarioPoneContraDefaultResponse" />
   <xs:element name="modificarUsuarios" type="tns:modificarUsuarios" />
   <xs:element name="modificarUsuariosResponse" type="tns:modificarUsuariosResponse" />
   <xs:element name="obtenerEspecialidadPorId" type="tns:obtenerEspecialidadPorId" />
@@ -207,16 +209,6 @@
       <xs:element minOccurs="0" name="paciente" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="obtenerUsuarioPorId">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="obtenerUsuarioPorIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="modificarUsuarios">
     <xs:sequence>
       <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
@@ -225,6 +217,16 @@
   <xs:complexType name="modificarUsuariosResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerUsuarioPorId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerUsuarioPorIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:usuarioDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listarTodosUsuarios">
@@ -259,6 +261,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="insertarNuevoAdministradorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarUsuarioPoneContraDefault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarUsuarioPoneContraDefaultResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:int" />
     </xs:sequence>

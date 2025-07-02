@@ -135,6 +135,9 @@
     <None Include="Connected Services\adminWS\SoftBO.adminWS.modificarEspecialidadsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\adminWS\SoftBO.adminWS.modificarUsuarioPoneContraDefaultResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\adminWS\SoftBO.adminWS.modificarUsuariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

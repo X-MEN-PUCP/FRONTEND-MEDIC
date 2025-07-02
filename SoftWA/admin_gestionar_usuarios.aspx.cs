@@ -118,7 +118,7 @@ namespace SoftWA
 
                 var listaUsuariosParaMostrar = new List<UsuarioGestionInfo>();
 
-                foreach (var u in usuariosWs)
+                foreach (var u in usuariosWs) 
                 {
                     var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(u.idUsuario);
 
@@ -143,7 +143,6 @@ namespace SoftWA
                         Roles = rolesDelUsuario
                     });
                 }
-
                 this.ListaCompletaUsuarios = listaUsuariosParaMostrar;
             }
             catch (Exception ex)
@@ -273,11 +272,11 @@ namespace SoftWA
 
             if (e.CommandName == "GestionarRoles")
             {
-                var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(usuarioId);
-                var usuarioWs = _adminBO.ListarTodosUsuarios().FirstOrDefault(u => u.idUsuario == usuarioId);
+                var usuarioWs = _adminBO.ObtenerUsuarioPorId(usuarioId);
 
                 if (usuarioWs != null)
                 {
+                    var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(usuarioId);
                     var rolesActuales = rolesPorUsuarioWs?.Select(rpu =>
                     {
                         var rolInfo = ListaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
@@ -307,29 +306,70 @@ namespace SoftWA
                 try
                 {
                     var usuarioAmodificar = _adminBO.ObtenerUsuarioPorId(usuarioId);
-                    var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO)
-                    ? SoftBO.adminWS.estadoGeneral.INACTIVO
-                    : SoftBO.adminWS.estadoGeneral.ACTIVO;
-                    usuarioAmodificar.estadoGeneral = nuevoEstado;
-                    usuarioAmodificar.estadoGeneralSpecified = true;
-                    var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
-                    if (adminLogueado != null)
+                    if (usuarioAmodificar != null)
                     {
-                        usuarioAmodificar.usuarioModificacion = adminLogueado.idUsuario;
-                        usuarioAmodificar.usuarioModificacionSpecified = true;
-                        usuarioAmodificar.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
+                        var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO)
+                           ? SoftBO.adminWS.estadoGeneral.INACTIVO
+                           : SoftBO.adminWS.estadoGeneral.ACTIVO;
+
+                        usuarioAmodificar.estadoGeneral = nuevoEstado;
+                        usuarioAmodificar.estadoGeneralSpecified = true;
+
+                        var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                        if (adminLogueado != null)
+                        {
+                            usuarioAmodificar.usuarioModificacion = adminLogueado.idUsuario;
+                            usuarioAmodificar.usuarioModificacionSpecified = true;
+                            usuarioAmodificar.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
+                        }
+
+                        _adminBO.ModificarUsuario(usuarioAmodificar);
+                        MostrarMensaje("Cambio de estado exitoso.", false);
+
+                        var usuarioEnLista = ListaCompletaUsuarios.FirstOrDefault(u => u.IdUsuario == usuarioId);
+                        if (usuarioEnLista != null)
+                        {
+                            usuarioEnLista.EstadoGeneral = nuevoEstado;
+                        }
+                        AplicarFiltrosYEnlazarGrid();
                     }
-                    _adminBO.ModificarUsuario(usuarioAmodificar);
-                    MostrarMensaje("Cambio de estado exitoso", false);
-                    CargarDatosUsuariosDesdeServicio();
-                    AplicarFiltrosYEnlazarGrid();
                 }
                 catch (Exception ex)
                 {
                     MostrarMensaje("Error al intentar cambiar el estado del usuario: " + ex.Message, true);
                 }
             }
+            else if (e.CommandName == "ResetPassword")
+            {
+                try
+                {
+                    var usuarioParaReset = _adminBO.ObtenerUsuarioPorId(usuarioId);
+
+                    var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                    if (adminLogueado != null)
+                    {
+                        usuarioParaReset.usuarioModificacion = adminLogueado.idUsuario;
+                        usuarioParaReset.usuarioModificacionSpecified = true;
+                    }
+
+                    int resultado = _adminBO.modificarUsuarioPoneContraDefault(usuarioParaReset);
+
+                    if (resultado > 0)
+                    {
+                        MostrarMensaje("La contraseña se ha restablecido correctamente a su valor por defecto.", false);
+                    }
+                    else
+                    {
+                        MostrarMensaje("No se pudo restablecer la contraseña. (password)", true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensaje($"Ocurrió un error al restablecer la contraseña: {ex.Message}", true);
+                }
+            }
         }
+
 
         protected void btnAsignarRol_Click(object sender, EventArgs e)
         {
