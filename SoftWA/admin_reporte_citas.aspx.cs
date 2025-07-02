@@ -1,6 +1,5 @@
 ﻿using SoftBO;
 using SoftBO.adminWS;
-using SoftBO.reporteCitasWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;

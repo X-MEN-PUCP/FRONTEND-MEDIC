@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.especialidadWS;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

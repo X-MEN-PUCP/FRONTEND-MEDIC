@@ -1,7 +1,6 @@
 ﻿using SoftBO;
 using SoftBO.loginWS;
 using SoftBO.registroWS;
-using SoftBO.rolesporusuarioWS;
 using SoftBO.usuarioWS;
 using SoftWA.MA_Paciente;
 using System;

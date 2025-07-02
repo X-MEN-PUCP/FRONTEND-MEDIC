@@ -1,6 +1,5 @@
 ﻿using SoftBO;
 using SoftBO.pacienteWS;
-using SoftBO.historiaclinicaporcitaWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

@@ -7,7 +7,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
 using SoftBO.usuarioWS;
-using SoftBO.usuarioporespecialidadWS;
 
 namespace SoftWA.MA_Medico
 {
