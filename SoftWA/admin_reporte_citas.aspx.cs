@@ -53,17 +53,15 @@ namespace SoftWA
             try
             {
                 ddlDoctorReporte.Items.Clear();
-                //var todosLosUsuarios = _usuarioBO.ListarTodos();
-                var todosLosUsuarios = new List<usuarioDTO>();
+                var todosLosUsuarios = _adminBO.ListarMedicos();
 
-                //var doctores = todosLosUsuarios
-                //    .Where(u => u.roles != null && u.roles.Contains(2))
-                //    .OrderBy(d => d.apellidoPaterno)
-                //    .ThenBy(d => d.nombres)
-                //    .Select(d => new ListItem($"{d.apellidoPaterno} {d.apellidoMaterno}, {d.nombres}", d.idUsuario.ToString()))
-                //    .ToList();
+                var doctores = todosLosUsuarios
+                    .OrderBy(d => d.apellidoPaterno)
+                    .ThenBy(d => d.nombres)
+                    .Select(d => new ListItem($"{d.apellidoPaterno} {d.apellidoMaterno}, {d.nombres}", d.idUsuario.ToString()))
+                    .ToList();
 
-                //ddlDoctorReporte.Items.AddRange(doctores.ToArray());
+                ddlDoctorReporte.Items.AddRange(doctores.ToArray());
                 ddlDoctorReporte.Items.Insert(0, new ListItem("-- Todos --", "0"));
             }
             catch (Exception ex)
