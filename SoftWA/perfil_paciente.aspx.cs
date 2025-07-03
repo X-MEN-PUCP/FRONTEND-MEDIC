@@ -44,7 +44,7 @@ namespace SoftWA.MA_Paciente
         {
             try
             {
-                SoftBO.usuarioWS.usuarioDTO perfil = _usuarioBO.ObtenerPorIdUsuario(usuarioActualId);
+                SoftBO.SoftCitWS.usuarioDTO perfil = _usuarioBO.ObtenerPorIdUsuario(usuarioActualId);
                 if(perfil != null)
                 {
                     PopulateViewControls(perfil);
@@ -63,7 +63,7 @@ namespace SoftWA.MA_Paciente
                 System.Diagnostics.Debug.WriteLine($"Error al cargar perfil: {ex.Message}");
             }
         }
-        private void PopulateViewControls(SoftBO.usuarioWS.usuarioDTO perfil)
+        private void PopulateViewControls(SoftBO.SoftCitWS.usuarioDTO perfil)
         {
             lblNombresView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.nombres));
             lblApellidoPaternoView.Text = Server.HtmlEncode(CapitalizarNombre(perfil.apellidoPaterno));
@@ -80,7 +80,7 @@ namespace SoftWA.MA_Paciente
             lblCelularView.Text = Server.HtmlEncode(string.IsNullOrEmpty(perfil.numCelular) ? "No especificado" : perfil.numCelular);
             lblGeneroView.Text = Server.HtmlEncode(ObtenerNombreGenero(perfil.genero.ToString()));
         }
-        private void PopulateEditControls(SoftBO.usuarioWS.usuarioDTO perfil)
+        private void PopulateEditControls(SoftBO.SoftCitWS.usuarioDTO perfil)
         {
             txtNombresEdit.Text = CapitalizarNombre(perfil.nombres);
             txtApellidoPaternoEdit.Text = CapitalizarNombre(perfil.apellidoPaterno);
@@ -107,7 +107,7 @@ namespace SoftWA.MA_Paciente
         #region --- Lógica de Cambio de Modo y Guardado ---
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            var perfil = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var perfil = ViewState["PerfilCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (perfil != null)
             {
                 PopulateEditControls(perfil);
@@ -127,13 +127,13 @@ namespace SoftWA.MA_Paciente
         {
             Page.Validate("EditProfile");
             if (!Page.IsValid) return;
-            var perfil = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var perfil = ViewState["PerfilCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (perfil == null)
             {
                 MostrarMensaje("No se pudo cargar el perfil para guardar los cambios.", true);
                 return;
             }
-            var perfilActualizado = Session["UsuarioCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var perfilActualizado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             perfil.nombres = txtNombresEdit.Text.Trim();
             perfil.apellidoPaterno = txtApellidoPaternoEdit.Text.Trim();
             perfil.apellidoMaterno = txtApellidoMaternoEdit.Text.Trim();
@@ -185,7 +185,7 @@ namespace SoftWA.MA_Paciente
         }
         private int ObtenerUsuarioActualId()
         {
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             return usuario?.idUsuario ?? 0;
         }
         private void SwitchMode(bool editMode)

@@ -1,7 +1,8 @@
-﻿using SoftBO.registroWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,9 @@ namespace SoftBO
         private RegistroWSClient registroCliente;
         public RegistroBO()
         {
-            this.registroCliente = new RegistroWSClient();
+            var binding = new BasicHttpBinding();
+            var endpoint = new EndpointAddress("http://52.70.76.31:8080/SoftCitWS/RegistroWS");
+            this.registroCliente = new RegistroWSClient(binding, endpoint);
         }
         public int Registrarse(usuarioDTO usuario)
         {

@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.adminWS;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,7 +136,7 @@ namespace SoftWA
                 lvCitas.DataBind();
             }
         }
-        private List<SoftBO.adminWS.reporteCitaDTO> ObtenerDatosReporte()
+        private List<SoftBO.SoftCitWS.reporteCitaDTO> ObtenerDatosReporte()
         {
             string fechaDesde = string.IsNullOrEmpty(txtFechaDesdeReporte.Text) ? null : txtFechaDesdeReporte.Text;
             string fechaHasta = string.IsNullOrEmpty(txtFechaHastaReporte.Text) ? null : txtFechaHastaReporte.Text;
@@ -211,7 +211,7 @@ namespace SoftWA
             return field.Replace("\"", "\"\"");
         }
 
-        private void CalcularYMostrarEstadisticas(List<SoftBO.adminWS.reporteCitaDTO> listaCitas)
+        private void CalcularYMostrarEstadisticas(List<SoftBO.SoftCitWS.reporteCitaDTO> listaCitas)
         {
             if (listaCitas == null || !listaCitas.Any())
             {

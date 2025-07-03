@@ -1,5 +1,5 @@
 ﻿using System;
-using SoftBO.loginWS;
+using SoftBO.SoftCitWS;
 
 namespace SoftWA
 {

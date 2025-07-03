@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.pacienteWS;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,9 +12,9 @@ namespace SoftWA
 {
     public partial class paciente_proximas_citas : System.Web.UI.Page
     {
-        private List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> CitasCompletasPaciente
+        private List<SoftBO.SoftCitWS.historiaClinicaPorCitaDTO> CitasCompletasPaciente
         {
-            get { return ViewState["CitasCompletasPaciente"] as List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> ?? new List<SoftBO.pacienteWS.historiaClinicaPorCitaDTO>(); }
+            get { return ViewState["CitasCompletasPaciente"] as List<SoftBO.SoftCitWS.historiaClinicaPorCitaDTO> ?? new List<SoftBO.SoftCitWS.historiaClinicaPorCitaDTO>(); }
             set { ViewState["CitasCompletasPaciente"] = value; }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace SoftWA
         }
         private void CargarDatosIniciales()
         {
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuario == null || usuario.idUsuario == 0)
             {
                 Response.Redirect("~/indexLogin.aspx");
@@ -36,7 +36,7 @@ namespace SoftWA
             try
             {
                 var servicioPaciente = new PacienteBO();
-                var paciente = new SoftBO.pacienteWS.usuarioDTO 
+                var paciente = new SoftBO.SoftCitWS.usuarioDTO 
                 { 
                     idUsuario = usuario.idUsuario,
                     idUsuarioSpecified = true
@@ -75,8 +75,8 @@ namespace SoftWA
         {
             ltlMensajeAccion.Text = "";
             int.TryParse(ddlFiltroEspecialidad.SelectedValue, out int filtroEspecialidadId);
-            IEnumerable<SoftBO.pacienteWS.historiaClinicaPorCitaDTO> citasFiltradas = CitasCompletasPaciente
-                    .Where(h => h.cita != null && (h.cita.estado == SoftBO.pacienteWS.estadoCita.RESERVADO || h.cita.estado == SoftBO.pacienteWS.estadoCita.PAGADO) &&
+            IEnumerable<SoftBO.SoftCitWS.historiaClinicaPorCitaDTO> citasFiltradas = CitasCompletasPaciente
+                    .Where(h => h.cita != null && (h.cita.estado == SoftBO.SoftCitWS.estadoCita.RESERVADO || h.cita.estado == SoftBO.SoftCitWS.estadoCita.PAGADO) &&
                     DateTime.TryParse(h.cita.fechaCita, out var fecha) && fecha.Date >= DateTime.Today);
             if (filtroEspecialidadId > 0)
             {
@@ -124,7 +124,7 @@ namespace SoftWA
         protected void rptProximasCitas_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (!int.TryParse(e.CommandArgument.ToString(), out int idCita)) return;
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuario == null || usuario.idUsuario == 0)
             {
                 MostrarMensaje("Error: Usuario no encontrado.", esExito: false);
@@ -141,18 +141,18 @@ namespace SoftWA
                         MostrarMensaje("No se encontró la cita a cancelar.", esExito: false);
                         return;
                     }
-                    var historiaParaCancelar = new SoftBO.pacienteWS.historiaClinicaPorCitaDTO
+                    var historiaParaCancelar = new SoftBO.SoftCitWS.historiaClinicaPorCitaDTO
                     {
-                        cita = new SoftBO.pacienteWS.citaDTO
+                        cita = new SoftBO.SoftCitWS.citaDTO
                         {
                             idCita = idCita,
                             idCitaSpecified = true
                         },
-                        historiaClinica = new SoftBO.pacienteWS.historiaClinicaDTO
+                        historiaClinica = new SoftBO.SoftCitWS.historiaClinicaDTO
                         {
                             idHistoriaClinica = historiaOriginal.historiaClinica.idHistoriaClinica,
                             idHistoriaClinicaSpecified = true,
-                            paciente = new SoftBO.pacienteWS.usuarioDTO
+                            paciente = new SoftBO.SoftCitWS.usuarioDTO
                             {
                                 idUsuario = usuario.idUsuario,
                                 idUsuarioSpecified = true
@@ -204,14 +204,14 @@ namespace SoftWA
                 default: return "";
             }
         }
-        private string FormatearNombreEstado(SoftBO.pacienteWS.estadoCita estadoEnum)
+        private string FormatearNombreEstado(SoftBO.SoftCitWS.estadoCita estadoEnum)
         {
             switch (estadoEnum)
             {
-                case SoftBO.pacienteWS.estadoCita.RESERVADO: return "Reservado";
-                case SoftBO.pacienteWS.estadoCita.PAGADO: return "Pagado";
-                case SoftBO.pacienteWS.estadoCita.DISPONIBLE: return "Disponible";
-                case SoftBO.pacienteWS.estadoCita.ATENDIDO: return "Atendido";
+                case SoftBO.SoftCitWS.estadoCita.RESERVADO: return "Reservado";
+                case SoftBO.SoftCitWS.estadoCita.PAGADO: return "Pagado";
+                case SoftBO.SoftCitWS.estadoCita.DISPONIBLE: return "Disponible";
+                case SoftBO.SoftCitWS.estadoCita.ATENDIDO: return "Atendido";
                 default: return "Desconocido";
             }
         }

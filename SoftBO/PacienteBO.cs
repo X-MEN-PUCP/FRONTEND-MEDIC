@@ -1,9 +1,10 @@
-﻿using SoftBO.pacienteWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,9 @@ namespace SoftBO
         private PacienteWSClient pacienteCliente;
         public PacienteBO()
         {
-            this.pacienteCliente = new PacienteWSClient();
+            var binding = new BasicHttpBinding();
+            var endpoint = new EndpointAddress("http://52.70.76.31:8080/SoftCitWS/PacienteWS");
+            pacienteCliente = new PacienteWSClient(binding, endpoint);
         }
         public BindingList<citaDTO> BuscarCitasPaciente(int idEspecialidad,string fecha, int idMedico, string horaInicio, estadoCita estado)
         {

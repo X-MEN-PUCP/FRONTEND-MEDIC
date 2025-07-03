@@ -1,9 +1,10 @@
-﻿using SoftBO.adminWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,9 @@ namespace SoftBO
 
         public AdminBO()
         {
-            this.adminCliente = new AdminWSClient();
+            var binding = new BasicHttpBinding();
+            var endpoint = new EndpointAddress("http://52.70.76.31:8080/SoftCitWS/AdminWS");
+            this.adminCliente = new AdminWSClient(binding, endpoint);
         }
 
         public int AsignarNuevoRolParaUsuario(usuarioPorRolDTO usuario)

@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.adminWS; 
+using SoftBO.SoftCitWS; 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +17,11 @@ namespace SoftWA
         public string TipoDocumento { get; set; }
         public string NumDocumento { get; set; }
         public string Correo { get; set; }
-        public List<SoftBO.adminWS.rolDTO> Roles { get; set; }
+        public List<SoftBO.SoftCitWS.rolDTO> Roles { get; set; }
         public string RolesConcatenados => Roles != null && Roles.Any()
             ? string.Join(", ", Roles.Select(r => r.nombreRol))
             : "Sin roles";
-        public SoftBO.adminWS.estadoGeneral EstadoGeneral { get; set; }
+        public SoftBO.SoftCitWS.estadoGeneral EstadoGeneral { get; set; }
     }
     [Serializable]
     public class RolSimple
@@ -122,13 +122,13 @@ namespace SoftWA
                 {
                     var rolesPorUsuarioWs = _adminBO.ListarRolesDeUsuario(u.idUsuario);
 
-                    var rolesDelUsuario = new List<SoftBO.adminWS.rolDTO>();
+                    var rolesDelUsuario = new List<SoftBO.SoftCitWS.rolDTO>();
                     if (rolesPorUsuarioWs != null)
                     {
                         rolesDelUsuario = rolesPorUsuarioWs.Select(rpu =>
                         {
                             var rolInfo = this.ListaCompletaRoles.FirstOrDefault(r => r.IdRol == rpu.rol.idRol);
-                            return new SoftBO.adminWS.rolDTO { idRol = rpu.rol.idRol, nombreRol = rolInfo?.NombreRol ?? "Desconocido" };
+                            return new SoftBO.SoftCitWS.rolDTO { idRol = rpu.rol.idRol, nombreRol = rolInfo?.NombreRol ?? "Desconocido" };
                         }).ToList();
                     }
 
@@ -247,7 +247,7 @@ namespace SoftWA
                 var ltlEstado = (Literal)e.Item.FindControl("ltlEstado");
                 var btnToggleStatus = (LinkButton)e.Item.FindControl("btnToggleStatus");
 
-                if (usuario.EstadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO)
+                if (usuario.EstadoGeneral == SoftBO.SoftCitWS.estadoGeneral.ACTIVO)
                 {
                     ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
                     btnToggleStatus.ToolTip = "Desactivar Usuario";
@@ -308,14 +308,14 @@ namespace SoftWA
                     var usuarioAmodificar = _adminBO.ObtenerUsuarioPorId(usuarioId);
                     if (usuarioAmodificar != null)
                     {
-                        var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO)
-                           ? SoftBO.adminWS.estadoGeneral.INACTIVO
-                           : SoftBO.adminWS.estadoGeneral.ACTIVO;
+                        var nuevoEstado = (usuarioAmodificar.estadoGeneral == SoftBO.SoftCitWS.estadoGeneral.ACTIVO)
+                           ? SoftBO.SoftCitWS.estadoGeneral.INACTIVO
+                           : SoftBO.SoftCitWS.estadoGeneral.ACTIVO;
 
                         usuarioAmodificar.estadoGeneral = nuevoEstado;
                         usuarioAmodificar.estadoGeneralSpecified = true;
 
-                        var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                        var adminLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
                         if (adminLogueado != null)
                         {
                             usuarioAmodificar.usuarioModificacion = adminLogueado.idUsuario;
@@ -345,7 +345,7 @@ namespace SoftWA
                 {
                     var usuarioParaReset = _adminBO.ObtenerUsuarioPorId(usuarioId);
 
-                    var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                    var adminLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
                     if (adminLogueado != null)
                     {
                         usuarioParaReset.usuarioModificacion = adminLogueado.idUsuario;
@@ -375,13 +375,13 @@ namespace SoftWA
         {
             int usuarioId = Convert.ToInt32(hfUsuarioIdModal.Value);
             int rolId = Convert.ToInt32(ddlRolesDisponibles.SelectedValue);
-            var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var adminLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
 
             if (rolId > 0 && adminLogueado != null)
             {
-                var usuario = new SoftBO.adminWS.usuarioDTO { idUsuario = usuarioId, idUsuarioSpecified = true };
-                var rol = new SoftBO.adminWS.rolDTO { idRol = rolId, idRolSpecified = true };
-                var usuarioPorRol = new SoftBO.adminWS.usuarioPorRolDTO
+                var usuario = new SoftBO.SoftCitWS.usuarioDTO { idUsuario = usuarioId, idUsuarioSpecified = true };
+                var rol = new SoftBO.SoftCitWS.rolDTO { idRol = rolId, idRolSpecified = true };
+                var usuarioPorRol = new SoftBO.SoftCitWS.usuarioPorRolDTO
                 {
                     usuarioDTO = usuario,
                     rol = rol,
@@ -420,10 +420,10 @@ namespace SoftWA
                 int usuarioId = Convert.ToInt32(hfUsuarioIdModal.Value);
                 int rolId = Convert.ToInt32(e.CommandArgument);
 
-                var usuarioPorRol = new SoftBO.adminWS.usuarioPorRolDTO
+                var usuarioPorRol = new SoftBO.SoftCitWS.usuarioPorRolDTO
                 {
-                    usuarioDTO = new SoftBO.adminWS.usuarioDTO { idUsuario = usuarioId, idUsuarioSpecified = true },
-                    rol = new SoftBO.adminWS.rolDTO { idRol = rolId, idRolSpecified = true }
+                    usuarioDTO = new SoftBO.SoftCitWS.usuarioDTO { idUsuario = usuarioId, idUsuarioSpecified = true },
+                    rol = new SoftBO.SoftCitWS.rolDTO { idRol = rolId, idRolSpecified = true }
                 };
 
                 try
@@ -507,7 +507,7 @@ namespace SoftWA
                 return;
             }
 
-            var adminLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var adminLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (adminLogueado == null)
             {
                 MostrarMensaje("Su sesión ha expirado. Por favor, inicie sesión de nuevo.", true);
@@ -515,23 +515,23 @@ namespace SoftWA
                 return;
             }
 
-            var nuevoUsuario = new SoftBO.adminWS.usuarioDTO
+            var nuevoUsuario = new SoftBO.SoftCitWS.usuarioDTO
             {
                 nombres = txtNombresNuevo.Text.Trim(),
                 apellidoPaterno = txtApellidoPaternoNuevo.Text.Trim(),
                 apellidoMaterno = txtApellidoMaternoNuevo.Text.Trim(),
-                tipoDocumento = (SoftBO.adminWS.tipoDocumento)Enum.Parse(typeof(SoftBO.adminWS.tipoDocumento), ddlTipoDocumentoNuevo.SelectedValue),
+                tipoDocumento = (SoftBO.SoftCitWS.tipoDocumento)Enum.Parse(typeof(SoftBO.SoftCitWS.tipoDocumento), ddlTipoDocumentoNuevo.SelectedValue),
                 tipoDocumentoSpecified = true,
                 numDocumento = txtNumDocumentoNuevo.Text.Trim(),
                 correoElectronico = txtCorreoNuevo.Text.Trim(),
                 numCelular = txtCelularNuevo.Text.Trim(),
                 fechaNacimiento = txtFechaNacimientoNuevo.Text,
-                genero = (SoftBO.adminWS.genero)Enum.Parse(typeof(SoftBO.adminWS.genero), ddlGeneroNuevo.SelectedValue),
+                genero = (SoftBO.SoftCitWS.genero)Enum.Parse(typeof(SoftBO.SoftCitWS.genero), ddlGeneroNuevo.SelectedValue),
                 generoSpecified = true,
                 usuarioCreacion = adminLogueado.idUsuario,
                 usuarioCreacionSpecified = true,
                 fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd"),
-                estadoGeneral = SoftBO.adminWS.estadoGeneral.ACTIVO  
+                estadoGeneral = SoftBO.SoftCitWS.estadoGeneral.ACTIVO  
             };
 
             int resultado = 0;

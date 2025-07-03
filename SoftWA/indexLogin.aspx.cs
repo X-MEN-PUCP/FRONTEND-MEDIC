@@ -1,5 +1,4 @@
 ﻿
-using SoftBO.loginWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
-using SoftBO.pacienteWS;
+using SoftBO.SoftCitWS;
 
 namespace SoftWA
 {
@@ -55,7 +54,7 @@ namespace SoftWA
             string numeroDocumento = txtDNI.Text.Trim();
             string contrasenha = txtPassword.Text;
             string tipoDocumento = hdnLoginDocType.Value=="DNI"? hdnLoginDocType.Value:"CE";
-            SoftBO.loginWS.usuarioDTO usuarioAutenticadoLogin = null;
+            SoftBO.SoftCitWS.usuarioDTO usuarioAutenticadoLogin = null;
             try
             {
                 usuarioAutenticadoLogin = _loginBO.IniciarSesion(numeroDocumento, tipoDocumento, contrasenha);

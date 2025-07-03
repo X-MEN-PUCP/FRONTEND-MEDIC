@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using SoftBO;
-using SoftBO.pacienteWS;
+using SoftBO.SoftCitWS;
 
 namespace SoftWA
 {
@@ -95,7 +95,7 @@ namespace SoftWA
                     var citaAPagar = citaPaciente.ObtenerPorIdCitaParaPaciente(citaId);
                     if (citaAPagar != null)
                     {
-                        citaAPagar.estado = SoftBO.pacienteWS.estadoCita.PAGADO;
+                        citaAPagar.estado = SoftBO.SoftCitWS.estadoCita.PAGADO;
                         citaAPagar.estadoSpecified = true;
                         int resultado = citaPaciente.ModificarCitaParaPaciente(citaAPagar);
 

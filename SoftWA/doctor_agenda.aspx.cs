@@ -1,12 +1,11 @@
 ﻿using SoftBO;
-using SoftBO.loginWS;
-using SoftBO.medicoWS;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using usuarioDTO = SoftBO.loginWS.usuarioDTO;
+using usuarioDTO = SoftBO.SoftCitWS.usuarioDTO;
 
 namespace SoftWA
 {

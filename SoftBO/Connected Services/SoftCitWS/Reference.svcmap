@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="86970696-eef8-4394-bfe9-1eb1664d77c1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://52.70.76.31:8080/SoftCitWS/archivo.disco" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdminWS.wsdl" MetadataType="Wsdl" ID="46e628eb-b97a-41a3-9b36-17fba0e9fdfd" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/AdminWS?WSDL" />
+    <MetadataFile FileName="LoginWS.wsdl" MetadataType="Wsdl" ID="97fd682c-9593-4a0f-b062-77a253f97f14" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/LoginWS?WSDL" />
+    <MetadataFile FileName="AdminWS.xsd" MetadataType="Schema" ID="66a58ec0-64f1-4e94-b4a3-bdab5bb6ce2b" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/AdminWS?xsd=1" />
+    <MetadataFile FileName="UsuarioWS.xsd" MetadataType="Schema" ID="ead7981c-d8a9-4cff-a918-f8769053adee" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/UsuarioWS?xsd=1" />
+    <MetadataFile FileName="RegistroWS.xsd" MetadataType="Schema" ID="953985fc-5a3a-4948-a3eb-5bdee0e255f7" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/RegistroWS?xsd=1" />
+    <MetadataFile FileName="MedicoWS.xsd" MetadataType="Schema" ID="127adf15-bb0b-40a5-b4f7-6d599cf65fb0" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/MedicoWS?xsd=1" />
+    <MetadataFile FileName="UsuarioWS.wsdl" MetadataType="Wsdl" ID="746936b1-2065-4d1a-a92f-ca6d926d602c" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/UsuarioWS?WSDL" />
+    <MetadataFile FileName="PacienteWS.wsdl" MetadataType="Wsdl" ID="9ff71dfe-dd49-4960-bedb-8de58400b093" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/PacienteWS?WSDL" />
+    <MetadataFile FileName="PacienteWS.xsd" MetadataType="Schema" ID="bcda9eba-30df-4505-9afa-539b8b97413c" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/PacienteWS?xsd=1" />
+    <MetadataFile FileName="CitaWS.wsdl" MetadataType="Wsdl" ID="6d88dd1c-8415-4e09-9886-e425ed724937" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/CitaWS?WSDL" />
+    <MetadataFile FileName="CitaWS.xsd" MetadataType="Schema" ID="964c6b56-d436-4139-9258-4b4239aa3fcb" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/CitaWS?xsd=1" />
+    <MetadataFile FileName="LoginWS.xsd" MetadataType="Schema" ID="14fca3c7-b927-4369-9440-54d3e14c4d4d" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/LoginWS?xsd=1" />
+    <MetadataFile FileName="RegistroWS.wsdl" MetadataType="Wsdl" ID="d1dbc4e7-ec87-4180-a203-efeead643e73" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/RegistroWS?WSDL" />
+    <MetadataFile FileName="archivo.disco" MetadataType="Disco" ID="41c626f3-83bd-4ba6-bcb5-fb66ebb9d783" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/archivo.disco" />
+    <MetadataFile FileName="MedicoWS.wsdl" MetadataType="Wsdl" ID="edd4cd67-b8e4-4a63-8209-8d7f154dbe0b" SourceId="1" SourceUrl="http://52.70.76.31:8080/SoftCitWS/MedicoWS?WSDL" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -17,7 +17,7 @@ namespace SoftWA
             public string NombreEspecialidad { get; set; }
             public double PrecioConsulta { get; set; }
             public int CantMedicos { get; set; }
-            public SoftBO.adminWS.estadoGeneral Estado { get; set; }
+            public SoftBO.SoftCitWS.estadoGeneral Estado { get; set; }
         }
 
         private readonly AdminBO _adminBO;
@@ -132,7 +132,7 @@ namespace SoftWA
                 var ltlEstado = (Literal)e.Item.FindControl("ltlEstado");
                 var btnToggleStatus = (LinkButton)e.Item.FindControl("btnToggleStatus");
 
-                if (especialidad.Estado == SoftBO.adminWS.estadoGeneral.ACTIVO)
+                if (especialidad.Estado == SoftBO.SoftCitWS.estadoGeneral.ACTIVO)
                 {
                     ltlEstado.Text = "<span class='badge bg-success'>Activo</span>";
                     btnToggleStatus.ToolTip = "Desactivar";
@@ -180,10 +180,10 @@ namespace SoftWA
                 var especialidad = _adminBO.ObtenerEspecialidadPorId(especialidadId);
                 if (especialidad != null)
                 {
-                    especialidad.estadoGeneral = (especialidad.estadoGeneral == SoftBO.adminWS.estadoGeneral.ACTIVO) ? SoftBO.adminWS.estadoGeneral.INACTIVO : SoftBO.adminWS.estadoGeneral.ACTIVO;
+                    especialidad.estadoGeneral = (especialidad.estadoGeneral == SoftBO.SoftCitWS.estadoGeneral.ACTIVO) ? SoftBO.SoftCitWS.estadoGeneral.INACTIVO : SoftBO.SoftCitWS.estadoGeneral.ACTIVO;
                     especialidad.estadoGeneralSpecified = true;
 
-                    var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                    var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
                     especialidad.usuarioModificacion = usuarioLogueado?.idUsuario ?? 0;
                     especialidad.usuarioModificacionSpecified = true;
                     especialidad.fechaModificacion = DateTime.Now.ToString("yyyy-MM-dd");
@@ -231,12 +231,12 @@ namespace SoftWA
                 return;
             }
 
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             int idUsuarioAuditoria = usuarioLogueado?.idUsuario ?? 0;
 
             int especialidadId = Convert.ToInt32(hfEspecialidadId.Value);
 
-            SoftBO.adminWS.especialidadDTO especialidad = new SoftBO.adminWS.especialidadDTO
+            SoftBO.SoftCitWS.especialidadDTO especialidad = new SoftBO.SoftCitWS.especialidadDTO
             {
                 nombreEspecialidad = txtNombreAddEdit.Text.Trim(),
                 precioConsulta = Convert.ToDouble(txtPrecioAddEdit.Text),
@@ -251,7 +251,7 @@ namespace SoftWA
                 especialidad.usuarioCreacion = idUsuarioAuditoria;
                 especialidad.usuarioCreacionSpecified = true;
                 especialidad.fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
-                especialidad.estadoGeneral = SoftBO.adminWS.estadoGeneral.ACTIVO; 
+                especialidad.estadoGeneral = SoftBO.SoftCitWS.estadoGeneral.ACTIVO; 
                 especialidad.estadoGeneralSpecified = true;
                 _adminBO.InsertarNuevaEspecialidad(especialidad);
             }

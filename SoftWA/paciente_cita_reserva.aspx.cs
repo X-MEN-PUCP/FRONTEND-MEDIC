@@ -1,4 +1,5 @@
 ﻿using SoftBO;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -52,7 +53,8 @@ namespace SoftWA
             try
             {
                 var especialidades = servicioPaciente.ListarTodasLasEspecialidadesParaPaciente();
-                ddlEspecialidad.DataSource = especialidades;
+                var especialidadesActivas = especialidades.Where(e => e.estadoGeneral == estadoGeneral.ACTIVO).ToList();
+                ddlEspecialidad.DataSource = especialidadesActivas;
                 ddlEspecialidad.DataTextField = "nombreEspecialidad";
                 ddlEspecialidad.DataValueField = "idEspecialidad";
                 ddlEspecialidad.DataBind();
@@ -119,7 +121,7 @@ namespace SoftWA
 
             try
             {
-                var citasDisponibles = servicioPaciente.BuscarCitasParaPaciente(idEspecialidad, idMedico, null, null, SoftBO.pacienteWS.estadoCita.DISPONIBLE);
+                var citasDisponibles = servicioPaciente.BuscarCitasParaPaciente(idEspecialidad, idMedico, null, null, SoftBO.SoftCitWS.estadoCita.DISPONIBLE);
                 if (citasDisponibles != null && citasDisponibles.Any())
                 {
                     var disponibilidad = citasDisponibles
@@ -158,7 +160,7 @@ namespace SoftWA
             if (!int.TryParse(ddlEspecialidad.SelectedValue, out int idEspecialidad) || idEspecialidad == 0) return;
             if (calFechaCita.SelectedDate.Year == 1) return;
             lblErrorBusqueda.Visible = false;
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuarioLogueado == null)
             {
                 MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
@@ -179,7 +181,7 @@ namespace SoftWA
             {
                 var resultados = servicioPaciente.BuscarCitasParaPaciente(idEspecialidad, idMedico, fecha.ToString("yyyy-MM-dd"),
                                                                     string.IsNullOrEmpty(horaSeleccionada) ? null : horaSeleccionada,
-                                                                    SoftBO.pacienteWS.estadoCita.DISPONIBLE);
+                                                                    SoftBO.SoftCitWS.estadoCita.DISPONIBLE);
                 if (resultados != null && resultados.Any())
                 {
                     var citasParaMostrar = resultados
@@ -223,7 +225,7 @@ namespace SoftWA
                 CerrarModalDesdeServidor();
                 return;
             }
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuarioLogueado == null)
             {
                 MostrarMensaje(ltlMensajeReserva, "Error: Su sesión ha expirado. Por favor, inicie sesión de nuevo.", esError: true);
@@ -240,7 +242,7 @@ namespace SoftWA
                     CerrarModalDesdeServidor();
                     return;
                 }
-                var pacienteParaReserva = new SoftBO.pacienteWS.usuarioDTO
+                var pacienteParaReserva = new SoftBO.SoftCitWS.usuarioDTO
                 {
                     idUsuario = usuarioLogueado.idUsuario,
                     idUsuarioSpecified = true

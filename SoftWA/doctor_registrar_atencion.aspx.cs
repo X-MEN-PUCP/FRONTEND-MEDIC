@@ -1,5 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.medicoWS;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,15 +21,15 @@ namespace SoftWA
             set { ViewState["DiagnosticosDeCita"] = value; }
         }
 
-        private List<SoftBO.medicoWS.examenPorCitaDTO> ExamenesDeCita
+        private List<SoftBO.SoftCitWS.examenPorCitaDTO> ExamenesDeCita
         {
-            get { return ViewState["ExamenesDeCita"] as List<SoftBO.medicoWS.examenPorCitaDTO> ?? new List<SoftBO.medicoWS.examenPorCitaDTO>(); }
+            get { return ViewState["ExamenesDeCita"] as List<SoftBO.SoftCitWS.examenPorCitaDTO> ?? new List<SoftBO.SoftCitWS.examenPorCitaDTO>(); }
             set { ViewState["ExamenesDeCita"] = value; }
         }
 
-        private List<SoftBO.medicoWS.interconsultaDTO> InterconsultasDeCita
+        private List<SoftBO.SoftCitWS.interconsultaDTO> InterconsultasDeCita
         {
-            get { return ViewState["InterconsultasDeCita"] as List<SoftBO.medicoWS.interconsultaDTO> ?? new List<SoftBO.medicoWS.interconsultaDTO>(); }
+            get { return ViewState["InterconsultasDeCita"] as List<SoftBO.SoftCitWS.interconsultaDTO> ?? new List<SoftBO.SoftCitWS.interconsultaDTO>(); }
             set { ViewState["InterconsultasDeCita"] = value; }
         }
 
@@ -129,7 +129,7 @@ namespace SoftWA
                 }
                 rptExamenesAgregados.DataBind();
 
-                var interconsultasGuardadas = (_medicoBO.ListarTodasLasInterconsultasParaMedico() ?? new BindingList<SoftBO.medicoWS.interconsultaDTO>())
+                var interconsultasGuardadas = (_medicoBO.ListarTodasLasInterconsultasParaMedico() ?? new BindingList<SoftBO.SoftCitWS.interconsultaDTO>())
                 .Where(i => i?.cita?.idCita == idCita)
                 .ToList();
                 if (interconsultasGuardadas != null && interconsultasGuardadas.Any() && interconsultasGuardadas.Count > 0)
@@ -269,7 +269,7 @@ namespace SoftWA
                 
                 listaActual.Add(new diagnosticoPorCita
                 {
-                    diagnostico = new SoftBO.medicoWS.diagnosticoDTO { 
+                    diagnostico = new SoftBO.SoftCitWS.diagnosticoDTO { 
                         idDiagnostico = diagnosticoSeleccionado.idDiagnostico,
                         nombreDiagnostico = diagnosticoSeleccionado.nombreDiagnostico
                     },
@@ -314,9 +314,9 @@ namespace SoftWA
 
                 var examenSeleccionado = _medicoBO.ObtenerExamenPorIdParaMedico(idExamen);
 
-                listaActual.Add(new SoftBO.medicoWS.examenPorCitaDTO
+                listaActual.Add(new SoftBO.SoftCitWS.examenPorCitaDTO
                 {
-                    examen = new SoftBO.medicoWS.examenDTO
+                    examen = new SoftBO.SoftCitWS.examenDTO
                     {
                         idExamen = examenSeleccionado.idExamen,
                         nombreExamen = examenSeleccionado.nombreExamen
@@ -363,9 +363,9 @@ namespace SoftWA
 
                 var especialidadSeleccionada = _medicoBO.ObtenerEspecialidadPorIdParaMedico(idEspecialidad);
 
-                listaActual.Add(new SoftBO.medicoWS.interconsultaDTO
+                listaActual.Add(new SoftBO.SoftCitWS.interconsultaDTO
                 {
-                    especialidadInterconsulta = new SoftBO.medicoWS.especialidadDTO
+                    especialidadInterconsulta = new SoftBO.SoftCitWS.especialidadDTO
                     {
                         idEspecialidad = especialidadSeleccionada.idEspecialidad,
                         nombreEspecialidad = especialidadSeleccionada.nombreEspecialidad
@@ -404,7 +404,7 @@ namespace SoftWA
         {
             try
             {
-                var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+                var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
                 if (usuario == null) throw new Exception("La sesión ha expirado.");
                 string fechaHoy = DateTime.Today.ToString("yyyy-MM-dd");
 
@@ -420,7 +420,7 @@ namespace SoftWA
                     epicrisis.motivoConsulta = txtMotivoConsulta.Text;
                     epicrisis.tratamiento = txtTratamiento.Text;
                     epicrisis.recomendacion = txtRecomendaciones.Text;
-                    epicrisis.estadoGeneral = SoftBO.medicoWS.estadoGeneral.ACTIVO;
+                    epicrisis.estadoGeneral = SoftBO.SoftCitWS.estadoGeneral.ACTIVO;
                     epicrisis.estadoGeneralSpecified = true;
                     epicrisis.usuarioModificacion= usuario.idUsuario;
                     epicrisis.usuarioModificacionSpecified = true;
@@ -429,7 +429,7 @@ namespace SoftWA
                 }
                 foreach (var diag in DiagnosticosDeCita)
                 {
-                    diag.cita = new SoftBO.medicoWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    diag.cita = new SoftBO.SoftCitWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     diag.cita.idCita = int.Parse(hfIdCita.Value);
                     diag.cita.idCitaSpecified = true;
                     diag.diagnostico.idDiagnosticoSpecified = true;
@@ -437,7 +437,7 @@ namespace SoftWA
                 }
                 foreach (var exam in ExamenesDeCita)
                 {
-                    exam.cita = new SoftBO.medicoWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    exam.cita = new SoftBO.SoftCitWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     exam.usuarioCreacion = usuario.idUsuario;
                     exam.fechaCreacion = fechaHoy;
                     exam.usuarioCreacionSpecified = true;
@@ -447,14 +447,14 @@ namespace SoftWA
                 }
                 foreach (var inter in InterconsultasDeCita)
                 {
-                    inter.cita = new SoftBO.medicoWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
+                    inter.cita = new SoftBO.SoftCitWS.citaDTO { idCita = int.Parse(hfIdCita.Value) };
                     inter.cita.idCitaSpecified = true;
                     inter.especialidadInterconsulta.idEspecialidadSpecified= true;
                     _medicoBO.InsertarInterconsultasDeCita(inter);
                 }
 
                 var citaParaActualizar = _medicoBO.ObtenerCitaPorIdCitaParaMedico(int.Parse(hfIdCita.Value));
-                citaParaActualizar.estado = SoftBO.medicoWS.estadoCita.ATENDIDO;
+                citaParaActualizar.estado = SoftBO.SoftCitWS.estadoCita.ATENDIDO;
                 citaParaActualizar.fechaModificacion = fechaHoy;
                 citaParaActualizar.usuarioModificacion = usuario.idUsuario;
                 int result=_medicoBO.ModificarCitaParaMedico(citaParaActualizar);

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
-using SoftBO.usuarioWS;
+using SoftBO.SoftCitWS;
 
 namespace SoftWA.MA_Medico
 {
@@ -48,7 +48,7 @@ namespace SoftWA.MA_Medico
         {
             try
             {
-                SoftBO.usuarioWS.usuarioDTO perfil = _usuarioBO.ObtenerPorIdUsuario(medicoId);
+                SoftBO.SoftCitWS.usuarioDTO perfil = _usuarioBO.ObtenerPorIdUsuario(medicoId);
                 if (perfil != null)
                 {
                     PopulateViewControls(perfil);
@@ -69,7 +69,7 @@ namespace SoftWA.MA_Medico
             }
         }
 
-        private void PopulateViewControls(SoftBO.usuarioWS.usuarioDTO perfilMed)
+        private void PopulateViewControls(SoftBO.SoftCitWS.usuarioDTO perfilMed)
         {
             lblNombresMedView.Text = Server.HtmlEncode(perfilMed.nombres);
             lblApellidoPaternoMedView.Text = Server.HtmlEncode(perfilMed.apellidoPaterno);
@@ -108,7 +108,7 @@ namespace SoftWA.MA_Medico
             }
         }
 
-        private void PopulateEditControls(SoftBO.usuarioWS.usuarioDTO perfil)
+        private void PopulateEditControls(SoftBO.SoftCitWS.usuarioDTO perfil)
         {
             txtNombresEdit.Text = perfil.nombres;
             txtApellidoPaternoEdit.Text = perfil.apellidoPaterno;
@@ -135,7 +135,7 @@ namespace SoftWA.MA_Medico
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            var perfil = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var perfil = ViewState["PerfilCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (perfil != null)
             {
                 PopulateEditControls(perfil);
@@ -161,14 +161,14 @@ namespace SoftWA.MA_Medico
                 return;
             }
 
-            var perfilParaActualizar = ViewState["PerfilCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var perfilParaActualizar = ViewState["PerfilCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (perfilParaActualizar == null)
             {
                 MostrarMensaje("La sesión de edición ha expirado. Por favor, intente de nuevo.", true);
                 SwitchMode(false);
                 return;
             }
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.usuarioWS.usuarioDTO;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             perfilParaActualizar.nombres = txtNombresEdit.Text.Trim();
             perfilParaActualizar.apellidoPaterno = txtApellidoPaternoEdit.Text.Trim();
             perfilParaActualizar.apellidoMaterno = txtApellidoMaternoEdit.Text.Trim();
@@ -215,7 +215,7 @@ namespace SoftWA.MA_Medico
 
         private int ObtenerUsuarioActualId()
         {
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             return usuario?.idUsuario ?? 0;
         }
 

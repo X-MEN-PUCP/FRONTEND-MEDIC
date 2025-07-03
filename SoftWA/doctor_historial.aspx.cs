@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftBO;
-using SoftBO.medicoWS;
+using SoftBO.SoftCitWS;
 
 namespace SoftWA
 {
@@ -46,7 +46,7 @@ namespace SoftWA
         }
         private int ObtenerIdDoctorLogueado()
         {
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             return usuario?.idUsuario ?? 0;
         }
         private void AplicarFiltrosYOrdenamiento()

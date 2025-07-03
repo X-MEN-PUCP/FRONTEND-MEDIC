@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SoftBO.registroWS;
+using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

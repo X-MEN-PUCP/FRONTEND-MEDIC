@@ -1,5 +1,4 @@
-﻿using SoftBO.loginWS;
-using SoftBO.usuarioWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Web.UI;
 
@@ -17,7 +16,7 @@ namespace SoftWA
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid) return;
-            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuarioLogueado = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuarioLogueado == null || usuarioLogueado.idUsuario == 0)
             {
                 MostrarMensaje("Error: No se pudo identificar al usuario. Por favor, inicie sesión nuevamente.", false);
@@ -28,7 +27,7 @@ namespace SoftWA
 
             try
             {
-                var usuarioVerificar = new SoftBO.usuarioWS.usuarioDTO
+                var usuarioVerificar = new SoftBO.SoftCitWS.usuarioDTO
                 {
                     idUsuario = usuarioLogueado.idUsuario,
                     idUsuarioSpecified = true,
@@ -36,7 +35,7 @@ namespace SoftWA
                 };
 
                 int resultado;
-                using (var usuarioService = new SoftBO.usuarioWS.UsuarioWSClient())
+                using (var usuarioService = new SoftBO.SoftCitWS.UsuarioWSClient())
                 {
                     resultado = usuarioService.CambiarContrasenhaUsuario(usuarioVerificar, nuevaContraseña);
                 }

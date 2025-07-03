@@ -1,7 +1,5 @@
 ﻿using SoftBO;
-using SoftBO.loginWS;
-using SoftBO.registroWS;
-using SoftBO.usuarioWS;
+using SoftBO.SoftCitWS;
 using SoftWA.MA_Paciente;
 using System;
 using System.Collections.Generic;
@@ -45,11 +43,11 @@ namespace SoftWA
             }
             try
             {
-                SoftBO.registroWS.usuarioDTO usuarioVerificado;
+                SoftBO.SoftCitWS.usuarioDTO usuarioVerificado;
                 usuarioVerificado = registroBO.VerificarCodigo(CorreoVerificacion, codigoIngresado);
                 if (usuarioVerificado != null && usuarioVerificado.idUsuario > 0)
                 {
-                    var usuarioRoles = new SoftBO.usuarioWS.usuarioDTO
+                    var usuarioRoles = new SoftBO.SoftCitWS.usuarioDTO
                     {
                         idUsuario = usuarioVerificado.idUsuario,
                         idUsuarioSpecified = true,
@@ -59,7 +57,7 @@ namespace SoftWA
                     usuarioParaSesion.apellidoPaterno = usuarioVerificado.apellidoPaterno;
                     usuarioParaSesion.apellidoMaterno = usuarioVerificado.apellidoMaterno;
                     usuarioParaSesion.numDocumento = usuarioVerificado.numDocumento;
-                    usuarioParaSesion.tipoDocumento = (SoftBO.usuarioWS.tipoDocumento)usuarioVerificado.tipoDocumento;
+                    usuarioParaSesion.tipoDocumento = (SoftBO.SoftCitWS.tipoDocumento)usuarioVerificado.tipoDocumento;
                     Session["UsuarioCompleto"] = usuarioParaSesion;
                     string nombreCompleto = $"{usuarioParaSesion.nombres} {usuarioParaSesion.apellidoPaterno}".Trim();
                     Session["UsuarioLogueado_NombreCompleto"] = nombreCompleto;

@@ -1,8 +1,9 @@
-﻿using SoftBO.usuarioWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,9 @@ namespace SoftBO
         private UsuarioWSClient usuarioCliente;
         public UsuarioBO()
         {
-            this.usuarioCliente = new UsuarioWSClient();
+            var binding = new BasicHttpBinding();
+            var endpoint = new EndpointAddress("http://52.70.76.31:8080/SoftCitWS/UsuarioWS");
+            this.usuarioCliente = new UsuarioWSClient(binding, endpoint);
         }
         public usuarioDTO ObtenerPorIdUsuario(int id)
         {
@@ -50,8 +53,8 @@ namespace SoftBO
 
         public BindingList<usuarioPorEspecialidadDTO> listarEspecialidadesPorUsuarioParaUsaurio(int id)
         {
-            BindingList<usuarioPorEspecialidadDTO> usuarios = this.listarEspecialidadesPorUsuarioParaUsaurio(id);
-            return new BindingList<usuarioPorEspecialidadDTO>(usuarios);
+            usuarioPorEspecialidadDTO[] arreglo = this.usuarioCliente.listarEspecialidadesPorUsuarioParaUsaurio(id);
+            return new BindingList<usuarioPorEspecialidadDTO>(arreglo);
         }
     }
 }

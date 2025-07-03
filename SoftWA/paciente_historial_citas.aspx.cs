@@ -1,4 +1,4 @@
-﻿using SoftBO.pacienteWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,7 +26,7 @@ namespace SoftWA
         }
         private void CargarDatosIniciales()
         {
-            var usuario = Session["UsuarioCompleto"] as SoftBO.loginWS.usuarioDTO;
+            var usuario = Session["UsuarioCompleto"] as SoftBO.SoftCitWS.usuarioDTO;
             if (usuario == null)
             {
                 Response.Redirect("~/indexLogin.aspx");
@@ -36,7 +36,7 @@ namespace SoftWA
             try
             {
                 var servicioPaciente = new PacienteBO();
-                var paciente = new SoftBO.pacienteWS.usuarioDTO 
+                var paciente = new SoftBO.SoftCitWS.usuarioDTO 
                 { 
                     idUsuario = usuario.idUsuario,
                     idUsuarioSpecified = true

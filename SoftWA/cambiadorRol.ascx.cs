@@ -1,4 +1,4 @@
-﻿using SoftBO.pacienteWS;
+﻿using SoftBO.SoftCitWS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
