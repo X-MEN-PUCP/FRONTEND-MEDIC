@@ -101,27 +101,7 @@
                             </div>
 
                             <!-- Temperatura -->
-                            <div class="col-md-3">
-                                <label class="form-label">Temperatura (°C) <span class="text-danger">*</span></label>
-                                <asp:TextBox ID="txtTemperatura" runat="server" CssClass="form-control" TextMode="Number" step="0,1" min="30,0" max="45,0"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvTemperatura" runat="server" 
-                                    ControlToValidate="txtTemperatura" 
-                                    ErrorMessage="La temperatura es obligatoria" 
-                                    CssClass="text-danger small" 
-                                    Display="Dynamic" 
-                                    ValidationGroup="Epicrisis">
-                                </asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rvTemperatura" runat="server" 
-                                    ControlToValidate="txtTemperatura" 
-                                    MinimumValue="30,0" 
-                                    MaximumValue="45,0" 
-                                    Type="Double" 
-                                    ErrorMessage="La temperatura debe estar entre 30.0 y 45.0 °C" 
-                                    CssClass="text-danger small" 
-                                    Display="Dynamic" 
-                                    ValidationGroup="Epicrisis">
-                                </asp:RangeValidator>
-                            </div>
+                            <div class="col-md-3"><label class="form-label">Temperatura (°C)</label><asp:TextBox ID="txtTemperatura" runat="server" CssClass="form-control" TextMode="Number" step="0.1"></asp:TextBox></div>
 
                             <!-- Motivo de Consulta -->
                             <div class="col-md-12">
