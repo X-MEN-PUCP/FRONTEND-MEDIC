@@ -69,12 +69,12 @@ namespace SoftWA
                 return;
             }
 
-            // Filtrar citas pendientes (no atendidas, no canceladas, etc.)
-            var citasPendientes = agendaCompleta;
-            //    .Where(c => c.estado == estadoCita.PAGADO)  // cambiarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr cuabndo haya datos
-            //    .OrderBy(c => DateTime.Parse(c.fechaCita))
-            //    .ThenBy(c => c.turno.horaInicio)
-            //    .ToList();
+            var citasPendientes = agendaCompleta
+            .Where(c => DateTime.TryParse(c.fechaCita, out DateTime fecha) &&
+                        fecha.Date >= DateTime.Today)
+            .OrderBy(c => DateTime.Parse(c.fechaCita)) 
+            .ThenBy(c => TimeSpan.Parse(c.turno.horaInicio)) 
+            .ToList();
 
             if (citasPendientes.Any())
             {

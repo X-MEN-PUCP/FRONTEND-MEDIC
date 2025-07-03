@@ -132,6 +132,24 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.TextBox txtPeso;
 
         /// <summary>
+        /// rfvPeso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPeso;
+
+        /// <summary>
+        /// rvPeso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvPeso;
+
+        /// <summary>
         /// txtTalla control.
         /// </summary>
         /// <remarks>
@@ -139,6 +157,24 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTalla;
+
+        /// <summary>
+        /// rfvTalla control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTalla;
+
+        /// <summary>
+        /// rvTalla control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvTalla;
 
         /// <summary>
         /// txtPresion control.
@@ -150,6 +186,24 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.TextBox txtPresion;
 
         /// <summary>
+        /// rfvPresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPresion;
+
+        /// <summary>
+        /// revPresion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPresion;
+
+        /// <summary>
         /// txtTemperatura control.
         /// </summary>
         /// <remarks>
@@ -157,6 +211,24 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTemperatura;
+
+        /// <summary>
+        /// rfvTemperatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTemperatura;
+
+        /// <summary>
+        /// rvTemperatura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rvTemperatura;
 
         /// <summary>
         /// txtMotivoConsulta control.
@@ -168,6 +240,15 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.TextBox txtMotivoConsulta;
 
         /// <summary>
+        /// rfvMotivoConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMotivoConsulta;
+
+        /// <summary>
         /// txtTratamiento control.
         /// </summary>
         /// <remarks>
@@ -177,6 +258,15 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.TextBox txtTratamiento;
 
         /// <summary>
+        /// rfvTratamiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTratamiento;
+
+        /// <summary>
         /// txtRecomendaciones control.
         /// </summary>
         /// <remarks>
@@ -184,6 +274,15 @@ namespace SoftWA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRecomendaciones;
+
+        /// <summary>
+        /// vsEpicrisis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsEpicrisis;
 
         /// <summary>
         /// updDiagnosticos control.

@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <!-- Panel de Mensajes -->
+        <!-- mensajess -->
         <asp:UpdatePanel ID="updMensajes" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:PlaceHolder ID="phMensaje" runat="server" Visible="false">
@@ -39,38 +39,166 @@
             </ContentTemplate>
         </asp:UpdatePanel>
 
-        <!-- Acordeón para las secciones de la atención -->
+        <!-- Acordeon -->
         <div class="accordion" id="accordionAtencion">
-            <!-- 1. Epicrisis (Historia Clínica por Cita) -->
+            <!-- 1. Epicrisis  -->
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingEpicrisis">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEpicrisis" aria-expanded="true" aria-controls="collapseEpicrisis">
-                        <i class="fa-solid fa-notes-medical me-2"></i>Epicrisis / Datos de la Consulta
-                    </button>
-                </h2>
-                <div id="collapseEpicrisis" class="accordion-collapse collapse show" aria-labelledby="headingEpicrisis">
-                    <div class="accordion-body">
-                        <asp:UpdatePanel ID="updEpicrisis" runat="server">
-                            <ContentTemplate>
-                                <div class="row g-3">
-                                    <div class="col-md-3"><label class="form-label">Peso (kg)</label><asp:TextBox ID="txtPeso" runat="server" CssClass="form-control" TextMode="Number" step="0.1"></asp:TextBox></div>
-                                    <div class="col-md-3"><label class="form-label">Talla (m)</label><asp:TextBox ID="txtTalla" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox></div>
-                                    <div class="col-md-3"><label class="form-label">Presión Arterial</label><asp:TextBox ID="txtPresion" runat="server" CssClass="form-control" placeholder="Ej: 120/80"></asp:TextBox></div>
-                                    <div class="col-md-3"><label class="form-label">Temperatura (°C)</label><asp:TextBox ID="txtTemperatura" runat="server" CssClass="form-control" TextMode="Number" step="0.1"></asp:TextBox></div>
-                                    <div class="col-md-12"><label class="form-label">Motivo de Consulta</label><asp:TextBox ID="txtMotivoConsulta" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox></div>
-                                    <div class="col-md-12"><label class="form-label">Tratamiento y Evolución</label><asp:TextBox ID="txtTratamiento" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4"></asp:TextBox></div>
-                                    <div class="col-md-12"><label class="form-label">Recomendaciones Finales</label><asp:TextBox ID="txtRecomendaciones" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox></div>
-                                </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                        <div class="d-flex justify-content-end mt-3">
-                            <button type="button" class="btn btn-outline-secondary" onclick="avanzarAcordeon('collapseEpicrisis', 'collapseDiagnostico')">
-                                Siguiente <i class="fa-solid fa-chevron-right ms-1"></i>
-                            </button>
+        <h2 class="accordion-header" id="headingEpicrisis">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEpicrisis" aria-expanded="true" aria-controls="collapseEpicrisis">
+                <i class="fa-solid fa-notes-medical me-2"></i>Epicrisis / Datos de la Consulta
+            </button>
+        </h2>
+        <div id="collapseEpicrisis" class="accordion-collapse collapse show" aria-labelledby="headingEpicrisis">
+            <div class="accordion-body">
+                <asp:UpdatePanel ID="updEpicrisis" runat="server">
+                    <ContentTemplate>
+                        <div class="row g-3">
+                            <!-- Peso -->
+                            <div class="col-md-3">
+                                <label class="form-label">Peso (kg) <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtPeso" runat="server" CssClass="form-control" TextMode="Number" step="0,1" min="0,1" max="500"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvPeso" runat="server" 
+                                    ControlToValidate="txtPeso" 
+                                    ErrorMessage="El peso es obligatorio" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="rvPeso" runat="server" 
+                                    ControlToValidate="txtPeso" 
+                                    MinimumValue="0,1" 
+                                    MaximumValue="500" 
+                                    Type="Double" 
+                                    ErrorMessage="El peso debe estar entre 0.1 y 500 kg" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RangeValidator>
+                            </div>
+
+                            <!-- Talla -->
+                            <div class="col-md-3">
+                                <label class="form-label">Talla (m) <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtTalla" runat="server" CssClass="form-control" TextMode="Number" step="0,1" min="0,30" max="2,50"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTalla" runat="server" 
+                                    ControlToValidate="txtTalla" 
+                                    ErrorMessage="La talla es obligatoria" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="rvTalla" runat="server" 
+                                    ControlToValidate="txtTalla" 
+                                    MinimumValue="0,30" 
+                                    MaximumValue="2,50" 
+                                    Type="Double" 
+                                    ErrorMessage="La talla debe estar entre 0.30 y 2.50 metros" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RangeValidator>
+                            </div>
+
+                            <!-- Presión Arterial -->
+                            <div class="col-md-3">
+                                <label class="form-label">Presión Arterial <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtPresion" runat="server" CssClass="form-control" placeholder="Ej: 120/80" MaxLength="10"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvPresion" runat="server" 
+                                    ControlToValidate="txtPresion" 
+                                    ErrorMessage="La presión arterial es obligatoria" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revPresion" runat="server" 
+                                    ControlToValidate="txtPresion" 
+                                    ValidationExpression="^([5-9][0-9]|[1-2][0-9][0-9]|300)\/([3-9][0-9]|1[0-9][0-9]|200)$" 
+                                    ErrorMessage="Formato inválido. Use formato: 120/80 (valores entre 50-300 / 30-200)" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RegularExpressionValidator>
+                            </div>
+
+                            <!-- Temperatura -->
+                            <div class="col-md-3">
+                                <label class="form-label">Temperatura (°C) <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtTemperatura" runat="server" CssClass="form-control" TextMode="Number" step="0,1" min="30,0" max="45,0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTemperatura" runat="server" 
+                                    ControlToValidate="txtTemperatura" 
+                                    ErrorMessage="La temperatura es obligatoria" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="rvTemperatura" runat="server" 
+                                    ControlToValidate="txtTemperatura" 
+                                    MinimumValue="30,0" 
+                                    MaximumValue="45,0" 
+                                    Type="Double" 
+                                    ErrorMessage="La temperatura debe estar entre 30.0 y 45.0 °C" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RangeValidator>
+                            </div>
+
+                            <!-- Motivo de Consulta -->
+                            <div class="col-md-12">
+                                <label class="form-label">Motivo de Consulta <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtMotivoConsulta" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvMotivoConsulta" runat="server" 
+                                    ControlToValidate="txtMotivoConsulta" 
+                                    ErrorMessage="El motivo de consulta es obligatorio" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <small class="form-text text-muted">Máximo 500 caracteres</small>
+                            </div>
+
+                            <!-- Tratamiento -->
+                            <div class="col-md-12">
+                                <label class="form-label">Tratamiento y Evolución <span class="text-danger">*</span></label>
+                                <asp:TextBox ID="txtTratamiento" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="1000"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvTratamiento" runat="server" 
+                                    ControlToValidate="txtTratamiento" 
+                                    ErrorMessage="El tratamiento es obligatorio" 
+                                    CssClass="text-danger small" 
+                                    Display="Dynamic" 
+                                    ValidationGroup="Epicrisis">
+                                </asp:RequiredFieldValidator>
+                                <small class="form-text text-muted">Máximo 1000 caracteres</small>
+                            </div>
+
+                            <!-- Recomendaciones -->
+                            <div class="col-md-12">
+                                <label class="form-label">Recomendaciones Finales</label>
+                                <asp:TextBox ID="txtRecomendaciones" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500"></asp:TextBox>
+                                <small class="form-text text-muted">Máximo 500 caracteres (opcional)</small>
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- Resumen de validación -->
+                        <div class="mt-3">
+                            <asp:ValidationSummary ID="vsEpicrisis" runat="server" 
+                                ValidationGroup="Epicrisis" 
+                                CssClass="alert alert-danger" 
+                                HeaderText="Por favor, corrija los siguientes errores:" 
+                                DisplayMode="BulletList" 
+                                ShowSummary="true">
+                            </asp:ValidationSummary>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-outline-secondary" onclick="validarYAvanzar('Epicrisis', 'collapseEpicrisis', 'collapseDiagnostico')">
+                        Siguiente <i class="fa-solid fa-chevron-right ms-1"></i>
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
 
             <!-- 2. Diagnósticos -->
             <div class="accordion-item">
@@ -270,5 +398,64 @@
                 }
             });
         }
+    </script>
+
+    <script type="text/javascript">
+        function validarYAvanzar(validationGroup, actualId, siguienteId) {
+            if (typeof Page_ClientValidate === 'function') {
+                var isValid = Page_ClientValidate(validationGroup);
+                if (!isValid) {
+                    toastr.error('Por favor complete todos los campos obligatorios correctamente.');
+                    return false;
+                }
+            }
+
+            avanzarAcordeon(actualId, siguienteId);
+            return true;
+        }
+
+        function validarPresionArtierial(input) {
+            var valor = input.value;
+            var patron = /^([5-9][0-9]|[1-2][0-9][0-9]|300)\/([3-9][0-9]|1[0-9][0-9]|200)$/;
+
+            if (valor && !patron.test(valor)) {
+                input.setCustomValidity('Formato inválido. Use formato: 120/80');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+
+        function actualizarContador(textareaId, maxLength, contadorId) {
+            var textarea = document.getElementById(textareaId);
+            var contador = document.getElementById(contadorId);
+            var restantes = maxLength - textarea.value.length;
+            contador.textContent = restantes + ' caracteres restantes';
+
+            if (restantes < 50) {
+                contador.className = 'form-text text-warning';
+            } else if (restantes < 20) {
+                contador.className = 'form-text text-danger';
+            } else {
+                contador.className = 'form-text text-muted';
+            }
+        }
+
+        $(document).ready(function () {
+            $('#<%= txtPresion.ClientID %>').on('blur', function () {
+            validarPresionArtierial(this);
+        });
+
+        $('#<%= txtMotivoConsulta.ClientID %>').on('input', function () {
+            actualizarContador(this.id, 500, 'contador-motivo');
+        });
+
+        $('#<%= txtTratamiento.ClientID %>').on('input', function () {
+            actualizarContador(this.id, 1000, 'contador-tratamiento');
+        });
+
+        $('#<%= txtRecomendaciones.ClientID %>').on('input', function () {
+            actualizarContador(this.id, 500, 'contador-recomendaciones');
+        });
+    });
     </script>
 </asp:Content>
