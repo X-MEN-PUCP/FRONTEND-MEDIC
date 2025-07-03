@@ -159,24 +159,6 @@ namespace SoftWA
         protected global::System.Web.UI.WebControls.TextBox txtTalla;
 
         /// <summary>
-        /// rfvTalla control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTalla;
-
-        /// <summary>
-        /// rvTalla control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator rvTalla;
-
-        /// <summary>
         /// txtPresion control.
         /// </summary>
         /// <remarks>

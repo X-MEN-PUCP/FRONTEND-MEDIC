@@ -77,27 +77,7 @@
                             </div>
 
                             <!-- Talla -->
-                            <div class="col-md-3">
-                                <label class="form-label">Talla (m) <span class="text-danger">*</span></label>
-                                <asp:TextBox ID="txtTalla" runat="server" CssClass="form-control" TextMode="Number" step="0,1" min="0,30" max="2,50"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvTalla" runat="server" 
-                                    ControlToValidate="txtTalla" 
-                                    ErrorMessage="La talla es obligatoria" 
-                                    CssClass="text-danger small" 
-                                    Display="Dynamic" 
-                                    ValidationGroup="Epicrisis">
-                                </asp:RequiredFieldValidator>
-                                <asp:RangeValidator ID="rvTalla" runat="server" 
-                                    ControlToValidate="txtTalla" 
-                                    MinimumValue="0,30" 
-                                    MaximumValue="2,50" 
-                                    Type="Double" 
-                                    ErrorMessage="La talla debe estar entre 0.30 y 2.50 metros" 
-                                    CssClass="text-danger small" 
-                                    Display="Dynamic" 
-                                    ValidationGroup="Epicrisis">
-                                </asp:RangeValidator>
-                            </div>
+                             <div class="col-md-3"><label class="form-label">Talla (m)</label><asp:TextBox ID="txtTalla" runat="server" CssClass="form-control" TextMode="Number" step="0.01"></asp:TextBox></div>
 
                             <!-- Presión Arterial -->
                             <div class="col-md-3">
