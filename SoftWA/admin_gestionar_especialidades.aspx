@@ -13,12 +13,12 @@
         
         <asp:UpdatePanel ID="updGestionEspecialidades" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <%-- Botón para mostrar el panel de agregar --%>
+                <%-- panel de agregar --%>
                 <div class="d-flex justify-content-end mb-3">
                     <asp:Button ID="btnShowAddPanel" runat="server" Text="Agregar Especialidad" CssClass="btn btn-primary btn-add-especialidad" OnClick="btnShowAddPanel_Click" />
                 </div>
 
-                <%-- Panel para Agregar/Editar Especialidad --%>
+                <%-- Agregar/Editar Especialidad --%>
                 <asp:Panel ID="pnlAddEditEspecialidad" runat="server" CssClass="card shadow-sm mb-4" Visible="false">
                     <div class="card-header">
                         <h5 class="mb-0"><i class="fa-solid fa-layer-group me-2"></i><asp:Label ID="lblFormTitle" runat="server">Agregar Nueva Especialidad</asp:Label></h5>

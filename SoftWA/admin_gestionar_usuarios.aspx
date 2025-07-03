@@ -1,5 +1,4 @@
-﻿<%-- Archivo: admin_gestionar_usuarios.aspx --%>
-<%@ Page Title="Gestión de Usuarios" Language="C#" MasterPageFile="~/SoftMA_Admin.Master" AutoEventWireup="true" CodeBehind="admin_gestionar_usuarios.aspx.cs" Inherits="SoftWA.admin_gestionar_usuarios" %>
+﻿<%@ Page Title="Gestión de Usuarios" Language="C#" MasterPageFile="~/SoftMA_Admin.Master" AutoEventWireup="true" CodeBehind="admin_gestionar_usuarios.aspx.cs" Inherits="SoftWA.admin_gestionar_usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="chpTitulo" runat="server">
     Gestión de Usuarios y Roles
