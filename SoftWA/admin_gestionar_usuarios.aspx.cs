@@ -398,6 +398,7 @@ namespace SoftWA
                         MostrarMensaje("Rol asignado correctamente.", false);
                         CargarDatosUsuariosDesdeServicio();
                         AplicarFiltrosYEnlazarGrid();
+                        CerrarModalRolesDesdeServidor();
                     }
                     else
                     {
@@ -663,6 +664,27 @@ namespace SoftWA
         {
             string script = @"
                 var modalElement = document.getElementById('modalAgregarUsuario');
+                if (modalElement) {
+                    var modalInstance = bootstrap.Modal.getInstance(modalElement);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
+                }
+                var backdrops = document.getElementsByClassName('modal-backdrop');
+                while (backdrops[0]) {
+                    backdrops[0].parentNode.removeChild(backdrops[0]);
+                }
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = 'auto';
+                ";
+
+            ScriptManager.RegisterStartupScript(updGestionUsuarios, updGestionUsuarios.GetType(), "CloseModalScript", script, true);
+        }
+
+        private void CerrarModalRolesDesdeServidor()
+        {
+            string script = @"
+                var modalElement = document.getElementById('modalLabel');
                 if (modalElement) {
                     var modalInstance = bootstrap.Modal.getInstance(modalElement);
                     if (modalInstance) {
