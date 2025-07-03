@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registro_cuenta_nueva.aspx.cs" Inherits="SoftWA.registro_cuenta_nueva"  Async="true"%>
+﻿f<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="registro_cuenta_nueva.aspx.cs" Inherits="SoftWA.registro_cuenta_nueva"  Async="true"%>
 
 <!DOCTYPE html>
 
@@ -77,7 +77,7 @@
             <div class="register-container">
                 <div class="register-header d-flex flex-column align-items-center text-center">
                 <a class="navbar-brand d-flex align-items-center" href="registro_cuenta_nueva.aspx">
-                    <img src="Images/op3.png" alt="Logo" width="200">
+                    <img src="~Content/Images/op3.png" alt="Logo" width="200">
                 </a>
                 <h2>Medical App</h2>
                 <p class="text-muted">Cree su cuenta nueva</p>

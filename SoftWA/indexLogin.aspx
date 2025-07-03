@@ -70,7 +70,7 @@
             <div class="login-container">
                 <div class="login-header d-flex flex-column align-items-center text-center">
                     <a class="navbar-brand d-flex align-items-center" href="indexLogin.aspx">
-                        <img src='<%= ResolveUrl("~/Images/op3.png") %>' alt="Logo" width="200">
+                        <img src='<%= ResolveUrl("~/Content/Images/op3.png") %>' alt="Logo" width="200">
                     </a>
                     <h2>Medical App</h2>
                     <p class="text-muted">Ingrese sus datos</p>

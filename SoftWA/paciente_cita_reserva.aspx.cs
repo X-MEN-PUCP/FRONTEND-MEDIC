@@ -76,7 +76,9 @@ namespace SoftWA
                     var medicos = servicioPaciente.ListarMedicosPorEspecialidadPaciente(idEspecialidad);
                     if (medicos != null && medicos.Any())
                     {
-                        var listaMedicos = medicos.Select(m => new ListItem(
+                        var listaMedicos = medicos.Where(m => m.usuario.estadoGeneral == estadoGeneral.ACTIVO && m.usuario.estadoLogico
+                        == estadoLogico.DISPONIBLE)
+                            .Select(m => new ListItem(
                             $"{m.usuario.nombres} {m.usuario.apellidoPaterno}",
                             m.usuario.idUsuario.ToString()
                         )).ToList();
